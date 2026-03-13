@@ -1,0 +1,3 @@
+User-agent: *
+Allow: /
+Sitemap: https://bhavyamittall.netlify.app/sitemap.xml

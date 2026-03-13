@@ -1,0 +1,439 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Wipe It - Bhavya Mittal</title>
+  <link rel="icon" type="image/png" href="data:image/png;base64,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" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Serif:wght@400;600&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    :root {
+      --bg: #f7f6f2; --fg: #3a3a3a; --muted: #9a9a9a; --muted2: #c8c4be;
+      --border: #e8e5e0; --blue: #3b6fce;
+      --font: -apple-system, BlinkMacSystemFont, "Helvetica Neue", Helvetica, Arial, sans-serif;
+      --serif: "Noto Serif", Georgia, serif;
+      --col: 560px;
+    }
+    html { font-size: 15px; }
+    body { background: var(--bg); color: var(--fg); font-family: var(--font); line-height: 1.65; -webkit-font-smoothing: antialiased; }
+    body::before, body::after { content: ""; position: fixed; left: 0; right: 0; height: 80px; pointer-events: none; z-index: 100; }
+    body::before { top: 0; background: linear-gradient(to bottom, var(--bg), transparent); }
+    body::after  { bottom: 0; background: linear-gradient(to top,   var(--bg), transparent); }
+    .outer { max-width: var(--col); margin: 0 auto; padding: 96px 32px 140px; }
+    a { color: var(--fg); text-decoration: underline; text-decoration-color: var(--muted2); text-underline-offset: 2px; transition: color 0.15s, text-decoration-color 0.15s; }
+    a:hover { color: var(--blue); text-decoration-color: var(--blue); }
+    .back { font-size: 1rem; color: var(--muted); text-decoration: none; display: inline-flex; align-items: center; gap: 5px; margin-bottom: 44px; }
+    .back:hover { color: var(--blue); }
+    .cs-meta     { font-size: 1rem; color: var(--muted); margin-bottom: 6px; }
+    .cs-title    { font-size: 1.45rem; font-weight: 400; font-family: var(--serif); color: var(--fg); margin-bottom: 10px; line-height: 1.35; }
+    .cs-subtitle { font-size: 1rem; color: var(--muted); line-height: 1.65; }
+    .cs-toc { position: fixed; left: max(20px, calc(50% - var(--col)/2 - 180px)); top: 96px; width: 150px; list-style: none; }
+    .cs-toc li { margin-bottom: 7px; }
+    .cs-toc a { font-size: 0.875rem; color: var(--muted); text-decoration: none; display: block; line-height: 1.5; transition: color 0.15s; }
+    .cs-toc a.active { color: var(--fg); font-weight: 600; }
+    .cs-toc a:hover { color: var(--blue); }
+    .cs-body { margin-top: 44px; }
+    .cs-body section { margin-bottom: 48px; scroll-margin-top: 48px; }
+    .cs-body h2 { font-size: 1rem; font-weight: 600; margin-bottom: 16px; }
+    .cs-body p { font-size: 1rem; margin-bottom: 16px; line-height: 1.65; }
+    .cs-body p:last-child { margin-bottom: 0; }
+    hr { border: none; border-top: 1px solid var(--border); margin: 44px 0; }
+    .callout { border-left: 2px solid var(--border); padding: 12px 16px; color: var(--muted); font-size: 1rem; margin: 20px 0; }
+    .compare-table { width: 100%; border-collapse: collapse; margin: 20px 0; font-size: 0.93rem; }
+    .compare-table th { text-align: left; font-size: 0.72rem; font-weight: 500; color: var(--muted); text-transform: uppercase; letter-spacing: 0.04em; padding: 0 0 10px; border-bottom: 1px solid var(--border); }
+    .compare-table th:last-child { padding-left: 24px; }
+    .compare-table td { padding: 8px 0; vertical-align: top; border-top: 1px solid var(--border); line-height: 1.55; }
+    .compare-table td:last-child { padding-left: 24px; color: var(--muted); }
+    .code-inline { font-family: "SF Mono", "Fira Code", monospace; font-size: 0.82rem; background: var(--border); padding: 2px 6px; border-radius: 3px; }
+    .feedback-table { width: 100%; border-collapse: collapse; margin: 20px 0; font-size: 0.88rem; }
+    .feedback-table th { text-align: left; font-size: 0.68rem; font-weight: 500; color: var(--muted); text-transform: uppercase; letter-spacing: 0.04em; padding: 0 12px 10px 0; border-bottom: 1px solid var(--border); }
+    .feedback-table td { padding: 9px 12px 9px 0; border-top: 1px solid var(--border); vertical-align: top; line-height: 1.5; }
+    .feedback-table td:first-child { font-weight: 500; white-space: nowrap; }
+    .feedback-table td:last-child { color: var(--muted); }
+    .tags { display: flex; flex-wrap: wrap; gap: 5px; margin-top: 18px; }
+    .tag { font-size: 0.68rem; color: var(--muted); border: 1px solid var(--border); padding: 2px 6px; border-radius: 2px; letter-spacing: 0.03em; text-transform: uppercase; }
+    /* demo */
+    .demo-wrap { border: 1px solid var(--border); border-radius: 8px; overflow: hidden; margin: 28px 0; background: #f0efeb; }
+    .demo-label { font-size: 0.68rem; color: var(--muted); text-transform: uppercase; letter-spacing: 0.06em; padding: 10px 16px; border-bottom: 1px solid var(--border); background: var(--bg); }
+    .demo-inner { padding: 32px 24px 28px; display: flex; flex-direction: column; align-items: center; }
+    .demo-container { width: 100%; max-width: 420px; display: flex; flex-direction: column; gap: 14px; }
+    .demo-top-bar { display: flex; align-items: center; justify-content: space-between; }
+    .demo-hint { font-size: 0.8rem; color: var(--muted); }
+    .demo-toggle-wrap { display: flex; align-items: center; gap: 8px; cursor: pointer; user-select: none; }
+    .demo-toggle-label { font-size: 0.75rem; color: var(--muted); }
+    .demo-toggle { position: relative; width: 36px; height: 20px; }
+    .demo-toggle input { opacity: 0; width: 0; height: 0; position: absolute; }
+    .demo-toggle-track { position: absolute; inset: 0; background: var(--border); border-radius: 10px; transition: background 0.2s; }
+    .demo-toggle input:checked + .demo-toggle-track { background: var(--fg); }
+    .demo-toggle-thumb { position: absolute; top: 3px; left: 3px; width: 14px; height: 14px; background: #fff; border-radius: 50%; box-shadow: 0 1px 2px rgba(0,0,0,.15); transition: transform 0.2s; }
+    .demo-toggle input:checked ~ .demo-toggle-thumb { transform: translateX(16px); }
+    .demo-wipe-wrapper { position: relative; }
+    .demo-wipe-wrapper textarea { width: 100%; background: #fff; border: 1px solid var(--border); border-radius: 8px; padding: 14px 16px; font-family: var(--font); font-size: 0.93rem; line-height: 1.6; color: var(--fg); outline: none; resize: none; overflow: hidden; display: block; -webkit-tap-highlight-color: transparent; transition: border-color 0.2s; }
+    .demo-wipe-wrapper textarea:focus { border-color: var(--muted2); }
+    .demo-canvas { position: absolute; top: 0; left: 0; pointer-events: none; border-radius: 8px; z-index: 10; }
+    .demo-cleared-overlay { position: absolute; inset: 0; border-radius: 8px; display: flex; align-items: center; justify-content: center; background: #fff; opacity: 0; pointer-events: none; transition: opacity 0.4s; z-index: 5; }
+    .demo-cleared-overlay.show { opacity: 1; }
+    .demo-cleared-overlay span { font-size: 0.72rem; letter-spacing: 0.12em; text-transform: uppercase; color: var(--muted2); }
+    .demo-restore-btn { background: none; border: none; font-family: var(--font); font-size: 0.8rem; color: var(--muted); cursor: pointer; padding: 0; display: none; transition: color 0.15s; }
+    .demo-restore-btn:hover { color: var(--blue); }
+    /* qr */
+    .qr-block { border: 1px solid var(--border); border-radius: 8px; overflow: hidden; margin-top: 28px; background: #f0efeb; }
+    .qr-label { font-size: 0.68rem; color: var(--muted); text-transform: uppercase; letter-spacing: 0.06em; padding: 10px 16px; border-bottom: 1px solid var(--border); background: var(--bg); }
+    .qr-inner { padding: 24px; display: flex; flex-direction: row; align-items: center; gap: 20px; }
+    .qr-block canvas, .qr-block img { border-radius: 4px; flex-shrink: 0; display: block; }
+    .qr-text { display: flex; flex-direction: column; gap: 6px; }
+    .qr-desc { font-size: 0.93rem; color: var(--muted); line-height: 1.6; margin: 0; }
+    @keyframes fadeUp { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
+    .anim { opacity: 0; animation: fadeUp 0.5s ease forwards; }
+    .section-anim { opacity: 0; transform: translateY(12px); transition: opacity 0.5s ease, transform 0.5s ease; }
+    .section-anim.visible { opacity: 1; transform: translateY(0); }
+    @media (max-width: 820px) { .cs-toc { display: none; } .qr-block { display: none; } }
+    @media (max-width: 600px) { .outer { padding: 72px 20px 100px; } }
+  </style>
+</head>
+<body>
+  <div class="outer">
+    <a class="back anim" href="index.html" style="animation-delay:0ms">&#x21A9; Index</a>
+
+    <p class="cs-meta anim" style="animation-delay:60ms">Interaction Design &middot; Prototype &middot; 2025</p>
+    <p class="cs-title anim" style="animation-delay:115ms">Wipe It - A gesture-based approach to clearing text fields</p>
+    <p class="cs-subtitle anim" style="animation-delay:170ms">A scrub gesture that makes erasing feel as natural as crossing something out on paper.</p>
+
+    <ul class="cs-toc" id="cs-toc">
+      <li><a href="#overview">Overview</a></li>
+      <li><a href="#problem">The Problem</a></li>
+      <li><a href="#interaction">Interaction Model</a></li>
+      <li><a href="#stroke">Building the Stroke</a></li>
+      <li><a href="#feedback">Feedback System</a></li>
+      <li><a href="#edge-cases">Edge Cases</a></li>
+      <li><a href="#demo">Prototype</a></li>
+      <li><a href="#reflection">Reflection</a></li>
+    </ul>
+
+    <div class="vimeo-wrap" style="margin-top:36px;padding:33.33% 0 0 0;position:relative;border-radius:8px;overflow:hidden;">
+      <iframe src="https://player.vimeo.com/video/1173029092?badge=0&amp;autopause=0&amp;player_id=0&amp;app_id=58479&amp;autoplay=1&amp;loop=1" frameborder="0" allow="autoplay; fullscreen; picture-in-picture; clipboard-write; encrypted-media; web-share" referrerpolicy="strict-origin-when-cross-origin" style="position:absolute;top:0;left:0;width:100%;height:100%;" title="Real life mimic"></iframe>
+    </div>
+    <script src="https://player.vimeo.com/api/player.js"></script>
+
+    <div class="cs-body">
+
+      <section class="section-anim" id="overview">
+        <h2>Overview</h2>
+        <p>Wipe It started from a simple frustration: deleting text on mobile is graceless. You hunt for a tiny x, hold down Delete and watch characters crawl away, or triple-tap and hope your selection lands right.</p>
+        <p>Every other fundamental gesture has a real-world equivalent. Swipe to delete. Pinch to zoom. Pull to refresh. Erasing text has none.</p>
+        <div class="callout">The best interactions mimic real-world gestures. Erasing text has no equivalent - Wipe It is an attempt to give it one.</div>
+      </section>
+
+      <hr class="section-anim">
+
+      <section class="section-anim" id="problem">
+        <h2>The Problem</h2>
+        <p>Have you ever had to delete a large body of text on mobile? Hunt for a tiny x icon buried in a corner? Hold down Delete while watching characters disappear one by one?</p>
+        <p>The problem is not that it is slow - it is that it feels like nothing. The action has no physical weight, no texture, no sense of working against something.</p>
+        <div class="callout">Wipe It is an attempt to give text deletion a gesture that maps to something your hands already know: erasing. No holding Delete. No precision targeting.</div>
+      </section>
+
+      <hr class="section-anim">
+
+      <section class="section-anim" id="interaction">
+        <h2>Interaction Model</h2>
+        <p>Drag across a focused text field to erase. A brush stroke follows your finger. When you have covered enough ground - it clears.</p>
+        <p>The threshold scales with text length. Short text clears in one swipe. A paragraph needs sustained scrubbing.</p>
+        <p>The formula: <span class="code-inline">threshold = clamp(text.length &times; 8px, min: 70px, max: 900px)</span></p>
+        <p>"John" clears in ~80px. A full paragraph needs ~900px - multiple strokes. The effort is proportional to what is being erased.</p>
+      </section>
+
+      <hr class="section-anim">
+
+      <section class="section-anim" id="stroke">
+        <h2>Building the Stroke</h2>
+        <p>The brush went through several passes. Each iteration was about removing, not adding - stripping back effects until what remained was a stroke that felt like erasure.</p>
+        <table class="compare-table">
+          <thead><tr><th>What was tried</th><th>What shipped</th></tr></thead>
+          <tbody>
+            <tr><td>Multi-layer gritty charcoal - noise, blur, scatter</td><td>Single clean stroke - quadratic curves through midpoints</td></tr>
+            <tr><td>Dashed line gaps - simulated texture</td><td>Round caps and joins</td></tr>
+            <tr><td>Blurred lower edge - fake feathering</td><td>Warm light grey - <span class="code-inline">rgba(210,210,210,0.85)</span></td></tr>
+            <tr><td>Radial gradient dabs - realistic smudge</td><td>Width shrink on release - not a fade</td></tr>
+          </tbody>
+        </table>
+        <div class="callout">The stroke should be felt, not noticed.</div>
+      </section>
+
+      <hr class="section-anim">
+
+      <section class="section-anim" id="feedback">
+        <h2>Feedback System</h2>
+        <p>The gesture has no progress bar. The feedback IS the progress indicator - haptics and audio tell you how close you are without any visible UI overlay.</p>
+        <p><strong>Haptics</strong></p>
+        <p>A 3ms buzz fires on a repeating timer while the finger moves. The interval compresses as progress builds: <span class="code-inline">interval = 90ms - (progress &times; 45ms)</span>. Slow and textured at the start. Faster and more urgent near the end.</p>
+        <table class="feedback-table">
+          <thead><tr><th>Moment</th><th>Pattern</th><th>Why</th></tr></thead>
+          <tbody>
+            <tr><td>Scrub active</td><td>3ms pulse, 90-45ms interval</td><td>Continuous texture - maps to friction</td></tr>
+            <tr><td>Clear</td><td>14ms single snap</td><td>Definitive. Like something breaking off</td></tr>
+            <tr><td>Missed erase</td><td>[8ms, 60ms gap, 8ms]</td><td>"Not quite" - only fires above 5% progress</td></tr>
+            <tr><td>Restore</td><td>4ms tick</td><td>Quiet confirm, no sound</td></tr>
+          </tbody>
+        </table>
+        <p><strong>Audio</strong></p>
+        <p>All sounds are synthesized - short sine and triangle bursts, fast attack, exponential decay. A soft low pop on scrub start, a snappy double-hit on clear, a muted thud for a missed erase. Restore has no sound. Silence communicates undo better than any tone could.</p>
+      </section>
+
+      <hr class="section-anim">
+
+      <section class="section-anim" id="edge-cases">
+        <h2>Edge Cases</h2>
+        <p>Five edge cases were defined and handled explicitly - each one a place where a careless implementation would break trust with the user.</p>
+        <table class="feedback-table">
+          <thead><tr><th>Case</th><th>Behaviour</th></tr></thead>
+          <tbody>
+            <tr><td>Empty field</td><td>Gesture does not arm. Nothing to lose, nothing to resist.</td></tr>
+            <tr><td>Tap vs. drag</td><td>Tap focuses. Drag wipes. A 10px buffer separates the two before any logic runs.</td></tr>
+            <tr><td>Unfocused field</td><td>First tap focuses. Second interaction can wipe. Prevents accidental clears while scrolling past.</td></tr>
+            <tr><td>Scroll conflict</td><td><span class="code-inline">e.preventDefault()</span> fires once <span class="code-inline">isWiping</span> is true. Normal scroll preserved before that threshold.</td></tr>
+            <tr><td>Re-wipe after clear</td><td><span class="code-inline">isCleared</span> gates all wipe logic. Only Restore is available.</td></tr>
+          </tbody>
+        </table>
+      </section>
+
+      <hr class="section-anim">
+
+      <section class="section-anim" id="demo">
+        <h2>Prototype</h2>
+        <p>The prototype is fully functional - built in HTML, JS, and Web APIs. Try it below. Focus the field first, then drag across it to erase.</p>
+        <div class="demo-wrap">
+          <div class="demo-label">Live prototype - try it</div>
+          <div class="demo-inner">
+            <div class="demo-container">
+              <div class="demo-top-bar">
+                <span class="demo-hint" id="d-hint">Focus field &middot; then slide to erase</span>
+                <label class="demo-toggle-wrap">
+                  <span class="demo-toggle-label" id="d-tog-label">Wipe on</span>
+                  <div class="demo-toggle">
+                    <input type="checkbox" id="d-toggle" checked>
+                    <div class="demo-toggle-track"></div>
+                    <div class="demo-toggle-thumb"></div>
+                  </div>
+                </label>
+              </div>
+              <div class="demo-wipe-wrapper" id="d-wrap">
+                <textarea id="d-field" rows="5">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam.</textarea>
+                <canvas class="demo-canvas" id="d-canvas"></canvas>
+                <div class="demo-cleared-overlay" id="d-cleared"><span>Cleared</span></div>
+              </div>
+              <button class="demo-restore-btn" id="d-restore">&#x21BA; Restore</button>
+            </div>
+          </div>
+        </div>
+        <div class="qr-block">
+          <div class="qr-label">Try live on mobile</div>
+          <div class="qr-inner">
+            <div id="cs-qr"></div>
+            <div class="qr-text">
+              <p class="qr-desc">This interaction is best experienced on a phone. Touch input and haptic feedback are central to how it works - most of that is lost on a laptop. Scan to open on your device.</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <hr class="section-anim">
+
+      <section class="section-anim" id="reflection">
+        <h2>Reflection</h2>
+        <p>The most important decisions were all subtractive. Every time something was added - grit texture, blur effects, a stopwatch - it was later removed because it competed with the gesture rather than served it.</p>
+        <div class="callout">Good interaction design disappears. You feel it without noticing it.</div>
+        <table class="compare-table">
+          <thead><tr><th>What worked</th><th>What is next</th></tr></thead>
+          <tbody>
+            <tr><td>Threshold scaling - made it feel intelligent</td><td>Word-level erasure - erase only what you scrub over</td></tr>
+            <tr><td>Continuous haptic rumble - analog, not event-driven</td><td>Velocity-weighted threshold - fast scrubs feel lighter</td></tr>
+            <tr><td>Text stays visible during wipe - opacity unchanged</td><td>Accessibility mode - long-press to clear</td></tr>
+            <tr><td>Width-shrink exit - more physical than a fade</td><td></td></tr>
+            <tr><td>Restore silence - right call every time</td><td></td></tr>
+          </tbody>
+        </table>
+        <div class="tags">
+          <span class="tag">HTML Canvas</span>
+          <span class="tag">Pointer Events</span>
+          <span class="tag">Haptic API</span>
+          <span class="tag">Web Audio API</span>
+          <span class="tag">Interaction Prototyping</span>
+          <span class="tag">iOS &middot; Android</span>
+        </div>
+      </section>
+
+    </div>
+  </div>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
+  <script>
+    // Section scroll-in animations
+    var sectionObserver = new IntersectionObserver(function(entries) {
+      entries.forEach(function(e) {
+        if (e.isIntersecting) { e.target.classList.add("visible"); sectionObserver.unobserve(e.target); }
+      });
+    }, { threshold: 0.08 });
+    document.querySelectorAll(".section-anim").forEach(function(el) { sectionObserver.observe(el); });
+
+    // TOC scroll spy
+    var spy = new IntersectionObserver(function(entries) {
+      entries.forEach(function(e) {
+        if (!e.isIntersecting) return;
+        document.querySelectorAll(".cs-toc a").forEach(function(a) { a.classList.remove("active"); });
+        var a = document.querySelector('.cs-toc a[href="#' + e.target.id + '"]');
+        if (a) a.classList.add("active");
+      });
+    }, { rootMargin: "-10% 0px -80% 0px" });
+    document.querySelectorAll(".cs-body section").forEach(function(s) { spy.observe(s); });
+
+    // TOC smooth scroll
+    document.querySelectorAll(".cs-toc a").forEach(function(a) {
+      a.addEventListener("click", function(e) {
+        e.preventDefault();
+        var t = document.getElementById(a.getAttribute("href").slice(1));
+        if (t) t.scrollIntoView({ behavior: "smooth" });
+      });
+    });
+
+    // QR code
+    new QRCode(document.getElementById("cs-qr"), {
+      text: "https://bhavyamittall.netlify.app/wipe-it.html",
+      width: 88, height: 88,
+      colorDark: "#3a3a3a", colorLight: "#e8e5e0",
+      correctLevel: QRCode.CorrectLevel.M
+    });
+
+    // Demo
+    var field = document.getElementById("d-field");
+    var canvas = document.getElementById("d-canvas");
+    var clearedEl = document.getElementById("d-cleared");
+    var restoreBtn = document.getElementById("d-restore");
+    var toggleEl = document.getElementById("d-toggle");
+    var hintEl = document.getElementById("d-hint");
+    var togLabel = document.getElementById("d-tog-label");
+    var ctx2 = canvas.getContext("2d");
+    var BRUSH = 14, MIN_DRAG = 10;
+    var wipeEnabled = true, isWiping = false, downPos = null;
+    var isCleared = false, totalDist = 0, points = [], threshold = 0;
+    var rumbleTimer = null, lastPct = 0, isFocused = false;
+    var origText = field.value;
+
+    toggleEl.addEventListener("change", function() {
+      wipeEnabled = toggleEl.checked;
+      togLabel.textContent = wipeEnabled ? "Wipe on" : "Wipe off";
+      hintEl.textContent = wipeEnabled ? "Focus field · then slide to erase" : "Tap to edit freely";
+    });
+
+    var AC = window.AudioContext || window.webkitAudioContext, ac = null;
+    function getAC() { if (!ac) ac = new AC(); if (ac.state === "suspended") ac.resume(); return ac; }
+    function tone(f, d, g, tp, dr) {
+      try {
+        var c = getAC(), n = c.currentTime, dur = d / 1000;
+        var o = c.createOscillator(), gn = c.createGain();
+        o.type = tp || "sine"; o.frequency.setValueAtTime(f, n);
+        if (dr) o.frequency.linearRampToValueAtTime(f + dr, n + dur);
+        gn.gain.setValueAtTime(0, n);
+        gn.gain.linearRampToValueAtTime(g, n + dur * 0.04);
+        gn.gain.exponentialRampToValueAtTime(0.0001, n + dur);
+        o.connect(gn); gn.connect(c.destination); o.start(n); o.stop(n + dur + 0.01);
+      } catch(e) {}
+    }
+    function sndStart() { tone(180, 60, 0.08, "sine", -20); }
+    function sndClear() { tone(520, 80, 0.16, "sine", -60); setTimeout(function() { tone(340, 50, 0.06, "sine"); }, 55); }
+    function sndMiss()  { tone(140, 55, 0.06, "triangle", 10); }
+
+    function drawStroke(pts, w) {
+      if (pts.length < 2) return;
+      ctx2.clearRect(0, 0, canvas.width, canvas.height);
+      ctx2.strokeStyle = "rgba(210,210,210,0.85)"; ctx2.lineWidth = w;
+      ctx2.lineCap = "round"; ctx2.lineJoin = "round"; ctx2.setLineDash([]);
+      ctx2.beginPath(); ctx2.moveTo(pts[0].x, pts[0].y);
+      for (var i = 1; i < pts.length - 1; i++)
+        ctx2.quadraticCurveTo(pts[i].x, pts[i].y, (pts[i].x + pts[i+1].x) / 2, (pts[i].y + pts[i+1].y) / 2);
+      ctx2.lineTo(pts[pts.length-1].x, pts[pts.length-1].y); ctx2.stroke();
+    }
+
+    function resize2() { canvas.width = field.offsetWidth; canvas.height = field.offsetHeight; }
+    resize2(); window.addEventListener("resize", resize2);
+    function autoH() { field.style.height = "auto"; field.style.height = field.scrollHeight + "px"; }
+    autoH(); field.addEventListener("input", autoH);
+
+    function startRumble() {
+      if (!navigator.vibrate) return; stopRumble();
+      (function tick() { if (!isWiping) return; navigator.vibrate(3); rumbleTimer = setTimeout(tick, Math.round(90 - lastPct * 45)); })();
+    }
+    function stopRumble() { if (rumbleTimer) { clearTimeout(rumbleTimer); rumbleTimer = null; } if (navigator.vibrate) navigator.vibrate(0); }
+
+    function getP(e) {
+      var r = field.getBoundingClientRect(), s = e.touches ? e.touches[0] : e;
+      return { x: s.clientX - r.left, y: s.clientY - r.top };
+    }
+
+    field.addEventListener("focus", function() { isFocused = true; hintEl.textContent = wipeEnabled ? "Slide to erase" : "Tap to edit freely"; });
+    field.addEventListener("blur",  function() { isFocused = false; hintEl.textContent = wipeEnabled ? "Focus field · then slide to erase" : "Tap to edit freely"; });
+
+    function onDown(e) { if (!wipeEnabled || isCleared || !isFocused) return; downPos = getP(e); }
+
+    function onMove(e) {
+      if (!wipeEnabled || !downPos || isCleared) return;
+      var pos = getP(e);
+      if (!isWiping) {
+        if (Math.hypot(pos.x - downPos.x, pos.y - downPos.y) < MIN_DRAG) return;
+        if (!field.value.trim()) return;
+        isWiping = true; totalDist = 0; lastPct = 0; points = [downPos, pos];
+        threshold = Math.min(500, Math.max(70, field.value.length * 2.5));
+        startRumble(); sndStart();
+      }
+      if (e.cancelable) e.preventDefault();
+      var last = points[points.length - 1];
+      totalDist += Math.hypot(pos.x - last.x, pos.y - last.y);
+      points.push(pos); lastPct = Math.min(1, totalDist / threshold);
+      drawStroke(points, BRUSH);
+      if (lastPct >= 1 && field.value !== "") {
+        field.value = ""; isCleared = true; stopRumble(); sndClear();
+        if (navigator.vibrate) navigator.vibrate(14);
+        clearedEl.classList.add("show"); restoreBtn.style.display = "block"; onUp();
+      }
+    }
+
+    function onUp() {
+      downPos = null; if (!isWiping) return; isWiping = false; stopRumble();
+      if (!isCleared) {
+        if (lastPct > 0.05) { sndMiss(); if (navigator.vibrate) navigator.vibrate([8, 60, 8]); }
+        var frame = 0, saved = points.slice();
+        (function shrink() {
+          frame++; var w = BRUSH * (1 - frame / 13);
+          ctx2.clearRect(0, 0, canvas.width, canvas.height);
+          if (w > 0.2) {
+            ctx2.strokeStyle = "rgba(210,210,210,0.85)"; ctx2.lineWidth = w;
+            ctx2.lineCap = "round"; ctx2.lineJoin = "round"; ctx2.setLineDash([]);
+            ctx2.beginPath(); ctx2.moveTo(saved[0].x, saved[0].y);
+            for (var i = 1; i < saved.length - 1; i++)
+              ctx2.quadraticCurveTo(saved[i].x, saved[i].y, (saved[i].x + saved[i+1].x) / 2, (saved[i].y + saved[i+1].y) / 2);
+            ctx2.lineTo(saved[saved.length-1].x, saved[saved.length-1].y); ctx2.stroke();
+            requestAnimationFrame(shrink);
+          } else { ctx2.clearRect(0, 0, canvas.width, canvas.height); }
+        })();
+      } else { ctx2.clearRect(0, 0, canvas.width, canvas.height); }
+    }
+
+    field.addEventListener("mousedown", onDown);
+    field.addEventListener("touchstart", onDown, { passive: true });
+    window.addEventListener("mousemove", onMove);
+    window.addEventListener("touchmove", function(e) { if (isWiping) e.preventDefault(); onMove(e); }, { passive: false });
+    window.addEventListener("mouseup", onUp);
+    window.addEventListener("touchend", onUp);
+
+    restoreBtn.addEventListener("click", function() {
+      field.value = origText;
+      if (navigator.vibrate) navigator.vibrate(4);
+      isCleared = false; clearedEl.classList.remove("show"); restoreBtn.style.display = "none";
+      ctx2.clearRect(0, 0, canvas.width, canvas.height); autoH();
+    });
+  </script>
+</body>
+</html>
