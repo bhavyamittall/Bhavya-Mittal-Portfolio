@@ -3,11 +3,41 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>SIP Happens - Bhavya Mittal</title>
+  <title>SIP Happens &mdash; Fintech Product Design Case Study &mdash; Bhavya Mittal</title>
+  <meta name="description" content="A product design case study by Bhavya Mittal. SIP Happens reimagines the SIP calculator as an honest financial planning tool with realistic projections, inflation adjustment, and step-up SIP." />
+  <meta name="author" content="Bhavya Mittal" />
+  <meta name="robots" content="index, follow" />
+  <link rel="canonical" href="https://bhavyamittal.com/sip-happens.html" />
+  <!-- Open Graph -->
+  <meta property="og:type" content="article" />
+  <meta property="og:url" content="https://bhavyamittal.com/sip-happens.html" />
+  <meta property="og:title" content="SIP Happens &mdash; Fintech Product Design Case Study" />
+  <meta property="og:description" content="Rethinking the SIP calculator as an honest planning tool. Product design case study by Bhavya Mittal." />
+  <meta property="og:site_name" content="Bhavya Mittal" />
+  <!-- Twitter -->
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="SIP Happens &mdash; Fintech Product Design Case Study" />
+  <meta name="twitter:description" content="Rethinking the SIP calculator as an honest planning tool that helps people think, not just simulate." />
+  <!-- Favicon -->
   <link rel="icon" type="image/png" href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAAJqElEQVR4nE2XTYxeR1aGn3NO1f35vq+73dMd2yR2MDOZWAglY0QUCQK2V2OhwAKRaMRPyA4x2XsBKxASs5h9FghWRgIpEWIzC6PJJLZkpIwsEuU/g5XpIMeD47Sdbvf3c++tqsPidpxZHJV0VbpV5z3v+55TgkBVQe4AIAIZw6xmlX38YgFmR+DYMba/9U2OPPwwWjekBHUvWHbyfI97n99i9+bPGe7cgtUSPAEOBqQOPDGtjNRnBAiATCeRxWJgNms4OFgBikikuIIFJsdOcOJbj3Hi8V8nbmycutsPZ/a7/nQWPRFjvdlSVd3e/T4tD+7Not5cq+Xjfv/u2/9748bOzU8/gW4OwwCeCEHJw5JWQQVSBjGgnbYczJdYPSEPGTTAZMZ3fu8cJ7/5OLmqnylWX0hiZxPyVF9kukqZ1A0EN6RkNPVo6rHUzTWtrpehvyq5v/zZpzvXPv3g3UMEMiFAHpZUCl5ADKWguIURajVYW+e7f/JnVOtHTkk1eWFVeG7V5yf7Lh0iZORUGIZMSgXNGfWEDB0yDEgZCGQC/k63WLw637t76cO3ru8wLKBboBG8XxIEpA1TlimNWZvBseP8wYsvYkc2zy+LvbS37J+XWCHFKP2A9wVNBc2Ou7PKmZR6SAPmTnTHSyItl6R+hQFtDK98uft/L3907cobhAKLfTRA6ZcItFhdkwuwscEfff/7tMcfefbW/YOLpW7PeWxYdQPdvEP6RO1Ki0Hf0/c9WRX3jOeBYdkxrDrwQmWBuqpY7O8RyOR+dcVX+z9897/e+BHze1AGMFBEyWnAtrf53l/9JbPto+f3uuHi9Bvb5zqM/WVPtop2Y4PJ+gZSBbqSGHICKUAh58wwDGgwJmsz2rUNigb25yuatU3uzXvqyezc+taxi489ceY8WoEEyKBMalDh6bPPcPzRR09JjC/VbXtOLAJK204REbquY9GtKO7EOhAnFdZEzISqCjRNg5gy5EQ/DLgYsZ2w6Ac2t48y7xLzZXduY+voSyd/44lTxAgSUFJH9egj/Pb582TRF9z9eUWQIbPRtlRAo0ITjLY2Qi1kzSTLlABigiiAY6aEYFgQUKeUgovQp0SoGixEEH3++MMnXqjWNkEEJRpPnztLPW2fsRCeMzOmdc1aVWEp01CoHaIUTEBV8ADJnGIOoSAymo2IozbuUVVQR0QIISCmZAexSNW0z21uH3sGAsr2Nk//7u+Q8Ash6pNVMEIpRDKNFxqBSpxalMpAFTQIEgWiIKpoEFTBvloVTJ1gQlAwM1SVVIBQo1X75NGHT16gnaLHv/04G1tHT/Upn7VQ0dYNaejQUpjURiVCpU5l/uCQXzoFD6OHiCmooqrjJQ+RMBOQgqihISKhondjbeuhs2Hz6KnwxBNnyKmcadvpUy5CjIEQFItGyUIiYUUogGF4AXXHPVC04CZ4yaOJeUbM0TJ6hBTHVUgpgYDVDe6FZdcxjZOnjjz0yBl97NdOUwZOr802pykVSik0TYNGZSgDYoIFQYKNmT3IMqBagRluNjrpuAEx/aV9CoCoIjGSELIEVlmma9vHTodj278CqieCBEwCSQSLQp8zGgwXwAUVRzEkO4YCjuAkBQkF3BEHAfARhWJQKEiIY6stTnKlameslgvaje0TujadUAfbHFJH27a0TY2IUFJmfTYlqBJFscMIh1mJCCKCSkDEDteRH/4VP8wpChIM0UB2AZRmMsUdqqreVLGeqvEqpwXTSSAPSwIwa2osFRqM9jBqsUMpgocCClGgFiGoYWYjGYORIuTK8DqSTPBoaDBEnGHZcWS6Rll0lZI6jNxP24Y8dJhCFYzGIrkfqBgRiASiKMGMoHzNdGNE41DzYsChD4gpiI+yVUfEMTPqJtItF9SV9eHg7pdsHz92T1DS0NPWDf3gJBGiGq4GBbI5GScWoahQuYxmVMApCIIDlhQRx2XkgaG4gJPJFKKNTbdLc4rJPf3ko5+xVrc3LSUqMyZVjeeCOkyalqijiQQZI6qNiBxyAmWUYhinGxHBEIIblQcqGZEzF8QLFoSUV7Szml/cuXlT3/7pT5lZ9fEkVPNGDM1ONCHYYU1FHsjJVFEEOyxJkEOimVPUcZGv4RdBOYzsGILixAApL1nfaOaf39r5WP/nvQ+4/dnNt9cn7fUgkFNP21RUVUXK/dc/E39wCUNQEUx11Pdh3VEBC7gYWEDMcBRXQ00OE4OghdQdXOfunbd1vrvLa5f/c0dKvlpHI+pYQ1Uw06+85cFFgigmgUB4gI58daAG3AIlRIpFUqgoZmgcTcpMkJJpgvLJRx9cZXWwoxTnJ6/9mG65uFwFe6dtKkoayGlFXUdEfGSwjY3GddS/6+gBimESUBlnSlclmzEEI5uQQ0Cq8MAdfeip4J3PPvzgMkOPQmH3s5u8/tqPr/VD96pSqGNgMmlI/Yq6qUZWe8ZiIMSIC4gpdV2jGawIQQy1CkKkWCAHpQ9GqYSDfoWYUtWBMvTceP/9V5kvrpEdrZsAJP7pn/+Ru7dvX8LTKz70eOqYTiq61QFVDLRNhbhjQZhtzKjaiq7r2DqyRVvP8MzYdGCE3BSXghg0TaTr5xigqX/lxlv/fYnVCnJC+9UKcHy54G/++uLO/d07L29M2ysyDGjKTGOkEaEKRltHhm7F7u4u8/mcum24ffsO3aKjDjVt3WCieO5QEk0UAoXUL1hvKlZ7u1de/49/f5n5/R11CJRxKHKAaODOxq8+yt/94AfPzo5sXUxi5/bmK7JWzPvM3mpgUEMnEwaH+WoAj6xWPcvlnJx6IINnSupJfUfMmdqF+5/funL1Xy79kMXBj+hXBHpatVFBddOy6JbQVJCh3trib//+H84fOXb8JZf4/EFfWCEkq1kU595yxUFKuEaWXcHd0ZIh9ZA6JHWQElIGhv37LPe/fOUn//avL7P/5RuURCUFhjkKSKPKUMr4PFssQRRCRCczvvfnL5668OwfvrDfpef2+/RkJ4E5xkEaWHoha2SRIPeZ0s1hWFGlnpgHLA2EMrzz1ptvvvreG69fYjHfwQvkDiHz0PqE/f0DpAIUSEBsKpZdP36J9Ti3H/kGf/ynf/HM2e/+/oUFcvbW3v2nStNMBzO+uD/H6wmLxQLtFqwZTHOa79789Pr7b7559cZ77172L764RhmgZPCEkJnWSt8lJjVIMz6g4fASaoHk47gBCs0MhgzrWzzynTOnvv2bv3Vm6+TJ03Fj/YRNZpt7Q65Wq0V/cPv2vV/c+OjmZx++/3Ha+fnb3NvdIScoBTHFhw4Tp45O3w+EQ/P8f3l2j7CW9wCoAAAAAElFTkSuQmCC" />
+  <!-- Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Noto+Serif:wght@400;600&display=swap" rel="stylesheet" />
+  <!-- Structured data -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Article",
+    "headline": "SIP Happens - Designing a better SIP planning experience",
+    "description": "Rethinking the SIP calculator as an honest planning tool that helps first-time investors explore possibilities and make decisions with realistic expectations.",
+    "author": { "@type": "Person", "name": "Bhavya Mittal", "url": "https://bhavyamittal.com/" },
+    "url": "https://bhavyamittal.com/sip-happens.html",
+    "datePublished": "2026-03-01",
+    "keywords": "product design, fintech, SIP calculator, UX design, financial planning, India"
+  }
+  </script>
+
   <style>
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
     :root {
@@ -67,6 +97,13 @@
     .anim { opacity: 0; animation: fadeUp 0.5s ease forwards; }
     .section-anim { opacity: 0; transform: translateY(12px); transition: opacity 0.5s ease, transform 0.5s ease; }
     .section-anim.visible { opacity: 1; transform: translateY(0); }
+    .cs-footer { margin-top: 72px; padding-top: 32px; border-top: 1px solid var(--border); display: flex; align-items: center; justify-content: space-between; }
+    .next-cs { text-decoration: none; display: flex; flex-direction: column; gap: 3px; }
+    .next-cs-label { font-size: 0.68rem; color: var(--muted); text-transform: uppercase; letter-spacing: 0.06em; }
+    .next-cs-title { font-size: 1rem; color: var(--fg); transition: color 0.15s; }
+    .next-cs:hover .next-cs-title { color: var(--blue); }
+    .scroll-top { background: none; border: 1px solid var(--border); font-family: var(--font); font-size: 0.8rem; color: var(--muted); cursor: pointer; padding: 7px 12px; border-radius: 4px; transition: color 0.15s, border-color 0.15s; white-space: nowrap; }
+    .scroll-top:hover { color: var(--blue); border-color: var(--blue); }
     @media (max-width: 820px) { .cs-toc { display: none; } .user-grid { grid-template-columns: 1fr; } }
     @media (max-width: 600px) { .outer { padding: 72px 20px 100px; } }
   </style>
@@ -240,6 +277,15 @@
       </section>
 
     </div>
+
+    <div class="cs-footer section-anim">
+      <a class="next-cs" href="wipe-it.html">
+        <span class="next-cs-label">Next</span>
+        <span class="next-cs-title">Wipe It &#x2192;</span>
+      </a>
+      <button class="scroll-top" onclick="window.scrollTo({ top: 0, behavior: 'smooth' })">&#x2191; Top</button>
+    </div>
+
   </div>
 
   <script src="https://player.vimeo.com/api/player.js"></script>

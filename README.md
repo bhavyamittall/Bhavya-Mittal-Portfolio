@@ -2,7 +2,7 @@
 
 Personal portfolio site. Minimal, no framework, no build step — just HTML, CSS, and vanilla JS.
 
-**Live:** [bhavyamittall.netlify.app](https://bhavyamittall.netlify.app)
+**Live:** [bhavyamittal.com](https://bhavyamittal.com)
 
 ---
 
@@ -47,9 +47,9 @@ Rethinking the SIP calculator as an honest planning tool. Helps first-time inves
 
 ## Deployment
 
-Hosted on Netlify. To deploy manually, drag all HTML files to the Deploys tab at [app.netlify.com](https://app.netlify.com).
+Hosted on Vercel. To deploy manually, drag all HTML files to the Deploys tab at [vercel.com](https://vercel.com).
 
-To auto-deploy on push, connect this repo to Netlify via Import from Git.
+To auto-deploy on push, connect this repo to Vercel via Import from Git.
 
 ---
 
