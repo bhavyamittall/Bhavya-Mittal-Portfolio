@@ -7,6 +7,7 @@
   <meta name="description" content="Bhavya Mittal is a product designer and interaction designer based in Gurugram, India. Currently at Egon Zehnder. Case studies in interaction design, motion, and fintech UX." />
   <meta name="author" content="Bhavya Mittal" />
   <meta name="robots" content="index, follow" />
+  <meta name="google" content="notranslate" />
   <link rel="canonical" href="https://bhavyamittal.com/" />
   <meta property="og:type" content="website" />
   <meta property="og:url" content="https://bhavyamittal.com/" />
@@ -45,17 +46,20 @@
     a { color: var(--fg); text-decoration: underline; text-decoration-color: var(--muted2); text-underline-offset: 2px; transition: color 0.15s, text-decoration-color 0.15s; }
     a:hover { color: var(--blue); text-decoration-color: var(--blue); }
     .section { margin-top: 44px; }
-    .section-label { font-size: 1rem; color: var(--muted); font-weight: 400; margin-bottom: 12px; }
-    .work-table { width: 100%; border-collapse: collapse; }
-    .work-table tr { border-top: 1px solid var(--border); }
-    .work-table tr:last-child { border-bottom: 1px solid var(--border); }
-    .work-table td { padding: 11px 0; vertical-align: middle; font-size: 1rem; }
-    .col-year { color: var(--muted); width: 52px; white-space: nowrap; }
-    .col-title a { text-decoration: none; color: var(--fg); transition: color 0.15s; }
-    .col-title a:hover { color: var(--blue); }
-    .col-date { text-align: right; color: var(--muted); white-space: nowrap; padding-left: 16px; width: 42px; }
-    .entry-tag { display: inline-block; font-size: 0.68rem; color: var(--muted); background: var(--border); padding: 1px 5px; border-radius: 2px; margin-left: 7px; vertical-align: middle; position: relative; top: -1px; }
+    .section-label { font-size: 1rem; color: var(--muted); font-weight: 400; margin-bottom: 20px; }
+    .work-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
+    .work-card { text-decoration: none; display: flex; flex-direction: column; overflow: hidden; transition: opacity 0.2s; }
+    .work-card:hover { opacity: 0.8; }
+    .work-card:hover .work-card-title { color: var(--blue); }
+    .work-card-thumb { width: 100%; aspect-ratio: 16/9; background: #f0efeb; overflow: hidden; border-radius: 8px; }
+    .work-card-thumb img { width: 100%; height: 100%; object-fit: cover; display: block; }
+    .work-card-body { padding: 10px 0 0; display: flex; flex-direction: column; gap: 5px; }
+    .work-card-title { font-size: 0.93rem; color: var(--fg); font-weight: 400; transition: color 0.15s; line-height: 1.4; }
+    .work-card-meta { display: flex; align-items: center; justify-content: space-between; }
+    .work-card-tag { font-size: 0.68rem; color: var(--muted); }
+    .work-card-date { font-size: 0.68rem; color: var(--muted); }
     .clock { margin-top: 52px; font-size: 1rem; color: var(--muted); }
+    @media (max-width: 480px) { .work-grid { grid-template-columns: 1fr; } }
     @media (max-width: 600px) { .wrap { padding: 72px 20px 100px; } }
   </style>
 </head>
@@ -64,25 +68,42 @@
     <p class="site-name anim" style="animation-delay:0ms">Bhavya Mittal</p>
     <p class="site-sub anim" style="animation-delay:55ms">Product Design &middot; UX &middot; Motion</p>
     <p class="anim" style="animation-delay:110ms">I come from a communication design background and now focus on product design and UI/UX. I value clarity and tastefulness as two core principles of my work.</p>
-    <p class="anim" style="animation-delay:165ms">I&rsquo;m currently working at <a href="https://egonzehnder.com" target="_blank">Egon Zehnder</a> as an interaction and motion designer, and I&rsquo;ve also helped teams in fintech, consulting, and health shape digital experiences through a mix of product thinking, interaction design, and visual craft.</p>
-    <p class="anim" style="animation-delay:220ms">You can reach me at <a href="/cdn-cgi/l/email-protection#97f5fff6e1eef6fafee3e3f6fbf5feedd7f0faf6fefbb9f4f8fa"><span class="__cf_email__" data-cfemail="89ebe1e8fff0e8e4e0fdfde8e5ebe0f3c9eee4e8e0e5a7eae6e4">[email&#160;protected]</span></a>, find my work on <a href="https://www.behance.net/bhavyamittall" target="_blank">Behance</a>, or <a href="https://cal.com/bhavyamittal" target="_blank">schedule a meeting</a>.</p>
+    <p class="anim" style="animation-delay:165ms">I&rsquo;m currently working at <a href="https://egonzehnder.com" target="_blank">Egon Zehnder</a> as an interaction and motion designer, and I&rsquo;ve also helped teams in fintech, consulting, and healthcare shape digital experiences through a mix of product thinking, interaction design, and visual craft.</p>
+    <p class="anim" style="animation-delay:220ms">You can reach me at <a href="mailto:bhavyamittalbiz@gmail.com">bhavyamittalbiz@gmail.com</a>, or <a href="https://cal.com/bhavyamittal" target="_blank">schedule a meeting</a>.</p>
     <div class="section anim" style="animation-delay:275ms">
       <p class="section-label">Work</p>
-      <table class="work-table">
-        <tr>
-          <td class="col-year">2025</td>
-          <td class="col-title"><a href="wipe-it.html">Wipe It <span class="entry-tag">Interaction</span></a></td>
-          <td class="col-date">11/25</td>
-        </tr>
-        <tr>
-          <td class="col-year">2026</td>
-          <td class="col-title"><a href="sip-happens.html">SIP Happens <span class="entry-tag">Product</span></a></td>
-          <td class="col-date">03/26</td>
-        </tr>
-      </table>
+      <div class="work-grid">
+        <a class="work-card" href="sip-happens.html">
+          <div class="work-card-thumb"></div>
+          <div class="work-card-body">
+            <p class="work-card-title">SIP Happens</p>
+            <div class="work-card-meta">
+              <span class="work-card-tag">Product</span>
+              <span class="work-card-date">03/26</span>
+            </div>
+          </div>
+        </a>
+        <a class="work-card" href="wipe-it.html">
+          <div class="work-card-thumb"></div>
+          <div class="work-card-body">
+            <p class="work-card-title">Wipe It</p>
+            <div class="work-card-meta">
+              <span class="work-card-tag">Interaction</span>
+              <span class="work-card-date">11/25</span>
+            </div>
+          </div>
+        </a>
+      </div>
     </div>
-    <p class="clock anim" style="animation-delay:330ms" id="clock"></p>
+    <p class="anim" style="animation-delay:330ms; margin-top:24px;">Find more of my work on <a href="https://www.behance.net/bhavyamittall" target="_blank">Behance</a>.</p>
+    <p class="clock anim" style="animation-delay:385ms" id="clock"></p>
   </div>
-  <script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
+  <script>
     function tick() {
-      var t = new Date().toLocaleTimeString
+      var t = new Date().toLocaleTimeString("en-IN", { hour:"2-digit", minute:"2-digit", second:"2-digit", hour12:true, timeZone:"Asia/Kolkata" });
+      document.getElementById("clock").textContent = t + " in Gurugram, India";
+    }
+    setInterval(tick, 1000); tick();
+  </script>
+</body>
+</html>
