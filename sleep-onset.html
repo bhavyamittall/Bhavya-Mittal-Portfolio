@@ -1,0 +1,398 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Sleep Onset &mdash; Product Design Case Study &mdash; Bhavya Mittal</title>
+  <meta name="description" content="A mobile app for the pre-sleep window. Product design case study by Bhavya Mittal - adaptive routine, mental offloading, and environment design for sleep onset." />
+  <meta name="author" content="Bhavya Mittal" />
+  <meta name="robots" content="index, follow" />
+  <meta name="google" content="notranslate" />
+  <link rel="canonical" href="https://bhavyamittal.com/sleep-onset.html" />
+  <meta property="og:type" content="article" />
+  <meta property="og:url" content="https://bhavyamittal.com/sleep-onset.html" />
+  <meta property="og:title" content="Sleep Onset &mdash; Product Design Case Study" />
+  <meta property="og:description" content="A mobile app for the 30 minutes before sleep. Adaptive routine design for sleep onset." />
+  <meta property="og:site_name" content="Bhavya Mittal" />
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="Sleep Onset &mdash; Product Design Case Study" />
+  <meta name="twitter:description" content="A mobile app for the 30 minutes before sleep." />
+  <link rel="icon" type="image/png" href="https://res.cloudinary.com/dmxhlbucf/image/upload/v1773771858/Favicon_ylckj8.png" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Serif:wght@400;600&display=swap" rel="stylesheet" />
+  <script type="application/ld+json">{"@context":"https://schema.org","@type":"Article","headline":"Sleep Onset - Making the transition to sleep better","description":"A mobile app for the pre-sleep window. Adaptive routine design case study.","author":{"@type":"Person","name":"Bhavya Mittal","url":"https://bhavyamittal.com/"},"url":"https://bhavyamittal.com/sleep-onset.html","datePublished":"2025-01-01","keywords":"product design, mobile app, sleep, UX design, interaction design, wellness"}</script>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    :root {
+      --bg: #f7f6f2; --fg: #3a3a3a; --muted: #9a9a9a; --muted2: #c8c4be;
+      --border: #e8e5e0; --blue: #3b6fce;
+      --font: -apple-system, BlinkMacSystemFont, "Helvetica Neue", Helvetica, Arial, sans-serif;
+      --serif: "Noto Serif", Georgia, serif;
+      --col: 560px;
+    }
+    html { font-size: 15px; }
+    body { background: var(--bg); color: var(--fg); font-family: var(--font); line-height: 1.65; -webkit-font-smoothing: antialiased; }
+    body::before, body::after { content: ""; position: fixed; left: 0; right: 0; height: 80px; pointer-events: none; z-index: 100; }
+    body::before { top: 0; background: linear-gradient(to bottom, var(--bg), transparent); }
+    body::after  { bottom: 0; background: linear-gradient(to top, var(--bg), transparent); }
+    .outer { max-width: var(--col); margin: 0 auto; padding: 96px 32px 140px; }
+    a { color: var(--fg); text-decoration: underline; text-decoration-color: var(--muted2); text-underline-offset: 2px; transition: color 0.15s, text-decoration-color 0.15s; }
+    a:hover { color: var(--blue); text-decoration-color: var(--blue); }
+    .back { font-size: 1rem; color: var(--muted); text-decoration: none; display: inline-flex; align-items: center; gap: 5px; margin-bottom: 44px; }
+    .back:hover { color: var(--blue); }
+    .cs-meta     { font-size: 1rem; color: var(--muted); margin-bottom: 6px; }
+    .cs-title    { font-size: 1.45rem; font-weight: 400; font-family: var(--serif); color: var(--fg); margin-bottom: 10px; line-height: 1.35; }
+    .cs-toc { position: fixed; left: max(20px, calc(50% - var(--col)/2 - 180px)); top: 96px; width: 150px; list-style: none; }
+    .cs-toc li { margin-bottom: 7px; }
+    .cs-toc a { font-size: 0.875rem; color: var(--muted); text-decoration: none; display: block; line-height: 1.5; transition: color 0.15s; }
+    .cs-toc a.active { color: var(--fg); font-weight: 600; }
+    .cs-toc a:hover { color: var(--blue); }
+    .cs-body { margin-top: 44px; }
+    .cs-body section { margin-bottom: 48px; scroll-margin-top: 48px; }
+    .cs-body h2 { font-size: 1rem; font-weight: 600; margin-bottom: 16px; }
+    .cs-body p { font-size: 1rem; margin-bottom: 16px; line-height: 1.65; }
+    .cs-body p:last-child { margin-bottom: 0; }
+    hr { border: none; border-top: 1px solid var(--border); margin: 44px 0; }
+    .callout { border-left: 2px solid var(--border); padding: 12px 16px; color: var(--muted); font-size: 1rem; margin: 20px 0; line-height: 1.65; }
+    .ph { width: 100%; aspect-ratio: 1/1; background: #f0efeb; border-radius: 8px; display: flex; align-items: center; justify-content: center; margin: 28px 0; }
+    .ph-label { font-size: 0.68rem; color: var(--muted2); text-transform: uppercase; letter-spacing: 0.08em; }
+    .vid-wrap-plain { width: 100%; aspect-ratio: 1/1; background: #000; border-radius: 8px; overflow: hidden; margin: 16px 0 24px; }
+    .vid-wrap-plain video { width: 100%; height: 100%; object-fit: cover; display: block; }
+    .vid-wrap { width: 100%; aspect-ratio: 1/1; background: #000; border-radius: 8px; overflow: hidden; margin: 28px 0; position: relative; }
+    .vid-wrap video { width: 100%; height: 100%; object-fit: cover; display: block; }
+    .vid-btn { position: absolute; top: 10px; right: 10px; width: 28px; height: 28px; border-radius: 50%; background: rgba(247,246,242,0.35); border: none; cursor: pointer; display: flex; align-items: center; justify-content: center; padding: 0; backdrop-filter: blur(6px); -webkit-backdrop-filter: blur(6px); transition: background 0.15s; }
+    .vid-btn:hover { background: rgba(247,246,242,0.6); }
+    .vid-btn svg { width: 10px; height: 10px; fill: #3a3a3a; display: block; }
+    .stat-row { display: grid; grid-template-columns: repeat(4, 1fr); gap: 0; margin: 28px 0; border: 1px solid var(--border); border-radius: 8px; overflow: hidden; }
+    .stat { padding: 18px 16px; border-right: 1px solid var(--border); }
+    .stat:last-child { border-right: none; }
+    .stat-val { font-size: 1.3rem; font-family: var(--serif); color: var(--fg); line-height: 1.1; margin-bottom: 4px; }
+    .stat-label { font-size: 0.68rem; color: var(--muted); text-transform: uppercase; letter-spacing: 0.05em; line-height: 1.4; }
+    .quote { border-left: 2px solid var(--border); padding: 12px 16px; color: var(--muted); font-size: 0.93rem; margin: 16px 0; line-height: 1.65; }
+    .findings { width: 100%; border-collapse: collapse; margin: 20px 0; font-size: 0.93rem; }
+    .findings th { text-align: left; font-size: 0.68rem; font-weight: 500; color: var(--muted); text-transform: uppercase; letter-spacing: 0.04em; padding: 0 0 10px; border-bottom: 1px solid var(--border); }
+    .findings th:last-child { padding-left: 20px; }
+    .findings td { padding: 9px 0; border-top: 1px solid var(--border); vertical-align: top; line-height: 1.55; color: var(--fg); }
+    .findings td:last-child { padding-left: 20px; color: var(--muted); }
+    .persona { border: 1px solid var(--border); border-radius: 8px; overflow: hidden; margin: 20px 0; }
+    .persona-head { padding: 14px 18px; background: #f0efeb; border-bottom: 1px solid var(--border); }
+    .persona-head h3 { font-size: 0.93rem; font-weight: 600; color: var(--fg); margin-bottom: 2px; }
+    .persona-head p { font-size: 0.8rem; color: var(--muted); margin: 0; }
+    .persona-quote { padding: 12px 18px; border-bottom: 1px solid var(--border); font-size: 0.93rem; color: var(--muted); line-height: 1.6; }
+    .persona-body { padding: 14px 18px; display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+    .persona-body h4 { font-size: 0.68rem; text-transform: uppercase; letter-spacing: 0.06em; color: var(--muted); margin-bottom: 8px; font-weight: 500; }
+    .persona-body ul { list-style: none; display: flex; flex-direction: column; gap: 6px; }
+    .persona-body li { font-size: 0.88rem; color: var(--fg); padding-left: 14px; position: relative; line-height: 1.5; }
+    .persona-body li::before { content: "-"; position: absolute; left: 0; color: var(--muted); }
+    .figma-wrap { width: 100%; margin: 28px 0; border-radius: 8px; overflow: hidden; border: 1px solid var(--border); }
+    .figma-wrap iframe { width: 100%; height: 450px; display: block; border: none; }
+    .flow-table { width: 100%; border-collapse: collapse; margin: 20px 0; font-size: 0.93rem; }
+    .flow-table th { text-align: left; font-size: 0.68rem; font-weight: 500; color: var(--muted); text-transform: uppercase; letter-spacing: 0.04em; padding: 0 0 10px; border-bottom: 1px solid var(--border); }
+    .flow-table th:last-child { padding-left: 20px; }
+    .flow-table td { padding: 9px 0; border-top: 1px solid var(--border); vertical-align: top; line-height: 1.55; }
+    .flow-table td:first-child { font-weight: 500; white-space: nowrap; padding-right: 20px; color: var(--fg); }
+    .flow-table td:last-child { padding-left: 20px; color: var(--muted); }
+    .edge-table { width: 100%; border-collapse: collapse; margin: 20px 0; font-size: 0.88rem; }
+    .edge-table th { text-align: left; font-size: 0.68rem; font-weight: 500; color: var(--muted); text-transform: uppercase; letter-spacing: 0.04em; padding: 0 8px 10px 0; border-bottom: 1px solid var(--border); }
+    .edge-table td { padding: 8px 8px 8px 0; border-top: 1px solid var(--border); vertical-align: top; line-height: 1.5; color: var(--fg); }
+    .edge-table td:last-child { color: var(--muted); }
+    .tags { display: flex; flex-wrap: wrap; gap: 5px; margin-top: 18px; }
+    .tag { font-size: 0.68rem; color: var(--muted); border: 1px solid var(--border); padding: 2px 6px; border-radius: 2px; letter-spacing: 0.03em; text-transform: uppercase; }
+    .cs-footer { margin-top: 72px; padding-top: 32px; border-top: 1px solid var(--border); display: flex; align-items: center; justify-content: space-between; }
+    .next-cs { text-decoration: none; display: flex; flex-direction: column; gap: 3px; }
+    .next-cs-label { font-size: 0.68rem; color: var(--muted); text-transform: uppercase; letter-spacing: 0.06em; }
+    .next-cs-title { font-size: 1rem; color: var(--fg); transition: color 0.15s; }
+    .next-cs:hover .next-cs-title { color: var(--blue); }
+    .scroll-top { background: none; border: 1px solid var(--border); font-family: var(--font); font-size: 0.8rem; color: var(--muted); cursor: pointer; padding: 7px 12px; border-radius: 4px; transition: color 0.15s, border-color 0.15s; }
+    .scroll-top:hover { color: var(--blue); border-color: var(--blue); }
+    @keyframes fadeUp { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
+    .anim { opacity: 0; animation: fadeUp 0.5s ease forwards; }
+    .section-anim { opacity: 0; transform: translateY(12px); transition: opacity 0.5s ease, transform 0.5s ease; }
+    .section-anim.visible { opacity: 1; transform: translateY(0); }
+    @media (max-width: 820px) { .cs-toc { display: none; } .persona-body { grid-template-columns: 1fr; } }
+    @media (max-width: 600px) { .outer { padding: 72px 20px 100px; } .stat-row { grid-template-columns: 1fr 1fr; } .stat:nth-child(2) { border-right: none; } .stat:nth-child(3) { border-top: 1px solid var(--border); } }
+  </style>
+</head>
+<body>
+  <div class="outer">
+    <a class="back anim" href="index.html" style="animation-delay:0ms"><svg width="14" height="14" viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg" style="display:block;flex-shrink:0"><path d="M6 3L2 7L6 11M2 7H12" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg> Index</a>
+
+    <p class="cs-meta anim" style="animation-delay:60ms">Product Design &middot; Mobile &middot; 2025</p>
+    <p class="cs-title anim" style="animation-delay:115ms">Making the transition to sleep better</p>
+
+    <ul class="cs-toc" id="cs-toc">
+      <li><a href="#overview">Overview</a></li>
+      <li><a href="#problem">Problem</a></li>
+      <li><a href="#opportunity">Opportunity</a></li>
+      <li><a href="#features">Features</a></li>
+      <li><a href="#research">Research</a></li>
+      <li><a href="#personas">Personas</a></li>
+      <li><a href="#jtbd">JTBD</a></li>
+      <li><a href="#ia">Architecture</a></li>
+      <li><a href="#edge-cases">Edge Cases</a></li>
+    </ul>
+
+    <div class="cs-body">
+
+      <section class="section-anim" id="overview">
+        <p class="cs-meta" style="margin-bottom:16px;">Bhavya Mittal &amp; Ariba Fatima &middot; Mentor: Pratyush Kashyap &middot; 4 weeks</p>
+        <h2>Overview</h2>
+        <p>Sleep Onset is a mobile app designed around the pre-sleep window - a nightly routine that adapts to the user's time, mental state, and environment rather than following a fixed script. It covers environment setup, mental offloading, breathing, and guided meditation in a sequence built around how sleep actually arrives.</p>
+      </section>
+
+      <hr class="section-anim">
+
+      <section class="section-anim" id="problem">
+        <h2>Problem</h2>
+        <div class="vid-wrap-plain"><video src="https://res.cloudinary.com/dmxhlbucf/video/upload/v1774377265/Problem_Diagram_m55ure.mp4" autoplay loop muted playsinline></video></div>
+        <p>Sleep onset depends on two things: how aligned the body is with its natural circadian rhythm, and how settled the mind feels at the end of the day.</p>
+        <p>Even when physically tired, a misaligned routine or lingering mental noise can keep someone awake far longer than expected. A quick glance at a phone, unresolved thoughts, or an overstimulating environment is often enough to disrupt the transition entirely.</p>
+        <div class="callout">People do not necessarily struggle with sleep itself. They struggle with slowing down enough to let sleep happen.</div>
+      </section>
+
+      <hr class="section-anim">
+
+      <section class="section-anim" id="opportunity">
+        <h2>Opportunity</h2>
+        <div class="vid-wrap-plain"><video src="https://res.cloudinary.com/dmxhlbucf/video/upload/v1774377126/Opportunity_afothk.mp4" autoplay loop muted playsinline></video></div>
+        <p>Existing sleep and wellness apps offer proven techniques - breathing exercises, journaling, meditation - but present them in rigid, linear flows. Users follow the same steps every night regardless of how late it is, how tired they feel, or how their day unfolded.</p>
+        <p>In practice, this causes friction. What works well in isolation does not always work when layered together without context.</p>
+        <p>The missing piece was a different arrangement. People differ in their routines, environments, and mental states. A more effective experience needed to treat sleep holistically - familiar techniques arranged in a way that adapts to the person.</p>
+      </section>
+
+      <hr class="section-anim">
+
+      <section class="section-anim" id="features">
+        <h2>Features</h2>
+
+        <h2 style="font-weight:400; margin-top:8px; margin-bottom:12px; color: var(--muted); font-size:0.93rem;">1. Adaptive onboarding</h2>
+        <p>One question at a time collects bedtime and wake time, sleep latency, morning restedness, what keeps the user awake, mind-clearing preference (write vs. talk), and connected devices. Responses directly shape the routine. If the user prefers writing, journaling is the default. If they think better through conversation, Luna is ready instead. The routine preview at the end lets users adjust before day one.</p>
+        <div class="callout">The "Analysing your patterns..." state signals that something was built for you, not just switched on.</div>
+        <div class="vid-wrap"><video src="https://res.cloudinary.com/dmxhlbucf/video/upload/v1774176421/Onboarding_d3us4b.mp4" autoplay loop muted playsinline></video><button class="vid-btn" aria-label="Pause" data-state="playing"><svg viewBox="0 0 10 10"><rect x="1.5" y="1" width="3" height="8"/><rect x="5.5" y="1" width="3" height="8"/></svg></button></div>
+
+        <h2 style="font-weight:400; margin-top:24px; margin-bottom:12px; color: var(--muted); font-size:0.93rem;">2. Homepage - one action, one insight</h2>
+        <p>One prominent Wind Down button makes the next step obvious. Sleep debt is the primary metric, not hours slept or a score. It creates a forward-looking frame: what's possible tonight, not what went wrong last night.</p>
+        <div class="vid-wrap"><video src="https://res.cloudinary.com/dmxhlbucf/video/upload/v1774176419/Homepage_t0liv7.mp4" autoplay loop muted playsinline></video><button class="vid-btn" aria-label="Pause" data-state="playing"><svg viewBox="0 0 10 10"><rect x="1.5" y="1" width="3" height="8"/><rect x="5.5" y="1" width="3" height="8"/></svg></button></div>
+
+        <h2 style="font-weight:400; margin-top:24px; margin-bottom:12px; color: var(--muted); font-size:0.93rem;">3. Night Prep - room as part of the routine</h2>
+        <p>Instead of adjusting lights, playing sounds, or putting devices away in separate apps, the user does it all here, as part of winding down. Environmental cues - reduced light, lowered temperature, ambient sound - are among the most effective non-pharmacological interventions for sleep onset latency.</p>
+        <div class="vid-wrap"><video src="https://res.cloudinary.com/dmxhlbucf/video/upload/v1774176419/Night_Prep_vowqrd.mp4" autoplay loop muted playsinline></video><button class="vid-btn" aria-label="Pause" data-state="playing"><svg viewBox="0 0 10 10"><rect x="1.5" y="1" width="3" height="8"/><rect x="5.5" y="1" width="3" height="8"/></svg></button></div>
+
+        <h2 style="font-weight:400; margin-top:24px; margin-bottom:12px; color: var(--muted); font-size:0.93rem;">4. Declutter Mind - journal or Luna</h2>
+        <p>By the end of the day, the body may be tired but the mind is still running. Declutter Mind gives those thoughts somewhere to go - write them out or talk them through. Once they are out, the brain stops holding on to them.</p>
+        <p>Luna's tone selector (Wise / Friendly / Empathetic) gives users agency over how they want to be met that night, recognizing that emotional needs vary session to session.</p>
+        <div class="callout">Pre-sleep cognitive arousal - rumination and unresolved thoughts - is the most consistently cited cause of delayed sleep onset. Declutter Mind is prerequisite, not optional.</div>
+        <div class="vid-wrap"><video src="https://res.cloudinary.com/dmxhlbucf/video/upload/v1774176419/Declutter_Mind_nituaa.mp4" autoplay loop muted playsinline></video><button class="vid-btn" aria-label="Pause" data-state="playing"><svg viewBox="0 0 10 10"><rect x="1.5" y="1" width="3" height="8"/><rect x="5.5" y="1" width="3" height="8"/></svg></button></div>
+
+        <h2 style="font-weight:400; margin-top:24px; margin-bottom:12px; color: var(--muted); font-size:0.93rem;">5. Guided Meditation - Yog Nidra</h2>
+        <p>Yog Nidra works with the body's natural drift toward sleep rather than requiring sustained active attention. Standard mindfulness can become performance anxiety in a pre-sleep context. Yog Nidra asks for surrender, not concentration.</p>
+        <p>The Sankalpa (a short positive intention set before the session) personalizes the experience. The "put your phone aside" prompt marks the boundary between active and passive. Auto-pause on movement avoids jarring the user back to alertness.</p>
+        <div class="vid-wrap"><video src="https://res.cloudinary.com/dmxhlbucf/video/upload/v1774176419/Guided_Meditation_fozusi.mp4" autoplay loop muted playsinline></video><button class="vid-btn" aria-label="Pause" data-state="playing"><svg viewBox="0 0 10 10"><rect x="1.5" y="1" width="3" height="8"/><rect x="5.5" y="1" width="3" height="8"/></svg></button></div>
+      </section>
+
+      <hr class="section-anim">
+
+      <section class="section-anim" id="research">
+        <h2>Research</h2>
+        <p>Survey of 42 respondents, age 18-24, students and interns.</p>
+        <div class="stat-row">
+          <div class="stat"><div class="stat-val">77%</div><div class="stat-label">on phone pre-sleep</div></div>
+          <div class="stat"><div class="stat-val">68%</div><div class="stat-label">sleep past midnight</div></div>
+          <div class="stat"><div class="stat-val">41%</div><div class="stat-label">satisfaction &le; 5/10</div></div>
+          <div class="stat"><div class="stat-val">32%</div><div class="stat-label">latency &gt; 20 min</div></div>
+        </div>
+        <p>45% of respondents with more than 20 minutes of sleep latency cited mental noise as the primary cause - not environment or physical discomfort.</p>
+        <div class="quote">"My mind is too crowded with thoughts. It gets difficult to shush my brain."</div>
+        <div class="quote">"I sleep better when I've had my day planned out - worse when I don't have a plan."</div>
+        <div class="quote">"A lot of stuff going on in the back of the mind unconsciously."</div>
+        <table class="findings">
+          <thead><tr><th>Finding</th><th>Design implication</th></tr></thead>
+          <tbody>
+            <tr><td>Mind is the primary sleep blocker, not body</td><td>Mental offloading must precede meditation</td></tr>
+            <tr><td>45% bedroom not quiet or peaceful</td><td>Environment setup is a first-class routine step, not a settings page</td></tr>
+            <tr><td>68% sleep past midnight; schedules vary widely</td><td>Routine adapts to time-of-night, not a fixed start time</td></tr>
+            <tr><td>Avg satisfaction 5.9/10; 41% score 5 or below</td><td>Significant unmet need in the 18-24 demographic</td></tr>
+          </tbody>
+        </table>
+      </section>
+
+      <hr class="section-anim">
+
+      <section class="section-anim" id="personas">
+        <h2>Personas</h2>
+        <div class="persona">
+          <div class="persona-head">
+            <h3>Riya &middot; 22 &middot; Design student, freelance work on the side</h3>
+            <p>Schedule: Flexible / irregular</p>
+          </div>
+          <div class="persona-quote">"I know what I should do. I just don't do it because deciding feels like effort at midnight."</div>
+          <div class="persona-body">
+            <div>
+              <h4>Goals</h4>
+              <ul>
+                <li>Fall asleep without a 40-minute overthinking spiral</li>
+                <li>A routine that doesn't require willpower to start</li>
+                <li>Clear her head from client work before bed</li>
+              </ul>
+            </div>
+            <div>
+              <h4>Frustrations</h4>
+              <ul>
+                <li>Every sleep app she's tried felt like more homework</li>
+                <li>Ends up on Instagram because it requires zero decisions</li>
+                <li>Room stays bright until she's already in bed</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+        <div class="persona">
+          <div class="persona-head">
+            <h3>Arjun &middot; 21 &middot; Engineering student, hostel</h3>
+            <p>Schedule: Evening / night, irregular</p>
+          </div>
+          <div class="persona-quote">"A lot of stuff going on in the back of my mind unconsciously. I can't really name it."</div>
+          <div class="persona-body">
+            <div>
+              <h4>Goals</h4>
+              <ul>
+                <li>Fall asleep before exams without lying awake for an hour</li>
+                <li>Not be disrupted by roommate noise or ambient environment</li>
+                <li>Understand why he feels tired even after 7 hours</li>
+              </ul>
+            </div>
+            <div>
+              <h4>Frustrations</h4>
+              <ul>
+                <li>Roommates on later schedules; noisy hostel environment</li>
+                <li>Scrolls reels as an escape, extending sleep latency further</li>
+                <li>No sense of sleep debt or pattern - just chronic tiredness</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <hr class="section-anim">
+
+      <section class="section-anim" id="jtbd">
+        <h2>Jobs to be Done</h2>
+        <table class="flow-table">
+          <thead><tr><th>Job</th><th>User statement</th></tr></thead>
+          <tbody>
+            <tr><td>Fall asleep without struggling</td><td>When I go to bed, I want sleep to happen naturally, not after 40 minutes of thinking.</td></tr>
+            <tr><td>Control my sleep environment</td><td>I want to easily manage lights, sound, temperature, and devices so my room supports sleep.</td></tr>
+            <tr><td>Follow a simple nightly routine</td><td>I don't want to decide what to do each night. I want a clear, step-by-step flow.</td></tr>
+            <tr><td>See meaningful sleep data</td><td>Let me understand patterns like sleep debt, timing, and consistency without overwhelming charts.</td></tr>
+            <tr><td>Routine that adapts to me</td><td>Tailor the flow depending on how late it is, how I've been sleeping, and how I've been using the app.</td></tr>
+          </tbody>
+        </table>
+      </section>
+
+      <hr class="section-anim">
+
+      <section class="section-anim" id="ia">
+        <h2>Information Architecture</h2>
+        <p>The app is structured around a nightly routine spine. The routine is the product. Settings, history, and data are the support layer, accessed outside it.</p>
+        <div class="figma-wrap"><iframe src="https://embed.figma.com/board/7VeB4C9JvPmfo4qqNrB877/Sleep-App-IA-Updated?node-id=0-1&embed-host=share" allowfullscreen></iframe></div>
+        <table class="flow-table">
+          <thead><tr><th>Flow</th><th>Purpose</th></tr></thead>
+          <tbody>
+            <tr><td>Adaptive Onboarding</td><td>One question at a time. Understands your rhythm, what keeps you awake, how you clear your mind. Connects bedroom devices. Outputs a personalized routine preview you can adjust.</td></tr>
+            <tr><td>Homepage</td><td>One prominent Wind Down button. Shows when you slept yesterday and how tonight can reduce your sleep debt - awareness without overwhelming data.</td></tr>
+            <tr><td>Night Prep</td><td>Lights, sound, temperature, device wind-down, alarm - all in one flow, as part of winding down. Treats the room as part of the routine.</td></tr>
+            <tr><td>Declutter Mind</td><td>Write or talk through thoughts. Gives mental noise somewhere to go. Creates a sense of closure so the brain stops holding on.</td></tr>
+            <tr><td>Guided Breathing</td><td>4-7-8 breath technique. Physiological bridge between mental offloading and meditation.</td></tr>
+            <tr><td>Guided Meditation</td><td>Yog Nidra with Sankalpa. Phone-aside prompt. Auto-pause on movement. Ends with a completion state.</td></tr>
+          </tbody>
+        </table>
+        <p><strong>Sequence rationale:</strong> The order is not arbitrary. Environment shifts first, before the mind is asked to change. Declutter Mind comes second because unresolved thoughts block meditation. Guided Breathing bridges cognitive offloading to physical relaxation. Yog Nidra closes the sequence - receptive, not effortful, right for an already-settling mind.</p>
+      </section>
+
+      <hr class="section-anim">
+
+      <section class="section-anim" id="edge-cases">
+        <h2>Edge Cases</h2>
+        <p>Real usage rarely follows a clean path. Several of these scenarios are already handled in the current design; others are planned extensions that would make the routine more resilient as the product grows.</p>
+        <table class="edge-table">
+          <thead><tr><th>Scenario</th><th>Consideration</th><th>Design response</th></tr></thead>
+          <tbody>
+            <tr><td>User starts late (midnight or later)</td><td>A full routine at this hour would push sleep further out</td><td>The routine shortens adaptively - Guided Breathing and Night Prep compress; Declutter Mind becomes a single focused prompt rather than an open session</td></tr>
+            <tr><td>User skips Declutter Mind</td><td>Meditation lands better when the mind has already offloaded</td><td>A soft check-in before Guided Breathing: "Anything still on your mind?" One tap to continue if they're ready</td></tr>
+            <tr><td>Luna conversation runs long</td><td>An open-ended chat could extend stimulation rather than wind it down</td><td>A 10-minute soft close keeps the session bounded. Thoughts are saved to the journal automatically</td></tr>
+            <tr><td>Phone moved during meditation</td><td>A hard stop would break the settling process</td><td>Auto-pause rather than end. A visual-only nudge appears; no sound. The resume prompt waits 5 seconds before showing</td></tr>
+            <tr><td>Smart devices not connected</td><td>Night Prep needs somewhere to go without device controls</td><td>Planned: the flow shifts to a manual checklist - lights, sound, temperature as reminders rather than controls</td></tr>
+            <tr><td>User finishes the routine but sleep doesn't come</td><td>Re-entering the full routine could create pressure rather than ease</td><td>Planned: a single light option to return to the breathing exercise, keeping the rest of the routine closed</td></tr>
+            <tr><td>First-time user skips onboarding</td><td>Without preferences, the routine runs on defaults</td><td>A default routine launches immediately, with a "Personalize your routine" prompt surfaced gently over the first three days</td></tr>
+            <tr><td>User reopens the app mid-routine</td><td>The session's context needs to be recoverable</td><td>Planned: state is held for 30 minutes. A resume prompt appears on re-open; after 30 minutes the session is quietly marked complete</td></tr>
+          </tbody>
+        </table>
+        <div class="tags">
+          <span class="tag">Product Design</span>
+          <span class="tag">Mobile UX</span>
+          <span class="tag">Sleep Science</span>
+          <span class="tag">Adaptive Systems</span>
+          <span class="tag">Behaviour Design</span>
+          <span class="tag">Figma</span>
+        </div>
+      </section>
+
+    </div>
+
+    <div class="cs-footer section-anim">
+      <a class="next-cs" href="wipe-it.html">
+        <span class="next-cs-label">Next</span>
+        <span class="next-cs-title">Wipe It &#x2192;</span>
+      </a>
+      <button class="scroll-top" onclick="window.scrollTo({ top: 0, behavior: 'smooth' })">&#x2191; Top</button>
+    </div>
+
+  </div>
+
+  <script>
+    var sectionObserver = new IntersectionObserver(function(entries) {
+      entries.forEach(function(e) {
+        if (e.isIntersecting) { e.target.classList.add("visible"); sectionObserver.unobserve(e.target); }
+      });
+    }, { threshold: 0.08 });
+    document.querySelectorAll(".section-anim").forEach(function(el) { sectionObserver.observe(el); });
+
+    var spy = new IntersectionObserver(function(entries) {
+      entries.forEach(function(e) {
+        if (!e.isIntersecting) return;
+        document.querySelectorAll(".cs-toc a").forEach(function(a) { a.classList.remove("active"); });
+        var a = document.querySelector('.cs-toc a[href="#' + e.target.id + '"]');
+        if (a) a.classList.add("active");
+      });
+    }, { rootMargin: "-10% 0px -80% 0px" });
+    document.querySelectorAll(".cs-body section").forEach(function(s) { spy.observe(s); });
+
+    document.querySelectorAll(".cs-toc a").forEach(function(a) {
+      a.addEventListener("click", function(e) {
+        e.preventDefault();
+        var t = document.getElementById(a.getAttribute("href").slice(1));
+        if (t) t.scrollIntoView({ behavior: "smooth" });
+      });
+    });
+  </script>
+
+  <script>
+    document.querySelectorAll('.vid-btn').forEach(function(btn) {
+      var video = btn.previousElementSibling;
+      btn.addEventListener('click', function() {
+        if (video.paused) {
+          video.play();
+          btn.setAttribute('aria-label', 'Pause');
+          btn.setAttribute('data-state', 'playing');
+          btn.innerHTML = '<svg viewBox="0 0 10 10"><rect x="1.5" y="1" width="3" height="8"/><rect x="5.5" y="1" width="3" height="8"/></svg>';
+        } else {
+          video.pause();
+          btn.setAttribute('aria-label', 'Play');
+          btn.setAttribute('data-state', 'paused');
+          btn.innerHTML = '<svg viewBox="0 0 10 10"><polygon points="2,1 9,5 2,9"/></svg>';
+        }
+      });
+    });
+  </script>
+</body>
+</html>
