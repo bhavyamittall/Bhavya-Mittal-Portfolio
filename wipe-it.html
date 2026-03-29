@@ -126,8 +126,11 @@
     .next-cs-label { font-size: 0.68rem; color: var(--muted); text-transform: uppercase; letter-spacing: 0.06em; }
     .next-cs-title { font-size: 1rem; color: var(--fg); transition: color 0.15s; }
     .next-cs:hover .next-cs-title { color: var(--blue); }
-    .scroll-top { background: none; border: 1px solid var(--border); font-family: var(--font); font-size: 0.8rem; color: var(--muted); cursor: pointer; padding: 7px 12px; border-radius: 4px; transition: color 0.15s, border-color 0.15s; white-space: nowrap; }
-    .scroll-top:hover { color: var(--blue); border-color: var(--blue); }
+    .scroll-top { position: fixed; bottom: 40px; right: max(20px, calc(50% - 280px - 64px)); width: 40px; height: 40px; border-radius: 50%; background: var(--bg); border: 1px solid var(--border); cursor: pointer; display: flex; align-items: center; justify-content: center; transition: opacity 0.2s, border-color 0.15s; z-index: 200; opacity: 0; pointer-events: none; }
+    .scroll-top:hover { border-color: var(--blue); }
+    .scroll-top:hover svg { stroke: var(--blue); }
+    .scroll-top svg { width: 16px; height: 16px; stroke: var(--muted); stroke-width: 1.8; fill: none; stroke-linecap: round; stroke-linejoin: round; display: block; }
+    @media (max-width: 820px) { .scroll-top { right: 20px; bottom: 28px; } }
     @media (max-width: 820px) { .cs-toc { display: none; } .qr-block { display: none; } }
     @media (max-width: 600px) { .outer { padding: 72px 20px 100px; } }
   </style>
@@ -310,12 +313,12 @@
         <span class="next-cs-label">Next</span>
         <span class="next-cs-title">SIP Happens &#x2192;</span>
       </a>
-      <button class="scroll-top" onclick="window.scrollTo({ top: 0, behavior: 'smooth' })">&#x2191; Top</button>
     </div>
 
   </div>
 
   <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
+  <button class="scroll-top" id="scrollTopBtn" aria-label="Back to top"><svg viewBox="0 0 16 16"><polyline points="4,10 8,6 12,10"/></svg></button>
   <script>
     // Section scroll-in animations
     var sectionObserver = new IntersectionObserver(function(entries) {
@@ -480,6 +483,16 @@
       isCleared = false; clearedEl.classList.remove("show"); restoreBtn.style.display = "none";
       ctx2.clearRect(0, 0, canvas.width, canvas.height); autoH();
     });
+  </script>
+  <script>
+    (function() {
+      var btn = document.getElementById('scrollTopBtn');
+      btn.addEventListener('click', function() { window.scrollTo({ top: 0, behavior: 'smooth' }); });
+      window.addEventListener('scroll', function() {
+        if (window.scrollY > 200) { btn.style.opacity = '1'; btn.style.pointerEvents = 'auto'; }
+        else { btn.style.opacity = '0'; btn.style.pointerEvents = 'none'; }
+      }, { passive: true });
+    })();
   </script>
 </body>
 </html>

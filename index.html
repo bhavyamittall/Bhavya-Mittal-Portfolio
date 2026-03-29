@@ -21,6 +21,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Noto+Serif:wght@400;600&display=swap" rel="stylesheet" />
+  <link rel="preload" as="image" href="https://res.cloudinary.com/dmxhlbucf/image/upload/v1774694538/Logo_Animation_2_abgghd.gif" />
   <script type="application/ld+json">{"@context":"https://schema.org","@type":"Person","name":"Bhavya Mittal","url":"https://bhavyamittal.com/","jobTitle":"Product Designer","worksFor":{"@type":"Organization","name":"Egon Zehnder"},"address":{"@type":"PostalAddress","addressLocality":"Gurugram","addressCountry":"IN"},"sameAs":["https://www.behance.net/bhavyamittall","https://cal.com/bhavyamittal"]}</script>
   <style>
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
@@ -29,7 +30,6 @@
       --border: #e8e5e0; --blue: #3b6fce;
       --font: -apple-system, BlinkMacSystemFont, "Helvetica Neue", Helvetica, Arial, sans-serif;
       --serif: "Noto Serif", Georgia, serif;
-      --col: 560px;
     }
     html { font-size: 15px; }
     body { background: var(--bg); color: var(--fg); font-family: var(--font); font-size: 1rem; line-height: 1.65; -webkit-font-smoothing: antialiased; }
@@ -38,17 +38,15 @@
     body::after  { bottom: 0; background: linear-gradient(to top, var(--bg), transparent); }
     @keyframes fadeUp { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
     .anim { opacity: 0; animation: fadeUp 0.5s ease forwards; }
-    .wrap { max-width: var(--col); margin: 0 auto; padding: 96px 32px 140px; }
-    .site-name { font-size: 1.4rem; font-weight: 400; font-family: var(--serif); color: var(--fg); margin-bottom: 4px; line-height: 1.2; }
-    .site-sub  { font-size: 1rem; color: var(--muted); margin-bottom: 32px; }
-    p { font-size: 1rem; line-height: 1.65; color: var(--fg); margin-bottom: 18px; }
-    p:last-of-type { margin-bottom: 0; }
     a { color: var(--fg); text-decoration: underline; text-decoration-color: var(--muted2); text-underline-offset: 2px; transition: color 0.15s, text-decoration-color 0.15s; }
     a:hover { color: var(--blue); text-decoration-color: var(--blue); }
-    .section { margin-top: 44px; }
+    p { font-size: 1rem; line-height: 1.65; color: var(--fg); margin-bottom: 18px; }
+    p:last-of-type { margin-bottom: 0; }
+    .site-name { font-size: 1.4rem; font-weight: 400; font-family: var(--serif); color: var(--fg); margin-bottom: 4px; line-height: 1.2; }
+    .site-sub  { font-size: 1rem; color: var(--muted); margin-bottom: 32px; }
     .section-label { font-size: 1rem; color: var(--muted); font-weight: 400; margin-bottom: 28px; }
     .work-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
-    .work-card { text-decoration: none; display: flex; flex-direction: column; overflow: hidden; transition: opacity 0.2s; }
+    .work-card { text-decoration: none; display: flex; flex-direction: column; transition: opacity 0.2s; }
     .work-card:hover { opacity: 0.8; }
     .work-card:hover .work-card-title { color: var(--blue); }
     .work-card-thumb { width: 100%; aspect-ratio: 4/3; background: #f0efeb; overflow: hidden; border-radius: 8px; }
@@ -56,21 +54,39 @@
     .work-card-body { padding: 10px 0 0; display: flex; flex-direction: column; gap: 5px; }
     .work-card-title { font-size: 0.93rem; color: var(--fg); font-weight: 400; transition: color 0.15s; line-height: 1.4; }
     .work-card-meta { display: flex; align-items: center; justify-content: space-between; }
-    .work-card-tag { font-size: 0.68rem; color: var(--muted); }
+    .work-card-tag  { font-size: 0.68rem; color: var(--muted); }
     .work-card-date { font-size: 0.68rem; color: var(--muted); }
-    .clock { margin-top: 52px; font-size: 1rem; color: var(--muted); }
+    .clock { font-size: 1rem; color: var(--muted); }
+    .logo-wrap { position: relative; display: inline-block; margin-bottom: 20px; height: 34px; }
+    .logo-wrap img { display: block; height: 34px; width: auto; }
+    #logoAnim { position: absolute; top: 0; left: 0; visibility: hidden; opacity: 0; }
+    .wrap { max-width: 560px; margin: 0 auto; padding: 96px 32px 140px; }
+    .col-right { margin-top: 44px; }
+    @media (min-width: 960px) {
+      .wrap { max-width: 1080px; display: grid; grid-template-columns: 1fr 1fr; column-gap: 80px; align-items: start; padding: 96px 48px 140px; }
+      .col-left { display: flex; flex-direction: column; }
+      .col-right { margin-top: 0; }
+      .clock { margin-top: 52px; }
+    }
     @media (max-width: 480px) { .work-grid { grid-template-columns: 1fr; } }
     @media (max-width: 600px) { .wrap { padding: 72px 20px 100px; } }
   </style>
 </head>
 <body>
   <div class="wrap">
-    <p class="site-name anim" style="animation-delay:0ms">Bhavya Mittal</p>
-    <p class="site-sub anim" style="animation-delay:55ms">Product Design &middot; UX &middot; Motion</p>
-    <p class="anim" style="animation-delay:110ms">I come from a communication design background and now focus on product design and UI/UX. I value clarity and tastefulness as two core principles of my work.</p>
-    <p class="anim" style="animation-delay:165ms">I&rsquo;m currently working at <a href="https://egonzehnder.com" target="_blank">Egon Zehnder</a> as an interaction and motion designer, and I&rsquo;ve also helped teams in fintech, consulting, and healthcare shape digital experiences through a mix of product thinking, interaction design, and visual craft.</p>
-    <p class="anim" style="animation-delay:220ms">You can reach me at <a href="mailto:bhavyamittalbiz@gmail.com">bhavyamittalbiz@gmail.com</a>, or <a href="https://cal.com/bhavyamittal" target="_blank">schedule a meeting</a>.</p>
-    <div class="section anim" style="animation-delay:275ms">
+    <div class="col-left">
+      <div class="logo-wrap anim" style="animation-delay:0ms" id="logoWrap">
+        <img id="logoStatic" src="https://res.cloudinary.com/dmxhlbucf/image/upload/pg_1/v1774694538/Logo_Animation_2_abgghd.gif" alt="Bhavya Mittal logo" />
+        <img id="logoAnim" src="https://res.cloudinary.com/dmxhlbucf/image/upload/v1774694538/Logo_Animation_2_abgghd.gif" alt="" aria-hidden="true" />
+      </div>
+      <p class="site-name anim" style="animation-delay:30ms">Bhavya Mittal</p>
+      <p class="site-sub anim" style="animation-delay:80ms">Product Design &middot; UX &middot; Motion</p>
+      <p class="anim" style="animation-delay:130ms">I&rsquo;m a product designer with a background in communication design. Clarity and tastefulness are the two guiding principles of my work.</p>
+      <p class="anim" style="animation-delay:185ms">I currently work at <a href="https://egonzehnder.com" target="_blank">Egon Zehnder</a> as an interaction and motion designer, and have collaborated with companies &amp; teams across the finance and consulting industries to shape digital experiences through product thinking, interaction design, and motion.</p>
+      <p class="anim" style="animation-delay:240ms">You can reach me at <a href="mailto:bhavyamittalbiz@gmail.com">bhavyamittalbiz@gmail.com</a>, or <a href="https://cal.com/bhavyamittal" target="_blank">schedule a meeting</a>.</p>
+      <p class="clock anim" style="animation-delay:400ms; margin-top:52px;" id="clock"></p>
+    </div>
+    <div class="col-right anim" style="animation-delay:295ms">
       <p class="section-label">Work</p>
       <div class="work-grid">
         <a class="work-card" href="wipe-it.html">
@@ -104,16 +120,54 @@
           </div>
         </a>
       </div>
+      <p style="margin-top:24px;"><a href="https://drive.google.com/file/d/1ErbdDrQ5eRREuS20UU6Qw8vEYLGaI8XJ/view?usp=sharing" target="_blank">CV</a> &middot; Find more of my work on <a href="https://www.behance.net/bhavyamittall" target="_blank">Behance</a>.</p>
     </div>
-    <p class="anim" style="animation-delay:330ms; margin-top:24px;">Find more of my work on <a href="https://www.behance.net/bhavyamittall" target="_blank">Behance</a>.</p>
-    <p class="clock anim" style="animation-delay:385ms" id="clock"></p>
   </div>
+
   <script>
     function tick() {
       var t = new Date().toLocaleTimeString("en-IN", { hour:"2-digit", minute:"2-digit", second:"2-digit", hour12:true, timeZone:"Asia/Kolkata" });
       document.getElementById("clock").textContent = t + " in Gurugram, India";
     }
     setInterval(tick, 1000); tick();
+
+    (function () {
+      var GIF_SRC         = "https://res.cloudinary.com/dmxhlbucf/image/upload/v1774694538/Logo_Animation_2_abgghd.gif";
+      var GIF_DURATION_MS = 3000;
+      var wrap       = document.getElementById("logoWrap");
+      var logoStatic = document.getElementById("logoStatic");
+      var logoAnim   = document.getElementById("logoAnim");
+      var playing = false, cycleTimer = null, isHovered = false, gifReady = false;
+      function onGifReady() { gifReady = true; }
+      if (logoAnim.complete) { onGifReady(); } else { logoAnim.addEventListener("load", onGifReady); }
+      function restartGif() {
+        var clone = logoAnim.cloneNode(true);
+        clone.id = "logoAnim";
+        logoAnim.parentNode.replaceChild(clone, logoAnim);
+        logoAnim = clone;
+        if (!logoAnim.complete) { logoAnim.addEventListener("load", onGifReady); }
+      }
+      function showAnim() {
+        if (playing || !gifReady) return;
+        playing = true;
+        restartGif();
+        logoAnim.style.visibility = "visible";
+        logoAnim.style.opacity    = "1";
+        logoStatic.style.visibility = "hidden";
+        if (cycleTimer) clearTimeout(cycleTimer);
+        cycleTimer = setTimeout(function () {
+          playing = false; cycleTimer = null;
+          if (!isHovered) revertToStatic();
+        }, GIF_DURATION_MS);
+      }
+      function revertToStatic() {
+        logoAnim.style.visibility = "hidden";
+        logoAnim.style.opacity    = "0";
+        logoStatic.style.visibility = "visible";
+      }
+      wrap.addEventListener("mouseenter", function () { isHovered = true; showAnim(); });
+      wrap.addEventListener("mouseleave", function () { isHovered = false; if (!playing) revertToStatic(); });
+    })();
   </script>
 </body>
 </html>
