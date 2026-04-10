@@ -69,6 +69,25 @@
     .work-card-date  { font-size: 1rem; color: var(--muted); }
 
 
+    /* ── BM interactive logo ── */
+    .bm-logo-wrap { width: 31px; cursor: pointer; position: relative; margin-bottom: 4px; }
+    #bm-logo { width: 100%; height: auto; display: block; overflow: visible; }
+    .eye-group { transform-box: fill-box; transform-origin: center center; }
+    #right-eyebrow, #left-eyebrow { transform-box: fill-box; transform-origin: center center; transition: transform 0.18s ease-out; }
+    #right-eye-wink { display: none; }
+    .winking #right-eye-wink { display: block; }
+    .winking #right-eye { display: none; }
+    #left-eye-sleep, #right-eye-sleep { display: none; }
+    .sleeping #left-eye-sleep, .sleeping #right-eye-sleep { display: block; }
+    .sleeping #left-eye, .sleeping #right-eye { display: none; }
+    .z-char { fill: #5683d3; font-family: Arial Black, Arial, sans-serif; font-weight: 900; opacity: 0; }
+    @keyframes zFloat { 0% { opacity:0; transform:translate(0px,0px) scale(0.7); } 15% { opacity:1; } 80% { opacity:0.85; } 100% { opacity:0; transform:translate(-22px,-80px) scale(1.2); } }
+    @keyframes blink { 0% { transform:scaleY(1); } 40% { transform:scaleY(0.04); } 60% { transform:scaleY(0.04); } 100% { transform:scaleY(1); } }
+    @keyframes wakeBlink { 0% { transform:scaleY(1); } 12% { transform:scaleY(0.04); } 26% { transform:scaleY(1); } 40% { transform:scaleY(0.04); } 58% { transform:scaleY(1); } 100% { transform:scaleY(1); } }
+    #breath-wrap { transform-origin: bottom center; }
+    @keyframes breathe { 0% { transform:scaleY(1) translateY(0px); } 55% { transform:scaleY(1.018) translateY(-4px); } 100% { transform:scaleY(1) translateY(0px); } }
+    .sleeping #breath-wrap { animation: breathe 3.8s cubic-bezier(0.45,0,0.55,1) infinite; }
+
     /* cv-line inside reach block */
     .cv-line { font-size: 1rem; color: var(--fg); margin-bottom: 0; margin-top: 4px; }
     .cv-line a { color: var(--blue); }
@@ -225,6 +244,31 @@
         <p class="anim" id="bioP2" style="animation-delay:130ms">I currently work at <a href="https://egonzehnder.com" target="_blank">Egon Zehnder</a> as an interaction and motion designer, and have collaborated with companies &amp; teams across the finance and consulting industries to shape digital experiences through product thinking, interaction design, and motion.</p>
       </div>
       <div class="reach-block anim" id="reachBlock" style="animation-delay:185ms">
+        <div class="bm-logo-wrap" id="logo-wrap">
+          <div id="breath-wrap">
+          <svg id="bm-logo" viewBox="0 0 707.48 603.4" xmlns="http://www.w3.org/2000/svg">
+            <defs><style>.cls-2{fill:#5683d3;}</style></defs>
+            <g id="layer-main">
+              <polygon id="nose" class="cls-2" points="519.93 568.37 519.93 603.4 319.25 603.4 319.25 548.4 449.67 548.4 328.54 291.88 389.37 291.88 519.93 568.37"/>
+              <polygon id="right-eyebrow" class="cls-2" points="707.48 70.01 675.5 114.75 599.89 60.73 449.9 108.15 449.9 50.47 609.51 0 707.48 70.01"/>
+              <g id="right-eye-group" class="eye-group">
+                <rect id="right-eye"       class="cls-2" x="450.13" y="155.89" width="55"  height="135.99"/>
+                <rect id="right-eye-wink"  class="cls-2" x="440"    y="208"    width="90"  height="28"/>
+                <rect id="right-eye-sleep" class="cls-2" x="432"    y="213"    width="100" height="26"/>
+              </g>
+              <g id="left-eye-group" class="eye-group">
+                <rect id="left-eye"        class="cls-2" x="206.91" y="155.89" width="55"  height="135.99"/>
+                <rect id="left-eye-sleep"  class="cls-2" x="185"    y="213"    width="100" height="26"/>
+              </g>
+              <polygon id="left-eyebrow" class="cls-2" points="263.06 52.2 263.06 109.89 107.59 60.73 31.97 114.75 0 70.01 97.97 0 263.06 52.2"/>
+              <g id="zzz-group" style="pointer-events:none;">
+                <text id="z1" class="z-char" x="595" y="108" font-size="50">z</text>
+                <text id="z2" class="z-char" x="620" y="55"  font-size="72">Z</text>
+              </g>
+            </g>
+          </svg>
+          </div>
+        </div>
         <div class="reach-btns">
           <button class="reach-btn" id="emailBtn" onclick="copyEmail()" aria-label="Copy email address">
             <span class="reach-btn-inner">
@@ -295,7 +339,7 @@
       <div class="clock-spacer"></div>
     </div>
 
-  <script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
+  <script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
     var DESKTOP    = window.matchMedia("(min-width: 960px)");
     var wrap       = document.getElementById("wrap");
     var nameBlock  = document.getElementById("nameBlock");
@@ -355,6 +399,45 @@
       try { document.execCommand('copy'); cb(); } catch(e) {}
       document.body.removeChild(ta);
     }
+
+    /* ── BM interactive logo ── */
+    (function() {
+      var wrap=document.getElementById('logo-wrap'),svg=document.getElementById('bm-logo');
+      if(!wrap||!svg)return;
+      var leftEye=document.getElementById('left-eye'),rightEye=document.getElementById('right-eye');
+      var leftEyeGrp=document.getElementById('left-eye-group'),rightEyeGrp=document.getElementById('right-eye-group');
+      var leftBrow=document.getElementById('left-eyebrow'),rightBrow=document.getElementById('right-eyebrow');
+      var z1=document.getElementById('z1'),z2=document.getElementById('z2');
+      var L_BASE_X=206.91,L_BASE_Y=155.89,R_BASE_X=450.13,R_BASE_Y=155.89;
+      var L_CX=L_BASE_X+27.5,L_CY=L_BASE_Y+68,R_CX=R_BASE_X+27.5,R_CY=R_BASE_Y+68;
+      var EYE_MAX_X=42,EYE_MAX_Y=36,BROW_MAX_Y=14,BROW_MAX_R=4,BLINK_DUR=150;
+      var isWinking=false,isCurious=false,isSleeping=false,isWakingUp=false;
+      var hoverCount=0,idleTimer=null,curiousTimer=null,sleepTimer=null,zLoopTimer=null;
+      var tLX=0,tLY=0,tRX=0,tRY=0,cLX=0,cLY=0,cRX=0,cRY=0,tBY=0,tBR=0,cBY=0,cBR=0;
+      function lerp(a,b,t){return a+(b-a)*t;}
+      function toSVG(cx,cy){var r=svg.getBoundingClientRect();return{x:(cx-r.left)*(707.48/r.width),y:(cy-r.top)*(603.4/r.height)};}
+      function playZs(){z1.style.animation='none';z2.style.animation='none';void z1.offsetWidth;z1.style.animation='zFloat 1.7s ease-out forwards';setTimeout(function(){if(!isSleeping)return;z2.style.animation='none';void z2.offsetWidth;z2.style.animation='zFloat 2.0s ease-out forwards';},750);}
+      function stopZLoop(){clearInterval(zLoopTimer);zLoopTimer=null;[z1,z2].forEach(function(z){z.style.animation='none';void z.offsetWidth;});}
+      function enterSleep(){if(isSleeping||isWakingUp||isWinking)return;isSleeping=true;wrap.classList.add('sleeping');leftBrow.style.transition=rightBrow.style.transition='transform 0.7s ease-in-out';leftBrow.style.transform='translateY(28px) rotate(2deg)';rightBrow.style.transform='translateY(28px) rotate(-2deg)';tLX=tLY=tRX=tRY=tBY=tBR=0;playZs();zLoopTimer=setInterval(function(){if(isSleeping)playZs();},3400);}
+      function exitSleep(){if(!isSleeping||isWakingUp)return;isSleeping=false;isWakingUp=true;stopZLoop();wrap.classList.remove('sleeping');leftBrow.style.transition=rightBrow.style.transition='transform 0.3s ease-out';leftBrow.style.transform=rightBrow.style.transform='';var wd=560;[leftEyeGrp,rightEyeGrp].forEach(function(g){g.style.animation='wakeBlink '+wd+'ms ease-in-out';});setTimeout(function(){[leftEyeGrp,rightEyeGrp].forEach(function(g){g.style.animation='none';void g.offsetWidth;g.style.animation='';});isWakingUp=false;resetSleepTimer();},wd);}
+      function resetSleepTimer(){clearTimeout(sleepTimer);if(isSleeping||isWakingUp)return;sleepTimer=setTimeout(enterSleep,5000);}
+      function activityPing(){if(isSleeping){exitSleep();}else if(!isWakingUp){resetSleepTimer();}}
+      function enterCurious(){if(isWinking||isCurious||isSleeping||isWakingUp)return;isCurious=true;tLX=-8;tLY=-10;tRX=8;tRY=-10;leftBrow.style.transition=rightBrow.style.transition='transform 0.28s cubic-bezier(0.34,1.56,0.64,1)';leftBrow.style.transform='translateY(-18px) rotate(5deg)';rightBrow.style.transform='translateY(-28px) rotate(-10deg)';curiousTimer=setTimeout(exitCurious,2600);}
+      function exitCurious(){isCurious=false;leftBrow.style.transition=rightBrow.style.transition='transform 0.22s ease-out';leftBrow.style.transform=rightBrow.style.transform='';tLX=tLY=tRX=tRY=tBY=tBR=0;}
+      function updateTarget(cx,cy){if(isCurious||isSleeping||isWakingUp)return;var p=toSVG(cx,cy);tLX=Math.max(-1,Math.min(1,(p.x-L_CX)/160))*EYE_MAX_X;tLY=Math.max(-1,Math.min(1,(p.y-L_CY)/150))*EYE_MAX_Y;tRX=Math.max(-1,Math.min(1,(p.x-R_CX)/160))*EYE_MAX_X;tRY=Math.max(-1,Math.min(1,(p.y-R_CY)/150))*EYE_MAX_Y;tBY=-Math.max(-1,Math.min(1,(p.y-300)/200))*BROW_MAX_Y;tBR=Math.max(-1,Math.min(1,(p.x-353)/200))*BROW_MAX_R;if(isWinking){clearTimeout(idleTimer);idleTimer=setTimeout(enterCurious,hoverCount>=3?1200:2200);}}
+      function tick(){cLX=lerp(cLX,tLX,0.22);cLY=lerp(cLY,tLY,0.22);cRX=lerp(cRX,tRX,0.22);cRY=lerp(cRY,tRY,0.22);cBY=lerp(cBY,tBY,0.12);cBR=lerp(cBR,tBR,0.12);if(!isSleeping&&!isWakingUp){leftEye.setAttribute('x',L_BASE_X+cLX);leftEye.setAttribute('y',L_BASE_Y+cLY);}if(!isWinking&&!isSleeping&&!isWakingUp){rightEye.setAttribute('x',R_BASE_X+cRX);rightEye.setAttribute('y',R_BASE_Y+cRY);}if(!isWinking&&!isCurious&&!isSleeping){leftBrow.style.transform='translateY('+cBY+'px) rotate('+(-cBR)+'deg)';rightBrow.style.transform='translateY('+cBY+'px) rotate('+cBR+'deg)';}requestAnimationFrame(tick);}
+      function triggerBlink(){if(isWinking||isCurious||isSleeping||isWakingUp){setTimeout(triggerBlink,2800+Math.random()*3200);return;}[leftEyeGrp,rightEyeGrp].forEach(function(g){g.style.animation='blink '+BLINK_DUR+'ms ease-in-out';});setTimeout(function(){[leftEyeGrp,rightEyeGrp].forEach(function(g){g.style.animation='none';void g.offsetWidth;g.style.animation='';});setTimeout(triggerBlink,2800+Math.random()*3200);},BLINK_DUR);}
+      wrap.addEventListener('mouseenter',function(){activityPing();if(isSleeping||isWakingUp)return;hoverCount++;isWinking=true;wrap.classList.add('winking');rightBrow.style.transition='transform 0.18s ease-out';rightBrow.style.transform='translateY(22px) rotate(-14deg)';clearTimeout(idleTimer);idleTimer=setTimeout(enterCurious,hoverCount>=3?1200:2200);});
+      wrap.addEventListener('mouseleave',function(){clearTimeout(idleTimer);isWinking=false;wrap.classList.remove('winking');if(!isCurious&&!isSleeping){rightBrow.style.transform='';rightBrow.style.transition='transform 0.18s ease-out';}rightEye.setAttribute('x',R_BASE_X);rightEye.setAttribute('y',R_BASE_Y);if(!isCurious&&!isSleeping){tLX=tLY=tRX=tRY=tBY=tBR=0;}});
+      document.addEventListener('mousemove',function(e){activityPing();updateTarget(e.clientX,e.clientY);});
+      document.addEventListener('touchmove',function(e){activityPing();updateTarget(e.touches[0].clientX,e.touches[0].clientY);},{passive:true});
+      document.addEventListener('touchstart',function(){activityPing();},{passive:true});
+      document.addEventListener('keydown',activityPing);
+      document.addEventListener('click',activityPing);
+      document.addEventListener('visibilitychange',function(){if(document.hidden){clearTimeout(sleepTimer);enterSleep();}else{activityPing();}});
+      document.addEventListener('mouseleave',function(){if(!isWinking&&!isCurious){tLX=tLY=tRX=tRY=tBY=tBR=0;}resetSleepTimer();});
+      tick();triggerBlink();resetSleepTimer();
+    })();
   </script>
 </body>
 </html>
