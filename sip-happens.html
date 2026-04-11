@@ -104,7 +104,7 @@
     .cs-footer { margin-top: 72px; padding-top: 32px; border-top: 1px solid var(--border); display: flex; align-items: center; justify-content: space-between; }
     .next-cs { text-decoration: none; display: flex; flex-direction: column; gap: 3px; }
     .next-cs-label { font-size: 0.68rem; color: var(--muted); text-transform: uppercase; letter-spacing: 0.06em; }
-    .next-cs-title { font-size: 1rem; color: var(--fg); transition: color 0.15s; }
+    .next-cs-title { font-size: 1rem; color: var(--fg); transition: color 0.15s; display: inline-flex; align-items: center; gap: 5px; }
     .next-cs:hover .next-cs-title { color: var(--blue); }
     .scroll-top { position: fixed; bottom: 40px; right: max(20px, calc(50% - 280px - 64px)); width: 40px; height: 40px; border-radius: 50%; background: var(--bg); border: none; cursor: pointer; display: flex; align-items: center; justify-content: center; transition: opacity 0.2s; z-index: 200; opacity: 0; pointer-events: none; padding: 0; }
     .scroll-top:hover .ring-track { stroke: var(--muted2); }
@@ -124,7 +124,7 @@
 </head>
 <body>
   <div class="outer">
-    <a class="back anim" href="index.html" style="animation-delay:0ms"><svg width="14" height="14" viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg" style="display:block;flex-shrink:0"><path d="M6 3L2 7L6 11M2 7H12" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg> Index</a>
+    <a class="back anim" href="index.html" style="animation-delay:0ms"><svg width="14" height="14" viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg" style="display:block;flex-shrink:0"><path d="M6 3L2 7L6 11M2 7H12" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg> Home</a>
 
     <p class="cs-meta anim" style="animation-delay:60ms">Product Design &middot; UI/UX &middot; Fintech &middot; 2026</p>
     <p class="cs-title anim" style="animation-delay:115ms">SIP Happens - Designing a better SIP planning experience</p>
@@ -151,9 +151,9 @@
 
       <section class="section-anim" id="overview">
         <h2>Overview</h2>
-        <p>I started exploring SIPs when I began earning during my internship. Like most first-time investors, I turned to SIP calculators to understand what I could achieve with small monthly investments. But the experience felt oddly mechanical.</p>
-        <p>Calculators expected exact return percentages, ignored realities like inflation or increasing contributions over time, and mostly pushed users toward investing instead of helping them think. What I really wanted was a way to plan, not just simulate numbers.</p>
-        <div class="callout">This project began as an attempt to rethink the SIP calculator as a clearer and more honest planning tool - to help people explore possibilities, understand trade-offs, and make decisions with realistic expectations.</div>
+        <p>I started looking at SIPs when I began earning during my internship. Like most first-time investors, I opened a calculator to understand what small monthly amounts could actually become. The experience felt mechanical in a way that made it hard to think.</p>
+        <p>The calculators wanted exact return percentages. They skipped inflation. They didn't account for increasing contributions. Most nudged you toward investing rather than helping you figure out whether to. I wanted a planning tool, not a simulation.</p>
+        <div class="callout">The goal was to rethink the SIP calculator as an honest planning tool: one that helps people explore realistic possibilities and understand trade-offs, not one that makes the numbers look as good as possible.</div>
         <p>Duration: 1 month &middot; Self-initiated &middot; MVP phase</p>
         <a class="try-link" href="https://siphappens.figma.site/" target="_blank">&#x2197; Try the live product</a>
       </section>
@@ -163,9 +163,9 @@
       <section class="section-anim" id="jtbd">
         <h2>Jobs to be Done</h2>
         <ul class="jtbd-list">
-          <li>When I'm unsure what's possible with my current income, I want to simulate realistic SIP scenarios so that I can understand what I can actually achieve.</li>
-          <li>When investing feels uncertain, I want projections that reflect real-world conditions so that I can trust the plan I'm making.</li>
-          <li>When planning for a goal, I want to see the trade-offs between time, money, and returns so that I can make a deliberate decision.</li>
+          <li>Understand what's realistically achievable on my current income before committing to a SIP amount.</li>
+          <li>See projections that include inflation and step-up contributions, so the numbers reflect what will actually happen.</li>
+          <li>Compare trade-offs between time, monthly amount, and expected returns so I can make a deliberate choice rather than guess.</li>
         </ul>
       </section>
 
@@ -176,11 +176,11 @@
         <div class="user-grid">
           <div class="user-card">
             <h3>Early Earner</h3>
-            <p>A young professional in the first few years of earning who wants to start investing through SIPs but needs clarity on what's realistically achievable with their current income.</p>
+            <p>A young professional in their first few earning years who wants to start a SIP but isn't sure what's actually achievable on their income right now.</p>
           </div>
           <div class="user-card">
             <h3>Rational DIY Investor</h3>
-            <p>A self-directed investor who understands SIP basics and wants realistic projections - including inflation and step-up scenarios - to make deliberate long-term decisions.</p>
+            <p>A self-directed investor who already understands SIP basics and wants projections that account for inflation and step-up contributions, not just the headline number.</p>
           </div>
         </div>
       </section>
@@ -201,8 +201,8 @@
         <div class="video-wrap" style="padding:56.25% 0 0 0; position:relative; border-radius:8px; overflow:hidden; margin:28px 0;">
         <iframe src="https://player.vimeo.com/video/1170223958?badge=0&amp;autopause=0&amp;player_id=0&amp;app_id=58479&amp;autoplay=1&amp;loop=1&amp;muted=1" frameborder="0" allow="autoplay; fullscreen; picture-in-picture; clipboard-write; encrypted-media" style="position:absolute;top:0;left:0;width:100%;height:100%;" title="SIP Happens"></iframe>
       </div>
-        <p>I asked a few friends to use the Groww SIP calculator and noticed a clear pattern. Users approached it with one of three intents: they either wanted to experiment without a clear goal, had a specific target in mind, or wanted to know how long it would take to reach a goal.</p>
-        <p>Beginners often froze when presented with multiple parameters at once. To address this, I introduced a step-by-step input flow that reduces cognitive load and lets users think through one decision at a time before seeing the full report.</p>
+        <p>I asked a few friends to use the Groww SIP calculator and watched what happened. Three distinct intents came up: experimenting without a clear goal, aiming for a specific target, and working out how long a goal would take to reach.</p>
+        <p>Beginners froze when all the parameters appeared at once. A step-by-step input flow solves this, one decision at a time, so users can think before they see the full report.</p>
       </section>
 
       <hr class="section-anim">
@@ -212,12 +212,12 @@
         <div class="video-wrap" style="padding:56.25% 0 0 0; position:relative; border-radius:8px; overflow:hidden; margin:28px 0;">
         <iframe src="https://player.vimeo.com/video/1170321939?badge=0&amp;autopause=0&amp;player_id=0&amp;app_id=58479&amp;autoplay=1&amp;loop=1&amp;muted=1" frameborder="0" allow="autoplay; fullscreen; picture-in-picture; clipboard-write; encrypted-media" style="position:absolute;top:0;left:0;width:100%;height:100%;" title="SIP Happens"></iframe>
       </div>
-        <p>The dashboard is divided into two sections to clearly separate inputs from outcomes. Both sections remain independently scrollable so users can adjust investment parameters while simultaneously exploring results, visualizations, and insights without losing context.</p>
+        <p>The dashboard splits inputs from outputs. Both columns scroll independently: adjust a parameter on the left and the projection on the right updates in place, without losing your position in either.</p>
         <div class="video-wrap" style="padding:36.46% 0 0 0; position:relative; border-radius:8px; overflow:hidden; margin:28px 0;">
         <iframe src="https://player.vimeo.com/video/1170333937?badge=0&amp;autopause=0&amp;player_id=0&amp;app_id=58479&amp;autoplay=1&amp;loop=1&amp;muted=1" frameborder="0" allow="autoplay; fullscreen; picture-in-picture; clipboard-write; encrypted-media" style="position:absolute;top:0;left:0;width:100%;height:100%;" title="SIP Happens"></iframe>
       </div>
         <p><strong>Inputs (left):</strong> All investment parameters, advanced options, and modes.</p>
-        <p><strong>Outputs (right):</strong> Primary and secondary amounts, tenure, data visualizations, and a dynamic text window.</p>
+        <p><strong>Outputs (right):</strong> Projected amounts, tenure, data visualisations, and a dynamic text window that turns the numbers into a plain sentence.</p>
         <div class="callout">Dynamic text converts numerical outputs into a plain sentence that updates in real time - helping users quickly understand what the numbers actually mean.</div>
       </section>
 
@@ -231,11 +231,11 @@
         <div class="edge-case">
           <div class="edge-case-problem">
             <strong>Edge Case 1</strong>
-            <p>Users don't know the exact expected return and may overestimate (e.g., 15-18% long-term). The typical flow is clunky: browse funds, get a rough sense of returns, open calculator, get asked for a precise %, then guess or go back to check.</p>
+            <p>Most users don't know their expected return precisely, and many overestimate. 15–18% is a common guess for long-term equity. The current flow makes this worse: browse funds, get a rough sense of returns, open a calculator, get asked for an exact percentage, then guess or go back to look it up.</p>
           </div>
           <div class="edge-case-solution">
             <strong>Solution</strong>
-            <p>Instead of forcing exact inputs, returns are grouped into three broad behaviors - Conservative, Moderate, Aggressive. This reduces friction, helps beginners simulate faster, and still reflects realistic ranges. There is always an option to enter a return manually.</p>
+            <p>Instead of asking for a number, returns are grouped into three behaviours: Conservative, Moderate, Aggressive. Beginners can simulate without researching fund returns first. There's still a manual entry option for users who know what they want.</p>
           </div>
         </div>
       </section>
@@ -250,11 +250,11 @@
         <div class="edge-case">
           <div class="edge-case-problem">
             <strong>Edge Case 2</strong>
-            <p>User sees a large nominal future value, then enables inflation adjustment and the real value drops significantly. Most calculators show returns in isolation - users overestimate outcomes because they see nominal growth, not purchasing power, and assume a flat SIP when in reality they invest more each year.</p>
+            <p>A user sees a large nominal future value, enables inflation adjustment, and the number drops considerably. Most calculators show nominal growth only, so users overestimate what they'll actually be able to buy with that money. The same issue applies to contributions: most people increase what they invest each year, but calculators assume a flat amount throughout.</p>
           </div>
           <div class="edge-case-solution">
             <strong>Solution</strong>
-            <p>Two simple toggles - Inflation Adjustment (shows real value of money) and Step-Up SIP (simulates yearly increments). Together, these make projections more realistic and relatable.</p>
+            <p>Two toggles: Inflation Adjustment shows the real purchasing power of the projected amount. Step-Up SIP models yearly contribution increases. Together they bring the projection closer to what will actually happen.</p>
           </div>
         </div>
       </section>
@@ -266,18 +266,18 @@
         <div class="video-wrap" style="padding:58.88% 0 0 0; position:relative; border-radius:8px; overflow:hidden; margin:28px 0;">
         <iframe src="https://player.vimeo.com/video/1170234908?badge=0&amp;autopause=0&amp;player_id=0&amp;app_id=58479&amp;autoplay=1&amp;loop=1&amp;muted=1" frameborder="0" allow="autoplay; fullscreen; picture-in-picture; clipboard-write; encrypted-media" style="position:absolute;top:0;left:0;width:100%;height:100%;" title="SIP Happens"></iframe>
       </div>
-        <p><strong>Line Graph (default)</strong> - Shows how money grows over time: what was invested, what it becomes, and what it's worth after inflation. It tells the full story of compounding, not just the final number.</p>
-        <p><strong>Waffle Chart</strong> - Shows how much of the outcome is actual gain versus the user's own contribution. The two visualizations can be switched.</p>
+        <p><strong>Line Graph (default):</strong> Shows three things over time: what was invested, what it becomes, and what it's worth after inflation. The compounding curve is the point, not just the final number.</p>
+        <p><strong>Waffle Chart:</strong> Shows the split between actual gain and the user's own contributions. The two charts are switchable.</p>
       </section>
 
       <hr class="section-anim">
 
       <section class="section-anim" id="next">
         <h2>Next Steps</h2>
-        <p>This is still a WIP. A few areas I'm working on:</p>
+        <p>Still a work in progress. Two areas I'm focusing on:</p>
         <ul class="next-steps-list">
-          <li><strong>Mobile version</strong> - The current version is responsive but not well optimized for mobile, which is likely where most users will actually use it.</li>
-          <li><strong>Real historical data</strong> - The planner currently works with estimated inputs. Integrating actual fund data would let users plan against real market volatility rather than idealized projections.</li>
+          <li><strong>Mobile version:</strong> The current build is responsive but not built for mobile first. Given that most users will likely open this on their phone, that's the more important surface to get right.</li>
+          <li><strong>Real historical data:</strong> The planner works with estimated inputs. Pulling in actual fund data would let users plan against real market behaviour, not just idealized return curves.</li>
         </ul>
         <div class="tags">
           <span class="tag">Product Design</span>
@@ -295,7 +295,7 @@
     <div class="cs-footer section-anim">
       <a class="next-cs" href="sleep-onset.html">
         <span class="next-cs-label">Next</span>
-        <span class="next-cs-title">Sleep Onset &#x2192;</span>
+        <span class="next-cs-title">Sleep Onset <svg width="14" height="14" viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg" style="display:block;flex-shrink:0"><path d="M8 3L12 7L8 11M12 7H2" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
       </a>
     </div>
 

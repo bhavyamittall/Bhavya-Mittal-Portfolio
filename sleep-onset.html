@@ -64,10 +64,10 @@
     .ph-label { font-size: 0.68rem; color: var(--muted2); text-transform: uppercase; letter-spacing: 0.08em; }
     .vid-wrap-plain { width: 100%; aspect-ratio: 1/1; background: #000; border-radius: 8px; overflow: hidden; margin: 16px 0 24px; }
     .vid-wrap-plain video { width: 100%; height: 100%; object-fit: cover; display: block; }
-    /* Design system videos — natural ratio, not square */
+    /* Design system videos, natural ratio, not square */
     .vid-wrap-ds { width: 100%; background: #000; border-radius: 8px; overflow: hidden; margin: 16px 0 24px; }
     .vid-wrap-ds video { width: 100%; height: auto; display: block; }
-    /* Palette canvas — 3:2 placeholder so it shows before img loads */
+    /* Palette canvas, 3:2 placeholder so it shows before img loads */
     .ds-palette-wrap { width: 100%; background: #111; border-radius: 8px; overflow: hidden; margin: 20px 0; }
     .ds-palette-wrap canvas { display: block; width: 100%; cursor: crosshair; }
     .vid-wrap { width: 100%; aspect-ratio: 1/1; background: #000; border-radius: 8px; overflow: hidden; margin: 28px 0; position: relative; }
@@ -117,7 +117,7 @@
     .cs-footer { margin-top: 72px; padding-top: 32px; border-top: 1px solid var(--border); display: flex; align-items: center; justify-content: space-between; }
     .next-cs { text-decoration: none; display: flex; flex-direction: column; gap: 3px; }
     .next-cs-label { font-size: 0.68rem; color: var(--muted); text-transform: uppercase; letter-spacing: 0.06em; }
-    .next-cs-title { font-size: 1rem; color: var(--fg); transition: color 0.15s; }
+    .next-cs-title { font-size: 1rem; color: var(--fg); transition: color 0.15s; display: inline-flex; align-items: center; gap: 5px; }
     .next-cs:hover .next-cs-title { color: var(--blue); }
     .scroll-top { position: fixed; bottom: 40px; right: max(20px, calc(50% - 280px - 64px)); width: 40px; height: 40px; border-radius: 50%; background: var(--bg); border: none; cursor: pointer; display: flex; align-items: center; justify-content: center; transition: opacity 0.2s; z-index: 200; opacity: 0; pointer-events: none; padding: 0; }
     .scroll-top:hover .ring-track { stroke: var(--muted2); }
@@ -141,7 +141,7 @@
 </head>
 <body>
   <div class="outer">
-    <a class="back anim" href="index.html" style="animation-delay:0ms"><svg width="14" height="14" viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg" style="display:block;flex-shrink:0"><path d="M6 3L2 7L6 11M2 7H12" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg> Index</a>
+    <a class="back anim" href="index.html" style="animation-delay:0ms"><svg width="14" height="14" viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg" style="display:block;flex-shrink:0"><path d="M6 3L2 7L6 11M2 7H12" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg> Home</a>
 
     <p class="cs-meta anim" style="animation-delay:60ms">Product Design &middot; Mobile &middot; 2025</p>
     <p class="cs-title anim" style="animation-delay:115ms">Making the transition<br class="title-break"> to sleep better</p>
@@ -164,7 +164,7 @@
       <section class="section-anim" id="overview">
         <p class="cs-meta" style="margin-bottom:16px;">Bhavya Mittal &amp; Ariba Fatima &middot; Mentor: Pratyush Kashyap &middot; 4 weeks</p>
         <h2>Overview</h2>
-        <p>A mobile app designed around the pre-sleep window - a nightly routine that adapts to the user's time, mental state, and environment rather than following a fixed script. It covers environment setup, mental offloading, breathing, and guided meditation in a sequence built around how sleep actually arrives.</p>
+        <p>Sleep Onset is a mobile app for the pre-sleep window. The routine adjusts to what time it is, how the user is feeling, and what their environment looks like , not the same steps every night, regardless of context.</p>
       </section>
 
       <hr class="section-anim">
@@ -172,8 +172,8 @@
       <section class="section-anim" id="problem">
         <h2>Problem</h2>
         <div class="vid-wrap-plain"><video src="https://res.cloudinary.com/dmxhlbucf/video/upload/v1774377265/Problem_Diagram_m55ure.mp4" autoplay loop muted playsinline></video></div>
-        <p>Sleep onset depends on two things: how aligned the body is with its natural circadian rhythm, and how settled the mind feels at the end of the day.</p>
-        <p>Even when physically tired, a misaligned routine or lingering mental noise can keep someone awake far longer than expected. A quick glance at a phone, unresolved thoughts, or an overstimulating environment is often enough to disrupt the transition entirely.</p>
+        <p>Sleep onset depends on two things: whether the body is following its natural rhythm, and whether the mind has let go of the day. Physical tiredness alone doesn't guarantee it.</p>
+        <p>A phone checked at the wrong moment, a lit room, thoughts left unresolved, any of these can push sleep back by an hour. For the 18–24 demographic, the problem isn't a lack of sleep advice. It's that nothing fits how their evenings actually work.</p>
         <div class="callout">People do not necessarily struggle with sleep itself. They struggle with slowing down enough to let sleep happen.</div>
       </section>
 
@@ -182,9 +182,9 @@
       <section class="section-anim" id="opportunity">
         <h2>Opportunity</h2>
         <div class="vid-wrap-plain"><video src="https://res.cloudinary.com/dmxhlbucf/video/upload/v1774377126/Opportunity_afothk.mp4" autoplay loop muted playsinline></video></div>
-        <p>Existing sleep and wellness apps offer proven techniques - breathing exercises, journaling, meditation - but present them in rigid, linear flows. Users follow the same steps every night regardless of how late it is, how tired they feel, or how their day unfolded.</p>
-        <p>In practice, this causes friction. What works well in isolation does not always work when layered together without context.</p>
-        <p>The missing piece was a different arrangement. People differ in their routines, environments, and mental states. A more effective experience needed to treat sleep holistically - familiar techniques arranged in a way that adapts to the person.</p>
+        <p>Existing sleep apps offer the right techniques: breathing, journaling, meditation. But they deliver them in fixed sequences. The same steps run every night, regardless of how late it is, how tired the user is, or what kind of day they had.</p>
+        <p>That rigidity is where the friction comes from. Techniques that work in isolation don't automatically work when stacked without context.</p>
+        <p>The gap wasn't a missing feature. It was the arrangement. Sleep is personal. The time, the environment, the mental state all vary. A routine that adapts to those variables is a different kind of product than one that simply offers more options.</p>
       </section>
 
       <hr class="section-anim">
@@ -193,27 +193,27 @@
         <h2>Features</h2>
 
         <h2 style="font-weight:400; margin-top:8px; margin-bottom:12px; color: var(--muted); font-size:0.93rem;">1. Adaptive onboarding</h2>
-        <p>One question at a time collects bedtime and wake time, sleep latency, morning restedness, what keeps the user awake, mind-clearing preference (write vs. talk), and connected devices. Responses directly shape the routine. If the user prefers writing, journaling is the default. If they think better through conversation, Luna is ready instead. The routine preview at the end lets users adjust before day one.</p>
+        <p>One question at a time: bedtime, wake time, sleep latency, morning restedness, what keeps the user awake, how they prefer to clear their mind, and which devices they want connected. The answers shape the routine directly. Writing preference means journaling is the default; if they think better talking, Luna opens instead. A preview at the end lets them adjust before day one.</p>
         <div class="callout">The "Analysing your patterns..." state signals that something was built for you, not just switched on.</div>
         <div class="vid-wrap"><video src="https://res.cloudinary.com/dmxhlbucf/video/upload/v1774176421/Onboarding_d3us4b.mp4" autoplay loop muted playsinline></video><button class="vid-btn" aria-label="Pause" data-state="playing"><svg viewBox="0 0 10 10"><rect x="1.5" y="1" width="3" height="8"/><rect x="5.5" y="1" width="3" height="8"/></svg></button></div>
 
         <h2 style="font-weight:400; margin-top:24px; margin-bottom:12px; color: var(--muted); font-size:0.93rem;">2. Homepage - one action, one insight</h2>
-        <p>One prominent Wind Down button makes the next step obvious. Sleep debt is the primary metric, not hours slept or a score. It creates a forward-looking frame: what's possible tonight, not what went wrong last night.</p>
+        <p>One Wind Down button. The primary metric is sleep debt, not a score. Debt is a forward-looking number: what tonight can recover, rather than a verdict on what went wrong.</p>
         <div class="vid-wrap"><video src="https://res.cloudinary.com/dmxhlbucf/video/upload/v1774176419/Homepage_t0liv7.mp4" autoplay loop muted playsinline></video><button class="vid-btn" aria-label="Pause" data-state="playing"><svg viewBox="0 0 10 10"><rect x="1.5" y="1" width="3" height="8"/><rect x="5.5" y="1" width="3" height="8"/></svg></button></div>
 
         <h2 style="font-weight:400; margin-top:24px; margin-bottom:12px; color: var(--muted); font-size:0.93rem;">3. Night Prep - room as part of the routine</h2>
-        <p>Instead of adjusting lights, playing sounds, or putting devices away in separate apps, the user does it all here, as part of winding down. Environmental cues - reduced light, lowered temperature, ambient sound - are among the most effective non-pharmacological interventions for sleep onset latency.</p>
+        <p>Lights, sound, temperature, devices: all adjusted in one flow, as part of winding down, rather than across separate apps before bed. Reducing environmental stimulation at the right moment is one of the more reliable non-pharmacological ways to shorten sleep latency.</p>
         <div class="vid-wrap"><video src="https://res.cloudinary.com/dmxhlbucf/video/upload/v1774176419/Night_Prep_vowqrd.mp4" autoplay loop muted playsinline></video><button class="vid-btn" aria-label="Pause" data-state="playing"><svg viewBox="0 0 10 10"><rect x="1.5" y="1" width="3" height="8"/><rect x="5.5" y="1" width="3" height="8"/></svg></button></div>
 
         <h2 style="font-weight:400; margin-top:24px; margin-bottom:12px; color: var(--muted); font-size:0.93rem;">4. Declutter Mind - journal or Luna</h2>
-        <p>By the end of the day, the body may be tired but the mind is still running. Declutter Mind gives those thoughts somewhere to go - write them out or talk them through. Once they are out, the brain stops holding on to them.</p>
-        <p>Luna's tone selector (Wise / Friendly / Empathetic) gives users agency over how they want to be met that night, recognizing that emotional needs vary session to session.</p>
+        <p>At the end of the day the mind is still running even when the body is ready to stop. Writing or talking through what's left gives those thoughts somewhere to land. The holding eases once they're out.</p>
+        <p>Luna's tone selector (Wise, Friendly, Empathetic) lets users pick how they want to be met. The need varies night to night.</p>
         <div class="callout">Pre-sleep cognitive arousal - rumination and unresolved thoughts - is the most consistently cited cause of delayed sleep onset. Declutter Mind is prerequisite, not optional.</div>
         <div class="vid-wrap"><video src="https://res.cloudinary.com/dmxhlbucf/video/upload/v1774176419/Declutter_Mind_nituaa.mp4" autoplay loop muted playsinline></video><button class="vid-btn" aria-label="Pause" data-state="playing"><svg viewBox="0 0 10 10"><rect x="1.5" y="1" width="3" height="8"/><rect x="5.5" y="1" width="3" height="8"/></svg></button></div>
 
         <h2 style="font-weight:400; margin-top:24px; margin-bottom:12px; color: var(--muted); font-size:0.93rem;">5. Guided Meditation - Yog Nidra</h2>
-        <p>Yog Nidra works with the body's natural drift toward sleep rather than requiring sustained active attention. Standard mindfulness can become performance anxiety in a pre-sleep context. Yog Nidra asks for surrender, not concentration.</p>
-        <p>The Sankalpa (a short positive intention set before the session) personalizes the experience. The "put your phone aside" prompt marks the boundary between active and passive. Auto-pause on movement avoids jarring the user back to alertness.</p>
+        <p>Yog Nidra works with the body's drift toward sleep rather than asking for concentration. Standard mindfulness practices can tip into effort or anxiety in a pre-sleep context. Yog Nidra asks for surrender instead.</p>
+        <p>The Sankalpa, a short personal intention set at the start, anchors the session. The "put your phone aside" prompt draws a line between the active and passive parts of the routine. Auto-pause on movement means a shifted phone doesn't end the session.</p>
         <div class="vid-wrap"><video src="https://res.cloudinary.com/dmxhlbucf/video/upload/v1774176419/Guided_Meditation_fozusi.mp4" autoplay loop muted playsinline></video><button class="vid-btn" aria-label="Pause" data-state="playing"><svg viewBox="0 0 10 10"><rect x="1.5" y="1" width="3" height="8"/><rect x="5.5" y="1" width="3" height="8"/></svg></button></div>
       </section>
 
@@ -221,34 +221,34 @@
 
       <section class="section-anim" id="design-system">
         <h2>Design System</h2>
-        <p>The design system draws from how a sleep environment feels in real life. Every decision is made to support four qualities that make it easier to wind down.</p>
+        <p>The design system is built around what a sleep environment actually feels like. Each decision targets four qualities that make winding down easier.</p>
         <div class="vid-wrap-ds"><video src="https://res.cloudinary.com/dmxhlbucf/video/upload/q_auto/f_auto/v1775296872/DesignSystem_Words_d0ao5c.mp4" autoplay loop muted playsinline></video></div>
-        <p>Rather than adding personality, the system reduces friction and helps the user settle without effort.</p>
+        <p>The goal is less friction, not more character.</p>
 
         <h2 style="font-weight:400; margin-top:32px; margin-bottom:12px; color: var(--muted); font-size:0.93rem;">Colour</h2>
-        <p>The palette is inspired by the midnight sky.</p>
+        <p>The palette is drawn from the midnight sky.</p>
         <div class="ds-palette-wrap">
           <canvas id="ds-palette-canvas"></canvas>
         </div>
-        <p>Deep tones create a sense of stillness, while lighter accents guide attention without feeling intrusive. Colours are also used functionally to differentiate states without increasing cognitive load, especially in low-light conditions.</p>
+        <p>Dark tones keep the interface visually quiet. Lighter accents point attention where it needs to go without competing for it. Colour also carries functional meaning: it separates states without adding labels, which matters when the user is trying to read something in a dim room at midnight.</p>
         <img src="https://res.cloudinary.com/dmxhlbucf/image/upload/v1775382254/Colour_usage_dhgn9o.png" alt="Colour usage" style="width:100%;border-radius:8px;display:block;margin:20px 0;" />
         <p><a href="https://drive.google.com/file/d/1EXIgu89WjIFTjSTBK361-IkhXvXuGG9Y/view?usp=sharing" target="_blank" style="color:var(--blue);">Click here</a> to access the colour token system.</p>
 
         <h2 style="font-weight:400; margin-top:32px; margin-bottom:12px; color: var(--muted); font-size:0.93rem;">Typography</h2>
         <p>The primary typeface is Onest, designed by Dmitri Voloshin and Andrey Kudryavtsev.</p>
         <div class="vid-wrap-ds"><video src="https://res.cloudinary.com/dmxhlbucf/video/upload/q_auto/f_auto/v1775238380/Typography_Design_System_es4p6n.mp4" autoplay loop muted playsinline></video></div>
-        <p>It balances geometric structure with humanist softness, which makes it stable yet easy to read. This becomes important at night, when attention is lower and even small friction in reading can feel tiring.</p>
+        <p>It sits between geometric and humanist: structured enough to feel stable, soft enough to not feel clinical. At night, when attention drops and the eyes are tired, small reading friction compounds fast. Onest keeps that friction low.</p>
 
         <h2 style="font-weight:400; margin-top:32px; margin-bottom:12px; color: var(--muted); font-size:0.93rem;">Iconography</h2>
         <img src="https://res.cloudinary.com/dmxhlbucf/image/upload/q_auto/f_auto/v1775296871/Iconography_Design_System_jtxckj.jpg" alt="Iconography design system" style="width:100%;border-radius:8px;display:block;margin:20px 0;" />
-        <p>Material Symbols (rounded, 400 weight) are used for their familiarity and clarity. At night, users should not have to think about what an icon means. Recognition needs to be immediate, so actions feel effortless rather than deliberate.</p>
+        <p>Material Symbols (rounded, 400 weight). Familiar enough that users don't have to pause to interpret them. In a pre-sleep context, recognition needs to be immediate. Any hesitation is a small piece of mental work the user shouldn't have to do.</p>
       </section>
 
       <hr class="section-anim">
 
       <section class="section-anim" id="research">
         <h2>Research</h2>
-        <p>Survey of 42 respondents, age 18-24, students and interns.</p>
+        <p>Survey of 42 respondents, age 18–24, students and early-career.</p>
         <div class="stat-row">
           <div class="stat">
             <div class="bar-chart" aria-hidden="true" id="bars-77"></div>
@@ -269,17 +269,17 @@
             <div class="stat-val">32%</div><div class="stat-label">latency &gt; 20 min</div>
           </div>
         </div>
-        <p>45% of respondents with more than 20 minutes of sleep latency cited mental noise as the primary cause - not environment or physical discomfort.</p>
+        <p>Among those taking more than 20 minutes to fall asleep, 45% pointed to mental noise as the main reason: not their environment, not physical discomfort.</p>
         <div class="quote">"My mind is too crowded with thoughts. It gets difficult to shush my brain."</div>
         <div class="quote">"I sleep better when I've had my day planned out - worse when I don't have a plan."</div>
         <div class="quote">"A lot of stuff going on in the back of the mind unconsciously."</div>
         <table class="findings">
           <thead><tr><th>Finding</th><th>Design implication</th></tr></thead>
           <tbody>
-            <tr><td>Mind is the primary sleep blocker, not body</td><td>Mental offloading must precede meditation</td></tr>
-            <tr><td>45% bedroom not quiet or peaceful</td><td>Environment setup is a first-class routine step, not a settings page</td></tr>
-            <tr><td>68% sleep past midnight; schedules vary widely</td><td>Routine adapts to time-of-night, not a fixed start time</td></tr>
-            <tr><td>Avg satisfaction 5.9/10; 41% score 5 or below</td><td>Significant unmet need in the 18-24 demographic</td></tr>
+            <tr><td>Mind is the primary sleep blocker, not body</td><td>Mental offloading comes before meditation in the sequence</td></tr>
+            <tr><td>45% described their bedroom as not quiet or peaceful</td><td>Environment setup is a core routine step, not a buried settings screen</td></tr>
+            <tr><td>68% sleep past midnight; bedtimes vary night to night</td><td>The routine adjusts to what time it actually is, not a fixed start</td></tr>
+            <tr><td>Average sleep satisfaction 5.9/10; 41% scored 5 or below</td><td>Real unmet need in this age group, not a niche edge case</td></tr>
           </tbody>
         </table>
       </section>
@@ -298,17 +298,17 @@
             <div>
               <h4>Goals</h4>
               <ul>
-                <li>Fall asleep without a 40-minute overthinking spiral</li>
-                <li>A routine that doesn't require willpower to start</li>
-                <li>Clear her head from client work before bed</li>
+                <li>Fall asleep without the usual 40-minute spiral</li>
+                <li>A routine that starts itself, no willpower required</li>
+                <li>Somewhere to put client work before she closes her eyes</li>
               </ul>
             </div>
             <div>
               <h4>Frustrations</h4>
               <ul>
-                <li>Every sleep app she's tried felt like more homework</li>
-                <li>Ends up on Instagram because it requires zero decisions</li>
-                <li>Room stays bright until she's already in bed</li>
+                <li>Sleep apps feel like another thing to do before bed</li>
+                <li>Instagram wins because it asks nothing of her</li>
+                <li>Room is still bright by the time she's actually tired</li>
               </ul>
             </div>
           </div>
@@ -323,17 +323,17 @@
             <div>
               <h4>Goals</h4>
               <ul>
-                <li>Fall asleep before exams without lying awake for an hour</li>
-                <li>Not be disrupted by roommate noise or ambient environment</li>
-                <li>Understand why he feels tired even after 7 hours</li>
+                <li>Sleep before exams without an hour of lying awake first</li>
+                <li>Block out roommate noise without a whole setup ritual</li>
+                <li>Understand why 7 hours still leaves him tired</li>
               </ul>
             </div>
             <div>
               <h4>Frustrations</h4>
               <ul>
-                <li>Roommates on later schedules; noisy hostel environment</li>
-                <li>Scrolls reels as an escape, extending sleep latency further</li>
-                <li>No sense of sleep debt or pattern - just chronic tiredness</li>
+                <li>Roommates run on different schedules; hostel is loud</li>
+                <li>Reels are an escape that keeps pushing sleep later</li>
+                <li>No sense of pattern, just chronic, shapeless tiredness</li>
               </ul>
             </div>
           </div>
@@ -360,38 +360,38 @@
 
       <section class="section-anim" id="ia">
         <h2>Information Architecture</h2>
-        <p>The app is structured around a nightly routine spine. The routine is the product. Settings, history, and data are the support layer, accessed outside it.</p>
+        <p>The routine is the product. Settings, history, and data sit outside it, accessible, but not in the way.</p>
         <div class="figma-wrap"><iframe src="https://embed.figma.com/board/7VeB4C9JvPmfo4qqNrB877/Sleep-App-IA-Updated?node-id=0-1&embed-host=share" allowfullscreen></iframe></div>
         <table class="flow-table">
           <thead><tr><th>Flow</th><th>Purpose</th></tr></thead>
           <tbody>
-            <tr><td>Adaptive Onboarding</td><td>One question at a time. Understands your rhythm, what keeps you awake, how you clear your mind. Connects bedroom devices. Outputs a personalized routine preview you can adjust.</td></tr>
-            <tr><td>Homepage</td><td>One prominent Wind Down button. Shows when you slept yesterday and how tonight can reduce your sleep debt - awareness without overwhelming data.</td></tr>
-            <tr><td>Night Prep</td><td>Lights, sound, temperature, device wind-down, alarm - all in one flow, as part of winding down. Treats the room as part of the routine.</td></tr>
-            <tr><td>Declutter Mind</td><td>Write or talk through thoughts. Gives mental noise somewhere to go. Creates a sense of closure so the brain stops holding on.</td></tr>
-            <tr><td>Guided Breathing</td><td>4-7-8 breath technique. Physiological bridge between mental offloading and meditation.</td></tr>
-            <tr><td>Guided Meditation</td><td>Yog Nidra with Sankalpa. Phone-aside prompt. Auto-pause on movement. Ends with a completion state.</td></tr>
+            <tr><td>Adaptive Onboarding</td><td>One question at a time. Learns the user's rhythm, what keeps them awake, how they offload. Connects bedroom devices. Ends with a routine preview they can adjust before day one.</td></tr>
+            <tr><td>Homepage</td><td>One Wind Down button. Shows sleep debt from last night and what tonight can recover, not a score, just a direction.</td></tr>
+            <tr><td>Night Prep</td><td>Lights, sound, temperature, devices, alarm: one flow, as part of winding down. The room is part of the routine.</td></tr>
+            <tr><td>Declutter Mind</td><td>Write or talk through whatever's still running. Gets it out of the mind's queue.</td></tr>
+            <tr><td>Guided Breathing</td><td>4-7-8 technique. Bridges the shift from mental offloading to physical calm.</td></tr>
+            <tr><td>Guided Meditation</td><td>Yog Nidra with a personal Sankalpa. Phone-aside prompt. Auto-pause on movement.</td></tr>
           </tbody>
         </table>
-        <p><strong>Sequence rationale:</strong> The order is not arbitrary. Environment shifts first, before the mind is asked to change. Declutter Mind comes second because unresolved thoughts block meditation. Guided Breathing bridges cognitive offloading to physical relaxation. Yog Nidra closes the sequence - receptive, not effortful, right for an already-settling mind.</p>
+        <p><strong>Why this order:</strong> Environment shifts first, before the mind is asked to do anything. Declutter Mind comes second because unresolved thoughts actively interfere with meditation. Guided Breathing moves the body from cognitive to physical. Yog Nidra closes it: receptive, not effortful, suited to a mind already settling.</p>
       </section>
 
       <hr class="section-anim">
 
       <section class="section-anim" id="edge-cases">
         <h2>Edge Cases</h2>
-        <p>Real usage rarely follows a clean path. Several of these scenarios are already handled in the current design; others are planned extensions that would make the routine more resilient as the product grows.</p>
+        <p>Real use doesn't follow a clean path. Some of these are already handled; others are planned for when the product is more established.</p>
         <table class="edge-table">
           <thead><tr><th>Scenario</th><th>Consideration</th><th>Design response</th></tr></thead>
           <tbody>
-            <tr><td>User starts late (midnight or later)</td><td>A full routine at this hour would push sleep further out</td><td>The routine shortens adaptively - Guided Breathing and Night Prep compress; Declutter Mind becomes a single focused prompt rather than an open session</td></tr>
-            <tr><td>User skips Declutter Mind</td><td>Meditation lands better when the mind has already offloaded</td><td>A soft check-in before Guided Breathing: "Anything still on your mind?" One tap to continue if they're ready</td></tr>
-            <tr><td>Luna conversation runs long</td><td>An open-ended chat could extend stimulation rather than wind it down</td><td>A 10-minute soft close keeps the session bounded. Thoughts are saved to the journal automatically</td></tr>
-            <tr><td>Phone moved during meditation</td><td>A hard stop would break the settling process</td><td>Auto-pause rather than end. A visual-only nudge appears; no sound. The resume prompt waits 5 seconds before showing</td></tr>
-            <tr><td>Smart devices not connected</td><td>Night Prep needs somewhere to go without device controls</td><td>Planned: the flow shifts to a manual checklist - lights, sound, temperature as reminders rather than controls</td></tr>
-            <tr><td>User finishes the routine but sleep doesn't come</td><td>Re-entering the full routine could create pressure rather than ease</td><td>Planned: a single light option to return to the breathing exercise, keeping the rest of the routine closed</td></tr>
-            <tr><td>First-time user skips onboarding</td><td>Without preferences, the routine runs on defaults</td><td>A default routine launches immediately, with a "Personalize your routine" prompt surfaced gently over the first three days</td></tr>
-            <tr><td>User reopens the app mid-routine</td><td>The session's context needs to be recoverable</td><td>Planned: state is held for 30 minutes. A resume prompt appears on re-open; after 30 minutes the session is quietly marked complete</td></tr>
+            <tr><td>User starts late, midnight or after</td><td>A full routine at this hour pushes sleep further out</td><td>The routine compresses adaptively. Breathing and Night Prep shorten; Declutter Mind becomes a single focused prompt instead of an open session</td></tr>
+            <tr><td>User skips Declutter Mind</td><td>Meditation tends to land worse when the mind hasn't offloaded yet</td><td>A quiet check-in before Guided Breathing: "Anything still on your mind?" One tap to continue if they're ready</td></tr>
+            <tr><td>Luna conversation runs long</td><td>An open-ended chat can extend stimulation instead of winding it down</td><td>A 10-minute soft close. Anything unsaved goes to the journal automatically</td></tr>
+            <tr><td>Phone moved during meditation</td><td>A hard stop would break the settling</td><td>Auto-pause, not end. A visual nudge only, no sound. The resume prompt waits 5 seconds before appearing</td></tr>
+            <tr><td>Smart devices not connected</td><td>Night Prep has nothing to control</td><td>Planned: the flow becomes a manual checklist: lights, sound, temperature as reminders rather than controls</td></tr>
+            <tr><td>Routine ends but sleep doesn't come</td><td>Re-entering the full routine can create pressure rather than ease it</td><td>Planned: a single option to return to the breathing exercise only, keeping everything else closed</td></tr>
+            <tr><td>First-time user skips onboarding</td><td>The routine runs on defaults with no personalisation</td><td>Default routine launches immediately. A "Personalise your routine" prompt surfaces gently over the first three days</td></tr>
+            <tr><td>User reopens app mid-routine</td><td>The session state needs to be recoverable</td><td>Planned: state is held for 30 minutes. A resume prompt appears on re-open; after 30 minutes the session closes quietly</td></tr>
           </tbody>
         </table>
         <div class="tags">
@@ -409,7 +409,7 @@
     <div class="cs-footer section-anim">
       <a class="next-cs" href="wipe-it.html">
         <span class="next-cs-label">Next</span>
-        <span class="next-cs-title">Wipe It &#x2192;</span>
+        <span class="next-cs-title">Wipe It <svg width="14" height="14" viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg" style="display:block;flex-shrink:0"><path d="M8 3L12 7L8 11M12 7H2" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
       </a>
     </div>
 

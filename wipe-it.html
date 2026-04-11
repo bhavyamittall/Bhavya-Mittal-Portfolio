@@ -127,7 +127,7 @@
     .cs-footer { margin-top: 72px; padding-top: 32px; border-top: 1px solid var(--border); display: flex; align-items: center; justify-content: space-between; }
     .next-cs { text-decoration: none; display: flex; flex-direction: column; gap: 3px; }
     .next-cs-label { font-size: 0.68rem; color: var(--muted); text-transform: uppercase; letter-spacing: 0.06em; }
-    .next-cs-title { font-size: 1rem; color: var(--fg); transition: color 0.15s; }
+    .next-cs-title { font-size: 1rem; color: var(--fg); transition: color 0.15s; display: inline-flex; align-items: center; gap: 5px; }
     .next-cs:hover .next-cs-title { color: var(--blue); }
     .scroll-top { position: fixed; bottom: 40px; right: max(20px, calc(50% - 280px - 64px)); width: 40px; height: 40px; border-radius: 50%; background: var(--bg); border: none; cursor: pointer; display: flex; align-items: center; justify-content: center; transition: opacity 0.2s; z-index: 200; opacity: 0; pointer-events: none; padding: 0; }
     .scroll-top:hover .ring-track { stroke: var(--muted2); }
@@ -147,7 +147,7 @@
 </head>
 <body>
   <div class="outer">
-    <a class="back anim" href="index.html" style="animation-delay:0ms"><svg width="14" height="14" viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg" style="display:block;flex-shrink:0"><path d="M6 3L2 7L6 11M2 7H12" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg> Index</a>
+    <a class="back anim" href="index.html" style="animation-delay:0ms"><svg width="14" height="14" viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg" style="display:block;flex-shrink:0"><path d="M6 3L2 7L6 11M2 7H12" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg> Home</a>
 
     <p class="cs-meta anim" style="animation-delay:60ms">Interaction Design &middot; Prototype &middot; 2025</p>
     <p class="cs-title anim" style="animation-delay:115ms">Wipe It - A gesture-based approach to clearing text fields</p>
@@ -172,8 +172,8 @@
 
       <section class="section-anim" id="overview">
         <h2>Overview</h2>
-        <p>Wipe It started from a simple frustration: deleting text on mobile is graceless. You hunt for a tiny x, hold down Delete and watch characters crawl away, or triple-tap and hope your selection lands right.</p>
-        <p>Every other fundamental gesture has a real-world equivalent. Swipe to delete. Pinch to zoom. Pull to refresh. Erasing text has none.</p>
+        <p>Wipe It started from a simple frustration: deleting text on mobile is graceless. Hunting for a small x, holding Delete while characters crawl away, triple-tapping and hoping the selection lands.</p>
+        <p>Every other common gesture has a physical equivalent. Swipe to delete. Pinch to zoom. Pull to refresh. Erasing text has none.</p>
         <div class="callout">The best interactions mimic real-world gestures. Erasing text has no equivalent - Wipe It is an attempt to give it one.</div>
       </section>
 
@@ -181,8 +181,8 @@
 
       <section class="section-anim" id="problem">
         <h2>The Problem</h2>
-        <p>Have you ever had to delete a large body of text on mobile? Hunt for a tiny x icon buried in a corner? Hold down Delete while watching characters disappear one by one?</p>
-        <p>The problem is not that it is slow - it is that it feels like nothing. The action has no physical weight, no texture, no sense of working against something.</p>
+        <p>Deleting a large block of text on mobile is genuinely awkward. The x is small, Delete is slow, and selection-by-tap is unreliable enough to feel like luck.</p>
+        <p>The deeper issue isn't speed. It's that the action has no physical weight. There's nothing to work against, no texture to the gesture, no sense of anything actually happening.</p>
         <div class="callout">Wipe It is an attempt to give text deletion a gesture that maps to something your hands already know: erasing. No holding Delete. No precision targeting.</div>
       </section>
 
@@ -191,17 +191,17 @@
       <section class="section-anim" id="interaction">
         <h2>Interaction Model</h2>
         <img src="https://res.cloudinary.com/dmxhlbucf/image/upload/q_auto/f_auto/v1775413192/WhatsApp_Image_2026-04-02_at_10.24.04_PM2_lv9h6g.jpg" alt="Interaction model" style="width:100%;border-radius:8px;display:block;margin:20px 0;" />
-        <p>Drag across a focused text field to erase. A brush stroke follows your finger. When you have covered enough ground - it clears.</p>
+        <p>Drag across a focused text field to erase. A brush stroke follows the finger. Cover enough ground and it clears.</p>
         <p>The threshold scales with text length. Short text clears in one swipe. A paragraph needs sustained scrubbing.</p>
         <p>The formula: <span class="code-inline">threshold = clamp(text.length &times; 8px, min: 70px, max: 900px)</span></p>
-        <p>"John" clears in ~80px. A full paragraph needs ~900px - multiple strokes. The effort is proportional to what is being erased.</p>
+        <p>"John" clears at around 80px. A full paragraph needs ~900px across multiple strokes. The effort scales with what's being erased.</p>
       </section>
 
       <hr class="section-anim">
 
       <section class="section-anim" id="stroke">
         <h2>Building the Stroke</h2>
-        <p>The brush went through several passes. Each iteration was about removing, not adding - stripping back effects until what remained was a stroke that felt like erasure.</p>
+        <p>The brush went through several passes. Each iteration was about removing, not adding: stripping effects back until what remained felt like actual erasure.</p>
         <table class="compare-table">
           <thead><tr><th>What was tried</th><th>What shipped</th></tr></thead>
           <tbody>
@@ -218,9 +218,9 @@
 
       <section class="section-anim" id="feedback">
         <h2>Feedback System</h2>
-        <p>The gesture has no progress bar. The feedback IS the progress indicator - haptics and audio tell you how close you are without any visible UI overlay.</p>
+        <p>There's no progress bar. Haptics and audio carry that job. They tell you how close you are without anything appearing on screen.</p>
         <p><strong>Haptics</strong></p>
-        <p>A 3ms buzz fires on a repeating timer while the finger moves. The interval compresses as progress builds: <span class="code-inline">interval = 90ms - (progress &times; 45ms)</span>. Slow and textured at the start. Faster and more urgent near the end.</p>
+        <p>A 3ms buzz fires on a repeating timer while the finger moves. The interval compresses as progress builds: <span class="code-inline">interval = 90ms - (progress &times; 45ms)</span>. Slow and textured at the start, faster and more urgent near the end.</p>
         <table class="feedback-table">
           <thead><tr><th>Moment</th><th>Pattern</th><th>Why</th></tr></thead>
           <tbody>
@@ -231,14 +231,14 @@
           </tbody>
         </table>
         <p><strong>Audio</strong></p>
-        <p>All sounds are synthesized - short sine and triangle bursts, fast attack, exponential decay. A soft low pop on scrub start, a snappy double-hit on clear, a muted thud for a missed erase. Restore has no sound. Silence communicates undo better than any tone could.</p>
+        <p>All sounds are synthesized, short sine and triangle bursts, fast attack, exponential decay. A soft low pop on scrub start, a snappy double-hit on clear, a muted thud for a missed erase. Restore has no sound. Silence communicates undo better than any tone.</p>
       </section>
 
       <hr class="section-anim">
 
       <section class="section-anim" id="edge-cases">
         <h2>Edge Cases</h2>
-        <p>Five edge cases were defined and handled explicitly - each one a place where a careless implementation would break trust with the user.</p>
+        <p>Five cases were defined and handled explicitly. Each one is a place where a sloppy implementation would break the user's trust in the gesture.</p>
         <table class="feedback-table">
           <thead><tr><th>Case</th><th>Behaviour</th></tr></thead>
           <tbody>
@@ -255,7 +255,7 @@
 
       <section class="section-anim" id="demo">
         <h2>Prototype</h2>
-        <p>The prototype is fully functional - built in HTML, JS, and Web APIs. Try it below. Focus the field first, then drag across it to erase.</p>
+        <p>Built in HTML, JS, and Web APIs. Focus the field first, then drag across it to erase.</p>
         <div class="demo-wrap">
           <div class="demo-label">Live prototype - try it</div>
           <div class="demo-inner">
@@ -295,7 +295,7 @@
 
       <section class="section-anim" id="reflection">
         <h2>Reflection</h2>
-        <p>The most important decisions were all subtractive. Every time something was added - grit texture, blur effects, a stopwatch - it was later removed because it competed with the gesture rather than served it.</p>
+        <p>The most important decisions were subtractive. Grit texture, blur effects, a stopwatch: each was added, then removed, because it competed with the gesture instead of serving it. The version that works is the one with the least in it.</p>
         <div class="callout">Good interaction design disappears. You feel it without noticing it.</div>
         <table class="compare-table">
           <thead><tr><th>What worked</th><th>What is next</th></tr></thead>
@@ -322,7 +322,7 @@
     <div class="cs-footer section-anim">
       <a class="next-cs" href="sip-happens.html">
         <span class="next-cs-label">Next</span>
-        <span class="next-cs-title">SIP Happens &#x2192;</span>
+        <span class="next-cs-title">SIP Happens <svg width="14" height="14" viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg" style="display:block;flex-shrink:0"><path d="M8 3L12 7L8 11M12 7H2" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
       </a>
     </div>
 
