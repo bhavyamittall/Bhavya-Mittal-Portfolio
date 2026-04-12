@@ -164,7 +164,8 @@
       <section class="section-anim" id="overview">
         <p class="cs-meta" style="margin-bottom:16px;">Bhavya Mittal &amp; Ariba Fatima &middot; Mentor: Pratyush Kashyap &middot; 4 weeks</p>
         <h2>Overview</h2>
-        <p>Sleep Onset is a mobile app for the pre-sleep window. The routine adjusts to what time it is, how the user is feeling, and what their environment looks like , not the same steps every night, regardless of context.</p>
+        <p>For many adults, falling asleep is no longer effortless. Irregular routines, constant stimulation, and mental overload make it difficult to slow down at night.</p>
+        <p>Most sleep solutions focus on tracking or optimising mornings, overlooking the fragile transition before sleep. This project explores a calm, repeatable digital routine that supports sleep onset through reassurance, rhythm, and gentle disengagement, allowing sleep to arrive naturally.</p>
       </section>
 
       <hr class="section-anim">
@@ -223,14 +224,13 @@
         <h2>Design System</h2>
         <p>The design system is built around what a sleep environment actually feels like. Each decision targets four qualities that make winding down easier.</p>
         <div class="vid-wrap-ds"><video src="https://res.cloudinary.com/dmxhlbucf/video/upload/q_auto/f_auto/v1775296872/DesignSystem_Words_d0ao5c.mp4" autoplay loop muted playsinline></video></div>
-        <p>The goal is less friction, not more character.</p>
 
         <h2 style="font-weight:400; margin-top:32px; margin-bottom:12px; color: var(--muted); font-size:0.93rem;">Colour</h2>
-        <p>The palette is drawn from the midnight sky.</p>
+        <p>The colour system is drawn from the tones of a real midnight sky (of course, not literally), keeping the interface calm and unobtrusive rather than artificially contrasted.</p>
         <div class="ds-palette-wrap">
           <canvas id="ds-palette-canvas"></canvas>
         </div>
-        <p>Dark tones keep the interface visually quiet. Lighter accents point attention where it needs to go without competing for it. Colour also carries functional meaning: it separates states without adding labels, which matters when the user is trying to read something in a dim room at midnight.</p>
+        <p>It is designed to be both varied and scalable, where a limited set of colours can adapt across different states and use cases without introducing inconsistency. Each colour has a clear role: dark surfaces create depth, while a single accent colour consistently signals interaction and focus. Hierarchy is built through elevation and opacity rather than adding more colours, allowing the interface to communicate states clearly without visual noise, especially in low-light use.</p>
         <img src="https://res.cloudinary.com/dmxhlbucf/image/upload/v1775382254/Colour_usage_dhgn9o.png" alt="Colour usage" style="width:100%;border-radius:8px;display:block;margin:20px 0;" />
         <p><a href="https://drive.google.com/file/d/1EXIgu89WjIFTjSTBK361-IkhXvXuGG9Y/view?usp=sharing" target="_blank" style="color:var(--blue);">Click here</a> to access the colour token system.</p>
 
@@ -513,9 +513,9 @@
     var canvas = document.getElementById('ds-palette-canvas');
     if (!canvas) return;
     var ctx = canvas.getContext('2d');
-    var CELL, BORDER = 1.5;
+    var CELL_W, CELL_H, BORDER = 1.5;
 
-    function getCell() {
+    function getApproxCell() {
       var w = canvas.offsetWidth;
       if (w < 400) return 48;
       if (w < 600) return 64;
@@ -535,13 +535,16 @@
     Ripple.prototype.isDead = function(){ return this.radius>=this.maxRadius; };
 
     function setup() {
-      CELL = getCell();
+      var approx = getApproxCell();
       var ratio = img.naturalWidth / img.naturalHeight;
       canvas.width = canvas.offsetWidth;
       canvas.height = Math.round(canvas.offsetWidth / ratio);
       canvas.style.height = canvas.height + 'px';
-      cols = Math.ceil(canvas.width / CELL);
-      rows = Math.ceil(canvas.height / CELL);
+      /* Fit grid perfectly: snap cols/rows to nearest integer, then divide */
+      cols = Math.max(1, Math.round(canvas.width / approx));
+      rows = Math.max(1, Math.round(canvas.height / approx));
+      CELL_W = canvas.width / cols;
+      CELL_H = canvas.height / rows;
       offscreen = document.createElement('canvas');
       offscreen.width = canvas.width; offscreen.height = canvas.height;
       octx = offscreen.getContext('2d');
@@ -550,8 +553,8 @@
       for (var i=0;i<rows;i++) {
         colorCache[i]=[];
         for (var j=0;j<cols;j++) {
-          var px=j*CELL, py=i*CELL;
-          var bw=Math.min(CELL,canvas.width-px), bh=Math.min(CELL,canvas.height-py);
+          var px=Math.round(j*CELL_W), py=Math.round(i*CELL_H);
+          var bw=Math.round(CELL_W), bh=Math.round(CELL_H);
           if (bw<=0||bh<=0){colorCache[i][j]=[0,0,0];continue;}
           var data=octx.getImageData(px,py,bw,bh).data;
           var r=0,g=0,b=0,count=0;
@@ -568,7 +571,7 @@
       ctx.drawImage(img,0,0,canvas.width,canvas.height);
       for(var i=0;i<rows;i++){
         for(var j=0;j<cols;j++){
-          var px=j*CELL,py=i*CELL,cx=px+CELL/2,cy=py+CELL/2;
+          var px=Math.round(j*CELL_W),py=Math.round(i*CELL_H),cx=px+CELL_W/2,cy=py+CELL_H/2;
           var target=0;
           ripples.forEach(function(rp){
             var dist=Math.sqrt((cx-rp.x)*(cx-rp.x)+(cy-rp.y)*(cy-rp.y));
@@ -585,10 +588,10 @@
           var rgb=colorCache[i][j];
           ctx.globalAlpha=eff;
           ctx.fillStyle='rgb('+rgb[0]+','+rgb[1]+','+rgb[2]+')';
-          ctx.fillRect(px,py,CELL,CELL);
+          ctx.fillRect(px,py,Math.ceil(CELL_W),Math.ceil(CELL_H));
           ctx.strokeStyle='rgba(255,255,255,'+(eff*0.5)+')';
           ctx.lineWidth=BORDER;
-          ctx.strokeRect(px+BORDER/2,py+BORDER/2,CELL-BORDER,CELL-BORDER);
+          ctx.strokeRect(px+BORDER/2,py+BORDER/2,Math.ceil(CELL_W)-BORDER,Math.ceil(CELL_H)-BORDER);
         }
       }
       ctx.globalAlpha=1;
