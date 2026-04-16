@@ -113,6 +113,11 @@
     @media (max-width: 820px) { .scroll-top { right: 20px; bottom: 28px; } }
     @media (max-width: 820px) { .cs-toc { display: none; } .user-grid { grid-template-columns: 1fr; } }
     @media (max-width: 600px) { .outer { padding: 72px 20px 100px; } }
+    .vid-wrap { width: 100%; background: #000; border-radius: 8px; overflow: hidden; margin: 28px 0; position: relative; }
+    .vid-wrap video { width: 100%; height: auto; display: block; object-fit: contain; }
+    .vid-btn { position: absolute; top: 10px; right: 10px; width: 28px; height: 28px; border-radius: 50%; background: rgba(247,246,242,0.35); border: none; cursor: pointer; display: flex; align-items: center; justify-content: center; padding: 0; backdrop-filter: blur(6px); -webkit-backdrop-filter: blur(6px); transition: background 0.15s; }
+    .vid-btn:hover { background: rgba(247,246,242,0.6); }
+    .vid-btn svg { display: block; }
   </style>
   <script type="text/javascript">
     (function(c,l,a,r,i,t,y){
@@ -198,36 +203,27 @@
 
       <section class="section-anim" id="onboarding">
         <h2>Onboarding</h2>
-        <div class="video-wrap" style="padding:56.25% 0 0 0; position:relative; border-radius:8px; overflow:hidden; margin:28px 0;">
-        <iframe src="https://player.vimeo.com/video/1170223958?badge=0&amp;autopause=0&amp;player_id=0&amp;app_id=58479&amp;autoplay=1&amp;loop=1&amp;muted=1" frameborder="0" allow="autoplay; fullscreen; picture-in-picture; clipboard-write; encrypted-media" style="position:absolute;top:0;left:0;width:100%;height:100%;" title="SIP Happens"></iframe>
-      </div>
         <p>I asked a few friends to use the Groww SIP calculator and watched what happened. Three distinct intents came up: experimenting without a clear goal, aiming for a specific target, and working out how long a goal would take to reach.</p>
         <p>Beginners froze when all the parameters appeared at once. A step-by-step input flow solves this, one decision at a time, so users can think before they see the full report.</p>
+        <div class="vid-wrap"><video src="https://res.cloudinary.com/dmxhlbucf/video/upload/q_auto/f_auto/v1776255682/Onboarding_voixil.mp4" autoplay loop muted playsinline></video><button class="vid-btn" aria-label="Pause" id="btn-onboarding" data-state="playing"><svg viewBox="0 0 10 10" width="12" height="12" fill="currentColor"><rect x="1.5" y="1" width="3" height="8"/><rect x="5.5" y="1" width="3" height="8"/></svg></button></div>
       </section>
 
       <hr class="section-anim">
 
       <section class="section-anim" id="dashboard">
         <h2>Dashboard</h2>
-        <div class="video-wrap" style="padding:56.25% 0 0 0; position:relative; border-radius:8px; overflow:hidden; margin:28px 0;">
-        <iframe src="https://player.vimeo.com/video/1170321939?badge=0&amp;autopause=0&amp;player_id=0&amp;app_id=58479&amp;autoplay=1&amp;loop=1&amp;muted=1" frameborder="0" allow="autoplay; fullscreen; picture-in-picture; clipboard-write; encrypted-media" style="position:absolute;top:0;left:0;width:100%;height:100%;" title="SIP Happens"></iframe>
-      </div>
         <p>The dashboard splits inputs from outputs. Both columns scroll independently: adjust a parameter on the left and the projection on the right updates in place, without losing your position in either.</p>
-        <div class="video-wrap" style="padding:36.46% 0 0 0; position:relative; border-radius:8px; overflow:hidden; margin:28px 0;">
-        <iframe src="https://player.vimeo.com/video/1170333937?badge=0&amp;autopause=0&amp;player_id=0&amp;app_id=58479&amp;autoplay=1&amp;loop=1&amp;muted=1" frameborder="0" allow="autoplay; fullscreen; picture-in-picture; clipboard-write; encrypted-media" style="position:absolute;top:0;left:0;width:100%;height:100%;" title="SIP Happens"></iframe>
-      </div>
         <p><strong>Inputs (left):</strong> All investment parameters, advanced options, and modes.</p>
         <p><strong>Outputs (right):</strong> Projected amounts, tenure, data visualisations, and a dynamic text window that turns the numbers into a plain sentence.</p>
         <div class="callout">Dynamic text converts numerical outputs into a plain sentence that updates in real time - helping users quickly understand what the numbers actually mean.</div>
+        <div class="vid-wrap"><video src="https://res.cloudinary.com/dmxhlbucf/video/upload/q_auto/f_auto/v1776255684/Dashboard_tllgxd.mp4" autoplay loop muted playsinline></video><button class="vid-btn" aria-label="Pause" id="btn-dashboard1" data-state="playing"><svg viewBox="0 0 10 10" width="12" height="12" fill="currentColor"><rect x="1.5" y="1" width="3" height="8"/><rect x="5.5" y="1" width="3" height="8"/></svg></button></div>
+        <div class="vid-wrap"><video src="https://res.cloudinary.com/dmxhlbucf/video/upload/q_auto/f_auto/v1776255678/Dashboard2_bfuqm4.mp4" autoplay loop muted playsinline></video><button class="vid-btn" aria-label="Pause" id="btn-dashboard2" data-state="playing"><svg viewBox="0 0 10 10" width="12" height="12" fill="currentColor"><rect x="1.5" y="1" width="3" height="8"/><rect x="5.5" y="1" width="3" height="8"/></svg></button></div>
       </section>
 
       <hr class="section-anim">
 
       <section class="section-anim" id="returns">
         <h2>Clubbed Returns</h2>
-        <div class="video-wrap" style="padding:56.25% 0 0 0; position:relative; border-radius:8px; overflow:hidden; margin:28px 0;">
-        <iframe src="https://player.vimeo.com/video/1170227336?badge=0&amp;autopause=0&amp;player_id=0&amp;app_id=58479&amp;autoplay=1&amp;loop=1&amp;muted=1" frameborder="0" allow="autoplay; fullscreen; picture-in-picture; clipboard-write; encrypted-media" style="position:absolute;top:0;left:0;width:100%;height:100%;" title="SIP Happens"></iframe>
-      </div>
         <div class="edge-case">
           <div class="edge-case-problem">
             <strong>Edge Case 1</strong>
@@ -238,15 +234,13 @@
             <p>Instead of asking for a number, returns are grouped into three behaviours: Conservative, Moderate, Aggressive. Beginners can simulate without researching fund returns first. There's still a manual entry option for users who know what they want.</p>
           </div>
         </div>
+        <div class="vid-wrap"><video src="https://res.cloudinary.com/dmxhlbucf/video/upload/q_auto/f_auto/v1776255679/Clubbed_Return_ka642e.mp4" autoplay loop muted playsinline></video><button class="vid-btn" aria-label="Pause" id="btn-clubbed" data-state="playing"><svg viewBox="0 0 10 10" width="12" height="12" fill="currentColor"><rect x="1.5" y="1" width="3" height="8"/><rect x="5.5" y="1" width="3" height="8"/></svg></button></div>
       </section>
 
       <hr class="section-anim">
 
       <section class="section-anim" id="inflation">
-        <h2>Inflation Adjustment & Step-Up SIP</h2>
-        <div class="video-wrap" style="padding:42.86% 0 0 0; position:relative; border-radius:8px; overflow:hidden; margin:28px 0;">
-        <iframe src="https://player.vimeo.com/video/1170233878?badge=0&amp;autopause=0&amp;player_id=0&amp;app_id=58479&amp;autoplay=1&amp;loop=1&amp;muted=1" frameborder="0" allow="autoplay; fullscreen; picture-in-picture; clipboard-write; encrypted-media" style="position:absolute;top:0;left:0;width:100%;height:100%;" title="SIP Happens"></iframe>
-      </div>
+        <h2>Inflation Adjustment &amp; Step-Up SIP</h2>
         <div class="edge-case">
           <div class="edge-case-problem">
             <strong>Edge Case 2</strong>
@@ -257,17 +251,16 @@
             <p>Two toggles: Inflation Adjustment shows the real purchasing power of the projected amount. Step-Up SIP models yearly contribution increases. Together they bring the projection closer to what will actually happen.</p>
           </div>
         </div>
+        <div class="vid-wrap"><video src="https://res.cloudinary.com/dmxhlbucf/video/upload/q_auto/f_auto/v1776255681/Inflation_adjustment_and_Step-Up_SIP__pyrbsp.mp4" autoplay loop muted playsinline></video><button class="vid-btn" aria-label="Pause" id="btn-inflation" data-state="playing"><svg viewBox="0 0 10 10" width="12" height="12" fill="currentColor"><rect x="1.5" y="1" width="3" height="8"/><rect x="5.5" y="1" width="3" height="8"/></svg></button></div>
       </section>
 
       <hr class="section-anim">
 
       <section class="section-anim" id="dataviz">
         <h2>Data Visualisation</h2>
-        <div class="video-wrap" style="padding:58.88% 0 0 0; position:relative; border-radius:8px; overflow:hidden; margin:28px 0;">
-        <iframe src="https://player.vimeo.com/video/1170234908?badge=0&amp;autopause=0&amp;player_id=0&amp;app_id=58479&amp;autoplay=1&amp;loop=1&amp;muted=1" frameborder="0" allow="autoplay; fullscreen; picture-in-picture; clipboard-write; encrypted-media" style="position:absolute;top:0;left:0;width:100%;height:100%;" title="SIP Happens"></iframe>
-      </div>
         <p><strong>Line Graph (default):</strong> Shows three things over time: what was invested, what it becomes, and what it's worth after inflation. The compounding curve is the point, not just the final number.</p>
         <p><strong>Waffle Chart:</strong> Shows the split between actual gain and the user's own contributions. The two charts are switchable.</p>
+        <div class="vid-wrap"><video src="https://res.cloudinary.com/dmxhlbucf/video/upload/q_auto/f_auto/v1776255678/Data_Visualisation_tdsqm2.mp4" autoplay loop muted playsinline></video><button class="vid-btn" aria-label="Pause" id="btn-dataviz" data-state="playing"><svg viewBox="0 0 10 10" width="12" height="12" fill="currentColor"><rect x="1.5" y="1" width="3" height="8"/><rect x="5.5" y="1" width="3" height="8"/></svg></button></div>
       </section>
 
       <hr class="section-anim">
@@ -301,8 +294,7 @@
 
   </div>
 
-  <script src="https://player.vimeo.com/api/player.js"></script>
-    <button class="scroll-top" id="scrollTopBtn" aria-label="Back to top">
+      <button class="scroll-top" id="scrollTopBtn" aria-label="Back to top">
     <svg viewBox="0 0 40 40" width="40" height="40" style="position:absolute;top:0;left:0;transform:rotate(-90deg);">
       <circle class="ring-track" cx="20" cy="20" r="18" fill="none" stroke="var(--border)" stroke-width="1.5"/>
       <circle class="ring-arc" id="progressArc" cx="20" cy="20" r="18" fill="none" stroke="var(--fg)" stroke-width="1.5" stroke-linecap="round" stroke-dasharray="113.1" stroke-dashoffset="113.1" style="transition:stroke-dashoffset 0.1s linear;"/>
@@ -353,6 +345,25 @@
         else { btn.style.opacity = '0'; btn.style.pointerEvents = 'none'; }
       }, { passive: true });
     })();
+  </script>
+  <script>
+    document.querySelectorAll('.vid-btn').forEach(function(btn) {
+      btn.addEventListener('click', function() {
+        var video = btn.parentElement.querySelector('video');
+        if (!video) return;
+        if (btn.dataset.state === 'playing') {
+          video.pause();
+          btn.dataset.state = 'paused';
+          btn.setAttribute('aria-label', 'Play');
+          btn.innerHTML = '<svg viewBox="0 0 10 10" width="12" height="12" fill="currentColor"><polygon points="2,1 9,5 2,9"/></svg>';
+        } else {
+          video.play();
+          btn.dataset.state = 'playing';
+          btn.setAttribute('aria-label', 'Pause');
+          btn.innerHTML = '<svg viewBox="0 0 10 10" width="12" height="12" fill="currentColor"><rect x="1.5" y="1" width="3" height="8"/><rect x="5.5" y="1" width="3" height="8"/></svg>';
+        }
+      });
+    });
   </script>
 </body>
 </html>
