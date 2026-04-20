@@ -250,6 +250,7 @@
         <p class="anim" id="bioP1" style="animation-delay:80ms">I&rsquo;m a product designer with a background in communication design. Clarity and tastefulness are the two guiding principles of my work.</p>
         <p class="anim" id="bioP2" style="animation-delay:130ms">I currently work at <a href="https://egonzehnder.com" target="_blank">Egon Zehnder</a> as an interaction and motion designer, and have collaborated with companies &amp; teams across the finance and consulting industries to shape digital experiences through product thinking, interaction design, and motion.</p>
       </div>
+      <a href="about.html" class="anim" id="aboutLink" style="animation-delay:155ms; display:inline-flex; align-items:center; gap:5px; font-size:1rem; color:var(--blue); text-decoration:underline; text-decoration-color:var(--blue); text-underline-offset:2px; transition:opacity 0.15s; margin-top:0;">Read more about me <svg width="13" height="13" viewBox="0 0 13 13" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M2 6.5H11M7 2.5L11 6.5L7 10.5" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
       <div class="reach-block anim" id="reachBlock" style="animation-delay:185ms">
         <div class="bm-logo-wrap" id="logo-wrap">
           <div id="breath-wrap">
@@ -436,6 +437,8 @@
       function triggerBlink(){if(isWinking||isCurious||isSleeping||isWakingUp){setTimeout(triggerBlink,2800+Math.random()*3200);return;}[leftEyeGrp,rightEyeGrp].forEach(function(g){g.style.animation='blink '+BLINK_DUR+'ms ease-in-out';});setTimeout(function(){[leftEyeGrp,rightEyeGrp].forEach(function(g){g.style.animation='none';void g.offsetWidth;g.style.animation='';});setTimeout(triggerBlink,2800+Math.random()*3200);},BLINK_DUR);}
       wrap.addEventListener('mouseenter',function(){activityPing();if(isSleeping||isWakingUp)return;hoverCount++;isWinking=true;wrap.classList.add('winking');rightBrow.style.transition='transform 0.18s ease-out';rightBrow.style.transform='translateY(22px) rotate(-14deg)';clearTimeout(idleTimer);idleTimer=setTimeout(enterCurious,hoverCount>=3?1200:2200);});
       wrap.addEventListener('mouseleave',function(){clearTimeout(idleTimer);isWinking=false;wrap.classList.remove('winking');if(!isCurious&&!isSleeping){rightBrow.style.transform='';rightBrow.style.transition='transform 0.18s ease-out';}rightEye.setAttribute('x',R_BASE_X);rightEye.setAttribute('y',R_BASE_Y);if(!isCurious&&!isSleeping){tLX=tLY=tRX=tRY=tBY=tBR=0;}});
+      wrap.addEventListener('click',function(){if(navigator.vibrate)navigator.vibrate(10);});
+      wrap.addEventListener('touchstart',function(){if(navigator.vibrate)navigator.vibrate(10);},{passive:true});
       document.addEventListener('mousemove',function(e){activityPing();updateTarget(e.clientX,e.clientY);});
       document.addEventListener('touchmove',function(e){activityPing();updateTarget(e.touches[0].clientX,e.touches[0].clientY);},{passive:true});
       document.addEventListener('touchstart',function(){activityPing();},{passive:true});
