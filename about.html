@@ -26,139 +26,73 @@
       --serif: "Noto Serif", Georgia, serif;
     }
     html { font-size: 15px; }
-    body { background: var(--bg); color: var(--fg); font-family: var(--font); font-size: 1rem; line-height: 1.65; -webkit-font-smoothing: antialiased; }
-    @keyframes fadeUp { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
+    body { background: var(--bg); color: var(--fg); font-family: var(--font); font-size: 1rem; line-height: 1.65; -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale; }
+    body::before, body::after { content: ""; position: fixed; left: 0; right: 0; height: 80px; pointer-events: none; z-index: 100; }
+    body::before { top: 0; background: linear-gradient(to bottom, var(--bg), transparent); }
+    body::after  { bottom: 0; background: linear-gradient(to top, var(--bg), transparent); }
+    @keyframes fadeUp { from { opacity: 0; transform: translateY(10px); filter: blur(4px); } to { opacity: 1; transform: translateY(0); filter: blur(0); } }
     .anim { opacity: 0; animation: fadeUp 0.5s ease forwards; }
-    a { color: var(--fg); text-decoration: underline; text-decoration-color: var(--muted2); text-underline-offset: 2px; transition: color 0.15s, text-decoration-color 0.15s; }
+    a { color: var(--fg); text-decoration: underline; text-decoration-color: var(--muted2); text-underline-offset: 2px; transition-property: color, text-decoration-color; transition-duration: 0.15s; transition-timing-function: ease; }
     a:hover { color: var(--blue); text-decoration-color: var(--blue); }
-    p { font-size: 1rem; line-height: 1.65; color: var(--fg); margin-bottom: 18px; }
+    p { font-size: 1rem; line-height: 1.65; color: var(--fg); margin-bottom: 18px; text-wrap: pretty; }
     p:last-of-type { margin-bottom: 0; }
 
     /* ── Back button ── */
-    .back { font-size: 1rem; text-decoration: none; display: inline-flex; align-items: center; gap: 5px; }
-    .back:hover { opacity: 0.75; }
+    .back { font-size: 1rem; color: var(--muted); text-decoration: none; display: inline-flex; align-items: center; gap: 6px; padding: 8px 0; margin: -8px 0 28px; min-height: 44px; transition-property: color; transition-duration: 0.15s; transition-timing-function: ease; }
+    .back:hover { color: var(--fg); }
+    .back:active { transform: scale(0.96); transition-property: transform; transition-duration: 0.15s; }
+    .back svg { transition-property: transform; transition-duration: 0.2s; transition-timing-function: cubic-bezier(0.34, 1.56, 0.64, 1); }
+    .back:hover svg { transform: translateX(-3px); }
 
-    /* ── Photo shared ── */
-    
-    .photo-caption {
-      font-family: "Mynerve", cursive;
-      font-size: 1.05rem;
-      color: var(--fg);
-      line-height: 1.4;
-      transition: opacity 0.4s ease;
-    }
+    /* ── Polish ── */
+    .desktop-photo-wrap { transition-property: transform; transition-duration: 0.3s; transition-timing-function: cubic-bezier(0.34, 1.56, 0.64, 1); }
+    .desktop-photo-wrap:hover { transform: translateY(-4px); }
+    .slideshow.desktop-shape { transition-property: box-shadow; transition-duration: 0.25s; transition-timing-function: ease; }
+    .desktop-photo-wrap:hover .slideshow.desktop-shape { box-shadow: rgba(0,0,0,0.20) 0px 8px 20px, rgba(0,0,0,0.28) 0px 4px 8px; }
+    .mobile-content a, .col-left a:not(.back) { text-underline-offset: 3px; transition-property: color, text-decoration-color; transition-duration: 0.15s; transition-timing-function: ease; }
 
-    /* ════════════════════════════════
-       MOBILE layout
-    ════════════════════════════════ */
-    .mobile-hero {
-      position: relative;
-      width: 100%;
-      /* Full bleed — break out of any padding */
-    }
-    .mobile-hero .photo-placeholder {
-      aspect-ratio: 3/2;
-      border-radius: 0;
-    }
-    /* Home button floats over image */
-    .mobile-back {
-      position: absolute;
-      top: 20px;
-      left: 20px;
-      color: #fff;
-      z-index: 10;
-      /* mix-blend-mode: difference gives subtractive overlay —
-         white text inverts against any background colour */
-      mix-blend-mode: difference;
-    }
-    .mobile-back svg path { stroke: #fff; }
-
-    .mobile-content {
-      padding: 24px 28px 100px;
-    }
-    .mobile-caption {
-      margin-bottom: 32px;
-    }
-
-    /* Hide desktop elements on mobile */
-    .desktop-only { display: none; }
-
-    /* ════════════════════════════════
-       DESKTOP layout
-    ════════════════════════════════ */
-    @media (min-width: 960px) {
-      /* Restore body fades */
-      body::before, body::after { content: ""; position: fixed; left: 0; right: 0; height: 80px; pointer-events: none; z-index: 100; }
-      body::before { top: 0; background: linear-gradient(to bottom, var(--bg), transparent); }
-      body::after  { bottom: 0; background: linear-gradient(to top, var(--bg), transparent); }
-
-      /* Hide mobile-specific elements */
-      .mobile-hero    { display: none; }
-      .mobile-content { display: none; }
-      .desktop-only   { display: block; }
-
-      /* Two-column grid */
-      .wrap {
-        max-width: 1080px;
-        margin: 0 auto;
-        display: grid;
-        grid-template-columns: 1fr 1fr;
-        column-gap: 80px;
-        align-items: start;
-        padding: 96px 48px 140px;
-      }
-      .col-left { display: flex; flex-direction: column; }
-
-      /* Desktop back button */
-      .desktop-back {
-        color: var(--muted);
-        margin-bottom: 44px;
-      }
-      .desktop-back:hover { color: var(--blue); }
-
-      /* Desktop photo — with shadow + outline */
-      .col-right { padding-top: 80px; }
-      .desktop-photo-wrap { position: relative; width: 100%; }
-      .desktop-photo-wrap .photo-placeholder {
-        aspect-ratio: 4/3;
-        border-radius: 8px;
-        outline: 4px solid #fff;
-        box-shadow: rgba(0,0,0,0.16) 0px 3px 6px, rgba(0,0,0,0.23) 0px 3px 6px;
-      }
-      .desktop-caption {
-        margin-top: 14px;
-        color: var(--muted);
-        font-size: 0.95rem;
-      }
-    }
-
-    /* Slideshow */
-    .slideshow {
-      position: relative;
-      width: 100%;
-      overflow: hidden;
-      background: #111;
-    }
+    /* ── Slideshow shared ── */
+    .slideshow { position: relative; width: 100%; overflow: hidden; background: #111; }
     .slideshow.mobile-shape { aspect-ratio: 3/2; }
     .slideshow.desktop-shape { aspect-ratio: 4/3; border-radius: 8px; outline: 4px solid #fff; box-shadow: rgba(0,0,0,0.16) 0px 3px 6px, rgba(0,0,0,0.23) 0px 3px 6px; }
-    .slide {
-      position: absolute;
-      inset: 0;
-      opacity: 0;
-      transition: opacity 0.6s ease;
-    }
+    .slide { position: absolute; inset: 0; opacity: 0; transition-property: opacity; transition-duration: 0.6s; transition-timing-function: ease; }
     .slide.active { opacity: 1; }
-    .slide img, .slide video {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-      display: block;
+    .slide img, .slide video { width: 100%; height: 100%; object-fit: cover; display: block; }
+    .slide img { outline: 1px solid rgba(0, 0, 0, 0.1); outline-offset: -1px; }
+
+    /* ── Caption ── */
+    .photo-caption { font-family: "Mynerve", cursive; font-size: 1.05rem; color: var(--fg); line-height: 1.4; text-wrap: pretty; transition-property: opacity; transition-duration: 0.4s; transition-timing-function: ease; }
+
+    /* ── Mobile layout ── */
+    .mobile-hero { position: relative; width: 100%; }
+    .mobile-hero .slideshow { aspect-ratio: 3/2; border-radius: 0; }
+    .mobile-back { position: absolute; top: 20px; left: 20px; color: #fff; z-index: 10; mix-blend-mode: difference; }
+    .mobile-back svg path { stroke: #fff; }
+    .mobile-content { padding: 24px 28px 100px; }
+    .mobile-caption { margin-bottom: 32px; }
+    .desktop-only { display: none; }
+
+    /* ── Desktop layout ── */
+    @media (min-width: 960px) {
+      body::before, body::after { content: ""; }
+      .mobile-hero { display: none; }
+      .mobile-content { display: none; }
+      .desktop-only { display: block; }
+      .wrap { max-width: 1080px; margin: 0 auto; display: grid; grid-template-columns: 1fr 1fr; column-gap: 80px; align-items: center; padding: 96px 48px 96px; min-height: 100vh; align-content: center; }
+      .col-left { display: flex; flex-direction: column; }
+      .desktop-back { color: var(--muted); margin-bottom: 44px; }
+      .desktop-back:hover { color: var(--blue); }
+      .col-right { padding-top: 80px; }
+      .desktop-photo-wrap { position: relative; width: 100%; }
+      .desktop-caption { margin-top: 14px; color: var(--muted); font-size: 0.95rem; }
     }
+    @media (max-width: 480px) { }
+    @media (max-width: 600px) { .mobile-content { padding: 24px 28px 80px; } }
   </style>
 </head>
 <body>
 
-  <!-- ── MOBILE layout ── -->
+  <!-- MOBILE -->
   <div class="mobile-hero">
     <div class="slideshow mobile-shape" id="slideshow-mobile"></div>
     <a class="back mobile-back anim" href="index.html" style="animation-delay:0ms">
@@ -176,7 +110,7 @@
     <p class="anim" style="animation-delay:230ms">Outside of work, I like <a href="#" target="_blank">cats</a>, <a href="#" target="_blank">photography</a>, playing <a href="#" target="_blank">guitar</a>, collecting <a href="#" target="_blank">watches</a>, <a href="#" target="_blank">IoT</a> &amp; long <a href="#" target="_blank">drives</a>.</p>
   </div>
 
-  <!-- ── DESKTOP layout ── -->
+  <!-- DESKTOP -->
   <div class="wrap desktop-only">
     <div class="col-left">
       <a class="back desktop-back anim" href="index.html" style="animation-delay:0ms">
@@ -198,29 +132,22 @@
     </div>
   </div>
 
-
   <script>
     (function() {
       var MEDIA = [{"src": "https://res.cloudinary.com/dmxhlbucf/video/upload/q_auto/f_auto/v1776591459/1_iltdn1.mp4", "type": "video", "caption": "A view from my way to PG after a long ass day at work. Gurugram."}, {"src": "https://res.cloudinary.com/dmxhlbucf/image/upload/q_auto/f_auto/v1776591459/3_ixpa6b.jpg", "type": "image", "caption": "Yeah, I have no idea what chords I am holding, even the guitar is not mine."}, {"src": "https://res.cloudinary.com/dmxhlbucf/image/upload/q_auto/f_auto/v1776591459/7_bl8pou.jpg", "type": "image", "caption": "Communication Design Batch 2022. (Lowk hate them all except few)"}, {"src": "https://res.cloudinary.com/dmxhlbucf/image/upload/q_auto/f_auto/v1776591458/6_iqsgmo.jpg", "type": "image", "caption": "A sketch of two of my best friends made from the ink I made on my own from lohri's ash."}, {"src": "https://res.cloudinary.com/dmxhlbucf/video/upload/q_auto/f_auto/v1776591461/5_zf7p6k.mp4", "type": "video", "caption": "Thank god I removed the audio from this clip."}, {"src": "https://res.cloudinary.com/dmxhlbucf/image/upload/q_auto/f_auto/v1776591459/2_azyfye.jpg", "type": "image", "caption": "A research day out with my group, exhausting asl xO"}, {"src": "https://res.cloudinary.com/dmxhlbucf/image/upload/q_auto/f_auto/v1776591459/4_y0kf6e.jpg", "type": "image", "caption": "The only good picture I have of myself I guess."}, {"src": "https://res.cloudinary.com/dmxhlbucf/video/upload/q_auto/f_auto/v1776591460/2_cydy9l.mp4", "type": "video", "caption": "Koi Fishes at Namma Bangalore Aquarium. One could easily watch them for hours."}, {"src": "https://res.cloudinary.com/dmxhlbucf/video/upload/q_auto/f_auto/v1776591460/6_kzumcc.mp4", "type": "video", "caption": "Shimla with two of my friends. The sunset was lovely."}, {"src": "https://res.cloudinary.com/dmxhlbucf/image/upload/q_auto/f_auto/v1776591461/8_hm09ph.jpg", "type": "image", "caption": "Himachal Short Film Fest. Our Film got an award."}, {"src": "https://res.cloudinary.com/dmxhlbucf/video/upload/q_auto/f_auto/v1776591460/3_gsupgp.mp4", "type": "video", "caption": "A view from my office. Weird isn't it how nature exists like an outsider in the concrete jungle."}, {"src": "https://res.cloudinary.com/dmxhlbucf/video/upload/q_auto/f_auto/v1776591461/7_yljtet.mp4", "type": "video", "caption": "A drive in my hometown Chandigarh with a friend of mine."}, {"src": "https://res.cloudinary.com/dmxhlbucf/image/upload/q_auto/f_auto/v1776591461/10_rzjp4z.jpg", "type": "image", "caption": "Dashing ahh image (ignore my fuckass friend and Palak paneer placard)"}, {"src": "https://res.cloudinary.com/dmxhlbucf/image/upload/q_auto/f_auto/v1776591461/9_g3qld0.jpg", "type": "image", "caption": "Lmfao how staged can it be."}, {"src": "https://res.cloudinary.com/dmxhlbucf/image/upload/q_auto/f_auto/v1776591461/11_coitoh.jpg", "type": "image", "caption": "Shogi Trek. We never found the waterfall."}, {"src": "https://res.cloudinary.com/dmxhlbucf/image/upload/q_auto/f_auto/v1776591462/12_fvki0h.jpg", "type": "image", "caption": "Manali 2025 embracing my pahadi roots."}, {"src": "https://res.cloudinary.com/dmxhlbucf/image/upload/q_auto/f_auto/v1776591462/13_okqwdd.jpg", "type": "image", "caption": "Mentos Zindagi"}, {"src": "https://res.cloudinary.com/dmxhlbucf/video/upload/q_auto/f_auto/v1776591462/4_zgez6u.mp4", "type": "video", "caption": "Loved the dense forest cover here. Don't really remember the location but it was in my way during my visit to Dharampur."}, {"src": "https://res.cloudinary.com/dmxhlbucf/image/upload/q_auto/f_auto/v1776591462/17_gjh8c2.jpg", "type": "image", "caption": "A sunset in Shimla. Loved every second of it."}, {"src": "https://res.cloudinary.com/dmxhlbucf/image/upload/q_auto/f_auto/v1776591462/15_awgvmf.jpg", "type": "image", "caption": "\"Yeh degree kahe khatam nhi hoti hai be\""}, {"src": "https://res.cloudinary.com/dmxhlbucf/image/upload/q_auto/f_auto/v1776591462/14_hcncdy.jpg", "type": "image", "caption": "My first day as an intern at Egon Zehnder."}, {"src": "https://res.cloudinary.com/dmxhlbucf/image/upload/q_auto/f_auto/v1776591462/18_q5vboh.jpg", "type": "image", "caption": "Latenight editing session for a short film submission due tomorrow."}, {"src": "https://res.cloudinary.com/dmxhlbucf/image/upload/q_auto/f_auto/v1776591463/19_vtwuhh.jpg", "type": "image", "caption": "No I am straight. Chandigarh 2024"}, {"src": "https://res.cloudinary.com/dmxhlbucf/image/upload/q_auto/f_auto/v1776591463/20_ak2t5d.jpg", "type": "image", "caption": "Maggi. Karol Tibba Basecamp."}];
       var INTERVAL = 5000;
 
-      function buildSlideshow(container) {
+      function buildSlideshow(container, captionId) {
         MEDIA.forEach(function(m, i) {
           var slide = document.createElement('div');
           slide.className = 'slide' + (i === 0 ? ' active' : '');
           var el;
           if (m.type === 'video') {
             el = document.createElement('video');
-            el.src = m.src;
-            el.muted = true;
-            el.loop = true;
-            el.playsInline = true;
-            el.autoplay = false;
+            el.src = m.src; el.muted = true; el.loop = true; el.playsInline = true;
           } else {
             el = document.createElement('img');
-            el.src = m.src;
-            el.alt = '';
-            el.loading = 'lazy';
+            el.src = m.src; el.alt = ''; el.loading = 'lazy';
           }
           slide.appendChild(el);
           container.appendChild(slide);
@@ -228,34 +155,20 @@
 
         var slides = container.querySelectorAll('.slide');
         var cur = 0;
-
-        // Play first video if first is video
         var firstVid = slides[0].querySelector('video');
         if (firstVid) firstVid.play();
-        // Set first caption immediately, no fade
-        var initCap = MEDIA[0] ? MEDIA[0].caption : '';
-        var cm0 = document.getElementById('caption-mobile');
-        var cd0 = document.getElementById('caption-desktop');
-        if (cm0) cm0.textContent = initCap;
-        if (cd0) cd0.textContent = initCap;
+
+        var capEl = document.getElementById(captionId);
+        if (capEl) capEl.textContent = MEDIA[0].caption;
 
         function updateCaption(idx) {
-          var cap = MEDIA[idx] ? MEDIA[idx].caption : '';
-          var cm = document.getElementById('caption-mobile');
-          var cd = document.getElementById('caption-desktop');
-          [cm, cd].forEach(function(el) {
-            if (!el) return;
-            el.style.opacity = '0';
-            setTimeout(function() {
-              el.textContent = cap;
-              el.style.opacity = '1';
-            }, 350);
-          });
+          if (!capEl) return;
+          capEl.style.opacity = '0';
+          setTimeout(function() { capEl.textContent = MEDIA[idx].caption; capEl.style.opacity = '1'; }, 350);
         }
 
         function advance() {
-          var prev = cur;
-          cur = (cur + 1) % slides.length;
+          var prev = cur; cur = (cur + 1) % slides.length;
           var prevVid = slides[prev].querySelector('video');
           if (prevVid) prevVid.pause();
           slides[prev].classList.remove('active');
@@ -268,9 +181,10 @@
         setInterval(advance, INTERVAL);
       }
 
-      // Build for both mobile and desktop containers
-      var containers = document.querySelectorAll('.slideshow');
-      containers.forEach(function(c) { buildSlideshow(c); });
+      var dm = document.getElementById('slideshow-mobile');
+      var dd = document.getElementById('slideshow-desktop');
+      if (dm) buildSlideshow(dm, 'caption-mobile');
+      if (dd) buildSlideshow(dd, 'caption-desktop');
     })();
   </script>
 </body>

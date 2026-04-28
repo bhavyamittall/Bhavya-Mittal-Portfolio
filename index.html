@@ -33,6 +33,7 @@
       background: var(--bg); color: var(--fg);
       font-family: var(--font); font-size: 1rem; line-height: 1.65;
       -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
     }
     body::before, body::after {
       content: ""; position: fixed; left: 0; right: 0; height: 80px;
@@ -41,32 +42,33 @@
     body::before { top: 0; background: linear-gradient(to bottom, var(--bg), transparent); }
     body::after  { bottom: 0; background: linear-gradient(to top, var(--bg), transparent); }
 
-    @keyframes fadeUp { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
+    @keyframes fadeUp { from { opacity: 0; transform: translateY(10px); filter: blur(4px); } to { opacity: 1; transform: translateY(0); filter: blur(0); } }
     .anim { opacity: 0; animation: fadeUp 0.5s ease forwards; }
 
-    a { color: var(--blue); text-decoration: underline; text-decoration-color: transparent; text-underline-offset: 2px; transition: color 0.15s, text-decoration-color 0.15s; }
+    a { color: var(--blue); text-decoration: underline; text-decoration-color: transparent; text-underline-offset: 2px; transition-property: color, text-decoration-color; transition-duration: 0.15s; transition-timing-function: ease; }
     a:hover { text-decoration-color: var(--blue); }
 
-    p { font-size: 1rem; line-height: 1.65; color: var(--fg); margin-bottom: 18px; }
+    p { font-size: 1rem; line-height: 1.65; color: var(--fg); margin-bottom: 18px; text-wrap: pretty; }
     p:last-of-type { margin-bottom: 0; }
 
-    .site-name { font-size: 1rem; font-weight: 600; color: var(--fg); line-height: 1.65; margin-bottom: 0; }
+    .site-name { font-size: 1rem; font-weight: 600; color: var(--fg); line-height: 1.65; margin-bottom: 0; text-wrap: balance; }
     .site-sub  { font-size: 1rem; color: var(--muted); line-height: 1.65; margin-bottom: 0; }
     .name-block { margin-bottom: 24px; }
 
-    .section-label { font-size: 1rem; color: var(--muted); font-weight: 400; margin-bottom: 20px; }
+    .section-label { font-size: 1rem; color: var(--muted); font-weight: 400; margin-bottom: 20px; text-wrap: balance; }
 
     .work-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
-    .work-card { text-decoration: none; display: flex; flex-direction: column; transition: opacity 0.2s; }
-    .work-card:hover { opacity: 0.8; }
+    .work-card { text-decoration: none; display: flex; flex-direction: column; transition-property: transform, opacity; transition-duration: 0.2s; transition-timing-function: ease; }
+    .work-card:hover { opacity: 0.85; transform: translateY(-2px); }
+    .work-card:active { transform: scale(0.96); transition-duration: 0.15s; }
     .work-card:hover .work-card-title { color: var(--blue); }
     .work-card-thumb { width: 100%; aspect-ratio: 4/3; background: #f0efeb; overflow: hidden; border-radius: 8px; }
-    .work-card-thumb img { width: 100%; height: 100%; object-fit: cover; display: block; }
+    .work-card-thumb img { width: 100%; height: 100%; object-fit: cover; display: block; outline: 1px solid rgba(0, 0, 0, 0.1); outline-offset: -1px; }
     .work-card-body  { padding: 6px 0 0; display: flex; flex-direction: column; gap: 1px; }
-    .work-card-title { font-size: 1rem; color: var(--fg); font-weight: 400; transition: color 0.15s; line-height: 1.4; margin-bottom: 0; }
+    .work-card-title { font-size: 1rem; color: var(--fg); font-weight: 400; transition-property: color; transition-duration: 0.15s; transition-timing-function: ease; line-height: 1.4; margin-bottom: 0; }
     .work-card-meta  { display: flex; align-items: center; justify-content: space-between; }
     .work-card-tag   { font-size: 1rem; color: var(--muted); }
-    .work-card-date  { font-size: 1rem; color: var(--muted); }
+    .work-card-date  { font-size: 1rem; color: var(--muted); font-variant-numeric: tabular-nums; }
 
 
     /* ── BM interactive logo ── */
@@ -88,9 +90,36 @@
     @keyframes breathe { 0% { transform:scaleY(1) translateY(0px); } 55% { transform:scaleY(1.018) translateY(-4px); } 100% { transform:scaleY(1) translateY(0px); } }
     .sleeping #breath-wrap { animation: breathe 3.8s cubic-bezier(0.45,0,0.55,1) infinite; }
 
+    /* ── About link ── */
+    .about-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 5px;
+      font-size: 1rem;
+      color: var(--blue);
+      text-decoration: underline;
+      text-decoration-color: var(--blue);
+      text-underline-offset: 2px;
+      transition-property: opacity, transform;
+      transition-duration: 0.15s;
+      transition-timing-function: ease;
+      margin-top: 0;
+      /* min hit area */
+      padding: 8px 0;
+      margin-top: -8px;
+    }
+    .about-link:active { transform: scale(0.96); }
+    .about-link svg {
+      transition-property: transform;
+      transition-duration: 0.2s;
+      transition-timing-function: cubic-bezier(0.34, 1.56, 0.64, 1);
+    }
+    .about-link:hover svg { transform: translateX(2px); }
+
     /* cv-line inside reach block */
     .cv-line { font-size: 1rem; color: var(--fg); margin-bottom: 0; margin-top: 4px; }
-    .cv-line a { color: var(--blue); }
+    .cv-line a { color: var(--blue); transition-property: opacity; transition-duration: 0.15s; transition-timing-function: ease; }
+    .cv-line a:hover { opacity: 0.75; }
 
     /* ── Reach block ── */
     .reach-block { display: flex; flex-direction: column; gap: 10px; align-items: flex-start; }
@@ -107,16 +136,20 @@
       background: transparent;
       border: 1px solid var(--border);
       border-radius: 6px;
-      padding: 5px 10px;
+      padding: 8px 12px;
+      min-height: 44px;
       cursor: pointer;
       text-decoration: none;
       overflow: hidden;
       white-space: nowrap;
-      transition: border-color 0.2s, color 0.2s;
+      transition-property: border-color, color, transform;
+      transition-duration: 0.2s;
+      transition-timing-function: ease;
       line-height: 1.4;
       outline: none;
     }
     .reach-btn:hover { border-color: var(--muted2); color: var(--fg); }
+    .reach-btn:active { transform: scale(0.96); transition-duration: 0.15s; }
 
     .reach-btn-inner {
       display: inline-flex;
@@ -142,7 +175,9 @@
       white-space: nowrap;
       z-index: 2;
       clip-path: inset(0 100% 0 0);
-      transition: clip-path 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+      transition-property: clip-path;
+      transition-duration: 0.4s;
+      transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
     }
     .reach-btn.copied .reach-btn-confirm {
       clip-path: inset(0 0% 0 0);
@@ -183,6 +218,8 @@
       .reach-block { align-items: center; }
       .reach-btns  { align-items: center; }
       .cv-line     { text-align: center; }
+      .section-label { margin-bottom: 32px; }
+      .work-grid { padding-top: 12px; }
     }
 
     /* ── DESKTOP ── */
@@ -250,7 +287,7 @@
         <p class="anim" id="bioP1" style="animation-delay:80ms">I&rsquo;m a product designer with a background in communication design. Clarity and tastefulness are the two guiding principles of my work.</p>
         <p class="anim" id="bioP2" style="animation-delay:130ms">I currently work at <a href="https://egonzehnder.com" target="_blank">Egon Zehnder</a> as an interaction and motion designer, and have collaborated with companies &amp; teams across the finance and consulting industries to shape digital experiences through product thinking, interaction design, and motion.</p>
       </div>
-      <a href="about.html" class="anim" id="aboutLink" style="animation-delay:155ms; display:inline-flex; align-items:center; gap:5px; font-size:1rem; color:var(--blue); text-decoration:underline; text-decoration-color:var(--blue); text-underline-offset:2px; transition:opacity 0.15s; margin-top:0;">Read more about me <svg width="13" height="13" viewBox="0 0 13 13" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M2 6.5H11M7 2.5L11 6.5L7 10.5" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
+      <a href="about.html" class="anim about-link" id="aboutLink" style="animation-delay:155ms;">Read more about me <svg width="13" height="13" viewBox="0 0 13 13" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M2 6.5H11M7 2.5L11 6.5L7 10.5" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
       <div class="reach-block anim" id="reachBlock" style="animation-delay:185ms">
         <div class="bm-logo-wrap" id="logo-wrap">
           <div id="breath-wrap">
