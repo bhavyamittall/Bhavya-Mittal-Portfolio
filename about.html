@@ -6,7 +6,7 @@
   <title>About &mdash; Bhavya Mittal</title>
   <meta name="description" content="About Bhavya Mittal, product designer and interaction designer based in Gurugram, India." />
   <meta name="robots" content="index, follow" />
-  <link rel="icon" type="image/png" href="https://res.cloudinary.com/dmxhlbucf/image/upload/v1773771858/Favicon_ylckj8.png" />
+  <link rel="icon" type="image/svg+xml" href="assets/images/Logos/Favicon_ylckj8.svg" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Mynerve&display=swap" rel="stylesheet" />
@@ -24,6 +24,7 @@
       --border: #e8e5e0; --blue: #3b6fce;
       --font: -apple-system, BlinkMacSystemFont, "Helvetica Neue", Helvetica, Arial, sans-serif;
       --serif: "Noto Serif", Georgia, serif;
+      --col: 560px;
     }
     html { font-size: 15px; }
     body { background: var(--bg); color: var(--fg); font-family: var(--font); font-size: 1rem; line-height: 1.65; -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale; }
@@ -35,109 +36,266 @@
     a { color: var(--fg); text-decoration: underline; text-decoration-color: var(--muted2); text-underline-offset: 2px; transition-property: color, text-decoration-color; transition-duration: 0.15s; transition-timing-function: ease; }
     a:hover { color: var(--blue); text-decoration-color: var(--blue); }
     p { font-size: 1rem; line-height: 1.65; color: var(--fg); margin-bottom: 18px; text-wrap: pretty; }
-    p:last-of-type { margin-bottom: 0; }
 
     /* ── Back button ── */
-    .back { font-size: 1rem; color: var(--muted); text-decoration: none; display: inline-flex; align-items: center; gap: 6px; padding: 8px 0; margin: -8px 0 28px; min-height: 44px; transition-property: color; transition-duration: 0.15s; transition-timing-function: ease; }
-    .back:hover { color: var(--fg); }
+    .back { font-size: 1rem; text-decoration: none; display: inline-flex; align-items: center; gap: 6px; padding: 8px 0; min-height: 44px; transition-property: color; transition-duration: 0.15s; transition-timing-function: ease; }
     .back:active { transform: scale(0.96); transition-property: transform; transition-duration: 0.15s; }
     .back svg { transition-property: transform; transition-duration: 0.2s; transition-timing-function: cubic-bezier(0.34, 1.56, 0.64, 1); }
     .back:hover svg { transform: translateX(-3px); }
 
-    /* ── Polish ── */
-    .desktop-photo-wrap { transition-property: transform; transition-duration: 0.3s; transition-timing-function: cubic-bezier(0.34, 1.56, 0.64, 1); }
-    .desktop-photo-wrap:hover { transform: translateY(-4px); }
-    .slideshow.desktop-shape { transition-property: box-shadow; transition-duration: 0.25s; transition-timing-function: ease; }
-    .desktop-photo-wrap:hover .slideshow.desktop-shape { box-shadow: rgba(0,0,0,0.20) 0px 8px 20px, rgba(0,0,0,0.28) 0px 4px 8px; }
-    .mobile-content a, .col-left a:not(.back) { text-underline-offset: 3px; transition-property: color, text-decoration-color; transition-duration: 0.15s; transition-timing-function: ease; }
-
-    /* ── Slideshow shared ── */
-    .slideshow { position: relative; width: 100%; overflow: hidden; background: #111; }
-    .slideshow.mobile-shape { aspect-ratio: 3/2; }
-    .slideshow.desktop-shape { aspect-ratio: 4/3; border-radius: 8px; outline: 4px solid #fff; box-shadow: rgba(0,0,0,0.16) 0px 3px 6px, rgba(0,0,0,0.23) 0px 3px 6px; }
+    /* ── Slideshow ── */
+    .slideshow { position: relative; width: 100%; overflow: hidden; background: #111; aspect-ratio: 3/2; }
     .slide { position: absolute; inset: 0; opacity: 0; transition-property: opacity; transition-duration: 0.6s; transition-timing-function: ease; }
     .slide.active { opacity: 1; }
     .slide img, .slide video { width: 100%; height: 100%; object-fit: cover; display: block; }
-    .slide img { outline: 1px solid rgba(0, 0, 0, 0.1); outline-offset: -1px; }
+    .slide img { outline: 1px solid rgba(0,0,0,0.1); outline-offset: -1px; }
 
     /* ── Caption ── */
     .photo-caption { font-family: "Mynerve", cursive; font-size: 1.05rem; color: var(--fg); line-height: 1.4; text-wrap: pretty; transition-property: opacity; transition-duration: 0.4s; transition-timing-function: ease; }
 
+    /* ── Hero ── */
+    .hero-wrap { position: relative; z-index: 101; }
+
+    /* Mobile hero */
+    .mobile-hero { position: relative; }
+    .hero-back { position: absolute; top: 20px; left: 20px; z-index: 102; color: #fff; mix-blend-mode: difference; text-decoration: none; }
+    .hero-back svg path { stroke: #fff; }
+    .desktop-hero { display: none; }
+
     /* ── Mobile layout ── */
-    .mobile-hero { position: relative; width: 100%; }
-    .mobile-hero .slideshow { aspect-ratio: 3/2; border-radius: 0; }
-    .mobile-back { position: absolute; top: 20px; left: 20px; color: #fff; z-index: 10; mix-blend-mode: difference; }
-    .mobile-back svg path { stroke: #fff; }
-    .mobile-content { padding: 24px 28px 100px; }
+    .page-content { padding: 24px 28px 100px; }
     .mobile-caption { margin-bottom: 32px; }
-    .desktop-only { display: none; }
 
     /* ── Desktop layout ── */
     @media (min-width: 960px) {
-      body::before, body::after { content: ""; }
       .mobile-hero { display: none; }
-      .mobile-content { display: none; }
-      .desktop-only { display: block; }
-      .wrap { max-width: 1080px; margin: 0 auto; display: grid; grid-template-columns: 1fr 1fr; column-gap: 80px; align-items: center; padding: 96px 48px 96px; min-height: 100vh; align-content: center; }
-      .col-left { display: flex; flex-direction: column; }
-      .desktop-back { color: var(--muted); margin-bottom: 44px; }
-      .desktop-back:hover { color: var(--blue); }
-      .col-right { padding-top: 80px; }
-      .desktop-photo-wrap { position: relative; width: 100%; }
-      .desktop-caption { margin-top: 14px; color: var(--muted); font-size: 0.95rem; }
+      .desktop-hero { display: block; padding-top: 96px; }
+
+      /* Home button: fixed, same left anchor as case study TOC, independent of image */
+      .dh-back {
+        position: fixed;
+        left: max(20px, calc(50% - var(--col)/2 - 160px));
+        top: 96px;
+        color: var(--muted);
+        z-index: 101;
+      }
+      .dh-back:hover { color: var(--blue); }
+
+      /* Image: centered to match page-content column */
+      .dh-image-wrap { max-width: var(--col); margin: 0 auto; position: relative; }
+      .dh-slideshow { aspect-ratio: 3/2; border-radius: 0; }
+
+      /* Caption: bottom-right outside image */
+      .dh-right {
+        position: absolute;
+        right: -160px;
+        bottom: 0;
+        width: 140px;
+        display: flex;
+        align-items: flex-end;
+      }
+      .desktop-caption { color: var(--muted); font-size: 0.93rem; text-align: left; line-height: 1.4; }
+      .mobile-caption { display: none; }
+
+      .page-content { max-width: var(--col); margin: 0 auto; padding: 40px 0 120px; }
     }
-    @media (max-width: 480px) { }
-    @media (max-width: 600px) { .mobile-content { padding: 24px 28px 80px; } }
+
+    @media (max-width: 600px) { .page-content { padding: 24px 20px 80px; } }
+
+    /* ── Logo strip ── */
+    .logo-strip-wrap {
+      margin-top: 48px;
+      position: relative;
+      overflow: hidden;
+      width: 100%;
+    }
+    .logo-strip-wrap::before,
+    .logo-strip-wrap::after {
+      content: "";
+      position: absolute;
+      top: 0; bottom: 0;
+      width: 80px;
+      z-index: 2;
+      pointer-events: none;
+    }
+    .logo-strip-wrap::before { left: 0;  background: linear-gradient(to right, var(--bg), transparent); }
+    .logo-strip-wrap::after  { right: 0; background: linear-gradient(to left,  var(--bg), transparent); }
+    @keyframes ticker { from { transform: translateX(0); } to { transform: translateX(-50%); } }
+    .logo-strip-track {
+      display: flex;
+      align-items: center;
+      gap: 48px;
+      width: max-content;
+      animation: ticker 18s linear infinite;
+    }
+    .logo-strip-track:hover { animation-play-state: paused; }
+    .logo-strip-track img {
+      height: 18px;
+      width: auto;
+      opacity: 0.35;
+      filter: grayscale(1);
+      flex-shrink: 0;
+      display: block;
+    }
+
+    /* ── Experience section ── */
+    .section { margin-top: 48px; padding-top: 0; }
+    .section.no-border { border-top: none; padding-top: 0; }
+    .section-label { font-size: 0.68rem; text-transform: uppercase; letter-spacing: 0.08em; color: var(--muted); margin-bottom: 20px; font-weight: 500; }
+    .exp-block { margin-bottom: 28px; }
+    .exp-block:last-child { margin-bottom: 0; }
+    .exp-role { font-size: 1rem; color: var(--fg); margin-bottom: 1px; }
+    .exp-org  { font-size: 1rem; color: var(--fg); font-weight: 600; }
+    .exp-org a { font-weight: 600; }
+    .exp-meta { font-size: 0.93rem; color: var(--muted); margin-top: 2px; margin-bottom: 0; }
+    .client-list { list-style: none; display: flex; flex-direction: column; gap: 8px; margin-top: 4px; }
+    .client-list li { font-size: 1rem; color: var(--fg); padding-left: 16px; position: relative; line-height: 1.55; }
+    .client-list li::before { content: "–"; position: absolute; left: 0; color: var(--muted); }
+    .client-list li em { color: var(--muted); font-style: normal; font-size: 0.93rem; }
+
+    /* ── Testimonials ── */
+    .testimonials-card {
+      background: var(--blue);
+      padding: 28px;
+      position: relative;
+      min-height: 220px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      cursor: pointer;
+      user-select: none;
+    }
+    .t-arrow {
+      position: absolute;
+      top: 24px; right: 24px;
+      color: rgba(255,255,255,0.7);
+      font-size: 1.1rem;
+      transition: transform 0.2s ease, color 0.2s ease;
+      line-height: 1;
+    }
+    .testimonials-card:hover .t-arrow { transform: translate(3px, -3px); color: #fff; }
+    .t-body { flex: 1; display: flex; flex-direction: column; justify-content: flex-end; padding-top: 48px; }
+    .t-text { font-size: 1rem; color: #fff; line-height: 1.65; margin-bottom: 24px; text-wrap: pretty; transition: opacity 0.3s ease; }
+    .t-attr { font-size: 0.93rem; color: rgba(255,255,255,0.75); line-height: 1.5; transition: opacity 0.3s ease; }
+    .t-attr strong { color: #fff; font-weight: 500; display: block; }
+    .testimonials-card.fading .t-text,
+    .testimonials-card.fading .t-attr { opacity: 0; }
+
+    /* ── Featured ── */
+    .featured-list { list-style: none; display: flex; flex-direction: column; gap: 12px; }
+    .featured-list li { display: flex; align-items: baseline; justify-content: space-between; gap: 16px; }
+    .featured-list a { font-size: 1rem; color: var(--fg); }
+    .featured-year { font-size: 0.93rem; color: var(--muted); flex-shrink: 0; }
   </style>
 </head>
 <body>
 
-  <!-- MOBILE -->
-  <div class="mobile-hero">
-    <div class="slideshow mobile-shape" id="slideshow-mobile"></div>
-    <a class="back mobile-back anim" href="index.html" style="animation-delay:0ms">
-      <svg width="14" height="14" viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg" style="display:block;flex-shrink:0">
-        <path d="M6 3L2 7L6 11M2 7H12" stroke="#fff" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
-      </svg>
-      Home
-    </a>
-  </div>
-  <div class="mobile-content">
-    <p class="photo-caption mobile-caption anim" style="animation-delay:40ms" id="caption-mobile"></p>
-    <p class="anim" style="animation-delay:80ms">I started with <a href="https://en.wikipedia.org/wiki/Communication_design" target="_blank">communication design</a>, but over time I found myself more interested in how things work than how they look. That shift pulled me toward product design.</p>
-    <p class="anim" style="animation-delay:130ms">I enjoy starting ideas and figuring things out from scratch, but I also spend a lot of time refining the small details that shape how something actually feels to use. Motion plays a big role in how I think through interactions.</p>
-    <p class="anim" style="animation-delay:180ms">One thing that bothers me is design without context. I think good design comes from understanding the problem first, visuals come after. A lot of work looks good but doesn't really hold up when you ask why it exists.</p>
-    <p class="anim" style="animation-delay:230ms">Outside of work, I like <a href="#" target="_blank">cats</a>, <a href="#" target="_blank">photography</a>, playing <a href="#" target="_blank">guitar</a>, collecting <a href="#" target="_blank">watches</a>, <a href="#" target="_blank">IoT</a> &amp; long <a href="#" target="_blank">drives</a>.</p>
-  </div>
+  <!-- Hero (shared across mobile + desktop) -->
+  <div class="hero-wrap anim" style="animation-delay:0ms">
 
-  <!-- DESKTOP -->
-  <div class="wrap desktop-only">
-    <div class="col-left">
-      <a class="back desktop-back anim" href="index.html" style="animation-delay:0ms">
+    <!-- Mobile: back button overlaid on image -->
+    <div class="mobile-hero">
+      <div class="slideshow" id="slideshow-main"></div>
+      <a class="back hero-back" href="index.html">
         <svg width="14" height="14" viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg" style="display:block;flex-shrink:0">
           <path d="M6 3L2 7L6 11M2 7H12" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
         </svg>
         Home
       </a>
-      <p class="anim" style="animation-delay:60ms">I started with <a href="https://en.wikipedia.org/wiki/Communication_design" target="_blank">communication design</a>, but over time I found myself more interested in how things work than how they look. That shift pulled me toward product design.</p>
-      <p class="anim" style="animation-delay:110ms">I enjoy starting ideas and figuring things out from scratch, but I also spend a lot of time refining the small details that shape how something actually feels to use. Motion plays a big role in how I think through interactions.</p>
-      <p class="anim" style="animation-delay:160ms">One thing that bothers me is design without context. I think good design comes from understanding the problem first, visuals come after. A lot of work looks good but doesn't really hold up when you ask why it exists.</p>
-      <p class="anim" style="animation-delay:210ms">Outside of work, I like <a href="#" target="_blank">cats</a>, <a href="#" target="_blank">photography</a>, playing <a href="#" target="_blank">guitar</a>, collecting <a href="#" target="_blank">watches</a>, <a href="#" target="_blank">IoT</a> &amp; long <a href="#" target="_blank">drives</a>.</p>
     </div>
-    <div class="col-right">
-      <div class="desktop-photo-wrap anim" style="animation-delay:160ms">
-        <div class="slideshow desktop-shape" id="slideshow-desktop"></div>
-        <p class="photo-caption desktop-caption" id="caption-desktop"></p>
+
+    <!-- Desktop: image+caption centered, home button fixed independently -->
+    <div class="desktop-hero">
+      <a class="back dh-back" href="index.html">
+        <svg width="14" height="14" viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg" style="display:block;flex-shrink:0">
+          <path d="M6 3L2 7L6 11M2 7H12" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+        Home
+      </a>
+      <div class="dh-image-wrap">
+        <div class="slideshow dh-slideshow" id="slideshow-desktop"></div>
+        <div class="dh-right">
+          <p class="photo-caption desktop-caption" id="caption-desktop"></p>
+        </div>
       </div>
     </div>
+
+  </div>
+
+  <!-- Page content -->
+  <div class="page-content">
+
+    <!-- Mobile caption -->
+    <p class="photo-caption mobile-caption anim" style="animation-delay:40ms" id="caption-mobile"></p>
+
+    <!-- Bio -->
+    <p class="anim" style="animation-delay:80ms">I started with <a href="https://en.wikipedia.org/wiki/Communication_design" target="_blank">communication design</a>, but over time I found myself more interested in how things work than how they look. That shift pulled me toward product design.</p>
+    <p class="anim" style="animation-delay:130ms">I enjoy starting ideas and figuring things out from scratch, but I also spend a lot of time refining the small details that shape how something actually feels to use. Motion plays a big role in how I think through interactions.</p>
+    <p class="anim" style="animation-delay:180ms">One thing that bothers me is design without context. I think good design comes from understanding the problem first, visuals come after. A lot of work looks good but doesn't really hold up when you ask why it exists.</p>
+    <p class="anim" style="animation-delay:230ms">Outside of work, I like cats, photography, playing guitar, collecting watches, IoT &amp; long drives.</p>
+
+    <!-- Logo strip -->
+    <div class="logo-strip-wrap anim" style="animation-delay:260ms">
+      <div class="logo-strip-track" id="logo-track">
+        <!-- logos injected by JS -->
+      </div>
+    </div>
+
+    <!-- Experience -->
+    <div class="section no-border anim" style="animation-delay:280ms">
+      <p class="section-label">Experience</p>
+      <div class="exp-block">
+        <p class="exp-role">Motion and Interaction Designer</p>
+        <p class="exp-org"><a href="https://www.egonzehnder.com/" target="_blank">Egon Zehnder</a></p>
+        <p class="exp-meta">Gurugram &middot; June 2025</p>
+      </div>
+      <div class="exp-block">
+        <p class="exp-role" style="margin-bottom:12px;">Client &amp; Independent Work</p>
+        <ul class="client-list">
+          <li>CX Mapping <em>(NDA)</em> &mdash; <a href="https://www.mahlab.co/" target="_blank">Mahlabs</a></li>
+          <li>UX Audit &amp; Landing Pages <em>(Upcoming)</em> &mdash; Asian Cables, One Sixth Sense</li>
+          <li>Data Viz &amp; Motion <em>(NDA)</em> &mdash; <a href="https://www.newedgewealth.com/" target="_blank">NewEdge Wealth</a>, Marathon Resources Advisory</li>
+          <li>Motion Design <em>(NDA)</em> &mdash; <a href="https://tanamicapital.com/" target="_blank">Tanami Capital</a></li>
+          <li><a href="https://www.behance.net/gallery/220586773/Ad-FIlm-WhatsApp-Chat-Lock-Feature" target="_blank">Ad Film</a> / <a href="https://www.behance.net/gallery/224323867/Asthi-Short-Film" target="_blank">Short Film</a> / <a href="https://www.behance.net/gallery/219502275/AstroPlanner-Publication-Design" target="_blank">Publication</a> <em>(2024&ndash;25)</em></li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- Testimonials -->
+    <div class="section anim" style="animation-delay:320ms">
+      <p class="section-label">Testimonials</p>
+      <div class="testimonials-card" id="t-card">
+        <span class="t-arrow">→</span>
+        <div class="t-body">
+          <p class="t-text" id="t-text"></p>
+          <p class="t-attr" id="t-attr"></p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Featured -->
+    <div class="section anim" style="animation-delay:360ms">
+      <p class="section-label">Featured on</p>
+      <ul class="featured-list">
+        <li>
+          <a href="https://www.wallofportfolios.in/portfolios/bhavya-mittal/" target="_blank">Wall Of Portfolios</a>
+          <span class="featured-year">2026</span>
+        </li>
+        <li>
+          <a href="https://abduzeedo.com/node/89275" target="_blank">Abduzeedo</a>
+          <span class="featured-year">2026</span>
+        </li>
+      </ul>
+    </div>
+
   </div>
 
   <script>
     (function() {
-      var MEDIA = [{"src": "https://res.cloudinary.com/dmxhlbucf/video/upload/q_auto/f_auto/v1776591459/1_iltdn1.mp4", "type": "video", "caption": "A view from my way to PG after a long ass day at work. Gurugram."}, {"src": "https://res.cloudinary.com/dmxhlbucf/image/upload/q_auto/f_auto/v1776591459/3_ixpa6b.jpg", "type": "image", "caption": "Yeah, I have no idea what chords I am holding, even the guitar is not mine."}, {"src": "https://res.cloudinary.com/dmxhlbucf/image/upload/q_auto/f_auto/v1776591459/7_bl8pou.jpg", "type": "image", "caption": "Communication Design Batch 2022. (Lowk hate them all except few)"}, {"src": "https://res.cloudinary.com/dmxhlbucf/image/upload/q_auto/f_auto/v1776591458/6_iqsgmo.jpg", "type": "image", "caption": "A sketch of two of my best friends made from the ink I made on my own from lohri's ash."}, {"src": "https://res.cloudinary.com/dmxhlbucf/video/upload/q_auto/f_auto/v1776591461/5_zf7p6k.mp4", "type": "video", "caption": "Thank god I removed the audio from this clip."}, {"src": "https://res.cloudinary.com/dmxhlbucf/image/upload/q_auto/f_auto/v1776591459/2_azyfye.jpg", "type": "image", "caption": "A research day out with my group, exhausting asl xO"}, {"src": "https://res.cloudinary.com/dmxhlbucf/image/upload/q_auto/f_auto/v1776591459/4_y0kf6e.jpg", "type": "image", "caption": "The only good picture I have of myself I guess."}, {"src": "https://res.cloudinary.com/dmxhlbucf/video/upload/q_auto/f_auto/v1776591460/2_cydy9l.mp4", "type": "video", "caption": "Koi Fishes at Namma Bangalore Aquarium. One could easily watch them for hours."}, {"src": "https://res.cloudinary.com/dmxhlbucf/video/upload/q_auto/f_auto/v1776591460/6_kzumcc.mp4", "type": "video", "caption": "Shimla with two of my friends. The sunset was lovely."}, {"src": "https://res.cloudinary.com/dmxhlbucf/image/upload/q_auto/f_auto/v1776591461/8_hm09ph.jpg", "type": "image", "caption": "Himachal Short Film Fest. Our Film got an award."}, {"src": "https://res.cloudinary.com/dmxhlbucf/video/upload/q_auto/f_auto/v1776591460/3_gsupgp.mp4", "type": "video", "caption": "A view from my office. Weird isn't it how nature exists like an outsider in the concrete jungle."}, {"src": "https://res.cloudinary.com/dmxhlbucf/video/upload/q_auto/f_auto/v1776591461/7_yljtet.mp4", "type": "video", "caption": "A drive in my hometown Chandigarh with a friend of mine."}, {"src": "https://res.cloudinary.com/dmxhlbucf/image/upload/q_auto/f_auto/v1776591461/10_rzjp4z.jpg", "type": "image", "caption": "Dashing ahh image (ignore my fuckass friend and Palak paneer placard)"}, {"src": "https://res.cloudinary.com/dmxhlbucf/image/upload/q_auto/f_auto/v1776591461/9_g3qld0.jpg", "type": "image", "caption": "Lmfao how staged can it be."}, {"src": "https://res.cloudinary.com/dmxhlbucf/image/upload/q_auto/f_auto/v1776591461/11_coitoh.jpg", "type": "image", "caption": "Shogi Trek. We never found the waterfall."}, {"src": "https://res.cloudinary.com/dmxhlbucf/image/upload/q_auto/f_auto/v1776591462/12_fvki0h.jpg", "type": "image", "caption": "Manali 2025 embracing my pahadi roots."}, {"src": "https://res.cloudinary.com/dmxhlbucf/image/upload/q_auto/f_auto/v1776591462/13_okqwdd.jpg", "type": "image", "caption": "Mentos Zindagi"}, {"src": "https://res.cloudinary.com/dmxhlbucf/video/upload/q_auto/f_auto/v1776591462/4_zgez6u.mp4", "type": "video", "caption": "Loved the dense forest cover here. Don't really remember the location but it was in my way during my visit to Dharampur."}, {"src": "https://res.cloudinary.com/dmxhlbucf/image/upload/q_auto/f_auto/v1776591462/17_gjh8c2.jpg", "type": "image", "caption": "A sunset in Shimla. Loved every second of it."}, {"src": "https://res.cloudinary.com/dmxhlbucf/image/upload/q_auto/f_auto/v1776591462/15_awgvmf.jpg", "type": "image", "caption": "\"Yeh degree kahe khatam nhi hoti hai be\""}, {"src": "https://res.cloudinary.com/dmxhlbucf/image/upload/q_auto/f_auto/v1776591462/14_hcncdy.jpg", "type": "image", "caption": "My first day as an intern at Egon Zehnder."}, {"src": "https://res.cloudinary.com/dmxhlbucf/image/upload/q_auto/f_auto/v1776591462/18_q5vboh.jpg", "type": "image", "caption": "Latenight editing session for a short film submission due tomorrow."}, {"src": "https://res.cloudinary.com/dmxhlbucf/image/upload/q_auto/f_auto/v1776591463/19_vtwuhh.jpg", "type": "image", "caption": "No I am straight. Chandigarh 2024"}, {"src": "https://res.cloudinary.com/dmxhlbucf/image/upload/q_auto/f_auto/v1776591463/20_ak2t5d.jpg", "type": "image", "caption": "Maggi. Karol Tibba Basecamp."}];
+      var MEDIA = [{"src": "/assets/images/About Page Images/1_iltdn1.mp4", "type": "video", "caption": "A view from my way to PG after a long ass day at work. Gurugram."}, {"src": "/assets/images/About Page Images/3_ixpa6b.webp", "type": "image", "caption": "Yeah, I have no idea what chords I am holding, even the guitar is not mine."}, {"src": "/assets/images/About Page Images/7_bl8pou.webp", "type": "image", "caption": "Communication Design Batch 2022. (Lowk hate them all except few)"}, {"src": "/assets/images/About Page Images/6_iqsgmo.webp", "type": "image", "caption": "A sketch of two of my best friends made from the ink I made on my own from lohri's ash."}, {"src": "/assets/images/About Page Images/5_zf7p6k.mp4", "type": "video", "caption": "Thank god I removed the audio from this clip."}, {"src": "/assets/images/About Page Images/2_azyfye.webp", "type": "image", "caption": "A research day out with my group, exhausting asl xO"}, {"src": "/assets/images/About Page Images/4_y0kf6e.webp", "type": "image", "caption": "The only good picture I have of myself I guess."}, {"src": "/assets/images/About Page Images/2_cydy9l.mp4", "type": "video", "caption": "Koi Fishes at Namma Bangalore Aquarium. One could easily watch them for hours."}, {"src": "/assets/images/About Page Images/6_kzumcc.mp4", "type": "video", "caption": "Shimla with two of my friends. The sunset was lovely."}, {"src": "/assets/images/About Page Images/8_hm09ph.webp", "type": "image", "caption": "Himachal Short Film Fest. Our Film got an award."}, {"src": "/assets/images/About Page Images/3_gsupgp.mp4", "type": "video", "caption": "A view from my office. Weird isn't it how nature exists like an outsider in the concrete jungle."}, {"src": "/assets/images/About Page Images/7_yltjet.mp4", "type": "video", "caption": "A drive in my hometown Chandigarh with a friend of mine."}, {"src": "/assets/images/About Page Images/10_rzjp4z.webp", "type": "image", "caption": "Dashing ahh image (ignore my fuckass friend and Palak paneer placard)"}, {"src": "/assets/images/About Page Images/9_g3qld0.webp", "type": "image", "caption": "Lmfao how staged can it be."}, {"src": "/assets/images/About Page Images/11_coitoh.webp", "type": "image", "caption": "Shogi Trek. We never found the waterfall."}, {"src": "/assets/images/About Page Images/12_fvki0h.webp", "type": "image", "caption": "Manali 2025 embracing my pahadi roots."}, {"src": "/assets/images/About Page Images/13_okqwdd.webp", "type": "image", "caption": "Mentos Zindagi"}, {"src": "/assets/images/About Page Images/17_gjh8c2.webp", "type": "image", "caption": "A sunset in Shimla. Loved every second of it."}, {"src": "/assets/images/About Page Images/15_awgvmf.webp", "type": "image", "caption": "\"Yeh degree kahe khatam nhi hoti hai be\""}, {"src": "/assets/images/About Page Images/14_hcncdy.webp", "type": "image", "caption": "My first day as an intern at Egon Zehnder."}, {"src": "/assets/images/About Page Images/18_q5vboh.webp", "type": "image", "caption": "Latenight editing session for a short film submission due tomorrow."}, {"src": "/assets/images/About Page Images/19_vtwuhh.webp", "type": "image", "caption": "No I am straight. Chandigarh 2024"}, {"src": "/assets/images/About Page Images/20_ak2t5d.webp", "type": "image", "caption": "Maggi. Karol Tibba Basecamp."}];
       var INTERVAL = 5000;
 
-      function buildSlideshow(container, captionId) {
+      function buildSlideshow(container) {
         MEDIA.forEach(function(m, i) {
           var slide = document.createElement('div');
           slide.className = 'slide' + (i === 0 ? ' active' : '');
@@ -152,39 +310,87 @@
           slide.appendChild(el);
           container.appendChild(slide);
         });
-
-        var slides = container.querySelectorAll('.slide');
-        var cur = 0;
-        var firstVid = slides[0].querySelector('video');
+        var firstVid = container.querySelector('.slide.active video');
         if (firstVid) firstVid.play();
+        return container.querySelectorAll('.slide');
+      }
 
-        var capEl = document.getElementById(captionId);
-        if (capEl) capEl.textContent = MEDIA[0].caption;
+      var mobileContainer  = document.getElementById('slideshow-main');
+      var desktopContainer = document.getElementById('slideshow-desktop');
+      var capMobile  = document.getElementById('caption-mobile');
+      var capDesktop = document.getElementById('caption-desktop');
 
-        function updateCaption(idx) {
-          if (!capEl) return;
-          capEl.style.opacity = '0';
-          setTimeout(function() { capEl.textContent = MEDIA[idx].caption; capEl.style.opacity = '1'; }, 350);
-        }
+      var mobileSlides  = buildSlideshow(mobileContainer);
+      var desktopSlides = buildSlideshow(desktopContainer);
 
-        function advance() {
-          var prev = cur; cur = (cur + 1) % slides.length;
+      if (capMobile)  capMobile.textContent  = MEDIA[0].caption;
+      if (capDesktop) capDesktop.textContent = MEDIA[0].caption;
+
+      var cur = 0;
+
+      function updateCaptions(idx) {
+        [capMobile, capDesktop].forEach(function(el) {
+          if (!el) return;
+          el.style.opacity = '0';
+          setTimeout(function() { el.textContent = MEDIA[idx].caption; el.style.opacity = '1'; }, 350);
+        });
+      }
+
+      function advance() {
+        var prev = cur; cur = (cur + 1) % MEDIA.length;
+        [mobileSlides, desktopSlides].forEach(function(slides) {
           var prevVid = slides[prev].querySelector('video');
           if (prevVid) prevVid.pause();
           slides[prev].classList.remove('active');
           slides[cur].classList.add('active');
           var nextVid = slides[cur].querySelector('video');
           if (nextVid) { nextVid.currentTime = 0; nextVid.play(); }
-          updateCaption(cur);
-        }
-
-        setInterval(advance, INTERVAL);
+        });
+        updateCaptions(cur);
       }
 
-      var dm = document.getElementById('slideshow-mobile');
-      var dd = document.getElementById('slideshow-desktop');
-      if (dm) buildSlideshow(dm, 'caption-mobile');
-      if (dd) buildSlideshow(dd, 'caption-desktop');
+      setInterval(advance, INTERVAL);
+      // ── Testimonial carousel ──
+      var TESTIMONIALS = [
+        { text: "Bhavya delivered polished, on-brand designs within a tight timeframe. He was highly responsive and a great communicator, interpreted feedback well, and made the process fast and easy.", name: "Georgia Smith", role: "Senior Strategist, Mahlabs" },
+        { text: "I can say that Bhavya is very creative with his design concepts and always has new and fresh ideas.", name: "Amit Bansal", role: "Product Manager, Social27" }
+      ];
+      var tCard = document.getElementById('t-card');
+      var tText = document.getElementById('t-text');
+      var tAttr = document.getElementById('t-attr');
+      var tCur = 0;
+
+      function setTestimonial(idx) {
+        tText.textContent = TESTIMONIALS[idx].text;
+        tAttr.innerHTML = '<strong>' + TESTIMONIALS[idx].name + '</strong>' + TESTIMONIALS[idx].role;
+      }
+      setTestimonial(0);
+
+      tCard.addEventListener('click', function() {
+        tCur = (tCur + 1) % TESTIMONIALS.length;
+        tCard.classList.add('fading');
+        setTimeout(function() {
+          setTestimonial(tCur);
+          tCard.classList.remove('fading');
+        }, 300);
+      });
+      // ── Logo strip ──
+      var LOGOS = [
+        { src: "/assets/images/Logos/egon-zehnder.svg",  alt: "Egon Zehnder" },
+        { src: "/assets/images/Logos/mahlab.svg",         alt: "Mahlab" },
+        { src: "/assets/images/Logos/tanami.svg",         alt: "Tanami Capital" },
+        { src: "/assets/images/Logos/newedge.svg",        alt: "NewEdge Wealth" },
+
+      ];
+      var track = document.getElementById('logo-track');
+      // render twice for seamless loop
+      [0,1].forEach(function() {
+        LOGOS.forEach(function(l) {
+          var img = document.createElement('img');
+          img.src = l.src; img.alt = l.alt;
+          track.appendChild(img);
+        });
+      });
     })();
   </script>
 </body>
