@@ -169,7 +169,9 @@
       position: absolute;
       top: 24px; right: 24px;
       color: rgba(255,255,255,0.7);
-      font-size: 1.1rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
       transition: transform 0.2s ease, color 0.2s ease;
       line-height: 1;
     }
@@ -265,7 +267,7 @@
     <div class="section anim" style="animation-delay:320ms">
       <p class="section-label">Testimonials</p>
       <div class="testimonials-card" id="t-card">
-        <span class="t-arrow">→</span>
+        <span class="t-arrow"><svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M4 10H16M16 10L10 4M16 10L10 16" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
         <div class="t-body">
           <p class="t-text" id="t-text"></p>
           <p class="t-attr" id="t-attr"></p>
@@ -376,11 +378,13 @@
       });
       // ── Logo strip ──
       var LOGOS = [
-        { src: "/assets/images/Logos/egon-zehnder.svg",  alt: "Egon Zehnder" },
-        { src: "/assets/images/Logos/mahlab.svg",         alt: "Mahlab" },
-        { src: "/assets/images/Logos/tanami.svg",         alt: "Tanami Capital" },
-        { src: "/assets/images/Logos/newedge.svg",        alt: "NewEdge Wealth" },
-
+        { src: "/assets/images/About Page Images/Asian Cables.png",               alt: "Asian Cables" },
+        { src: "/assets/images/About Page Images/Egon Zehnder.png",               alt: "Egon Zehnder" },
+        { src: "/assets/images/About Page Images/Mahlabs.png",                    alt: "Mahlabs" },
+        { src: "/assets/images/About Page Images/Marathon Resource Advisors.png", alt: "Marathon Resource Advisors" },
+        { src: "/assets/images/About Page Images/NewEgde Wealth.png",             alt: "NewEdge Wealth" },
+        { src: "/assets/images/About Page Images/SFC.png",                        alt: "SFC" },
+        { src: "/assets/images/About Page Images/Tanami.png",                     alt: "Tanami" },
       ];
       var track = document.getElementById('logo-track');
       // render twice for seamless loop
