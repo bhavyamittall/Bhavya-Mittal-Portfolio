@@ -20,7 +20,7 @@
   <style>
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
     :root {
-      --bg: #f7f6f2; --fg: #3a3a3a; --muted: #9a9a9a; --muted2: #c8c4be;
+      --bg: #f2f5f7; --fg: #3a3a3a; --muted: #9a9a9a; --muted2: #c8c4be;
       --border: #e8e5e0; --blue: #3b6fce;
       --font: -apple-system, BlinkMacSystemFont, "Helvetica Neue", Helvetica, Arial, sans-serif;
       --serif: "Noto Serif", Georgia, serif;
@@ -51,7 +51,7 @@
       width: 100%; height: 100%;
       top: 0; left: 0;
       mix-blend-mode: lighten;
-      background: #0b47b0;
+      background: #033dc5;
       opacity: 1;
       pointer-events: none;
       z-index: 2;
@@ -60,7 +60,7 @@
     .slideshow:hover::after { opacity: 0; }
     .slide { position: absolute; inset: 0; opacity: 0; transition-property: opacity; transition-duration: 0.6s; transition-timing-function: ease; }
     .slide.active { opacity: 1; }
-    .slide img, .slide video { width: 100%; height: 100%; object-fit: cover; display: block; -webkit-filter: contrast(120%) grayscale(100%); filter: contrast(120%) grayscale(100%); transition: filter 0.4s ease, -webkit-filter 0.4s ease; }
+    .slide img, .slide video { width: 100%; height: 100%; object-fit: cover; display: block; -webkit-filter: brightness(127%) contrast(49%) grayscale(100%) hue-rotate(0deg) invert(0%) opacity(100%) saturate(116%) sepia(0%); filter: brightness(127%) contrast(49%) grayscale(100%) hue-rotate(0deg) invert(0%) opacity(100%) saturate(116%) sepia(0%); transition: filter 0.4s ease, -webkit-filter 0.4s ease; }
     .slideshow:hover .slide img,
     .slideshow:hover .slide video { -webkit-filter: none; filter: none; }
     .slide img { outline: 1px solid rgba(0,0,0,0.1); outline-offset: -1px; }
@@ -69,22 +69,24 @@
     .photo-caption { font-family: "Mynerve", cursive; font-size: 1.05rem; color: var(--fg); line-height: 1.4; text-wrap: pretty; transition-property: opacity; transition-duration: 0.4s; transition-timing-function: ease; }
 
     /* ── Hero ── */
-    .hero-wrap { position: relative; z-index: 101; }
+    .hero-wrap { position: relative; z-index: 1; }
 
-    /* Mobile hero */
-    .mobile-hero { position: relative; }
+    /* Mobile hero — sticky so image stays while content scrolls over */
+    .mobile-hero { position: sticky; top: 0; z-index: 1; }
     .hero-back { position: absolute; top: 20px; left: 20px; z-index: 102; color: #fff; mix-blend-mode: difference; text-decoration: none; }
     .hero-back svg path { stroke: #fff; }
     .desktop-hero { display: none; }
 
     /* ── Mobile layout ── */
-    .page-content { padding: 24px 28px 100px; }
+    .page-content { padding: 24px 28px 100px; position: relative; z-index: 2; background: var(--bg); border-radius: 16px 16px 0 0; margin-top: -16px; }
     .mobile-caption { margin-bottom: 32px; }
 
     /* ── Desktop layout ── */
     @media (min-width: 960px) {
-      .mobile-hero { display: none; }
+      .hero-wrap { z-index: 101; }
+      .mobile-hero { display: none; position: relative; }
       .desktop-hero { display: block; padding-top: 96px; }
+      .page-content { position: static; background: none; border-radius: 0; margin-top: 0; }
 
       /* Home button: fixed, same left anchor as case study TOC, independent of image */
       .dh-back {
@@ -156,17 +158,23 @@
     /* ── Experience section ── */
     .section { margin-top: 48px; padding-top: 0; }
     .section.no-border { border-top: none; padding-top: 0; }
-    .section-label { font-size: 0.68rem; text-transform: uppercase; letter-spacing: 0.08em; color: var(--muted); margin-bottom: 20px; font-weight: 500; }
-    .exp-block { margin-bottom: 28px; }
-    .exp-block:last-child { margin-bottom: 0; }
-    .exp-role { font-size: 1rem; color: var(--fg); margin-bottom: 1px; }
-    .exp-org  { font-size: 1rem; color: var(--fg); font-weight: 600; }
+    .section-label { font-size: 0.68rem; text-transform: uppercase; letter-spacing: 0.08em; color: var(--muted); margin-bottom: 16px; font-weight: 500; }
+
+    /* Full-time row */
+    .exp-row { display: flex; justify-content: space-between; align-items: baseline; gap: 16px; padding: 14px 0; border-bottom: 1px solid var(--border); }
+    .exp-row:first-of-type { border-top: 1px solid var(--border); }
+    .exp-left { display: flex; flex-direction: column; gap: 2px; }
+    .exp-org { font-size: 1rem; font-weight: 600; color: var(--fg); margin: 0; }
     .exp-org a { font-weight: 600; }
-    .exp-meta { font-size: 0.93rem; color: var(--muted); margin-top: 2px; margin-bottom: 0; }
-    .client-list { list-style: none; display: flex; flex-direction: column; gap: 8px; margin-top: 4px; }
-    .client-list li { font-size: 1rem; color: var(--fg); padding-left: 16px; position: relative; line-height: 1.55; }
-    .client-list li::before { content: "–"; position: absolute; left: 0; color: var(--muted); }
-    .client-list li em { color: var(--muted); font-style: normal; font-size: 0.93rem; }
+    .exp-role { font-size: 0.93rem; color: var(--muted); margin: 0; }
+    .exp-right { font-size: 0.88rem; color: var(--muted); white-space: nowrap; flex-shrink: 0; }
+
+    /* Client work sub-label */
+    .exp-sub-label { font-size: 0.68rem; text-transform: uppercase; letter-spacing: 0.08em; color: var(--muted); margin: 28px 0 12px; font-weight: 500; }
+    .client-list { list-style: none; display: flex; flex-direction: column; gap: 0; }
+    .client-list li { font-size: 0.93rem; color: var(--fg); padding: 10px 0; border-bottom: 1px solid var(--border); line-height: 1.5; display: flex; justify-content: space-between; align-items: baseline; gap: 16px; }
+    .client-list li:first-child { border-top: 1px solid var(--border); }
+    .client-list li em { color: var(--muted); font-style: normal; font-size: 0.85rem; white-space: nowrap; flex-shrink: 0; }
 
     /* ── Testimonials ── */
     .testimonials-card {
@@ -199,10 +207,18 @@
     .testimonials-card.fading .t-attr { opacity: 0; }
 
     /* ── Featured ── */
-    .featured-list { list-style: none; display: flex; flex-direction: column; gap: 12px; }
-    .featured-list li { display: flex; align-items: baseline; justify-content: space-between; gap: 16px; }
+    .featured-list { list-style: none; display: flex; flex-direction: column; gap: 0; }
+    .featured-list li { display: flex; align-items: baseline; justify-content: space-between; gap: 16px; padding: 10px 0; border-bottom: 1px solid var(--border); }
+    .featured-list li:first-child { border-top: 1px solid var(--border); }
     .featured-list a { font-size: 1rem; color: var(--fg); }
     .featured-year { font-size: 0.93rem; color: var(--muted); flex-shrink: 0; }
+
+    /* ── Contact ── */
+    .contact-list { list-style: none; display: flex; flex-direction: column; gap: 0; }
+    .contact-list li { display: flex; align-items: baseline; justify-content: space-between; gap: 16px; padding: 10px 0; border-bottom: 1px solid var(--border); font-size: 1rem; }
+    .contact-list li:first-child { border-top: 1px solid var(--border); }
+    .contact-label { color: var(--muted); font-size: 0.88rem; flex-shrink: 0; }
+    .contact-value { color: var(--fg); }
   </style>
 </head>
 <body>
@@ -246,10 +262,9 @@
     <p class="photo-caption mobile-caption anim" style="animation-delay:40ms" id="caption-mobile"></p>
 
     <!-- Bio -->
-    <p class="anim" style="animation-delay:80ms">I started with <a href="https://en.wikipedia.org/wiki/Communication_design" target="_blank">communication design</a>, but over time I found myself more interested in how things work than how they look. That shift pulled me toward product design.</p>
-    <p class="anim" style="animation-delay:130ms">I enjoy starting ideas and figuring things out from scratch, but I also spend a lot of time refining the small details that shape how something actually feels to use. Motion plays a big role in how I think through interactions.</p>
-    <p class="anim" style="animation-delay:180ms">One thing that bothers me is design without context. I think good design comes from understanding the problem first, visuals come after. A lot of work looks good but doesn't really hold up when you ask why it exists.</p>
-    <p class="anim" style="animation-delay:230ms">Outside of work, I like cats, photography, playing guitar, collecting watches, IoT &amp; long drives.</p>
+    <p class="anim" style="animation-delay:80ms">Growing up, I thought I would become an engineer because — I liked creating things and I didn't know the whole discipline of design existed until I turned 18. That's how I ended up in design. For me, design was never limited to mediums. I liked disassembling remote control cars, playing with Mechanix (because I wasn't able to afford Lego), and could play with a stick for five hours straight. Though I never liked painting (I failed miserably at it), I always liked creating, lots and lots of it.</p>
+    <p class="anim" style="animation-delay:180ms">People often commend my ability to start new ideas and figure things out from scratch very effectively, but a downside to that is that I also spend a lot of time refining small details until I lose interest. Another thing about me is that I notice a lot, and I consume a lot too, which has worked in my favor because it has given me the ability to think from many different perspectives.</p>
+    <p class="anim" style="animation-delay:230ms">Outside of work, I like cats, I like to pretend I play guitar well, and recently, I've started collecting watches and reading about them. I also like tinkering with IoT :)</p>
 
     <!-- Logo strip -->
     <div class="logo-strip-wrap anim" style="animation-delay:260ms">
@@ -261,21 +276,38 @@
     <!-- Experience -->
     <div class="section no-border anim" style="animation-delay:280ms">
       <p class="section-label">Experience</p>
-      <div class="exp-block">
-        <p class="exp-role">Motion and Interaction Designer</p>
-        <p class="exp-org"><a href="https://www.egonzehnder.com/" target="_blank">Egon Zehnder</a></p>
-        <p class="exp-meta">Gurugram &middot; June 2025</p>
+
+      <div class="exp-row">
+        <div class="exp-left">
+          <p class="exp-org"><a href="https://www.egonzehnder.com/" target="_blank">Egon Zehnder</a></p>
+          <p class="exp-role">Motion and Interaction Designer</p>
+        </div>
+        <span class="exp-right">Jun 2025 &middot; Gurugram</span>
       </div>
-      <div class="exp-block">
-        <p class="exp-role" style="margin-bottom:12px;">Client &amp; Independent Work</p>
-        <ul class="client-list">
-          <li>CX Mapping <em>(NDA)</em> &mdash; <a href="https://www.mahlab.co/" target="_blank">Mahlabs</a></li>
-          <li>UX Audit &amp; Landing Pages <em>(Upcoming)</em> &mdash; Asian Cables, One Sixth Sense</li>
-          <li>Data Viz &amp; Motion <em>(NDA)</em> &mdash; <a href="https://www.newedgewealth.com/" target="_blank">NewEdge Wealth</a>, Marathon Resources Advisory</li>
-          <li>Motion Design <em>(NDA)</em> &mdash; <a href="https://tanamicapital.com/" target="_blank">Tanami Capital</a></li>
-          <li><a href="https://www.behance.net/gallery/220586773/Ad-FIlm-WhatsApp-Chat-Lock-Feature" target="_blank">Ad Film</a> / <a href="https://www.behance.net/gallery/224323867/Asthi-Short-Film" target="_blank">Short Film</a> / <a href="https://www.behance.net/gallery/219502275/AstroPlanner-Publication-Design" target="_blank">Publication</a> <em>(2024&ndash;25)</em></li>
-        </ul>
-      </div>
+
+      <p class="exp-sub-label">Client &amp; Independent Work</p>
+      <ul class="client-list">
+        <li>
+          <span><a href="https://www.mahlab.co/" target="_blank">Mahlabs</a> &mdash; CX Mapping</span>
+          <em>NDA</em>
+        </li>
+        <li>
+          <span>Asian Cables, One Sixth Sense &mdash; UX Audit &amp; Landing Pages</span>
+          <em>Upcoming</em>
+        </li>
+        <li>
+          <span><a href="https://www.newedgewealth.com/" target="_blank">NewEdge Wealth</a>, Marathon Resources &mdash; Data Viz &amp; Motion</span>
+          <em>NDA</em>
+        </li>
+        <li>
+          <span><a href="https://tanamicapital.com/" target="_blank">Tanami Capital</a> &mdash; Motion Design</span>
+          <em>NDA</em>
+        </li>
+        <li>
+          <span><a href="https://www.behance.net/gallery/220586773/Ad-FIlm-WhatsApp-Chat-Lock-Feature" target="_blank">Ad Film</a> / <a href="https://www.behance.net/gallery/224323867/Asthi-Short-Film" target="_blank">Short Film</a> / <a href="https://www.behance.net/gallery/219502275/AstroPlanner-Publication-Design" target="_blank">Publication</a></span>
+          <em>2024&ndash;25</em>
+        </li>
+      </ul>
     </div>
 
     <!-- Testimonials -->
@@ -301,6 +333,25 @@
         <li>
           <a href="https://abduzeedo.com/node/89275" target="_blank">Abduzeedo</a>
           <span class="featured-year">2026</span>
+        </li>
+      </ul>
+    </div>
+
+    <!-- Contact -->
+    <div class="section anim" style="animation-delay:400ms">
+      <p class="section-label">Contact</p>
+      <ul class="contact-list">
+        <li>
+          <span class="contact-label">Email</span>
+          <a class="contact-value" href="mailto:bhavyamittalbiz@gmail.com">bhavyamittalbiz@gmail.com</a>
+        </li>
+        <li>
+          <span class="contact-label">Phone</span>
+          <a class="contact-value" href="tel:+917627856779">+91 76278 56779</a>
+        </li>
+        <li>
+          <span class="contact-label">LinkedIn</span>
+          <a class="contact-value" href="https://www.linkedin.com/in/bhavyamittalll" target="_blank">bhavyamittalll</a>
         </li>
       </ul>
     </div>
