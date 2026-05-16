@@ -69,24 +69,23 @@
     .photo-caption { font-family: "Mynerve", cursive; font-size: 1.05rem; color: var(--fg); line-height: 1.4; text-wrap: pretty; transition-property: opacity; transition-duration: 0.4s; transition-timing-function: ease; }
 
     /* ── Hero ── */
-    .hero-wrap { position: relative; z-index: 1; }
+    .hero-wrap { position: relative; z-index: 101; }
 
-    /* Mobile hero — sticky so image stays while content scrolls over */
-    .mobile-hero { position: sticky; top: 0; z-index: 1; }
+    /* Mobile hero */
+    .mobile-hero { position: relative; }
     .hero-back { position: absolute; top: 20px; left: 20px; z-index: 102; color: #fff; mix-blend-mode: difference; text-decoration: none; }
     .hero-back svg path { stroke: #fff; }
     .desktop-hero { display: none; }
 
     /* ── Mobile layout ── */
-    .page-content { padding: 24px 28px 100px; position: relative; z-index: 2; background: var(--bg); border-radius: 16px 16px 0 0; margin-top: -16px; }
+    .page-content { padding: 24px 28px 100px; }
     .mobile-caption { margin-bottom: 32px; }
 
     /* ── Desktop layout ── */
     @media (min-width: 960px) {
-      .hero-wrap { z-index: 101; }
-      .mobile-hero { display: none; position: relative; }
+      .mobile-hero { display: none; }
       .desktop-hero { display: block; padding-top: 96px; }
-      .page-content { position: static; background: none; border-radius: 0; margin-top: 0; }
+      .page-content { max-width: var(--col); margin: 0 auto; padding: 40px 0 120px; }
 
       /* Home button: fixed, same left anchor as case study TOC, independent of image */
       .dh-back {
