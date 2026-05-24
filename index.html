@@ -27,6 +27,20 @@
       --bg: #f7f6f2; --fg: #3a3a3a; --muted: #9a9a9a; --muted2: #c8c4be;
       --border: #e8e5e0; --blue: #3b6fce;
       --font: -apple-system, BlinkMacSystemFont, "Helvetica Neue", Helvetica, Arial, sans-serif;
+      --check-opacity-dur: 550ms;
+      --check-rotate-dur: 550ms;
+      --check-rotate-from: 80deg;
+      --check-bob-dur: 450ms;
+      --check-y-amount: 40px;
+      --check-blur-dur: 500ms;
+      --check-blur-from: 10px;
+      --check-path-dur: 550ms;
+      --check-path-delay: 80ms;
+      --check-ease-out: cubic-bezier(0.22, 1, 0.36, 1);
+      --check-ease-opacity: cubic-bezier(0.22, 1, 0.36, 1);
+      --check-ease-rotate: cubic-bezier(0.22, 1, 0.36, 1);
+      --check-ease-bob: cubic-bezier(0.34, 1.35, 0.64, 1);
+      --check-ease-path: cubic-bezier(0.22, 1, 0.36, 1);
     }
     html { font-size: 15px; }
     body {
@@ -183,6 +197,39 @@
       clip-path: inset(0 0% 0 0);
     }
 
+    .t-success-check {
+      display: inline-block;
+      transform-origin: center;
+      opacity: 0;
+      will-change: transform, opacity, filter;
+    }
+    .t-success-check svg { display: block; overflow: visible; }
+    .t-success-check svg polyline {
+      stroke-dasharray: 17;
+      stroke-dashoffset: 17;
+    }
+    .t-success-check[data-state="in"] {
+      animation:
+        t-check-fade   var(--check-opacity-dur) var(--check-ease-opacity) forwards,
+        t-check-rotate var(--check-rotate-dur)  var(--check-ease-rotate)  forwards,
+        t-check-blur   var(--check-blur-dur)    var(--check-ease-out)     forwards,
+        t-check-bob    var(--check-bob-dur)     var(--check-ease-bob)     forwards;
+    }
+    .t-success-check[data-state="in"] svg polyline {
+      animation: t-check-draw var(--check-path-dur) var(--check-ease-path) var(--check-path-delay, 0ms) forwards;
+    }
+
+    @keyframes t-check-fade { from { opacity: 0; } to { opacity: 1; } }
+    @keyframes t-check-rotate { from { transform: rotate(var(--check-rotate-from)); } to { transform: rotate(0deg); } }
+    @keyframes t-check-blur { from { filter: blur(var(--check-blur-from)); } to { filter: blur(0); } }
+    @keyframes t-check-bob { from { translate: 0 var(--check-y-amount); } to { translate: 0 0; } }
+    @keyframes t-check-draw { to { stroke-dashoffset: 0; } }
+
+    @media (prefers-reduced-motion: reduce) {
+      .t-success-check { animation: none !important; opacity: 1; }
+      .t-success-check svg polyline { animation: none !important; stroke-dashoffset: 0 !important; }
+    }
+
     /* ── MOBILE (default) ── */
     /* All direct children of wrap are a flat flex column.
        JS reorders them into:
@@ -324,9 +371,11 @@
               bhavyamittalbiz@gmail.com
             </span>
             <span class="reach-btn-confirm" aria-hidden="true">
-              <svg width="14" height="14" viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg">
-                <polyline points="2,7.5 5.5,11 12,3" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/>
-              </svg>
+              <span class="t-success-check" data-state="out" aria-hidden="true">
+                <svg width="14" height="14" viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <polyline points="2,7.5 5.5,11 12,3" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+              </span>
               Copied
             </span>
           </button>
@@ -426,6 +475,12 @@
       var email = 'bhavyamittalbiz@gmail.com';
       var btn = document.getElementById('emailBtn');
       function showCopied() {
+        var check = btn.querySelector('.t-success-check');
+        if (check) {
+          check.setAttribute('data-state', 'out');
+          void check.offsetWidth;
+          check.setAttribute('data-state', 'in');
+        }
         btn.classList.add('copied');
         setTimeout(function() { btn.classList.remove('copied'); }, 2400);
       }
