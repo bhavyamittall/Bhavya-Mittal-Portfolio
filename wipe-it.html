@@ -59,6 +59,7 @@
     .cs-meta     { font-size: 1rem; color: var(--muted); margin-bottom: 6px; }
     .cs-title    { font-size: 1.45rem; font-weight: 400; font-family: var(--serif); color: var(--fg); margin-bottom: 10px; line-height: 1.35; text-wrap: balance; }
     .cs-subtitle { font-size: 1rem; color: var(--muted); line-height: 1.65; }
+    @media (max-width: 600px) { .subtitle-break { display: none; } }
     .cs-toc { position: fixed; left: max(20px, calc(50% - var(--col)/2 - 180px)); top: 96px; width: 150px; list-style: none; }
     .cs-toc li { margin-bottom: 7px; }
     .cs-toc a { font-size: 0.875rem; color: var(--muted); text-decoration: none; display: flex; align-items: center; gap: 8px; line-height: 1.5; transition-property: color; transition-duration: 0.15s; transition-timing-function: ease; }
@@ -340,14 +341,21 @@
 
     /* ── Haptic cards with playable audio ── */
     .haptic-cards { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin: 16px 0; }
-    .haptic-card { border: 1px solid var(--border); border-radius: 8px; padding: 14px; }
+    .haptic-card { border: 1px solid var(--border); border-radius: 8px; padding: 14px; position: relative; min-height: 140px; }
     .haptic-card .hc-title { font-size: 0.88rem; font-weight: 600; color: var(--fg); margin-bottom: 4px; }
     .haptic-card .hc-pattern { font-family: "SF Mono", "Fira Code", monospace; font-size: 0.78rem; background: var(--border); padding: 2px 6px; border-radius: 3px; display: inline-block; margin-bottom: 8px; }
-    .haptic-card .hc-purpose { font-size: 0.82rem; color: var(--muted); line-height: 1.5; margin-bottom: 12px; }
-    .hc-play-btn { display: inline-flex; align-items: center; gap: 6px; background: none; border: 1px solid var(--border); border-radius: 6px; font-family: var(--font); font-size: 0.75rem; color: var(--muted); padding: 5px 10px; cursor: pointer; transition-property: color, border-color, background, transform; transition-duration: 0.15s; transition-timing-function: ease; min-height: 40px; }
+    .haptic-card .hc-purpose { font-size: 0.82rem; color: var(--muted); line-height: 1.5; margin-bottom: 0; padding-right: 38px; }
+    .hc-play-btn {
+      position: absolute; right: 12px; bottom: 12px;
+      width: 36px; height: 36px; border-radius: 50%;
+      display: inline-flex; align-items: center; justify-content: center;
+      background: var(--border); border: none; color: var(--muted);
+      cursor: pointer; padding: 0;
+      transition-property: background, color, transform; transition-duration: 0.15s; transition-timing-function: ease;
+    }
     .hc-play-btn:active { transform: scale(0.96); }
-    .hc-play-btn:hover { color: var(--fg); border-color: var(--fg); }
-    .hc-play-btn svg { flex-shrink: 0; }
+    .hc-play-btn:hover { background: var(--fg); color: #fff; }
+    .hc-play-btn svg { flex-shrink: 0; margin-left: 1px; }
     @media (max-width: 600px) { .haptic-cards { grid-template-columns: 1fr; } }
 
     /* ── Edge case stacked cards (JTBD format) ── */
@@ -406,7 +414,7 @@
     <a class="back anim" href="index.html" style="animation-delay:0ms"><svg width="14" height="14" viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg" style="display:block;flex-shrink:0"><path d="M6 3L2 7L6 11M2 7H12" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg> Home</a>
 
     <p class="cs-title anim" style="animation-delay:115ms">NVM: A gesture-based interaction to clear large texts.</p>
-    <p class="cs-subtitle anim" style="animation-delay:170ms">A scrub gesture that makes erasing feel as natural as crossing something out on paper.</p>
+    <p class="cs-subtitle anim" style="animation-delay:170ms">A scrub gesture that makes erasing feel as natural as<br class="subtitle-break"> crossing something out on paper.</p>
 
     <!-- Vital details — no gridline, no year/type/deliverable -->
     <div class="vital-details anim" style="animation-delay:210ms">
@@ -615,24 +623,23 @@
           <!-- Top row: iteration 1 + 2 side by side -->
           <div class="evo-row-top">
             <div class="evo-item">
+              <span class="evo-item-label">Iteration 1</span>
               <div class="evo-item-img">
                 <video src="/assets/images/Wipe It case study Images/Iteration 1.mp4" autoplay loop muted playsinline style="width:100%;height:100%;object-fit:cover;display:block;border-radius:8px;"></video>
               </div>
-              <span class="evo-item-label">Iteration 1</span>
-              <div class="evo-item-title">Multi-layer charcoal</div>
-              <div class="evo-item-desc">Noise, blur, scatter, radial gradient dabs. Heavy — drew attention to itself.</div>
+              <div class="evo-item-desc">Dashed gaps, blurred lower edge. Feels decorative at higher rendering cost with no perceptual gain.</div>
             </div>
             <div class="evo-item">
+              <span class="evo-item-label">Iteration 2</span>
               <div class="evo-item-img">
                 <video src="/assets/images/Wipe It case study Images/Iteration 2.mp4" autoplay loop muted playsinline style="width:100%;height:100%;object-fit:cover;display:block;border-radius:8px;"></video>
               </div>
-              <span class="evo-item-label">Iteration 2</span>
-              <div class="evo-item-title">Dashed &amp; blurred</div>
-              <div class="evo-item-desc">Dashed gaps, blurred lower edge. Still decorative — rendering cost with no perceptual gain.</div>
+              <div class="evo-item-desc">Blurred brush, scatter, radial gradient dabs. Drew attention to itself. Text fades out but not a feasible feature.</div>
             </div>
           </div>
           <!-- Full-width final card below — interactive brush test canvas -->
           <div class="evo-item evo-final evo-item-wide">
+            <span class="evo-item-label">Final Iteration</span>
             <div class="evo-item-img brush-canvas-wrap" id="brushCanvasWrap">
               <span class="brush-canvas-tag">Draw to test the brush</span>
               <canvas id="brushCanvas"></canvas>
@@ -660,42 +667,35 @@
             <div class="hc-title">Scrub active</div>
             <div class="hc-pattern">3ms pulse, 90–45ms interval</div>
             <div class="hc-purpose">Continuous texture — maps to friction. Accelerates as you near the threshold.</div>
-            <button class="hc-play-btn" onclick="playScrubSound(this)">
-              <svg width="12" height="12" viewBox="0 0 12 12" fill="none"><path d="M3 2L10 6L3 10V2Z" fill="currentColor"/></svg>
-              Sound + vibration
+            <button class="hc-play-btn" onclick="playScrubSound(this)" aria-label="Play scrub active sound and vibration">
+              <svg width="13" height="13" viewBox="0 0 12 12" fill="none"><path d="M3 2L10 6L3 10V2Z" fill="currentColor"/></svg>
             </button>
           </div>
           <div class="haptic-card">
             <div class="hc-title">Clear</div>
             <div class="hc-pattern">14ms single snap</div>
             <div class="hc-purpose">Definitive. Like something breaking off cleanly.</div>
-            <button class="hc-play-btn" onclick="playClearSound(this)">
-              <svg width="12" height="12" viewBox="0 0 12 12" fill="none"><path d="M3 2L10 6L3 10V2Z" fill="currentColor"/></svg>
-              Sound + vibration
+            <button class="hc-play-btn" onclick="playClearSound(this)" aria-label="Play clear sound and vibration">
+              <svg width="13" height="13" viewBox="0 0 12 12" fill="none"><path d="M3 2L10 6L3 10V2Z" fill="currentColor"/></svg>
             </button>
           </div>
           <div class="haptic-card">
             <div class="hc-title">Missed erase</div>
             <div class="hc-pattern">[8ms, 60ms gap, 8ms]</div>
             <div class="hc-purpose">"Not quite" — only fires above 5% progress. Honest about failure.</div>
-            <button class="hc-play-btn" onclick="playMissSound(this)">
-              <svg width="12" height="12" viewBox="0 0 12 12" fill="none"><path d="M3 2L10 6L3 10V2Z" fill="currentColor"/></svg>
-              Sound + vibration
+            <button class="hc-play-btn" onclick="playMissSound(this)" aria-label="Play missed erase sound and vibration">
+              <svg width="13" height="13" viewBox="0 0 12 12" fill="none"><path d="M3 2L10 6L3 10V2Z" fill="currentColor"/></svg>
             </button>
           </div>
           <div class="haptic-card">
             <div class="hc-title">Restore</div>
             <div class="hc-pattern">4ms tick</div>
             <div class="hc-purpose">Quiet confirm, no sound. Undo should feel like nothing happened.</div>
-            <button class="hc-play-btn" onclick="playRestoreSound(this)">
-              <svg width="12" height="12" viewBox="0 0 12 12" fill="none"><path d="M3 2L10 6L3 10V2Z" fill="currentColor"/></svg>
-              Sound + vibration
+            <button class="hc-play-btn" onclick="playRestoreSound(this)" aria-label="Play restore sound and vibration">
+              <svg width="13" height="13" viewBox="0 0 12 12" fill="none"><path d="M3 2L10 6L3 10V2Z" fill="currentColor"/></svg>
             </button>
           </div>
         </div>
-
-        <h2 style="margin-top:28px;">Audio</h2>
-        <p>All sounds are synthesized — short sine and triangle bursts, fast attack, exponential decay. A soft low pop on scrub start, a snappy double-hit on clear, a muted thud for a missed erase. Restore has no sound. Silence communicates undo better than any tone.</p>
       </section>
 
       <hr class="section-anim">
@@ -838,7 +838,7 @@
         o.connect(gn); gn.connect(c.destination); o.start(n); o.stop(n + dur + 0.01);
       } catch(e) {}
     }
-    function flashBtn(btn) { btn.style.background = 'var(--border)'; setTimeout(function() { btn.style.background = ''; }, 200); }
+    function flashBtn(btn) { btn.style.background = 'var(--fg)'; btn.style.color = '#fff'; setTimeout(function() { btn.style.background = ''; btn.style.color = ''; }, 220); }
     function playScrubSound(btn) {
       flashBtn(btn);
       tone2(180, 60, 0.08, 'sine', -20);
