@@ -52,6 +52,7 @@
     a { color: var(--fg); text-decoration: underline; text-decoration-color: var(--muted2); text-underline-offset: 2px; transition-property: color, text-decoration-color; transition-duration: 0.15s; transition-timing-function: ease; }
     a:hover { color: var(--blue); text-decoration-color: var(--blue); }
     .back { font-size: 1rem; color: var(--muted); text-decoration: none; display: inline-flex; align-items: center; gap: 5px; margin-bottom: 44px; padding: 8px 0; margin-top: -8px; min-height: 44px; transition-property: color; transition-duration: 0.15s; transition-timing-function: ease; }
+    @media (max-width: 600px) { .back { display: none; } }
     .back:active { transform: scale(0.96); transition-property: transform; transition-duration: 0.15s; }
     .back svg { transition-property: transform; transition-duration: 0.2s; transition-timing-function: cubic-bezier(0.34, 1.56, 0.64, 1); }
     .back:hover svg { transform: translateX(-3px); }
@@ -399,7 +400,10 @@
     .refl-callout { border-left: 2px solid var(--border); padding: 12px 16px; color: var(--muted); font-size: 1rem; margin: 20px 0; font-style: italic; }
 
     @media (max-width: 820px) { .cs-toc { display: none; } .qr-block { display: none; } }
-    @media (max-width: 600px) { .outer { padding: 72px 20px 100px; } }
+    @media (max-width: 600px) {
+      .outer { padding: 28px 20px 100px; }
+      .cs-meta, .cs-title, .cs-subtitle { position: relative; z-index: 101; }
+    }
   </style>
   <script type="text/javascript">
     (function(c,l,a,r,i,t,y){
