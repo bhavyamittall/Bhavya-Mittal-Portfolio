@@ -17,15 +17,18 @@
   <meta name="twitter:card" content="summary" />
   <meta name="twitter:title" content="Bhavya Mittal &mdash; Product Designer, UX &amp; Motion" />
   <meta name="twitter:description" content="Product designer and interaction designer based in Gurugram, India." />
-  <link rel="icon" type="image/png" href="https://res.cloudinary.com/dmxhlbucf/image/upload/v1773771858/Favicon_ylckj8.png" />
+  <link rel="icon" type="image/svg+xml" href="assets/images/Logos/Favicon_ylckj8.svg" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <script type="application/ld+json">{"@context":"https://schema.org","@type":"Person","name":"Bhavya Mittal","url":"https://bhavyamittal.com/","jobTitle":"Product Designer","worksFor":{"@type":"Organization","name":"Egon Zehnder"},"address":{"@type":"PostalAddress","addressLocality":"Gurugram","addressCountry":"IN"},"sameAs":["https://www.behance.net/bhavyamittall","https://cal.com/bhavyamittal"]}</script>
   <style>
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
     :root {
-      --bg: #f7f6f2; --fg: #3a3a3a; --muted: #9a9a9a; --muted2: #c8c4be;
-      --border: #e8e5e0; --blue: #3b6fce;
+      --bg: #ffffff; --fg: #3a3a3a; --muted: #9a9a9a; --muted2: #c8c4be;
+      --border: #e8e5e0; --blue: #2C8EFF;
+      --shadow-border: 0px 0px 0px 1px rgba(0, 0, 0, 0.06), 0px 1px 2px -1px rgba(0, 0, 0, 0.06), 0px 2px 4px 0px rgba(0, 0, 0, 0.04);
+      --shadow-border-hover: 0px 0px 0px 1px rgba(0, 0, 0, 0.08), 0px 1px 2px -1px rgba(0, 0, 0, 0.08), 0px 2px 4px 0px rgba(0, 0, 0, 0.06);
+      --shadow-image: 0px 0px 0px 1px rgba(0, 0, 0, 0.05), 0px 12px 32px -24px rgba(0, 0, 0, 0.28);
       --font: -apple-system, BlinkMacSystemFont, "Helvetica Neue", Helvetica, Arial, sans-serif;
       --check-opacity-dur: 550ms;
       --check-rotate-dur: 550ms;
@@ -42,12 +45,14 @@
       --check-ease-bob: cubic-bezier(0.34, 1.35, 0.64, 1);
       --check-ease-path: cubic-bezier(0.22, 1, 0.36, 1);
     }
-    html { font-size: 15px; }
+    html {
+      font-size: 15px;
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+    }
     body {
       background: var(--bg); color: var(--fg);
       font-family: var(--font); font-size: 1rem; line-height: 1.65;
-      -webkit-font-smoothing: antialiased;
-      -moz-osx-font-smoothing: grayscale;
     }
     body::before, body::after {
       content: ""; position: fixed; left: 0; right: 0; height: 80px;
@@ -73,11 +78,40 @@
 
     .work-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
     .work-card { text-decoration: none; display: flex; flex-direction: column; transition-property: transform, opacity; transition-duration: 0.2s; transition-timing-function: ease; }
-    .work-card:hover { opacity: 0.85; transform: translateY(-2px); }
+    .work-card:hover { opacity: 1; transform: none; }
+    .work-card-thumb { cursor: pointer; transition-property: opacity, box-shadow, transform; transition-duration: 0.2s; transition-timing-function: ease; }
+    .work-card-thumb:hover { opacity: 0.94; box-shadow: var(--shadow-image); }
     .work-card:active { transform: scale(0.96); transition-duration: 0.15s; }
     .work-card:hover .work-card-title { color: var(--blue); }
-    .work-card-thumb { width: 100%; aspect-ratio: 4/3; background: #f0efeb; overflow: hidden; border-radius: 8px; }
+    .work-card-thumb { width: 100%; aspect-ratio: 4/3; background: #f0efeb; overflow: hidden; border-radius: 8px; position: relative; }
     .work-card-thumb img { width: 100%; height: 100%; object-fit: cover; display: block; outline: 1px solid rgba(0, 0, 0, 0.1); outline-offset: -1px; }
+    .thumb-hover {
+      position: absolute; inset: 0; width: 100%; height: 100%;
+      object-fit: cover; display: block;
+      opacity: 0; transition: opacity 0.3s ease;
+    }
+    .work-card-thumb:hover .thumb-hover { opacity: 1; }
+    .work-card-thumb:hover .thumb-still { opacity: 0; }
+
+    /* ── Custom tooltip ── */
+    .cs-tooltip {
+      position: fixed;
+      background: var(--fg);
+      color: var(--bg);
+      font-family: var(--font);
+      font-size: 0.82rem;
+      font-weight: 500;
+      padding: 6px 12px;
+      border-radius: 6px;
+      pointer-events: none;
+      opacity: 0;
+      transform: translate(0, -50%);
+      transition: opacity 0.18s ease;
+      white-space: nowrap;
+      z-index: 9999;
+      letter-spacing: 0.01em;
+    }
+    .cs-tooltip.is-visible { opacity: 1; }
     .work-card-body  { padding: 6px 0 0; display: flex; flex-direction: column; gap: 1px; }
     .work-card-title { font-size: 1rem; color: var(--fg); font-weight: 400; transition-property: color; transition-duration: 0.15s; transition-timing-function: ease; line-height: 1.4; margin-bottom: 0; }
     .work-card-meta  { display: flex; align-items: center; justify-content: space-between; }
@@ -105,30 +139,7 @@
     .sleeping #breath-wrap { animation: breathe 3.8s cubic-bezier(0.45,0,0.55,1) infinite; }
 
     /* ── About link ── */
-    .about-link {
-      display: inline-flex;
-      align-items: center;
-      gap: 5px;
-      font-size: 1rem;
-      color: var(--blue);
-      text-decoration: underline;
-      text-decoration-color: var(--blue);
-      text-underline-offset: 2px;
-      transition-property: opacity, transform;
-      transition-duration: 0.15s;
-      transition-timing-function: ease;
-      margin-top: 0;
-      /* min hit area */
-      padding: 8px 0;
-      margin-top: -8px;
-    }
-    .about-link:active { transform: scale(0.96); }
-    .about-link svg {
-      transition-property: transform;
-      transition-duration: 0.2s;
-      transition-timing-function: cubic-bezier(0.34, 1.56, 0.64, 1);
-    }
-    .about-link:hover svg { transform: translateX(2px); }
+    .about-link { display: none; }
 
     /* cv-line inside reach block */
     .cv-line { font-size: 1rem; color: var(--fg); margin-bottom: 0; margin-top: 4px; }
@@ -148,21 +159,23 @@
       font-size: 1rem;
       color: var(--muted);
       background: transparent;
-      border: 1px solid var(--border);
+      border: 0;
       border-radius: 6px;
       padding: 8px 12px;
       min-height: 44px;
+      box-shadow: var(--shadow-border);
       cursor: pointer;
       text-decoration: none;
       overflow: hidden;
       white-space: nowrap;
-      transition-property: border-color, color, transform;
+      transition-property: box-shadow, color, transform;
       transition-duration: 0.2s;
       transition-timing-function: ease;
       line-height: 1.4;
       outline: none;
     }
-    .reach-btn:hover { border-color: var(--muted2); color: var(--fg); }
+    .reach-btn:hover { box-shadow: var(--shadow-border-hover); color: var(--fg); }
+    .reach-btn:focus-visible { box-shadow: var(--shadow-border-hover), 0 0 0 3.5px rgba(44, 142, 255, 0.22); }
     .reach-btn:active { transform: scale(0.96); transition-duration: 0.15s; }
 
     .reach-btn-inner {
@@ -247,26 +260,114 @@
 
     /* clock-spacer hidden by default (mobile) */
     .clock-spacer { display: none; }
+    /* Desktop footer links hidden on mobile */
+    .cv-line-desktop { display: none; }
 
     /* spacing between flat mobile blocks */
     #bioGroup   { margin-bottom: 0; }
-    #bioP1      { margin-bottom: 18px; }
+    #bioP1      { display: none; } /* mobile shows only bioP2 (the fuller desktop paragraph) */
     #bioP2      { margin-bottom: 0; }
     #colRight   { margin-top: 28px; }
-    #reachBlock { margin-top: 28px; }
+    #reachBlock { margin-top: 0; display: none; } /* hidden on mobile — replaced by mobileCtaBlock */
+
+    /* ── Mobile CTA block (Contact me + Know More) ── */
+    #mobileCtaBlock {
+      display: flex;
+      flex-direction: row;
+      gap: 10px;
+      align-items: center;
+      margin-top: 20px;
+    }
+    .mobile-cta-primary {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      padding: 4px 10px;
+      font-family: var(--font);
+      font-size: 1rem;
+      color: #fff;
+      background: linear-gradient(180deg, #4B91F7 0%, #367AF6 100%);
+      border: none;
+      border-radius: 5px;
+      min-height: 34px;
+      text-decoration: none;
+      cursor: pointer;
+      box-shadow: 0px 0.5px 1.5px rgba(54,122,246,0.25), inset 0px 0.8px 0px -0.25px rgba(255,255,255,0.2);
+      transition-property: background, transform, box-shadow;
+      transition-duration: 0.15s;
+      transition-timing-function: ease;
+      white-space: nowrap;
+    }
+    .mobile-cta-primary:hover { background: linear-gradient(180deg, #4B91F7 0%, #2d6cf0 100%); }
+    .mobile-cta-primary:focus-visible { outline: 0; box-shadow: 0 0 0 3.5px rgba(44, 142, 255, 0.24); }
+    .mobile-cta-primary:active { transform: scale(0.96); }
+
+    .mobile-cta-secondary {
+      display: inline-flex;
+      align-items: center;
+      font-family: var(--font);
+      font-size: 1rem;
+      color: var(--blue);
+      text-decoration: underline;
+      text-decoration-color: var(--blue);
+      text-underline-offset: 2px;
+      min-height: 40px;
+      white-space: nowrap;
+      transition-property: opacity;
+      transition-duration: 0.15s;
+      transition-timing-function: ease;
+    }
+    .mobile-cta-secondary:hover { opacity: 0.75; }
+    .mobile-cta-secondary:focus-visible { outline: 2px solid rgba(44, 142, 255, 0.32); outline-offset: 4px; border-radius: 4px; }
+
+    /* ── Mobile link bar at bottom ── */
+    #mobileLinkBar {
+      display: flex;
+      flex-direction: row;
+      flex-wrap: wrap;
+      gap: 8px 12px;
+      justify-content: center;
+      margin-top: 48px;
+      padding-top: 24px;
+      border-top: 1px solid var(--border);
+    }
+    .mobile-link-pill {
+      display: inline-flex;
+      align-items: center;
+      font-size: 0.9rem;
+      color: var(--muted);
+      border-radius: 20px;
+      min-height: 40px;
+      padding: 6px 14px;
+      box-shadow: var(--shadow-border);
+      text-decoration: none;
+      transition-property: box-shadow, color, transform;
+      transition-duration: 0.15s;
+      transition-timing-function: ease;
+      white-space: nowrap;
+    }
+    .mobile-link-pill:hover { box-shadow: var(--shadow-border-hover); color: var(--fg); }
+    .mobile-link-pill:focus-visible { outline: 0; box-shadow: var(--shadow-border-hover), 0 0 0 3.5px rgba(44, 142, 255, 0.2); }
+    .mobile-link-pill:active { transform: scale(0.96); }
+    .mobile-link-pill.soon {
+      opacity: 0.45;
+      cursor: default;
+      pointer-events: none;
+    }
 
     /* name block above top gradient on mobile */
     .name-block { position: relative; z-index: 101; }
 
     @media (max-width: 480px) { .work-grid { grid-template-columns: 1fr; } }
 
-    /* ── Mobile only: centre-align reach block ── */
+    /* ── Mobile only: centre-align bio + cta ── */
     @media (max-width: 959px) {
       .reach-block { align-items: center; }
       .reach-btns  { align-items: center; }
       .cv-line     { text-align: center; }
       .section-label { margin-bottom: 32px; }
       .work-grid { padding-top: 12px; }
+      #mobileCtaBlock { justify-content: flex-start; }
     }
 
     /* ── DESKTOP ── */
@@ -274,39 +375,205 @@
       body { overflow: hidden; }
 
       .wrap {
-        max-width: 1080px;
+        max-width: none;
+        width: 100%;
         height: 100vh;
+        margin: 0;
         display: grid;
-        grid-template-columns: 1fr 1fr;
-        column-gap: 80px;
-        padding: 64px 48px 96px;
+        grid-template-columns: 32% 68%;
+        padding: 0;
         align-items: stretch;
-        align-content: center;
         overflow: hidden;
       }
 
-      /* name-block back to normal stacking */
       .name-block { position: static; z-index: auto; }
 
+      /* ── Left column ── */
       #colLeft {
         display: flex;
         flex-direction: column;
-        justify-content: space-between;
+        justify-content: flex-start;
+        padding: 56px 48px 56px 72px;
       }
 
-      /* reset mobile spacing */
-      #bioP1      { margin-bottom: 18px; }
-      #bioP2      { margin-bottom: 0; }
-      #colRight   { margin-top: 0; }
-      #reachBlock { margin-top: 28px; }
+      #bioGroup   { margin-bottom: 0; }
+      /* Hide mobile-only elements on desktop */
+      #mobileCtaBlock { display: none; }
+      #mobileLinkBar  { display: none; }
 
-      .section-label { margin-bottom: 36px; }
-      .work-grid { padding-top: 16px; }
+      #bioP1      { display: none; }
+      #bioP2      { font-size: 1rem; line-height: 1.65; color: var(--fg); margin-bottom: 0; }
+      .about-link { display: none; }
 
-      .clock-spacer { display: none; }
+      /* CTA sits right after bio */
+      #reachBlock {
+        margin-top: 28px;
+        display: flex;
+        flex-direction: column;
+        gap: 0;
+        align-items: flex-start;
+        flex: 0 0 auto;
+      }
+
+      /* Push footer to bottom */
+      .cv-line-desktop { margin-top: auto !important; }
+      .bm-logo-wrap { display: none; }
+      .reach-btns {
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        gap: 16px;
+        margin-top: 0;
+      }
+
+      /* Contact me — solid blue button */
+      #emailBtn {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        padding: 0 10px;
+        font-family: var(--font);
+        border-radius: 6px;
+        border: none;
+        color: #fff;
+        background: linear-gradient(180deg, #4B91F7 0%, #367AF6 100%);
+        background-origin: border-box;
+        box-shadow: 0px 0.5px 1.5px rgba(54, 122, 246, 0.25), inset 0px 0.8px 0px -0.25px rgba(255, 255, 255, 0.2);
+        user-select: none;
+        -webkit-user-select: none;
+        touch-action: manipulation;
+        font-size: 1rem;
+        line-height: 1;
+        min-height: 34px;
+        cursor: pointer;
+        transition-property: background, box-shadow, transform;
+        transition-duration: 0.15s;
+        transition-timing-function: ease;
+      }
+      #emailBtn:hover { background: linear-gradient(180deg, #4B91F7 0%, #2d6cf0 100%); }
+      #emailBtn:focus {
+        box-shadow: inset 0px 0.8px 0px -0.25px rgba(255, 255, 255, 0.2), 0px 0.5px 1.5px rgba(54, 122, 246, 0.25), 0px 0px 0px 3.5px rgba(58, 108, 217, 0.5);
+        outline: 0;
+      }
+      #emailBtn .reach-btn-inner { display: none; }
+      #emailBtn .reach-btn-confirm { display: none; }
+      #emailBtn::before { content: "Contact me"; color: #fff; font-size: 1rem; line-height: 1; }
+
+      /* Convince me more — plain blue underline link */
+      .reach-btns a[href="about.html"] {
+        background: transparent;
+        border: none;
+        padding: 8px 0;
+        min-height: 40px;
+        box-shadow: none;
+        font-size: 1rem;
+        color: var(--blue);
+        text-decoration: underline;
+        text-decoration-color: var(--blue);
+        text-underline-offset: 2px;
+        white-space: nowrap;
+      }
+      .reach-btns a[href="about.html"] .reach-btn-inner { display: none; }
+      .reach-btns a[href="about.html"]::after { content: "Know More"; }
+      .reach-btns a[href="about.html"]:hover { opacity: 0.75; }
+      .reach-btns a[href="about.html"]:focus-visible { outline: 2px solid rgba(44, 142, 255, 0.32); outline-offset: 4px; border-radius: 4px; }
+
+      /* Hide mobile cv-line */
+      #cvLine { display: none; }
+
+      /* Footer links */
+      .cv-line-desktop {
+        display: flex !important;
+        gap: 20px;
+        margin-top: 0;
+      }
+      .cv-line-desktop a {
+        font-size: 1rem;
+        color: var(--muted);
+        text-decoration: underline;
+        text-decoration-color: transparent;
+        text-underline-offset: 2px;
+        min-height: 40px;
+        display: inline-flex;
+        align-items: center;
+        transition-property: text-decoration-color, color;
+        transition-duration: 0.15s;
+        transition-timing-function: ease;
+      }
+      .cv-line-desktop a:hover { text-decoration-color: var(--muted); }
+      .cv-line-desktop a:focus-visible { outline: 2px solid rgba(44, 142, 255, 0.32); outline-offset: 4px; border-radius: 4px; }
+
+      /* ── Right column ── */
+      #colRight {
+        margin-top: 0;
+        overflow-y: auto;
+        padding: 56px 72px 120px 48px;
+        display: block;
+        scrollbar-width: none;
+      }
+      #colRight::-webkit-scrollbar { display: none; }
+      .section-label { display: none; }
+      .clock-spacer  { display: none; }
+
+      .work-grid {
+        display: flex;
+        flex-direction: column;
+        gap: 72px;
+      }
+
+      .work-card {
+        display: flex;
+        flex-direction: column;
+        gap: 0;
+        text-decoration: none;
+      }
+      .work-card:hover { opacity: 0.9; transform: none; }
+
+      .work-card-thumb {
+        width: 84.24%;
+        height: auto;
+        aspect-ratio: 4 / 3;
+        border-radius: 6px;
+        overflow: hidden;
+        background: #eceae5;
+        margin-left: auto;
+      }
+      .work-card-thumb img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        display: block;
+        outline: 1px solid rgba(0, 0, 0, 0.1);
+        outline-offset: -1px;
+      }
+
+      .work-card-body {
+        width: 84.24%;
+        margin-left: auto;
+        padding: 14px 0 0;
+        display: flex;
+        flex-direction: row;
+        align-items: baseline;
+        justify-content: space-between;
+      }
+      .work-card-title {
+        font-size: 1rem;
+        color: var(--muted);
+        font-weight: 400;
+        margin: 0;
+      }
+      .work-card:hover .work-card-title { color: var(--muted); }
+      .work-card-meta { display: contents; }
+      .work-card-tag  { display: none; }
+      .work-card-date {
+        font-size: 1rem;
+        color: var(--muted);
+        font-variant-numeric: tabular-nums;
+        margin: 0;
+      }
     }
-
   </style>
+
   <script type="text/javascript">
   </script>
   <script type="text/javascript">
@@ -328,13 +595,19 @@
     <div id="colLeft">
       <div id="bioGroup">
         <div class="name-block anim" id="nameBlock" style="animation-delay:0ms">
-          <p class="site-name">Bhavya Mittal</p>
+          <p class="site-name">Hi, It's Bhavya</p>
           <p class="site-sub">Product Design &middot; UX &middot; Motion</p>
         </div>
         <p class="anim" id="bioP1" style="animation-delay:80ms">I&rsquo;m a product designer with a background in communication design. Clarity and tastefulness are the two guiding principles of my work.</p>
-        <p class="anim" id="bioP2" style="animation-delay:130ms">I currently work at <a href="https://egonzehnder.com" target="_blank">Egon Zehnder</a> as an interaction and motion designer, and have collaborated with companies &amp; teams across the finance and consulting industries to shape digital experiences through product thinking, interaction design, and motion.</p>
+        <p class="anim" id="bioP2" style="animation-delay:130ms">I currently work at <a href="https://egonzehnder.com" target="_blank" style="color:var(--fg);text-decoration:underline;text-decoration-color:var(--fg);text-underline-offset:2px;">Egon Zehnder</a> as an interaction and motion designer, and have collaborated with companies &amp; teams across the finance and consulting industries to shape digital experiences through product thinking, interaction design, and motion.</p>
       </div>
       <a href="about.html" class="anim about-link" id="aboutLink" style="animation-delay:155ms;">Read more about me <svg width="13" height="13" viewBox="0 0 13 13" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M2 6.5H11M7 2.5L11 6.5L7 10.5" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
+
+      <!-- Mobile-only: CTA buttons right after bio paragraph -->
+      <div id="mobileCtaBlock" class="anim" style="animation-delay:155ms">
+        <a class="mobile-cta-primary" href="https://mail.google.com/mail/?view=cm&to=bhavyamittalbiz@gmail.com" target="_blank">Contact me</a>
+        <a class="mobile-cta-secondary" href="about.html">Know More</a>
+      </div>
       <div class="reach-block anim" id="reachBlock" style="animation-delay:185ms">
         <div class="bm-logo-wrap" id="logo-wrap">
           <div id="breath-wrap">
@@ -362,24 +635,10 @@
           </div>
         </div>
         <div class="reach-btns">
-          <button class="reach-btn" id="emailBtn" onclick="copyEmail()" aria-label="Copy email address">
-            <span class="reach-btn-inner">
-              <svg class="reach-icon" width="14" height="14" viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg">
-                <rect x="4.5" y="4.5" width="8" height="8" rx="1.2" stroke="currentColor" stroke-width="1.2"/>
-                <path d="M3 9.5H2A1.5 1.5 0 0 1 .5 8V2A1.5 1.5 0 0 1 2 .5h6A1.5 1.5 0 0 1 9.5 2V3" stroke="currentColor" stroke-width="1.2" stroke-linecap="round"/>
-              </svg>
-              bhavyamittalbiz@gmail.com
-            </span>
-            <span class="reach-btn-confirm" aria-hidden="true">
-              <span class="t-success-check" data-state="out" aria-hidden="true">
-                <svg width="14" height="14" viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg">
-                  <polyline points="2,7.5 5.5,11 12,3" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/>
-                </svg>
-              </span>
-              Copied
-            </span>
-          </button>
-          <a class="reach-btn" href="https://cal.com/bhavyamittal" target="_blank">
+          <a class="reach-btn" id="emailBtn" href="https://mail.google.com/mail/?view=cm&to=bhavyamittalbiz@gmail.com" target="_blank" aria-label="Send email">
+            <span class="reach-btn-inner"></span>
+          </a>
+          <a class="reach-btn" href="about.html">
             <span class="reach-btn-inner">
               <svg class="reach-icon" width="14" height="14" viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg">
                 <rect x=".5" y="2.5" width="13" height="11" rx="1.5" stroke="currentColor" stroke-width="1.2"/>
@@ -393,45 +652,49 @@
         <p class="cv-line" id="cvLine"><a href="https://drive.google.com/file/d/1ErbdDrQ5eRREuS20UU6Qw8vEYLGaI8XJ/view?usp=sharing" target="_blank">CV</a> &middot; <a href="https://www.behance.net/bhavyamittall" target="_blank">Behance</a> &middot; <a href="https://www.linkedin.com/in/bhavyamittalll/" target="_blank">LinkedIn</a>.</p>
       </div>
       <div class="clock-spacer"></div>
+      <!-- Desktop footer links -->
+      <div class="cv-line-desktop anim" style="animation-delay:220ms">
+        <a href="https://drive.google.com/file/d/1ErbdDrQ5eRREuS20UU6Qw8vEYLGaI8XJ/view?usp=sharing" target="_blank">CV</a>
+        <a href="https://www.behance.net/bhavyamittall" target="_blank">Behance</a>
+        <a href="https://www.linkedin.com/in/bhavyamittalll/" target="_blank">LinkedIn</a>
+        <a href="https://bhavyamittal.com/playground" target="_blank">Playground(Soon)</a>
+      </div>
     </div>
-
-    <!-- Right column -->
     <div class="anim" id="colRight" style="animation-delay:240ms">
-      <p class="section-label">Selected case studies</p>
       <div class="work-grid">
-        <a class="work-card" href="sleep-onset.html">
-          <div class="work-card-thumb"><img src="/assets/images/Index Images/Sleep_Onset_-_thumbnail_jvz9uk.jpg" alt="Sleep Onset" /></div>
+        <div class="work-card">
+          <a class="work-card-thumb" href="sleep-onset.html"><img src="/assets/images/Index Images/Sleep_Onset_-_thumbnail_jvz9uk.webp" alt="Sleep Onset" /></a>
           <div class="work-card-body">
-            <p class="work-card-title">Sleep Onset</p>
-            <div class="work-card-meta">
-              <span class="work-card-tag">Product</span>
-              <span class="work-card-date">04/2025</span>
-            </div>
+            <p class="work-card-title">Designing for a better sleep.</p>
           </div>
-        </a>
-        <a class="work-card" href="wipe-it.html">
-          <div class="work-card-thumb"><img src="/assets/images/Index Images/Wipe_it_-_thumbnail_ggnfvw.gif" alt="Wipe It" /></div>
+        </div>
+        <div class="work-card">
+          <a class="work-card-thumb" href="wipe-it.html">
+            <img class="thumb-still" src="/assets/images/Index Images/Wipe_it_-_thumbnail_ggnfvw.gif" alt="Wipe It" />
+            <video class="thumb-hover" src="/assets/images/Index Images/WipeIt_Promo.webm" muted loop playsinline></video>
+          </a>
           <div class="work-card-body">
-            <p class="work-card-title">Wipe It</p>
-            <div class="work-card-meta">
-              <span class="work-card-tag">Interaction</span>
-              <span class="work-card-date">02/2026</span>
-            </div>
+            <p class="work-card-title">Gesture-based text erasure for mobile.</p>
           </div>
-        </a>
-        <a class="work-card" href="sip-happens.html">
-          <div class="work-card-thumb"><img src="/assets/images/Index Images/SIP_Happens_-_thumbnail_cycuy6.jpg" alt="SIP Happens" /></div>
+        </div>
+        <div class="work-card">
+          <a class="work-card-thumb" href="sip-happens.html"><img src="/assets/images/Index Images/SIP_Happens_-_thumbnail_cycuy6.jpg" alt="SIP Happens" /></a>
           <div class="work-card-body">
-            <p class="work-card-title">SIP Happens</p>
-            <div class="work-card-meta">
-              <span class="work-card-tag">Product</span>
-              <span class="work-card-date">03/2026</span>
-            </div>
+            <p class="work-card-title">Rethinking the SIP calculator.</p>
           </div>
-        </a>
+        </div>
       </div>
       <div class="clock-spacer"></div>
     </div>
+
+    <!-- Mobile-only: link bar at very bottom -->
+    <div id="mobileLinkBar" class="anim" style="animation-delay:260ms">
+      <a class="mobile-link-pill" href="https://drive.google.com/file/d/1ErbdDrQ5eRREuS20UU6Qw8vEYLGaI8XJ/view?usp=sharing" target="_blank">CV</a>
+      <a class="mobile-link-pill" href="https://www.behance.net/bhavyamittall" target="_blank">Behance</a>
+      <a class="mobile-link-pill" href="https://www.linkedin.com/in/bhavyamittalll/" target="_blank">LinkedIn</a>
+      <a class="mobile-link-pill soon" href="https://bhavyamittal.com/playground" target="_blank">Playground (Soon)</a>
+    </div>
+  </div>
 
   <script>
     var DESKTOP    = window.matchMedia("(min-width: 960px)");
@@ -445,12 +708,17 @@
     var reachBlock = document.getElementById("reachBlock");
 
     function toMobile() {
-      // Flat order in wrap: bioGroup (name+bio), colRight, reachBlock
-      wrap.insertBefore(bioGroup,   wrap.firstChild);
-      wrap.insertBefore(reachBlock, null); // append at end
+      // Flat order in wrap: bioGroup (name+bio), mobileCtaBlock, colRight, mobileLinkBar
+      wrap.insertBefore(bioGroup, wrap.firstChild);
+      // mobileCtaBlock goes right after bioGroup
+      var mobileCtaBlock = document.getElementById("mobileCtaBlock");
+      if (mobileCtaBlock) wrap.insertBefore(mobileCtaBlock, colRight);
+      // mobileLinkBar stays at very bottom (already last child)
       // Mobile: name-block above gradient
       nameBlock.style.position = "relative";
       nameBlock.style.zIndex   = "101";
+      // Hide the old reach block on mobile
+      reachBlock.style.display = "none";
     }
 
     function toDesktop() {
@@ -458,6 +726,8 @@
       colLeft.insertBefore(bioGroup, colLeft.firstChild);
       var spacer = colLeft.querySelector(".clock-spacer");
       colLeft.insertBefore(reachBlock, spacer);
+      // Restore reach block for desktop
+      reachBlock.style.display = "";
       // Reset name-block positioning
       nameBlock.style.position = "";
       nameBlock.style.zIndex   = "";
@@ -539,6 +809,32 @@
       document.addEventListener('visibilitychange',function(){if(document.hidden){clearTimeout(sleepTimer);enterSleep();}else{activityPing();}});
       document.addEventListener('mouseleave',function(){if(!isWinking&&!isCurious){tLX=tLY=tRX=tRY=tBY=tBR=0;}resetSleepTimer();});
       tick();triggerBlink();resetSleepTimer();
+    })();
+  </script>
+  <span class="cs-tooltip" id="cs-tooltip">Open Case study</span>
+
+  <script>
+    (function() {
+      // Hover video play/pause
+      document.querySelectorAll('.work-card-thumb').forEach(function(thumb) {
+        var video = thumb.querySelector('.thumb-hover');
+        if (!video) return;
+        thumb.addEventListener('mouseenter', function() { video.play(); });
+        thumb.addEventListener('mouseleave', function() { video.pause(); video.currentTime = 0; });
+      });
+
+      // Cursor-follow tooltip — only on thumbnail
+      var tip = document.getElementById('cs-tooltip');
+      var thumbs = document.querySelectorAll('.work-card-thumb');
+      var offset = 16;
+      thumbs.forEach(function(thumb) {
+        thumb.addEventListener('mouseenter', function() { tip.classList.add('is-visible'); });
+        thumb.addEventListener('mouseleave', function() { tip.classList.remove('is-visible'); });
+      });
+      document.addEventListener('mousemove', function(e) {
+        tip.style.left = (e.clientX + offset) + 'px';
+        tip.style.top  = e.clientY + 'px';
+      });
     })();
   </script>
 </body>
