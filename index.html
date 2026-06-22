@@ -198,7 +198,7 @@
       color: var(--muted);
       font-size: 1rem;
       background: var(--bg);
-      border-radius: 5px;
+      border-radius: 4px;
       white-space: nowrap;
       z-index: 2;
       clip-path: inset(0 100% 0 0);
@@ -288,7 +288,7 @@
       color: #fff;
       background: linear-gradient(180deg, #4B91F7 0%, #367AF6 100%);
       border: none;
-      border-radius: 5px;
+      border-radius: 4px;
       min-height: 34px;
       text-decoration: none;
       cursor: pointer;
@@ -433,7 +433,7 @@
         justify-content: center;
         padding: 0 10px;
         font-family: var(--font);
-        border-radius: 6px;
+        border-radius: 4px;
         border: none;
         color: #fff;
         background: linear-gradient(180deg, #4B91F7 0%, #367AF6 100%);
@@ -502,6 +502,12 @@
       }
       .cv-line-desktop a:hover { text-decoration-color: var(--muted); }
       .cv-line-desktop a:focus-visible { outline: 2px solid rgba(44, 142, 255, 0.32); outline-offset: 4px; border-radius: 4px; }
+      .cv-line-desktop a[aria-disabled="true"] {
+        opacity: 0.45;
+        cursor: default;
+        pointer-events: none;
+        text-decoration-color: transparent;
+      }
 
       /* ── Right column ── */
       #colRight {
@@ -657,7 +663,7 @@
         <a href="https://drive.google.com/file/d/1ErbdDrQ5eRREuS20UU6Qw8vEYLGaI8XJ/view?usp=sharing" target="_blank">CV</a>
         <a href="https://www.behance.net/bhavyamittall" target="_blank">Behance</a>
         <a href="https://www.linkedin.com/in/bhavyamittalll/" target="_blank">LinkedIn</a>
-        <a href="https://bhavyamittal.com/playground" target="_blank">Playground(Soon)</a>
+        <a aria-disabled="true" tabindex="-1">Playground(Soon)</a>
       </div>
     </div>
     <div class="anim" id="colRight" style="animation-delay:240ms">
@@ -692,7 +698,7 @@
       <a class="mobile-link-pill" href="https://drive.google.com/file/d/1ErbdDrQ5eRREuS20UU6Qw8vEYLGaI8XJ/view?usp=sharing" target="_blank">CV</a>
       <a class="mobile-link-pill" href="https://www.behance.net/bhavyamittall" target="_blank">Behance</a>
       <a class="mobile-link-pill" href="https://www.linkedin.com/in/bhavyamittalll/" target="_blank">LinkedIn</a>
-      <a class="mobile-link-pill soon" href="https://bhavyamittal.com/playground" target="_blank">Playground (Soon)</a>
+      <a class="mobile-link-pill soon" aria-disabled="true" tabindex="-1">Playground (Soon)</a>
     </div>
   </div>
 
@@ -739,6 +745,58 @@
 
     layout(DESKTOP.matches);
     DESKTOP.addEventListener("change", function(e) { layout(e.matches); });
+
+    // Desktop-only case study auto-scroll.
+    (function() {
+      var scrollTimer = null;
+      var isPaused = false;
+      var prefersReducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)");
+
+      function stopCaseStudyScroll() {
+        if (scrollTimer) {
+          clearInterval(scrollTimer);
+          scrollTimer = null;
+        }
+      }
+
+      function cardScrollTop(card) {
+        var colRect = colRight.getBoundingClientRect();
+        var cardRect = card.getBoundingClientRect();
+        return colRight.scrollTop + cardRect.top - colRect.top;
+      }
+
+      function advanceCaseStudy() {
+        if (!DESKTOP.matches || isPaused || prefersReducedMotion.matches) return;
+
+        var cards = Array.prototype.slice.call(colRight.querySelectorAll(".work-card"));
+        if (cards.length < 2) return;
+        var nextThreshold = colRight.scrollTop + Math.min(180, colRight.clientHeight * 0.25);
+
+        var nextCard = cards.find(function(card) {
+          return cardScrollTop(card) > nextThreshold;
+        });
+
+        colRight.scrollTo({
+          top: nextCard ? cardScrollTop(nextCard) : 0,
+          behavior: "smooth"
+        });
+      }
+
+      function startCaseStudyScroll() {
+        stopCaseStudyScroll();
+        if (!DESKTOP.matches || prefersReducedMotion.matches) return;
+        scrollTimer = setInterval(advanceCaseStudy, 5000);
+      }
+
+      colRight.addEventListener("mouseenter", function() { isPaused = true; });
+      colRight.addEventListener("mouseleave", function() { isPaused = false; });
+      colRight.addEventListener("focusin", function() { isPaused = true; });
+      colRight.addEventListener("focusout", function() { isPaused = false; });
+
+      startCaseStudyScroll();
+      DESKTOP.addEventListener("change", startCaseStudyScroll);
+      prefersReducedMotion.addEventListener("change", startCaseStudyScroll);
+    })();
 
     // Copy email
     function copyEmail() {
