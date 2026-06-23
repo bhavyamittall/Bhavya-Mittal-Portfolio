@@ -168,6 +168,41 @@
     .collapsible-expand-btn:active { transform: scale(0.96); }
     .collapsible-expand-btn svg { transition: transform 0.2s ease; flex-shrink: 0; }
     .tags { display: flex; flex-wrap: wrap; gap: 5px; margin-top: 18px; }
+
+    /* ── Testing section ── */
+    .testing-meta { display: flex; gap: 8px; margin: 16px 0 28px; flex-wrap: wrap; }
+    .testing-meta-pill { display: inline-flex; align-items: center; gap: 6px; font-size: 0.78rem; color: var(--muted); border: 1px solid var(--border); border-radius: 99px; padding: 5px 12px; }
+    .testing-meta-pill svg { flex-shrink: 0; }
+    @media (max-width: 600px) { .testing-meta { gap: 8px 8px; } .testing-meta-pill { width: fit-content; } }
+
+    .testing-prototype-callout { border: 1px solid var(--border); border-radius: 8px; padding: 16px 18px; display: flex; align-items: center; gap: 14px; margin: 24px 0 8px; text-decoration: none; color: var(--fg); transition: border-color 0.15s ease; }
+    .testing-prototype-callout:hover { border-color: var(--blue); }
+    .testing-prototype-callout svg { flex-shrink: 0; color: var(--blue); }
+    .testing-prototype-callout .tpc-body { display: flex; flex-direction: column; gap: 2px; }
+    .testing-prototype-callout .tpc-label { font-size: 0.68rem; color: var(--muted); text-transform: uppercase; letter-spacing: 0.06em; font-weight: 500; }
+    .testing-prototype-callout .tpc-title { font-size: 0.93rem; font-weight: 500; color: var(--fg); }
+    .testing-prototype-callout .tpc-arrow { margin-left: auto; color: var(--muted); flex-shrink: 0; }
+
+    .testing-group-label { font-size: 0.68rem; font-weight: 600; text-transform: uppercase; letter-spacing: 0.08em; margin: 28px 0 12px; color: var(--muted); }
+    .testing-group-label.is-blue { color: #3b6fce; }
+
+    .testing-cards { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-bottom: 0; }
+    .testing-card { border: 1px solid var(--border); border-radius: 8px; padding: 16px; display: flex; flex-direction: column; gap: 10px; }
+    .testing-card.is-blue { border-color: rgba(59,111,206,0.25); }
+
+    .tc-top { display: flex; align-items: center; justify-content: space-between; }
+    .tc-fraction { font-size: 1.55rem; font-weight: 400; font-variant-numeric: tabular-nums; line-height: 1; color: var(--fg); }
+    .testing-card.is-blue .tc-fraction { color: #3b6fce; }
+    .tc-participants { font-size: 0.72rem; color: var(--muted); text-transform: uppercase; letter-spacing: 0.06em; margin-top: 3px; }
+    .testing-card.is-blue .tc-participants { color: rgba(59,111,206,0.7); }
+    .tc-icon { color: var(--muted2); flex-shrink: 0; }
+    .testing-card.is-blue .tc-icon { color: rgba(59,111,206,0.5); }
+
+    .tc-text { font-size: 0.85rem; color: var(--muted); line-height: 1.55; text-wrap: pretty; }
+
+    .testing-cards-single { display: grid; grid-template-columns: 1fr; gap: 10px; margin-bottom: 0; }
+
+    @media (max-width: 520px) { .testing-cards { grid-template-columns: 1fr; } }
     .tag { font-size: 0.68rem; color: var(--muted); border: 1px solid var(--border); padding: 2px 6px; border-radius: 2px; letter-spacing: 0.03em; text-transform: uppercase; }
     .cs-footer { margin-top: 72px; padding-top: 32px; border-top: 1px solid var(--border); display: flex; align-items: center; justify-content: space-between; }
     .next-cs { text-decoration: none; display: flex; flex-direction: column; gap: 3px; transition-property: transform; transition-duration: 0.15s; transition-timing-function: ease; }
@@ -296,6 +331,7 @@
       <li><a href="#opportunity">Opportunity</a></li>
       <li><a href="#features">Features</a></li>
       <li><a href="#design-system">Design System</a></li>
+      <li><a href="#testing">Testing</a></li>
       <li><a href="#research">Research</a></li>
       <li><a href="#personas">Personas</a></li>
       <li><a href="#jtbd">JTBD</a></li>
@@ -382,6 +418,73 @@
         <h2 style="font-weight:400; margin-top:32px; margin-bottom:12px; color: var(--muted); font-size:0.93rem;">Iconography</h2>
         <img src="/assets/images/Sleep Onset Case Study Images/Iconography_Design_System_jtxckj.webp" alt="Iconography design system" style="width:100%;border-radius:8px;display:block;margin:20px 0;" />
         <p>Material Symbols (rounded, 400 weight). Familiar enough that users don't have to pause to interpret them. In a pre-sleep context, recognition needs to be immediate. Any hesitation is a small piece of mental work the user shouldn't have to do.</p>
+      </section>
+
+      <hr class="section-anim">
+
+      <section class="section-anim" id="testing">
+        <h2>Testing</h2>
+
+        <div class="testing-meta">
+          <div class="testing-meta-pill">
+            <svg width="12" height="12" viewBox="0 0 14 14" fill="none"><circle cx="7" cy="5" r="2.5" stroke="currentColor" stroke-width="1.4"/><path d="M2 12.5c0-2.5 2.24-4.5 5-4.5s5 2 5 4.5" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"/></svg>
+            6 participants, aged 22–26
+          </div>
+          <div class="testing-meta-pill">
+            <svg width="12" height="12" viewBox="0 0 14 14" fill="none"><circle cx="7" cy="7" r="5.5" stroke="currentColor" stroke-width="1.4"/><path d="M7 4.5V7l1.5 1.5" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"/></svg>
+            Moderated walkthroughs, 15–20 min
+          </div>
+        </div>
+
+        <a class="testing-prototype-callout" href="https://bhavyamittal.com/box-breathing.html" target="_blank">
+          <svg width="22" height="22" viewBox="0 0 22 22" fill="none"><rect x="2" y="2" width="18" height="18" rx="4" stroke="currentColor" stroke-width="1.5"/><path d="M7 11h8M11 7v8" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+          <div class="tpc-body">
+            <span class="tpc-label">Interactive prototype</span>
+            <span class="tpc-title">Box Breathing, built with Claude</span>
+          </div>
+          <svg class="tpc-arrow" width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M5 3l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </a>
+        <p style="font-size:0.85rem;color:var(--muted);margin-top:-4px;margin-bottom:0;line-height:1.55;">Some features like box breathing and AI insights weren't feasible to prototype in Figma, so we built a working version using Claude.</p>
+
+        <div class="testing-group-label is-blue">What worked</div>
+        <div class="testing-cards">
+          <div class="testing-card is-blue">
+            <div class="tc-top">
+              <div><span class="tc-fraction">4/6</span><div class="tc-participants">Participants</div></div>
+            </div>
+            <div class="tc-text">Identified Declutter Mind as the most valuable step, mentioning it helped them mentally close the day.</div>
+          </div>
+          <div class="testing-card is-blue">
+            <div class="tc-top">
+              <div><span class="tc-fraction">5/6</span><div class="tc-participants">Participants</div></div>
+            </div>
+            <div class="tc-text">Appreciated choosing between journaling and AI conversation rather than a forced single approach.</div>
+          </div>
+        </div>
+
+        <div class="testing-group-label">Areas for improvement</div>
+        <div class="testing-cards">
+          <div class="testing-card">
+            <div class="tc-top">
+              <div><span class="tc-fraction">3/6</span><div class="tc-participants">Participants</div></div>
+            </div>
+            <div class="tc-text">Felt the complete routine could feel lengthy on nights when they were already tired and wanted to sleep immediately.</div>
+          </div>
+          <div class="testing-card">
+            <div class="tc-top">
+              <div><span class="tc-fraction">2/6</span><div class="tc-participants">Participants</div></div>
+            </div>
+            <div class="tc-text">Questioned whether they would use environmental controls regularly without compatible smart devices.</div>
+          </div>
+        </div>
+        <div class="testing-cards-single" style="margin-top:10px;">
+          <div class="testing-card">
+            <div class="tc-top">
+              <div><span class="tc-fraction">1/6</span><div class="tc-participants">Participants</div></div>
+            </div>
+            <div class="tc-text">Felt interacting with AI before sleep could feel more stimulating than calming and preferred journaling instead.</div>
+          </div>
+        </div>
       </section>
 
       <hr class="section-anim">
