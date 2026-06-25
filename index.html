@@ -24,7 +24,7 @@
   <style>
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
     :root {
-      --bg: #ffffff; --fg: #3a3a3a; --muted: #9a9a9a; --muted2: #c8c4be;
+      --bg: #F7F6F5; --fg: #3a3a3a; --muted: #9a9a9a; --muted2: #c8c4be;
       --border: #e8e5e0; --blue: #2C8EFF;
       --shadow-border: 0px 0px 0px 1px rgba(0, 0, 0, 0.06), 0px 1px 2px -1px rgba(0, 0, 0, 0.06), 0px 2px 4px 0px rgba(0, 0, 0, 0.04);
       --shadow-border-hover: 0px 0px 0px 1px rgba(0, 0, 0, 0.08), 0px 1px 2px -1px rgba(0, 0, 0, 0.08), 0px 2px 4px 0px rgba(0, 0, 0, 0.06);
@@ -80,10 +80,10 @@
     .work-card { text-decoration: none; display: flex; flex-direction: column; transition-property: transform, opacity; transition-duration: 0.2s; transition-timing-function: ease; }
     .work-card:hover { opacity: 1; transform: none; }
     .work-card-thumb { cursor: pointer; transition-property: opacity, box-shadow, transform; transition-duration: 0.2s; transition-timing-function: ease; }
-    .work-card-thumb:hover { opacity: 0.94; box-shadow: var(--shadow-image); }
+    .work-card-thumb:hover { opacity: 0.94; box-shadow: rgba(60, 64, 67, 0.3) 0px 1px 2px 0px, rgba(60, 64, 67, 0.15) 0px 1px 3px 1px; }
     .work-card:active { transform: scale(0.96); transition-duration: 0.15s; }
     .work-card:hover .work-card-title { color: var(--blue); }
-    .work-card-thumb { width: 100%; aspect-ratio: 4/3; background: #f0efeb; overflow: hidden; border-radius: 8px; position: relative; }
+    .work-card-thumb { width: 100%; aspect-ratio: 4/3; background: #f0efeb; overflow: hidden; border-radius: 3px; position: relative; }
     .work-card-thumb img { width: 100%; height: 100%; object-fit: cover; display: block; outline: 1px solid rgba(0, 0, 0, 0.1); outline-offset: -1px; }
     .thumb-hover {
       position: absolute; inset: 0; width: 100%; height: 100%;
@@ -102,7 +102,7 @@
       font-size: 0.82rem;
       font-weight: 500;
       padding: 6px 12px;
-      border-radius: 6px;
+      border-radius: 3px;
       pointer-events: none;
       opacity: 0;
       transform: translate(0, -50%);
@@ -160,8 +160,8 @@
       color: var(--muted);
       background: transparent;
       border: 0;
-      border-radius: 6px;
-      padding: 8px 12px;
+      border-radius: 3px;
+      padding: 12px 20px;
       min-height: 44px;
       box-shadow: var(--shadow-border);
       cursor: pointer;
@@ -198,7 +198,7 @@
       color: var(--muted);
       font-size: 1rem;
       background: var(--bg);
-      border-radius: 4px;
+      border-radius: 3px;
       white-space: nowrap;
       z-index: 2;
       clip-path: inset(0 100% 0 0);
@@ -282,24 +282,32 @@
       display: inline-flex;
       align-items: center;
       justify-content: center;
-      padding: 4px 10px;
+      padding: 1.2px;
       font-family: var(--font);
-      font-size: 1rem;
-      color: #fff;
-      background: linear-gradient(180deg, #4B91F7 0%, #367AF6 100%);
+      background: linear-gradient(180deg, #70b8ff 0%, #1a6fd4 100%);
       border: none;
-      border-radius: 4px;
-      min-height: 34px;
+      border-radius: 3px;
       text-decoration: none;
       cursor: pointer;
-      box-shadow: 0px 0.5px 1.5px rgba(54,122,246,0.25), inset 0px 0.8px 0px -0.25px rgba(255,255,255,0.2);
-      transition-property: background, transform, box-shadow;
-      transition-duration: 0.15s;
-      transition-timing-function: ease;
+      box-shadow: 0px 1px 3px rgba(44, 142, 255, 0.25);
+      opacity: 0.92;
+      transition: opacity 0.15s ease, transform 0.15s ease;
       white-space: nowrap;
     }
-    .mobile-cta-primary:hover { background: linear-gradient(180deg, #4B91F7 0%, #2d6cf0 100%); }
-    .mobile-cta-primary:focus-visible { outline: 0; box-shadow: 0 0 0 3.5px rgba(44, 142, 255, 0.24); }
+    .mobile-cta-primary:hover { opacity: 1; }
+    .mobile-cta-primary:active { transform: scale(0.96); }
+    .mobile-cta-primary:focus-visible { outline: none; box-shadow: 0 0 0 3.5px rgba(44, 142, 255, 0.22); }
+    .mobile-cta-primary span {
+      display: inline-flex;
+      align-items: center;
+      padding: 4px 10px;
+      min-height: 30px;
+      background: linear-gradient(180deg, #4B91F7 0%, #2C8EFF 100%);
+      border-radius: 2px;
+      color: #fff;
+      font-size: 1rem;
+      line-height: 1;
+    }
     .mobile-cta-primary:active { transform: scale(0.96); }
 
     .mobile-cta-secondary {
@@ -318,42 +326,54 @@
       transition-timing-function: ease;
     }
     .mobile-cta-secondary:hover { opacity: 0.75; }
-    .mobile-cta-secondary:focus-visible { outline: 2px solid rgba(44, 142, 255, 0.32); outline-offset: 4px; border-radius: 4px; }
+    .mobile-cta-secondary:focus-visible { outline: 2px solid rgba(54, 122, 246, 0.32); outline-offset: 4px; border-radius: 3px; }
 
     /* ── Mobile link bar at bottom ── */
     #mobileLinkBar {
       display: flex;
-      flex-direction: row;
-      flex-wrap: wrap;
-      gap: 8px 12px;
-      justify-content: center;
+      flex-direction: column;
+      align-items: center;
+      gap: 20px;
       margin-top: 48px;
       padding-top: 24px;
       border-top: 1px solid var(--border);
     }
-    .mobile-link-pill {
+
+    /* Playground text link */
+    .mobile-playground-link {
       display: inline-flex;
       align-items: center;
-      font-size: 0.9rem;
+      gap: 6px;
+      font-family: var(--font);
+      font-size: 0.95rem;
       color: var(--muted);
-      border-radius: 20px;
-      min-height: 40px;
-      padding: 6px 14px;
-      box-shadow: var(--shadow-border);
+      text-decoration: underline;
+      text-underline-offset: 2px;
+      text-decoration-color: var(--muted);
+      transition: color 0.15s ease;
+    }
+    .mobile-playground-link:hover { color: var(--fg); text-decoration-color: var(--fg); }
+
+    /* Icon row */
+    .mobile-icon-row {
+      display: flex;
+      flex-direction: row;
+      align-items: center;
+      gap: 20px;
+    }
+    .mobile-icon-link {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--muted);
       text-decoration: none;
-      transition-property: box-shadow, color, transform;
-      transition-duration: 0.15s;
-      transition-timing-function: ease;
-      white-space: nowrap;
+      transition: color 0.15s ease, transform 0.15s ease;
+      width: 44px;
+      height: 44px;
     }
-    .mobile-link-pill:hover { box-shadow: var(--shadow-border-hover); color: var(--fg); }
-    .mobile-link-pill:focus-visible { outline: 0; box-shadow: var(--shadow-border-hover), 0 0 0 3.5px rgba(44, 142, 255, 0.2); }
-    .mobile-link-pill:active { transform: scale(0.96); }
-    .mobile-link-pill.soon {
-      opacity: 0.45;
-      cursor: default;
-      pointer-events: none;
-    }
+    .mobile-icon-link:hover { color: var(--fg); }
+    .mobile-icon-link:active { transform: scale(0.92); }
+    .mobile-icon-link svg { display: block; }
 
     /* name block above top gradient on mobile */
     .name-block { position: relative; z-index: 101; }
@@ -426,38 +446,51 @@
         margin-top: 0;
       }
 
-      /* Contact me — solid blue button */
+      /* Reach out — blue gradient border button */
       #emailBtn {
         display: inline-flex;
         align-items: center;
         justify-content: center;
-        padding: 0 10px;
+        padding: 0.72px;
         font-family: var(--font);
-        border-radius: 4px;
+        border-radius: 3px;
         border: none;
-        color: #fff;
-        background: linear-gradient(180deg, #4B91F7 0%, #367AF6 100%);
-        background-origin: border-box;
-        box-shadow: 0px 0.5px 1.5px rgba(54, 122, 246, 0.25), inset 0px 0.8px 0px -0.25px rgba(255, 255, 255, 0.2);
+        background: linear-gradient(180deg, #70b8ff 0%, #1a6fd4 100%);
+        box-shadow: 0px 1px 3px rgba(44, 142, 255, 0.25);
         user-select: none;
         -webkit-user-select: none;
         touch-action: manipulation;
-        font-size: 1rem;
-        line-height: 1;
-        min-height: 34px;
         cursor: pointer;
-        transition-property: background, box-shadow, transform;
+        transition-property: opacity, transform, box-shadow;
         transition-duration: 0.15s;
         transition-timing-function: ease;
+        opacity: 0.92;
+        min-height: 34px;
+        text-decoration: none;
       }
-      #emailBtn:hover { background: linear-gradient(180deg, #4B91F7 0%, #2d6cf0 100%); }
+      #emailBtn:hover { opacity: 1; box-shadow: 0px 2px 6px rgba(44, 142, 255, 0.35); }
+      #emailBtn:active { transform: scale(0.96); }
       #emailBtn:focus {
-        box-shadow: inset 0px 0.8px 0px -0.25px rgba(255, 255, 255, 0.2), 0px 0.5px 1.5px rgba(54, 122, 246, 0.25), 0px 0px 0px 3.5px rgba(58, 108, 217, 0.5);
-        outline: 0;
+        outline: none;
+        box-shadow: 0px 0px 0px 3.5px rgba(44, 142, 255, 0.22);
       }
       #emailBtn .reach-btn-inner { display: none; }
       #emailBtn .reach-btn-confirm { display: none; }
-      #emailBtn::before { content: "Contact me"; color: #fff; font-size: 1rem; line-height: 1; }
+      #emailBtn::before { display: none; }
+      #emailBtn-inner {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        padding: 0 12px;
+        height: 30px;
+        background: linear-gradient(180deg, #4B91F7 0%, #2C8EFF 100%);
+        border-radius: 2px;
+        color: #fff;
+        font-size: 1rem;
+        font-family: var(--font);
+        line-height: 1;
+        white-space: nowrap;
+      }
 
       /* Convince me more — plain blue underline link */
       .reach-btns a[href="about.html"] {
@@ -476,7 +509,7 @@
       .reach-btns a[href="about.html"] .reach-btn-inner { display: none; }
       .reach-btns a[href="about.html"]::after { content: "Know More"; }
       .reach-btns a[href="about.html"]:hover { opacity: 0.75; }
-      .reach-btns a[href="about.html"]:focus-visible { outline: 2px solid rgba(44, 142, 255, 0.32); outline-offset: 4px; border-radius: 4px; }
+      .reach-btns a[href="about.html"]:focus-visible { outline: 2px solid rgba(54, 122, 246, 0.32); outline-offset: 4px; border-radius: 3px; }
 
       /* Hide mobile cv-line */
       #cvLine { display: none; }
@@ -501,7 +534,7 @@
         transition-timing-function: ease;
       }
       .cv-line-desktop a:hover { text-decoration-color: var(--muted); }
-      .cv-line-desktop a:focus-visible { outline: 2px solid rgba(44, 142, 255, 0.32); outline-offset: 4px; border-radius: 4px; }
+      .cv-line-desktop a:focus-visible { outline: 2px solid rgba(54, 122, 246, 0.32); outline-offset: 4px; border-radius: 3px; }
       .cv-line-desktop a[aria-disabled="true"] {
         opacity: 0.45;
         cursor: default;
@@ -539,7 +572,7 @@
         width: 84.24%;
         height: auto;
         aspect-ratio: 4 / 3;
-        border-radius: 6px;
+        border-radius: 3px;
         overflow: hidden;
         background: #eceae5;
         margin-left: auto;
@@ -611,7 +644,7 @@
 
       <!-- Mobile-only: CTA buttons right after bio paragraph -->
       <div id="mobileCtaBlock" class="anim" style="animation-delay:155ms">
-        <a class="mobile-cta-primary" href="https://mail.google.com/mail/?view=cm&to=bhavyamittalbiz@gmail.com" target="_blank">Contact me</a>
+        <a class="mobile-cta-primary" href="https://mail.google.com/mail/?view=cm&to=bhavyamittalbiz@gmail.com" target="_blank"><span>Reach out</span></a>
         <a class="mobile-cta-secondary" href="about.html">Know More</a>
       </div>
       <div class="reach-block anim" id="reachBlock" style="animation-delay:185ms">
@@ -642,7 +675,7 @@
         </div>
         <div class="reach-btns">
           <a class="reach-btn" id="emailBtn" href="https://mail.google.com/mail/?view=cm&to=bhavyamittalbiz@gmail.com" target="_blank" aria-label="Send email">
-            <span class="reach-btn-inner"></span>
+            <span id="emailBtn-inner">Reach out</span>
           </a>
           <a class="reach-btn" href="about.html">
             <span class="reach-btn-inner">
@@ -663,7 +696,7 @@
         <a href="https://drive.google.com/file/d/1ErbdDrQ5eRREuS20UU6Qw8vEYLGaI8XJ/view?usp=sharing" target="_blank">CV</a>
         <a href="https://www.behance.net/bhavyamittall" target="_blank">Behance</a>
         <a href="https://www.linkedin.com/in/bhavyamittalll/" target="_blank">LinkedIn</a>
-        <a aria-disabled="true" tabindex="-1">Playground(Soon)</a>
+        <a href="playground.html">Playground</a>
       </div>
     </div>
     <div class="anim" id="colRight" style="animation-delay:240ms">
@@ -695,10 +728,46 @@
 
     <!-- Mobile-only: link bar at very bottom -->
     <div id="mobileLinkBar" class="anim" style="animation-delay:260ms">
-      <a class="mobile-link-pill" href="https://drive.google.com/file/d/1ErbdDrQ5eRREuS20UU6Qw8vEYLGaI8XJ/view?usp=sharing" target="_blank">CV</a>
-      <a class="mobile-link-pill" href="https://www.behance.net/bhavyamittall" target="_blank">Behance</a>
-      <a class="mobile-link-pill" href="https://www.linkedin.com/in/bhavyamittalll/" target="_blank">LinkedIn</a>
-      <a class="mobile-link-pill soon" aria-disabled="true" tabindex="-1">Playground (Soon)</a>
+
+      <!-- Playground text link -->
+      <a class="mobile-playground-link" href="playground.html">
+        Playground
+        <svg width="14" height="14" viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path d="M2 7H12M8 3L12 7L8 11" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+      </a>
+
+      <!-- Icon row: LinkedIn, Behance, CV -->
+      <div class="mobile-icon-row">
+
+        <!-- LinkedIn -->
+        <a class="mobile-icon-link" href="https://www.linkedin.com/in/bhavyamittalll/" target="_blank" aria-label="LinkedIn">
+          <svg width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <rect width="32" height="32" rx="5" fill="currentColor"/>
+            <path d="M9 12.5H12V23H9V12.5ZM10.5 11C9.5 11 8.75 10.25 8.75 9.25C8.75 8.25 9.5 7.5 10.5 7.5C11.5 7.5 12.25 8.25 12.25 9.25C12.25 10.25 11.5 11 10.5 11Z" fill="white"/>
+            <path d="M14 12.5H16.8V13.8C17.3 13 18.4 12.2 19.9 12.2C22.7 12.2 23.25 14 23.25 16.4V23H20.25V17C20.25 15.8 19.8 15 18.8 15C17.6 15 17 15.9 17 17V23H14V12.5Z" fill="white"/>
+          </svg>
+        </a>
+
+        <!-- Behance -->
+        <a class="mobile-icon-link" href="https://www.behance.net/bhavyamittall" target="_blank" aria-label="Behance">
+          <svg width="38" height="38" viewBox="0 0 1024 1024" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+            <path d="M880 112H144c-17.7 0-32 14.3-32 32v736c0 17.7 14.3 32 32 32h736c17.7 0 32-14.3 32-32V144c0-17.7-14.3-32-32-32zM598.5 350.9h138.4v33.7H598.5v-33.7zM512 628.8a89.52 89.52 0 0 1-27 31c-11.8 8.2-24.9 14.2-38.8 17.7a167.4 167.4 0 0 1-44.6 5.7H236V342.1h161c16.3 0 31.1 1.5 44.6 4.3 13.4 2.8 24.8 7.6 34.4 14.1 9.5 6.5 17 15.2 22.3 26 5.2 10.7 7.9 24.1 7.9 40 0 17.2-3.9 31.4-11.7 42.9-7.9 11.5-19.3 20.8-34.8 28.1 21.1 6 36.6 16.7 46.8 31.7 10.4 15.2 15.5 33.4 15.5 54.8 0 17.4-3.3 32.3-10 44.8zM790.8 576H612.4c0 19.4 6.7 38 16.8 48 10.2 9.9 24.8 14.9 43.9 14.9 13.8 0 25.5-3.5 35.5-10.4 9.9-6.9 15.9-14.2 18.1-21.8h59.8c-9.6 29.7-24.2 50.9-44 63.7-19.6 12.8-43.6 19.2-71.5 19.2-19.5 0-37-3.2-52.7-9.3-15.1-5.9-28.7-14.9-39.9-26.5a121.2 121.2 0 0 1-25.1-41.2c-6.1-16.9-9.1-34.7-8.9-52.6 0-18.5 3.1-35.7 9.1-51.7 11.5-31.1 35.4-56 65.9-68.9 16.3-6.8 33.8-10.2 51.5-10 21 0 39.2 4 55 12.2a111.6 111.6 0 0 1 38.6 32.8c10.1 13.7 17.2 29.3 21.7 46.9 4.3 17.3 5.8 35.5 4.6 54.7zm-122-95.6c-10.8 0-19.9 1.9-26.9 5.6-7 3.7-12.8 8.3-17.2 13.6a48.4 48.4 0 0 0-9.1 17.4c-1.6 5.3-2.7 10.7-3.1 16.2H723c-1.6-17.3-7.6-30.1-15.6-39.1-8.4-8.9-21.9-13.7-38.6-13.7zm-248.5-10.1c8.7-6.3 12.9-16.7 12.9-31 .3-6.8-1.1-13.5-4.1-19.6-2.7-4.9-6.7-9-11.6-11.9a44.8 44.8 0 0 0-16.6-6c-6.4-1.2-12.9-1.8-19.3-1.7h-70.3v79.7h76.1c13.1.1 24.2-3.1 32.9-9.5zm11.8 72c-9.8-7.5-22.9-11.2-39.2-11.2h-81.8v94h80.2c7.5 0 14.4-.7 21.1-2.1s12.7-3.8 17.8-7.2c5.1-3.3 9.2-7.8 12.3-13.6 3-5.8 4.5-13.2 4.5-22.1 0-17.7-5-30.2-14.9-37.8z"/>
+          </svg>
+        </a>
+
+        <!-- CV (document icon) -->
+        <a class="mobile-icon-link" href="https://drive.google.com/file/d/1ErbdDrQ5eRREuS20UU6Qw8vEYLGaI8XJ/view?usp=sharing" target="_blank" aria-label="CV">
+          <svg width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M10 4C8.9 4 8 4.9 8 6V26C8 27.1 8.9 28 10 28H22C23.1 28 24 27.1 24 26V10L18 4H10Z" fill="currentColor" opacity="0.15"/>
+            <path d="M18 4L24 10H18V4Z" fill="currentColor" opacity="0.4"/>
+            <path d="M10 4C8.9 4 8 4.9 8 6V26C8 27.1 8.9 28 10 28H22C23.1 28 24 27.1 24 26V10L18 4H10Z" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"/>
+            <path d="M18 4V10H24" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"/>
+            <path d="M12 16H20M12 20H17" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+          </svg>
+        </a>
+
+      </div>
     </div>
   </div>
 
