@@ -54,13 +54,6 @@
       background: var(--bg); color: var(--fg);
       font-family: var(--font); font-size: 1rem; line-height: 1.65;
     }
-    body::before, body::after {
-      content: ""; position: fixed; left: 0; right: 0; height: 80px;
-      pointer-events: none; z-index: 100;
-    }
-    body::before { top: 0; background: linear-gradient(to bottom, var(--bg), transparent); }
-    body::after  { bottom: 0; background: linear-gradient(to top, var(--bg), transparent); }
-
     @keyframes fadeUp { from { opacity: 0; transform: translateY(10px); filter: blur(4px); } to { opacity: 1; transform: translateY(0); filter: blur(0); } }
     .anim { opacity: 0; animation: fadeUp 0.5s ease forwards; }
 
@@ -260,6 +253,33 @@
 
     /* clock-spacer hidden by default (mobile) */
     .clock-spacer { display: none; }
+    .as-seen-desktop { display: none; }
+    .as-seen-mobile {
+      width: 100%;
+      max-width: 318px;
+      padding: 14px 18px;
+      border: 1px solid rgba(0, 0, 0, 0.11);
+      background: rgba(255, 255, 255, 0.22);
+      box-shadow: rgba(0, 0, 0, 0.06) 0px 2px 4px 0px inset;
+      color: var(--muted);
+      font-size: 0.92rem;
+      line-height: 1.35;
+      text-align: left;
+    }
+    .as-seen-mobile p {
+      margin: 0;
+      color: var(--muted);
+      font-size: inherit;
+      line-height: inherit;
+    }
+    .as-seen-mobile a {
+      color: var(--muted);
+      text-decoration: underline;
+      text-decoration-color: var(--muted);
+      text-underline-offset: 2px;
+    }
+    .as-seen-mobile a:hover { color: var(--fg); text-decoration-color: var(--fg); }
+    .as-seen-mobile a:focus-visible { outline: 2px solid rgba(54, 122, 246, 0.32); outline-offset: 3px; border-radius: 3px; }
     /* Desktop footer links hidden on mobile */
     .cv-line-desktop { display: none; }
 
@@ -420,6 +440,7 @@
       /* Hide mobile-only elements on desktop */
       #mobileCtaBlock { display: none; }
       #mobileLinkBar  { display: none; }
+      .as-seen-mobile { display: none; }
 
       #bioP1      { display: none; }
       #bioP2      { font-size: 1rem; line-height: 1.65; color: var(--fg); margin-bottom: 0; }
@@ -435,8 +456,8 @@
         flex: 0 0 auto;
       }
 
-      /* Push footer to bottom */
-      .cv-line-desktop { margin-top: auto !important; }
+      /* Push footer area to bottom */
+      .as-seen-desktop { margin-top: auto !important; }
       .bm-logo-wrap { display: none; }
       .reach-btns {
         display: flex;
@@ -515,6 +536,33 @@
       #cvLine { display: none; }
 
       /* Footer links */
+      .as-seen-desktop {
+        display: block;
+        width: 318px;
+        padding: 14px 18px;
+        border: 1px solid rgba(0, 0, 0, 0.11);
+        background: rgba(255, 255, 255, 0.22);
+        box-shadow: rgba(0, 0, 0, 0.06) 0px 2px 4px 0px inset;
+        color: var(--muted);
+        font-size: 0.92rem;
+        line-height: 1.35;
+        margin-bottom: 16px;
+      }
+      .as-seen-desktop p {
+        margin: 0;
+        color: var(--muted);
+        font-size: inherit;
+        line-height: inherit;
+      }
+      .as-seen-desktop a {
+        color: var(--muted);
+        text-decoration: underline;
+        text-decoration-color: var(--muted);
+        text-underline-offset: 2px;
+      }
+      .as-seen-desktop a:hover { color: var(--fg); text-decoration-color: var(--fg); }
+      .as-seen-desktop a:focus-visible { outline: 2px solid rgba(54, 122, 246, 0.32); outline-offset: 3px; border-radius: 3px; }
+
       .cv-line-desktop {
         display: flex !important;
         gap: 20px;
@@ -691,6 +739,10 @@
         <p class="cv-line" id="cvLine"><a href="https://drive.google.com/file/d/1ErbdDrQ5eRREuS20UU6Qw8vEYLGaI8XJ/view?usp=sharing" target="_blank">CV</a> &middot; <a href="https://www.behance.net/bhavyamittall" target="_blank">Behance</a> &middot; <a href="https://www.linkedin.com/in/bhavyamittalll/" target="_blank">LinkedIn</a>.</p>
       </div>
       <div class="clock-spacer"></div>
+      <div class="as-seen-desktop anim" style="animation-delay:205ms">
+        <p>As seen on:</p>
+        <p><a href="https://www.wallofportfolios.in/portfolios/bhavya-mittal/" target="_blank">Abduzeedo</a> and <a href="https://abduzeedo.com/node/89275" target="_blank">Wall of Portfolios</a></p>
+      </div>
       <!-- Desktop footer links -->
       <div class="cv-line-desktop anim" style="animation-delay:220ms">
         <a href="https://drive.google.com/file/d/1ErbdDrQ5eRREuS20UU6Qw8vEYLGaI8XJ/view?usp=sharing" target="_blank">CV</a>
@@ -728,6 +780,11 @@
 
     <!-- Mobile-only: link bar at very bottom -->
     <div id="mobileLinkBar" class="anim" style="animation-delay:260ms">
+
+      <div class="as-seen-mobile">
+        <p>As seen on:</p>
+        <p><a href="https://www.wallofportfolios.in/portfolios/bhavya-mittal/" target="_blank">Abduzeedo</a> and <a href="https://abduzeedo.com/node/89275" target="_blank">Wall of Portfolios</a></p>
+      </div>
 
       <!-- Playground text link -->
       <a class="mobile-playground-link" href="playground.html">
