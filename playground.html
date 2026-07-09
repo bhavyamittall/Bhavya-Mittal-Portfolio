@@ -53,19 +53,17 @@
       width: 100%;
       height: 100%;
       overflow: hidden;
+      perspective: 920px;
+      perspective-origin: 50% 52%;
     }
 
     #board {
       position: absolute;
-      top: 0; left: 0;
-      width: 5000px;
-      height: 4000px;
+      inset: 0;
+      width: 100%;
+      height: 100%;
       will-change: transform;
-      transform-origin: 0 0;
-      background-image:
-        linear-gradient(rgba(0,0,0,0.02) 1px, transparent 1px),
-        linear-gradient(90deg, rgba(0,0,0,0.02) 1px, transparent 1px);
-      background-size: 16px 16px;
+      transform-style: preserve-3d;
     }
 
     /* ── Image cards ── */
@@ -78,15 +76,17 @@
         0px 3px 8px -3px rgba(0,0,0,0.04);
       border-radius: 1px;
       overflow: hidden;
-      transition: box-shadow 0.2s ease, transform 0.2s ease;
+      transition: box-shadow 0.2s ease;
       cursor: default;
+      will-change: transform;
+      transform-style: preserve-3d;
     }
     .img-card:hover {
       box-shadow:
         0px 0px 0px 1px rgba(0,0,0,0.05),
         0px 2px 8px -3px rgba(0,0,0,0.08),
         0px 6px 16px -5px rgba(0,0,0,0.06);
-      z-index: 10 !important;
+      z-index: 650 !important;
     }
     .img-card img,
     .img-card video {
@@ -95,6 +95,13 @@
       height: 100%;
       object-fit: cover;
       pointer-events: none;
+    }
+    .galaxy-dim {
+      position: absolute;
+      inset: 0;
+      background: #fff;
+      pointer-events: none;
+      z-index: 2;
     }
 
     /* subtle image paper inset */
@@ -110,12 +117,43 @@
 
     /* ── Fade-in animation ── */
     @keyframes fadeIn {
-      from { opacity: 0; transform: scale(0.96); filter: blur(3px); }
-      to   { opacity: 1; transform: scale(1);    filter: blur(0); }
+      from { opacity: 0; filter: blur(3px); }
+      to   { opacity: 1; filter: blur(0); }
+    }
+    @keyframes ghostReveal {
+      from {
+        opacity: 0;
+        filter: blur(4px);
+        -webkit-mask-position: 0% 0%;
+        mask-position: 0% 0%;
+      }
+      to {
+        opacity: 1;
+        filter: blur(0);
+        -webkit-mask-position: 0% 100%;
+        mask-position: 0% 100%;
+      }
     }
     .img-card {
       opacity: 0;
-      animation: fadeIn 0.55s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+      -webkit-mask-image: linear-gradient(to bottom, transparent 0%, transparent 18%, rgba(0,0,0,0.08) 27%, rgba(0,0,0,0.45) 35%, rgba(0,0,0,0.78) 43%, #000 52%, #000 100%);
+      mask-image: linear-gradient(to bottom, transparent 0%, transparent 18%, rgba(0,0,0,0.08) 27%, rgba(0,0,0,0.45) 35%, rgba(0,0,0,0.78) 43%, #000 52%, #000 100%);
+      -webkit-mask-size: 100% 420%;
+      mask-size: 100% 420%;
+      -webkit-mask-repeat: no-repeat;
+      mask-repeat: no-repeat;
+      -webkit-mask-position: 0% 0%;
+      mask-position: 0% 0%;
+      animation: ghostReveal 1.15s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+    }
+    @media (prefers-reduced-motion: reduce) {
+      .img-card {
+        opacity: 1;
+        filter: none;
+        -webkit-mask-image: none;
+        mask-image: none;
+        animation: none;
+      }
     }
 
     /* ── Bottom-left nav ── */
@@ -153,30 +191,32 @@
     /* ── Centre text (lives on the board, pans with it) ── */
     #centre-text {
       position: absolute;
-      z-index: 50;
-      text-align: center;
+      z-index: 700;
+      left: 72px;
+      bottom: 132px;
+      text-align: left;
       pointer-events: none;
       user-select: none;
-      transform: translate(-50%, -50%);
-      width: 420px;
+      transform: none;
+      width: 560px;
     }
     #centre-text h1 {
-      font-family: 'Noto Serif', Georgia, 'Times New Roman', serif;
-      font-size: 1.3rem;
-      font-weight: 400;
+      font-family: var(--font);
+      font-size: 1rem;
+      font-weight: 600;
       color: var(--fg);
-      line-height: 1.1;
-      letter-spacing: -0.02em;
-      margin: 0 0 14px;
+      line-height: 1.45;
+      letter-spacing: 0;
+      margin: 0;
       opacity: 0;
       animation: fadeIn 0.9s cubic-bezier(0.22, 1, 0.36, 1) 0.05s forwards;
     }
     #centre-text p {
       font-family: var(--font);
-      font-size: 0.88rem;
+      font-size: 1rem;
       font-weight: 400;
-      color: var(--muted);
-      line-height: 1.65;
+      color: var(--fg);
+      line-height: 1.45;
       letter-spacing: 0em;
       margin: 0;
       opacity: 0;
@@ -331,11 +371,11 @@
 
   <div id="canvas">
     <div id="board">
-      <!-- Centre text — lives on the board, pans with it -->
-      <div id="centre-text">
-        <h1>Playground</h1>
-        <p>Drafts, scraps, experiments, accidents.<br>Some of my favorite work lives here.</p>
-      </div>
+    </div>
+    <!-- Centre text -->
+    <div id="centre-text">
+      <h1>Playground</h1>
+      <p>Drafts, scraps, experiments, accidents.<br>Some of my favorite work lives here.</p>
     </div>
   </div>
 
@@ -396,10 +436,6 @@
     // ── Spoke layout — 11 unique positions, guaranteed no repeats, no overlap ──
     // Each card gets a unique angle (evenly divided + random rotation offset).
     // Cards alternate between inner and outer radius to stay close to centre.
-    var SAFE_CX = 2000;
-    var SAFE_CY = 1800;
-    var N = imageSrcs.length; // 12
-
     // Shuffle order once
     var order = imageSrcs.map(function(_, i) { return i; });
     for (var s = order.length - 1; s > 0; s--) {
@@ -408,38 +444,59 @@
     }
     var shuffled = order.map(function(i) { return imageSrcs[i]; });
 
-    // One random offset rotates the whole layout each load
-    var globalOffset = Math.random() * ((2 * Math.PI) / N); // max 1 slot width
-
-    var images = shuffled.map(function(img, i) {
-      var angle = (2 * Math.PI / N) * i + globalOffset;
-      // Alternate inner (odd) / outer (even) to pack closer without overlap
-      var rx = (i % 2 === 0) ? 560 : 800;
-      var ry = (i % 2 === 0) ? 420 : 580;
-      var cx = SAFE_CX + Math.cos(angle) * rx;
-      var cy = SAFE_CY + Math.sin(angle) * ry;
-      return {
-        type: img.type, src: img.src,
-        w: img.w, h: img.h,
-        x: Math.round(cx - img.w / 2),
-        y: Math.round(cy - img.h / 2),
-        z: 1
-      };
-    });
-
     var board = document.getElementById("board");
     var centreText = document.getElementById("centre-text");
-    centreText.style.left = "2000px";
-    centreText.style.top  = "1800px";
+    var galaxyCards = [];
+    var CONFIG = {
+      speed: 0.45,
+      ease: 0.16,
+      scaleEase: 0.25,
+      scrollMultiplier: 0.9,
+      scaleMin: 0.92,
+      scaleMax: 1.08
+    };
+    var COMPOSITION = [
+      { x: 22, y: -10, z: -80, speed: 0.62 },
+      { x: 61, y: 10, z: 120, speed: 0.9 },
+      { x: 88, y: 12, z: -55, speed: 0.7 },
+      { x: 3, y: 36, z: 90, speed: 1.05 },
+      { x: 38, y: 60, z: -40, speed: 0.78 },
+      { x: 88, y: 64, z: 125, speed: 1 },
+      { x: 73, y: 91, z: -70, speed: 0.66 },
+      { x: 52, y: 39, z: 45, speed: 0.86 },
+      { x: 16, y: 83, z: -95, speed: 0.58 },
+      { x: 78, y: -14, z: -110, speed: 0.54 },
+      { x: 99, y: 39, z: -85, speed: 0.68 }
+    ];
+    var SPEED_POOL = [0.55, 0.75, 1, 1.3, 1.6];
 
-    images.forEach(function(img, i) {
+    function lerp(a, b, t) {
+      return (1 - t) * a + t * b;
+    }
+
+    function buildParticles(n) {
+      return Array.from({ length: n }, function(_, i) {
+        var slot = COMPOSITION[i % COMPOSITION.length];
+        var z = slot.z;
+        var opacity = z < 0 ? Math.max(0.68, 1 + z / 520) : 1;
+
+        return {
+          x: slot.x,
+          y: slot.y,
+          speed: slot.speed || SPEED_POOL[i % SPEED_POOL.length],
+          z: z,
+          opacity: opacity
+        };
+      });
+    }
+
+    var particleDefs = buildParticles(shuffled.length);
+
+    shuffled.forEach(function(img, i) {
       var card = document.createElement("div");
       card.className = "img-card";
-      card.style.width  = img.w + "px";
-      card.style.height = img.h + "px";
-      card.style.left   = img.x + "px";
-      card.style.top    = img.y + "px";
-      card.style.zIndex = img.z;
+      card.style.width  = Math.round(img.w * 0.84) + "px";
+      card.style.height = Math.round(img.h * 0.84) + "px";
       card.style.animationDelay = (i * 55) + "ms";
 
       var el;
@@ -462,11 +519,118 @@
       }
 
       card.appendChild(el);
+      var dim = document.createElement("span");
+      dim.className = "galaxy-dim";
+      card.appendChild(dim);
       board.appendChild(card);
+      galaxyCards.push(card);
 
       // Click to expand
       card.addEventListener("click", function() { openOverlay(img.type, img.src); });
     });
+
+    function ImageGalaxy(container, cards, defs) {
+      this.container = container;
+      this.cards = cards;
+      this.defs = defs;
+      this.nodes = [];
+      this.scroll = { current: 0, target: 0, last: 0 };
+      this.directionSign = 1;
+      this.direction = "down";
+      this.containerHeight = 0;
+      this.containerOffsetHeight = 0;
+      this.lastTime = 0;
+      this.raf = 0;
+      this.layout();
+    }
+
+    ImageGalaxy.prototype.layout = function() {
+      var rect = this.container.getBoundingClientRect();
+      var small = window.innerWidth < 700;
+      var self = this;
+      this.nodes = this.cards.map(function(card, i) {
+        var d = self.defs[i];
+        var dim = card.querySelector(".galaxy-dim");
+        if (dim) dim.style.opacity = String(1 - d.opacity);
+
+        var left = small ? (i % 4) * 25 + (d.x % 20) : d.x;
+        card.style.left = left + "%";
+        card.style.top = d.y + "%";
+        card.style.zIndex = String(Math.round(d.z + 300));
+        card.style.transform = "translate3d(-50%, 0px, 0) scale(1)";
+
+        var box = card.getBoundingClientRect();
+        return {
+          el: card,
+          speed: d.speed,
+          z: d.z,
+          extra: 0,
+          height: box.height,
+          top: box.top - rect.top,
+          position: 0,
+          currentScale: 1,
+          isBefore: false,
+          isAfter: false
+        };
+      });
+      this.containerHeight = this.container.clientHeight;
+      this.containerOffsetHeight = this.containerHeight * 0.1;
+      this.scroll = { current: 0, target: 0, last: 0 };
+    };
+
+    ImageGalaxy.prototype.addScroll = function(velocity, direction) {
+      var v = Math.max(-60, Math.min(60, velocity));
+      this.scroll.target += v * CONFIG.scrollMultiplier;
+      this.direction = direction > 0 ? "down" : "up";
+      if (direction !== 0) this.directionSign = Math.sign(direction);
+    };
+
+    ImageGalaxy.prototype.update = function(dt) {
+      this.scroll.target += CONFIG.speed * dt * this.directionSign;
+      this.scroll.current = lerp(this.scroll.current, this.scroll.target, CONFIG.ease);
+      this.direction = this.scroll.current < this.scroll.last ? "down" : "up";
+
+      this.nodes.forEach(function(t) {
+        t.position = -this.scroll.current * t.speed - t.extra;
+        var bottom = t.position + t.top + t.height;
+        t.isBefore = bottom < -this.containerOffsetHeight;
+        t.isAfter = bottom > this.containerHeight + this.containerOffsetHeight;
+
+        if (this.direction === "up" && t.isBefore) {
+          t.extra = t.extra - this.containerHeight - this.containerOffsetHeight;
+          t.isBefore = false;
+          t.isAfter = false;
+        }
+        if (this.direction === "down" && t.isAfter) {
+          t.extra = t.extra + this.containerHeight;
+          t.isBefore = false;
+          t.isAfter = false;
+        }
+
+        var top = t.position + t.top;
+        var f = Math.max(0, Math.min(1, top / this.containerHeight));
+        var targetScale = CONFIG.scaleMin + f * (CONFIG.scaleMax - CONFIG.scaleMin);
+        t.currentScale = lerp(t.currentScale, targetScale, CONFIG.scaleEase);
+        t.el.style.transform = "translate3d(-50%, " + t.position.toFixed(2) + "px, " + t.z + "px) scale(" + t.currentScale.toFixed(3) + ")";
+      }, this);
+
+      this.scroll.last = this.scroll.current;
+    };
+
+    ImageGalaxy.prototype.start = function() {
+      var self = this;
+      function tick(now) {
+        var dt = self.lastTime ? Math.min(2, (now - self.lastTime) / 16.667) : 1;
+        self.lastTime = now;
+        self.update(dt);
+        self.raf = requestAnimationFrame(tick);
+      }
+      this.raf = requestAnimationFrame(tick);
+    };
+
+    var galaxy = new ImageGalaxy(board, galaxyCards, particleDefs);
+    galaxy.start();
+    window.addEventListener("resize", function() { galaxy.layout(); });
 
     /* ─────────────────────────────────────────────
        Lightbox
@@ -549,48 +713,23 @@
        Cursor-follow: board drifts toward a target
        offset driven by mouse position
     ───────────────────────────────────────────── */
-    var centreX = Math.round(window.innerWidth  / 2 - 2000);
-    var centreY = Math.round(window.innerHeight / 2 - 1800);
-    var DRIFT = 550;
+    var lastTouchY = null;
+    document.addEventListener("touchstart", function(e) {
+      lastTouchY = e.touches[0] ? e.touches[0].clientY : null;
+    }, { passive: true });
 
-    var targetX = centreX;
-    var targetY = centreY;
-    var currentX = centreX;
-    var currentY = centreY;
-
-    board.style.transform = "translate(" + currentX + "px," + currentY + "px)";
-
-    document.addEventListener("mousemove", function(e) {
-      if (e.target.closest("#nav")) return;
-      // Normalise cursor: -1 (left/top) to +1 (right/bottom)
-      var nx = (e.clientX / window.innerWidth)  * 2 - 1;
-      var ny = (e.clientY / window.innerHeight) * 2 - 1;
-      targetX = centreX - nx * DRIFT;
-      targetY = centreY - ny * DRIFT;
-    });
-
-    // Smooth lerp loop
-    var EASE = 0.06; // lower = lazier / more floaty
-    function tick() {
-      currentX += (targetX - currentX) * EASE;
-      currentY += (targetY - currentY) * EASE;
-      board.style.transform = "translate(" + currentX.toFixed(2) + "px," + currentY.toFixed(2) + "px)";
-      requestAnimationFrame(tick);
-    }
-    requestAnimationFrame(tick);
-
-    /* touch: gentle drift toward touch point */
     document.addEventListener("touchmove", function(e) {
-      var t = e.touches[0];
-      var nx = (t.clientX / window.innerWidth)  * 2 - 1;
-      var ny = (t.clientY / window.innerHeight) * 2 - 1;
-      targetX = centreX - nx * DRIFT;
-      targetY = centreY - ny * DRIFT;
+      if (lastTouchY === null || !e.touches[0]) return;
+      var nextY = e.touches[0].clientY;
+      var delta = lastTouchY - nextY;
+      galaxy.addScroll(delta, delta);
+      lastTouchY = nextY;
     }, { passive: true });
 
     /* ── Scroll: do nothing (no zoom) ── */
     document.addEventListener("wheel", function(e) {
       e.preventDefault();
+      galaxy.addScroll(e.deltaY, e.deltaY);
     }, { passive: false });
   </script>
 
