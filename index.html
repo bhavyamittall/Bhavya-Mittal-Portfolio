@@ -692,7 +692,7 @@
 
       <!-- Mobile-only: CTA buttons right after bio paragraph -->
       <div id="mobileCtaBlock" class="anim" style="animation-delay:155ms">
-        <a class="mobile-cta-primary" href="https://mail.google.com/mail/?view=cm&to=bhavyamittalbiz@gmail.com" target="_blank"><span>Reach out</span></a>
+        <a class="mobile-cta-primary" href="https://mail.google.com/mail/?view=cm&to=bhavyamittalbiz@gmail.com" target="_blank" onclick="copyEmail(event, this)"><span>Get in touch</span></a>
         <a class="mobile-cta-secondary" href="about.html">Know More</a>
       </div>
       <div class="reach-block anim" id="reachBlock" style="animation-delay:185ms">
@@ -722,8 +722,8 @@
           </div>
         </div>
         <div class="reach-btns">
-          <a class="reach-btn" id="emailBtn" href="https://mail.google.com/mail/?view=cm&to=bhavyamittalbiz@gmail.com" target="_blank" aria-label="Send email">
-            <span id="emailBtn-inner">Reach out</span>
+          <a class="reach-btn" id="emailBtn" href="https://mail.google.com/mail/?view=cm&to=bhavyamittalbiz@gmail.com" target="_blank" aria-label="Copy email address" onclick="copyEmail(event, this)">
+            <span id="emailBtn-inner">Get in touch</span>
           </a>
           <a class="reach-btn" href="about.html">
             <span class="reach-btn-inner">
@@ -741,7 +741,7 @@
       <div class="clock-spacer"></div>
       <div class="as-seen-desktop anim" style="animation-delay:205ms">
         <p>As seen on:</p>
-        <p><a href="https://www.wallofportfolios.in/portfolios/bhavya-mittal/" target="_blank">Abduzeedo</a> and <a href="https://abduzeedo.com/node/89275" target="_blank">Wall of Portfolios</a></p>
+        <p><a href="https://abduzeedo.com/node/89275" target="_blank">Abduzeedo</a> and <a href="https://www.wallofportfolios.in/portfolios/bhavya-mittal/" target="_blank">Wall of Portfolios</a></p>
       </div>
       <!-- Desktop footer links -->
       <div class="cv-line-desktop anim" style="animation-delay:220ms">
@@ -769,6 +769,12 @@
           </div>
         </div>
         <div class="work-card">
+          <a class="work-card-thumb" href="https://www.bloomn.in/" target="_blank"><video src="https://bhavyamittal.com/assets/images/Index%20Images/Bloomn_Thumbnail.webm" autoplay muted loop playsinline style="width:100%;height:100%;object-fit:cover;display:block;"></video></a>
+          <div class="work-card-body">
+            <p class="work-card-title">Building Bloomn - Ai Native motion design system for interfaces</p>
+          </div>
+        </div>
+        <div class="work-card">
           <a class="work-card-thumb" href="sip-happens.html"><img src="/assets/images/Index Images/SIP_Happens_-_thumbnail_cycuy6.jpg" alt="SIP Happens" /></a>
           <div class="work-card-body">
             <p class="work-card-title">Rethinking the SIP calculator.</p>
@@ -783,7 +789,7 @@
 
       <div class="as-seen-mobile">
         <p>As seen on:</p>
-        <p><a href="https://www.wallofportfolios.in/portfolios/bhavya-mittal/" target="_blank">Abduzeedo</a> and <a href="https://abduzeedo.com/node/89275" target="_blank">Wall of Portfolios</a></p>
+        <p><a href="https://abduzeedo.com/node/89275" target="_blank">Abduzeedo</a> and <a href="https://www.wallofportfolios.in/portfolios/bhavya-mittal/" target="_blank">Wall of Portfolios</a></p>
       </div>
 
       <!-- Playground text link -->
@@ -925,18 +931,18 @@
     })();
 
     // Copy email
-    function copyEmail() {
+    function copyEmail(event, btn) {
+      if (event) event.preventDefault();
       var email = 'bhavyamittalbiz@gmail.com';
-      var btn = document.getElementById('emailBtn');
+      var span = btn.querySelector('span');
+      var originalText = span.textContent;
       function showCopied() {
-        var check = btn.querySelector('.t-success-check');
-        if (check) {
-          check.setAttribute('data-state', 'out');
-          void check.offsetWidth;
-          check.setAttribute('data-state', 'in');
-        }
+        span.textContent = 'Email copied';
         btn.classList.add('copied');
-        setTimeout(function() { btn.classList.remove('copied'); }, 2400);
+        setTimeout(function() {
+          span.textContent = originalText;
+          btn.classList.remove('copied');
+        }, 2400);
       }
       if (navigator.clipboard && window.isSecureContext) {
         navigator.clipboard.writeText(email).then(showCopied).catch(function() { fallbackCopy(email, showCopied); });
