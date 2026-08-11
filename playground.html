@@ -55,6 +55,11 @@
       overflow: hidden;
       perspective: 920px;
       perspective-origin: 50% 52%;
+      background-image: radial-gradient(circle, rgba(0,0,0,0.15) 1px, transparent 1px);
+      background-size: 26px 26px;
+      /* background-position is synced to the board's pan offset in JS,
+         so the dot grid reads as attached to the pannable canvas space
+         rather than the (viewport-sized) #board box. */
     }
 
     #board {
@@ -63,37 +68,46 @@
       width: 100%;
       height: 100%;
       will-change: transform;
-      transform-style: preserve-3d;
+      /* flat, not preserve-3d — each card's tilt is its own visual flourish;
+         keeping siblings on one flat plane means cross-card stacking is pure
+         z-index (painter's order), so a dragged/tilted card cleanly covers
+         whatever it's placed over instead of 3D-interpenetrating it. */
     }
 
-    /* ── Image cards ── */
+    /* ── Image cards (WebGL sticker surface) ── */
     .img-card {
       position: absolute;
-      background: #fff;
-      box-shadow:
-        0px 0px 0px 1px rgba(0,0,0,0.03),
-        0px 1px 3px -1px rgba(0,0,0,0.05),
-        0px 3px 8px -3px rgba(0,0,0,0.04);
-      border-radius: 1px;
-      overflow: hidden;
-      transition: box-shadow 0.2s ease;
+      overflow: visible; /* padded WebGL canvas + peel bulge extend past the box */
       cursor: default;
       will-change: transform;
       transform-style: preserve-3d;
     }
-    .img-card:hover {
-      box-shadow:
-        0px 0px 0px 1px rgba(0,0,0,0.05),
-        0px 2px 8px -3px rgba(0,0,0,0.08),
-        0px 6px 16px -5px rgba(0,0,0,0.06);
-      z-index: 650 !important;
+    @media (min-width: 769px) {
+      .img-card { cursor: grab; }
+      .img-card.dragging { cursor: grabbing; }
+      #canvas { cursor: grab; }
+      #canvas.panning { cursor: grabbing; }
     }
+    .img-card canvas {
+      display: block;
+      pointer-events: none;
+    }
+    /* Fallback surface for browsers without WebGL (no peel/lift/sheen/holo) */
     .img-card img,
     .img-card video {
       display: block;
       width: 100%;
       height: 100%;
       object-fit: cover;
+      border-radius: 1px;
+      pointer-events: none;
+    }
+    /* Same stroke + drop shadow on every card — GL or fallback, image or video */
+    .img-card-frame {
+      position: absolute;
+      inset: 0;
+      border-radius: 1px;
+      box-shadow: rgba(0, 0, 0, 0.18) 0px 2px 4px;
       pointer-events: none;
     }
     .galaxy-dim {
@@ -102,17 +116,6 @@
       background: #fff;
       pointer-events: none;
       z-index: 2;
-    }
-
-    /* subtle image paper inset */
-    .img-card::after {
-      content: "";
-      position: absolute;
-      inset: 0;
-      border-radius: 1px;
-      outline: 1px solid rgba(0,0,0,0.07);
-      outline-offset: -1px;
-      pointer-events: none;
     }
 
     /* ── Fade-in animation ── */
@@ -185,6 +188,36 @@
     #nav a:hover {
       text-decoration-color: var(--muted);
       color: var(--fg);
+    }
+
+    /* ── Drag hint — bottom-right, shown if the person hasn't dragged yet ── */
+    #drag-hint {
+      position: fixed;
+      right: 28px;
+      bottom: 28px;
+      z-index: 900;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      padding: 10px 16px;
+      background: #fff;
+      border-radius: 999px;
+      box-shadow: var(--shadow-border);
+      font-family: var(--font);
+      font-size: 0.85rem;
+      color: var(--fg);
+      opacity: 0;
+      transform: translateY(6px);
+      pointer-events: none;
+      transition: opacity 0.35s ease, transform 0.35s ease;
+    }
+    #drag-hint.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+    #drag-hint svg { flex: none; }
+    @media (max-width: 768px) {
+      #drag-hint { display: none; }
     }
 
 
@@ -387,6 +420,14 @@
     <a href="index.html">Home</a>
   </nav>
 
+  <!-- Bottom-right hint, shown if the person hasn't dragged/panned yet -->
+  <div id="drag-hint">
+    <svg width="14" height="14" viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <path d="M7 1V13M7 1L4 4M7 1L10 4M7 13L4 10M7 13L10 10M1 7H13M1 7L4 4M1 7L4 10M13 7L10 4M13 7L10 10" stroke="currentColor" stroke-width="1" stroke-linecap="round" stroke-linejoin="round"/>
+    </svg>
+    Drag to move around
+  </div>
+
   <!-- Lightbox overlay -->
   <div id="overlay">
     <button id="overlay-close" aria-label="Close">
@@ -444,193 +485,905 @@
     }
     var shuffled = order.map(function(i) { return imageSrcs[i]; });
 
+    var canvasEl = document.getElementById("canvas");
     var board = document.getElementById("board");
     var centreText = document.getElementById("centre-text");
     var galaxyCards = [];
-    var CONFIG = {
-      speed: 0.45,
-      ease: 0.16,
-      scaleEase: 0.25,
-      scrollMultiplier: 0.9,
-      scaleMin: 0.92,
-      scaleMax: 1.08
-    };
-    var COMPOSITION = [
-      { x: 22, y: -10, z: -80, speed: 0.62 },
-      { x: 61, y: 10, z: 120, speed: 0.9 },
-      { x: 88, y: 12, z: -55, speed: 0.7 },
-      { x: 3, y: 36, z: 90, speed: 1.05 },
-      { x: 38, y: 60, z: -40, speed: 0.78 },
-      { x: 88, y: 64, z: 125, speed: 1 },
-      { x: 73, y: 91, z: -70, speed: 0.66 },
-      { x: 52, y: 39, z: 45, speed: 0.86 },
-      { x: 16, y: 83, z: -95, speed: 0.58 },
-      { x: 78, y: -14, z: -110, speed: 0.54 },
-      { x: 99, y: 39, z: -85, speed: 0.68 }
-    ];
-    var SPEED_POOL = [0.55, 0.75, 1, 1.3, 1.6];
 
-    function lerp(a, b, t) {
-      return (1 - t) * a + t * b;
+    /* ─────────────────────────────────────────────
+       Drag hint — "Drag to move around", bottom-right.
+       Shows if the person hasn't dragged (a card or the
+       canvas) within 3s of load; dismissed on first drag,
+       or auto-hides a few seconds after appearing.
+    ───────────────────────────────────────────── */
+    var dragHintEl = document.getElementById("drag-hint");
+    var dragHintDismissed = false;
+    var dragHintShowTimer = null;
+    var dragHintHideTimer = null;
+    if (dragHintEl && window.innerWidth >= 769) {
+      dragHintShowTimer = setTimeout(function() {
+        if (dragHintDismissed) return;
+        dragHintEl.classList.add("visible");
+        dragHintHideTimer = setTimeout(function() {
+          dragHintEl.classList.remove("visible");
+        }, 5000);
+      }, 3000);
+    }
+    function dismissDragHint() {
+      if (dragHintDismissed) return;
+      dragHintDismissed = true;
+      if (dragHintShowTimer) clearTimeout(dragHintShowTimer);
+      if (dragHintHideTimer) clearTimeout(dragHintHideTimer);
+      if (dragHintEl) dragHintEl.classList.remove("visible");
     }
 
-    function buildParticles(n) {
-      return Array.from({ length: n }, function(_, i) {
-        var slot = COMPOSITION[i % COMPOSITION.length];
-        var z = slot.z;
-        var opacity = z < 0 ? Math.max(0.68, 1 + z / 520) : 1;
+    // ── Randomized layout — free placement, guaranteed no overlap ──
+    // Rejection-sampling: drop each card at a random spot inside a working
+    // area and keep re-rolling until it clears every card already placed
+    // (checked with a gap-padded bounding box). If the area's too tight,
+    // grow it and start over.
+    var LAYOUT_GAP = 34;         // min breathing room between cards
+    var MAX_TRIES_PER_CARD = 800;
+    var MAX_AREA_GROWTHS = 6;
 
-        return {
-          x: slot.x,
-          y: slot.y,
-          speed: slot.speed || SPEED_POOL[i % SPEED_POOL.length],
-          z: z,
-          opacity: opacity
-        };
+    function rectsOverlap(a, b) {
+      return !(a.right <= b.left || a.left >= b.right || a.bottom <= b.top || a.top >= b.bottom);
+    }
+
+    function attemptPacking(cards, areaW, areaH) {
+      var placedRects = [];
+      var defs = [];
+      for (var i = 0; i < cards.length; i++) {
+        var c = cards[i];
+        var found = false;
+        for (var attempt = 0; attempt < MAX_TRIES_PER_CARD; attempt++) {
+          var left = Math.random() * Math.max(1, areaW - c.w);
+          var top = Math.random() * Math.max(1, areaH - c.h);
+          var rect = {
+            left: left - LAYOUT_GAP / 2,
+            top: top - LAYOUT_GAP / 2,
+            right: left + c.w + LAYOUT_GAP / 2,
+            bottom: top + c.h + LAYOUT_GAP / 2
+          };
+          var collides = placedRects.some(function(r) { return rectsOverlap(rect, r); });
+          if (!collides) {
+            placedRects.push(rect);
+            defs.push({ left: left, top: top });
+            found = true;
+            break;
+          }
+        }
+        if (!found) return null;
+      }
+      return defs;
+    }
+
+    function buildLayout(items) {
+      var cards = items.map(function(img) {
+        return { w: Math.round(img.w * 0.84), h: Math.round(img.h * 0.84) };
       });
+
+      var totalArea = 0;
+      cards.forEach(function(c) { totalArea += (c.w + LAYOUT_GAP) * (c.h + LAYOUT_GAP); });
+
+      var areaW = Math.sqrt(totalArea * 1.9) * 1.2;
+      var areaH = areaW * 0.68;
+
+      var defs = null;
+      for (var g = 0; g < MAX_AREA_GROWTHS; g++) {
+        defs = attemptPacking(cards, areaW, areaH);
+        if (defs) break;
+        areaW *= 1.2;
+        areaH *= 1.2;
+      }
+
+      if (!defs) {
+        // Extremely unlikely fallback — simple grid, still gap-safe.
+        var maxW = Math.max.apply(null, cards.map(function(c) { return c.w; }));
+        var maxH = Math.max.apply(null, cards.map(function(c) { return c.h; }));
+        var cellW = maxW + LAYOUT_GAP, cellH = maxH + LAYOUT_GAP, cols = 4;
+        defs = cards.map(function(c, i) {
+          return { left: (i % cols) * cellW, top: Math.floor(i / cols) * cellH };
+        });
+        areaW = cols * cellW;
+        areaH = Math.ceil(cards.length / cols) * cellH;
+      }
+
+      return { defs: defs, width: areaW, height: areaH };
     }
 
-    var particleDefs = buildParticles(shuffled.length);
+    var layout = buildLayout(shuffled);
+    var layoutDefs = layout.defs;
 
-    shuffled.forEach(function(img, i) {
-      var card = document.createElement("div");
-      card.className = "img-card";
-      card.style.width  = Math.round(img.w * 0.84) + "px";
-      card.style.height = Math.round(img.h * 0.84) + "px";
-      card.style.animationDelay = (i * 55) + "ms";
+    /* ─────────────────────────────────────────────
+       Figma-style board — drag each card like a sticker
+       (grab, tilt-while-moving, bring-to-front, settle),
+       ported directly from the Draggable Sticker component
+       — using its custom-style preset: tilt: 5, elevation: 3,
+       lighting: false (sensitivity/smoothing are the component's
+       own un-overridden defaults).
+    ───────────────────────────────────────────── */
+    var Z_DRAG_BASE = 1000;
+    var zCounter = Z_DRAG_BASE;
+    function nextZ() { zCounter += 1; return zCounter; }
 
+    var DRAG_TILT_SENSITIVITY = 3;     // DRAG_TILT_SENSITIVITY
+    var DRAG_MAX_TILT_DEG = 5;         // Math.max(1, tilt) with preset tilt: 5
+    var DRAG_TILT_SMOOTHING = 0.05;    // DRAG_TILT_SMOOTHING (tiltSmoothing default)
+    var CLICK_MOVE_THRESHOLD = 6;
+
+    /* ─────────────────────────────────────────────
+       WebGL sticker layer — peel / lift / sheen / holo,
+       ported from the Draggable Sticker component's
+       vertex + fragment shaders (verbatim), driven by
+       the same custom-style preset: tilt: 5, elevation: 3,
+       lighting: false. Falls back to a plain <img>/<video>
+       on browsers without WebGL, or if a texture upload
+       fails (e.g. a CORS-blocked asset).
+    ───────────────────────────────────────────── */
+    var GL_RENDER_SCALE = 2;
+    var GL_PAD_BASE = 20;
+    var GL_MESH_GRID_SIZE = 32;
+    var GL_ANIM_SPEED = 1.92;
+    var GL_HOLO_MOTION_DECAY = 0.88;
+    var GL_SHEEN_TILT_SHIFT = 0.05;
+    var GL_SHEEN_TILT_DEADZONE = 0.035;
+    var GL_ELEVATION_INTERNAL_MAX = 0.3;
+
+    var STICKER_CONFIG = {
+      lighting: false,
+      lightingStrength: 10,
+      lightingColor: "#ffffff",
+      sheenMode: "sheen",
+      elevationLevel: 6,
+      // Baseline (resting) shadow — kept at zero so every card's resting
+      // stroke + shadow comes from one place: the shared .img-card-frame
+      // overlay. This dynamic shadow only grows in on top of that while a
+      // card is actually being peeled/lifted, as an elevation cue.
+      staticShadow: "0px 0px 0px 0px rgba(0, 0, 0, 0)",
+      dynamicShadow: "0px 13px 14px 0px rgba(0, 0, 0, 0.30)"
+    };
+    var GL_ELEVATION = (Math.max(1, Math.min(10, STICKER_CONFIG.elevationLevel)) / 10) * GL_ELEVATION_INTERNAL_MAX;
+    var GL_SHEEN_STRENGTH = STICKER_CONFIG.lighting
+      ? Math.max(1, Math.min(10, STICKER_CONFIG.lightingStrength)) / 10
+      : 0;
+
+    function parseColorToRgb(input) {
+      if (!input) return [1, 1, 1];
+      var str = input.trim();
+      var m = str.match(/rgba?\(\s*([\d.]+)\s*,\s*([\d.]+)\s*,\s*([\d.]+)/i);
+      if (m) return [+m[1] / 255, +m[2] / 255, +m[3] / 255];
+      var h = str.replace(/^#/, "");
+      if (h.length === 3) h = h.split("").map(function(c) { return c + c; }).join("");
+      if (h.length >= 6) {
+        return [
+          parseInt(h.slice(0, 2), 16) / 255,
+          parseInt(h.slice(2, 4), 16) / 255,
+          parseInt(h.slice(4, 6), 16) / 255
+        ];
+      }
+      return [1, 1, 1];
+    }
+    var GL_SHEEN_COLOR = parseColorToRgb(STICKER_CONFIG.lightingColor);
+
+    function parseBoxShadow(shadow) {
+      var result = { x: 0, y: 0, blur: 0, color: "rgba(0,0,0,0.3)" };
+      if (!shadow) return result;
+      var colorMatch = shadow.match(/(rgba?\([^)]+\)|#[0-9a-fA-F]{3,8}|\b[a-z]+\b(?=\s*$))/i);
+      if (colorMatch) result.color = colorMatch[0];
+      var numbers = shadow.match(/-?\d+(\.\d+)?(px)?/g);
+      if (numbers) {
+        var vals = numbers.map(function(n) { return parseFloat(n); });
+        if (vals.length >= 1) result.x = vals[0];
+        if (vals.length >= 2) result.y = vals[1];
+        if (vals.length >= 3) result.blur = vals[2];
+      }
+      return result;
+    }
+    function lerpShadow(a, b, t) {
+      var x = a.x + (b.x - a.x) * t;
+      var y = a.y + (b.y - a.y) * t;
+      var blur = a.blur + (b.blur - a.blur) * t;
+      var color = t > 0.5 ? b.color : a.color;
+      return "drop-shadow(" + x.toFixed(2) + "px " + y.toFixed(2) + "px " + blur.toFixed(2) + "px " + color + ")";
+    }
+    var GL_STATIC_SHADOW = parseBoxShadow(STICKER_CONFIG.staticShadow);
+    var GL_DYNAMIC_SHADOW = parseBoxShadow(STICKER_CONFIG.dynamicShadow);
+
+    var GL_VERTEX_SHADER = [
+      "attribute vec2 aPos;",
+      "attribute vec2 aUV;",
+      "uniform float uPeel;",
+      "uniform float uLift;",
+      "uniform float uPeelAngle;",
+      "uniform float uPasting;",
+      "uniform float uScale;",
+      "uniform float uElevation;",
+      "varying vec2 vUV;",
+      "varying float vHi;",
+      "varying float vSh;",
+      "void main() {",
+      "  vUV = aUV;",
+      "  vec2 p = aPos;",
+      "  vHi = 0.0;",
+      "  vSh = 0.0;",
+      "  if (uPeel > 0.0) {",
+      "    vec2 peelAxis = vec2(cos(uPeelAngle), sin(uPeelAngle));",
+      "    vec2 uvCentered = aUV - vec2(0.5);",
+      "    float proj = dot(uvCentered, peelAxis);",
+      "    float diag = 0.5 - proj;",
+      "    float peelLine = -0.3 + uPeel * 2.0;",
+      "    float rampWidth = 0.6;",
+      "    float lifted = smoothstep(peelLine - rampWidth, peelLine, diag);",
+      "    lifted = 1.0 - lifted;",
+      "    float scale = 1.0 + lifted * uElevation;",
+      "    p *= scale;",
+      "    float inRamp = smoothstep(peelLine - rampWidth, peelLine - rampWidth * 0.5, diag) *",
+      "                   smoothstep(peelLine + 0.05, peelLine - rampWidth * 0.3, diag);",
+      "    float curveAmount = uPasting > 0.5 ? 0.06 : 0.12;",
+      "    p += (-peelAxis) * inRamp * curveAmount;",
+      "    float t = smoothstep(peelLine - rampWidth, peelLine, diag);",
+      "    vHi = inRamp * 0.75 * pow(1.0 - t, 1.2);",
+      "    vSh = inRamp * 0.75 * pow(t, 1.2);",
+      "  }",
+      "  gl_Position = vec4(p * uScale, 0.0, 1.0);",
+      "}"
+    ].join("\n");
+
+    var GL_FRAGMENT_SHADER = [
+      "precision mediump float;",
+      "uniform sampler2D uTex;",
+      "uniform vec2 uTilt;",
+      "uniform float uSheenStrength;",
+      "uniform float uSheenTiltShift;",
+      "uniform float uSheenTiltDeadzone;",
+      "uniform float uMaxTiltDeg;",
+      "uniform float uHoloMode;",
+      "uniform float uHoloMotion;",
+      "uniform vec3 uSheenColor;",
+      "varying vec2 vUV;",
+      "varying float vHi;",
+      "varying float vSh;",
+      "vec3 overlayBlend(vec3 base, vec3 blend) {",
+      "  return mix(2.0 * base * blend, 1.0 - 2.0 * (1.0 - base) * (1.0 - blend), step(0.5, base));",
+      "}",
+      "vec3 hsl2rgb(float h, float s, float l) {",
+      "  float c = (1.0 - abs(2.0 * l - 1.0)) * s;",
+      "  float x = c * (1.0 - abs(mod(h * 6.0, 2.0) - 1.0));",
+      "  float m = l - c * 0.5;",
+      "  vec3 rgb;",
+      "  if (h < 1.0/6.0) rgb = vec3(c, x, 0.0);",
+      "  else if (h < 2.0/6.0) rgb = vec3(x, c, 0.0);",
+      "  else if (h < 3.0/6.0) rgb = vec3(0.0, c, x);",
+      "  else if (h < 4.0/6.0) rgb = vec3(0.0, x, c);",
+      "  else if (h < 5.0/6.0) rgb = vec3(x, 0.0, c);",
+      "  else rgb = vec3(c, 0.0, x);",
+      "  return rgb + m;",
+      "}",
+      "void main() {",
+      "  vec4 tex = texture2D(uTex, vUV);",
+      "  if (tex.a < 0.01) discard;",
+      "  vec3 c = tex.rgb * 0.95;",
+      "  float maxTilt = max(0.001, uMaxTiltDeg);",
+      "  float tiltMag = clamp(length(uTilt) / maxTilt, 0.0, 1.0);",
+      "  float tiltGate = smoothstep(uSheenTiltDeadzone, 1.0, tiltMag);",
+      "  float gradient = fract(vUV.x * 0.5 + vUV.y * 0.5 + uTilt.x * uSheenTiltShift + uTilt.y * uSheenTiltShift);",
+      "  if (uHoloMode > 0.5) {",
+      "    float holoStrength = uSheenStrength * uHoloMotion;",
+      "    float distFromWhite = length(tex.rgb - vec3(1.0));",
+      "    float nonWhiteMask = smoothstep(0.06, 0.22, distFromWhite);",
+      "    vec3 rainbow = hsl2rgb(gradient, 0.8, 0.55);",
+      "    c = mix(c, rainbow, holoStrength * nonWhiteMask * tex.a);",
+      "  } else {",
+      "    float effectStrength = uSheenStrength * tiltGate;",
+      "    float sheen = smoothstep(0.2, 0.5, gradient) * (1.0 - smoothstep(0.5, 0.8, gradient));",
+      "    c = mix(c, uSheenColor, sheen * effectStrength * tex.a);",
+      "  }",
+      "  float hiW = clamp(vHi, 0.0, 1.0) * 0.35;",
+      "  float shW = clamp(vSh, 0.0, 1.0) * 0.40;",
+      "  vec3 hi = overlayBlend(c, vec3(1.0));",
+      "  c = mix(c, hi, hiW);",
+      "  vec3 sh = overlayBlend(c, vec3(0.0));",
+      "  c = mix(c, sh, shW);",
+      "  c *= (1.0 - shW * 0.22);",
+      "  c = clamp(c, 0.0, 1.0);",
+      "  gl_FragColor = vec4(c, tex.a);",
+      "}"
+    ].join("\n");
+
+    function glCompileShader(gl, source, type) {
+      var shader = gl.createShader(type);
+      gl.shaderSource(shader, source);
+      gl.compileShader(shader);
+      if (!gl.getShaderParameter(shader, gl.COMPILE_STATUS)) {
+        console.error("Sticker shader compile error:", gl.getShaderInfoLog(shader));
+        gl.deleteShader(shader);
+        return null;
+      }
+      return shader;
+    }
+    function glCompileProgram(gl) {
+      var vs = glCompileShader(gl, GL_VERTEX_SHADER, gl.VERTEX_SHADER);
+      var fs = glCompileShader(gl, GL_FRAGMENT_SHADER, gl.FRAGMENT_SHADER);
+      if (!vs || !fs) return null;
+      var program = gl.createProgram();
+      gl.attachShader(program, vs);
+      gl.attachShader(program, fs);
+      gl.linkProgram(program);
+      if (!gl.getProgramParameter(program, gl.LINK_STATUS)) {
+        console.error("Sticker program link error:", gl.getProgramInfoLog(program));
+        return null;
+      }
+      return program;
+    }
+
+    // Shared 32×32 grid mesh (CPU-side arrays only — each card's own GL
+    // context gets its own GPU buffers, since buffers can't cross contexts).
+    function buildStickerMesh(N) {
+      var verts = [];
+      var inds = [];
+      for (var j = 0; j <= N; j++) {
+        for (var i = 0; i <= N; i++) {
+          verts.push((i / N) * 2 - 1, (j / N) * 2 - 1, i / N, 1 - j / N);
+        }
+      }
+      for (var j2 = 0; j2 < N; j2++) {
+        for (var i2 = 0; i2 < N; i2++) {
+          var a = j2 * (N + 1) + i2;
+          inds.push(a, a + 1, a + N + 1, a + 1, a + N + 2, a + N + 1);
+        }
+      }
+      return { verts: new Float32Array(verts), inds: new Uint16Array(inds) };
+    }
+    var GL_MESH = buildStickerMesh(GL_MESH_GRID_SIZE);
+
+    // Hidden pool that keeps <video> elements decoding/playing off-screen
+    // so their frames can be streamed into each card's WebGL texture.
+    var glVideoPool = document.createElement("div");
+    glVideoPool.style.cssText = "position:fixed; left:-9999px; top:-9999px; width:8px; height:8px; overflow:hidden; pointer-events:none;";
+    document.body.appendChild(glVideoPool);
+
+    var GL_SUPPORTED = window.innerWidth >= 769 && (function() {
+      try {
+        var test = document.createElement("canvas");
+        return !!(test.getContext("webgl") || test.getContext("experimental-webgl"));
+      } catch (e) { return false; }
+    })();
+
+    function appendPlainMedia(card, img) {
       var el;
       if (img.type === "video") {
         el = document.createElement("video");
         el.autoplay = true;
-        el.loop     = true;
-        el.muted    = true;
+        el.loop = true;
+        el.muted = true;
         el.setAttribute("playsinline", "");
         el.draggable = false;
         var s1 = document.createElement("source");
-        s1.src  = img.src;
+        s1.src = img.src;
         s1.type = img.src.endsWith(".mp4") ? "video/mp4" : "video/webm";
         el.appendChild(s1);
       } else {
         el = document.createElement("img");
-        el.src      = img.src;
-        el.alt      = "";
+        el.src = img.src;
+        el.alt = "";
         el.draggable = false;
       }
-
       card.appendChild(el);
-      var dim = document.createElement("span");
-      dim.className = "galaxy-dim";
-      card.appendChild(dim);
+    }
+
+    // Sets up a per-card WebGL peel/lift/sheen/holo surface. Populates GL
+    // fields directly on the shared per-card state object `s` so pointerDown/
+    // pointerUp can drive the peel animation. Returns true on success.
+    function setupStickerGL(card, img, cardW, cardH, s) {
+      var maxDim = Math.max(cardW, cardH);
+      var pad = GL_PAD_BASE + maxDim * GL_ELEVATION * 0.6;
+      var canvasW = cardW + pad * 2;
+      var canvasH = cardH + pad * 2;
+      var scale = Math.min(cardW / canvasW, cardH / canvasH);
+
+      var glCanvas = document.createElement("canvas");
+      glCanvas.style.position = "absolute";
+      glCanvas.style.left = (-pad) + "px";
+      glCanvas.style.top = (-pad) + "px";
+      glCanvas.style.width = canvasW + "px";
+      glCanvas.style.height = canvasH + "px";
+      glCanvas.width = Math.round(canvasW * GL_RENDER_SCALE);
+      glCanvas.height = Math.round(canvasH * GL_RENDER_SCALE);
+
+      var gl;
+      try {
+        gl = glCanvas.getContext("webgl", { alpha: true, antialias: true, premultipliedAlpha: false }) ||
+             glCanvas.getContext("experimental-webgl", { alpha: true, antialias: true, premultipliedAlpha: false });
+      } catch (e) { gl = null; }
+      if (!gl) return false;
+
+      var program = glCompileProgram(gl);
+      if (!program) return false;
+
+      var vbo = gl.createBuffer();
+      gl.bindBuffer(gl.ARRAY_BUFFER, vbo);
+      gl.bufferData(gl.ARRAY_BUFFER, GL_MESH.verts, gl.STATIC_DRAW);
+
+      var ibo = gl.createBuffer();
+      gl.bindBuffer(gl.ELEMENT_ARRAY_BUFFER, ibo);
+      gl.bufferData(gl.ELEMENT_ARRAY_BUFFER, GL_MESH.inds, gl.STATIC_DRAW);
+
+      gl.pixelStorei(gl.UNPACK_FLIP_Y_WEBGL, false);
+      gl.viewport(0, 0, glCanvas.width, glCanvas.height);
+      gl.clearColor(0, 0, 0, 0);
+      gl.clear(gl.COLOR_BUFFER_BIT);
+
+      var texture = gl.createTexture();
+      gl.bindTexture(gl.TEXTURE_2D, texture);
+      gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_WRAP_S, gl.CLAMP_TO_EDGE);
+      gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_WRAP_T, gl.CLAMP_TO_EDGE);
+      gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_MIN_FILTER, gl.LINEAR);
+      gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_MAG_FILTER, gl.LINEAR);
+
+      s.gl = gl;
+      s.glTexReady = false;
+      s.glIndexCount = GL_MESH.inds.length;
+
+      function draw() {
+        if (!s.glTexReady) return;
+        gl.viewport(0, 0, glCanvas.width, glCanvas.height);
+        gl.clearColor(0, 0, 0, 0);
+        gl.clear(gl.COLOR_BUFFER_BIT);
+        gl.enable(gl.BLEND);
+        gl.blendFunc(gl.SRC_ALPHA, gl.ONE_MINUS_SRC_ALPHA);
+        gl.useProgram(program);
+        gl.bindBuffer(gl.ARRAY_BUFFER, vbo);
+        gl.bindBuffer(gl.ELEMENT_ARRAY_BUFFER, ibo);
+        var aPos = gl.getAttribLocation(program, "aPos");
+        var aUV = gl.getAttribLocation(program, "aUV");
+        gl.enableVertexAttribArray(aPos);
+        gl.enableVertexAttribArray(aUV);
+        gl.vertexAttribPointer(aPos, 2, gl.FLOAT, false, 16, 0);
+        gl.vertexAttribPointer(aUV, 2, gl.FLOAT, false, 16, 8);
+
+        gl.uniform1f(gl.getUniformLocation(program, "uPeel"), s.peel);
+        gl.uniform1f(gl.getUniformLocation(program, "uLift"), s.lift);
+        gl.uniform1f(gl.getUniformLocation(program, "uPeelAngle"), s.peelAngle);
+        gl.uniform1f(gl.getUniformLocation(program, "uPasting"), s.sticking ? 1 : 0);
+        gl.uniform1f(gl.getUniformLocation(program, "uScale"), scale);
+        gl.uniform1f(gl.getUniformLocation(program, "uElevation"), GL_ELEVATION);
+        gl.uniform2f(gl.getUniformLocation(program, "uTilt"), s.dragTiltX, s.dragTiltY);
+        gl.uniform1f(gl.getUniformLocation(program, "uSheenStrength"), GL_SHEEN_STRENGTH);
+        gl.uniform3f(gl.getUniformLocation(program, "uSheenColor"), GL_SHEEN_COLOR[0], GL_SHEEN_COLOR[1], GL_SHEEN_COLOR[2]);
+        gl.uniform1f(gl.getUniformLocation(program, "uSheenTiltShift"), GL_SHEEN_TILT_SHIFT);
+        gl.uniform1f(gl.getUniformLocation(program, "uSheenTiltDeadzone"), GL_SHEEN_TILT_DEADZONE);
+        gl.uniform1f(gl.getUniformLocation(program, "uMaxTiltDeg"), DRAG_MAX_TILT_DEG);
+        gl.uniform1f(gl.getUniformLocation(program, "uHoloMode"), STICKER_CONFIG.sheenMode === "holo" ? 1 : 0);
+        gl.uniform1f(gl.getUniformLocation(program, "uHoloMotion"), s.holoMotion);
+
+        gl.activeTexture(gl.TEXTURE0);
+        gl.bindTexture(gl.TEXTURE_2D, texture);
+        gl.uniform1i(gl.getUniformLocation(program, "uTex"), 0);
+
+        gl.drawElements(gl.TRIANGLES, s.glIndexCount, gl.UNSIGNED_SHORT, 0);
+      }
+      s.glDraw = draw;
+
+      function updateShadow() {
+        var tRaw = Math.max(s.lift, s.peel);
+        var t = tRaw * tRaw * (3 - 2 * tRaw);
+        glCanvas.style.filter = lerpShadow(GL_STATIC_SHADOW, GL_DYNAMIC_SHADOW, t);
+      }
+      s.glUpdateShadow = updateShadow;
+
+      function tick(timestamp) {
+        if (s.glLastT == null) s.glLastT = timestamp;
+        var dt = Math.min((timestamp - s.glLastT) / 1000, 0.1);
+        s.glLastT = timestamp;
+        var step = GL_ANIM_SPEED * dt;
+        var changed = false;
+
+        if (s.peeling) {
+          if (s.peel < 1 || s.lift < 1) {
+            s.peel = Math.min(1, s.peel + step);
+            s.lift = Math.min(1, s.lift + step);
+            changed = true;
+          }
+        }
+        if (s.sticking) {
+          if (s.peel > 0 || s.lift > 0) {
+            s.peel = Math.max(0, s.peel - step);
+            s.lift = Math.max(0, s.lift - step);
+            changed = true;
+          } else {
+            s.sticking = false;
+          }
+        }
+        var holoDecayActive = STICKER_CONFIG.sheenMode === "holo" && s.holoMotion > 0.005;
+        if (holoDecayActive) {
+          s.holoMotion *= GL_HOLO_MOTION_DECAY;
+          if (s.holoMotion < 0.005) s.holoMotion = 0;
+          changed = true;
+        }
+        if (changed) updateShadow();
+        if (changed || s.held || holoDecayActive) draw();
+
+        if (s.held || s.peeling || s.sticking || holoDecayActive) {
+          s.glRaf = requestAnimationFrame(tick);
+        } else {
+          s.glRaf = null;
+          s.glLastT = null;
+        }
+      }
+      s.glEnsureTick = function() {
+        if (s.glRaf == null) {
+          s.glLastT = null;
+          s.glRaf = requestAnimationFrame(tick);
+        }
+      };
+
+      card.appendChild(glCanvas);
+
+      if (img.type === "video") {
+        var video = document.createElement("video");
+        video.crossOrigin = "anonymous";
+        video.autoplay = true;
+        video.loop = true;
+        video.muted = true;
+        video.defaultMuted = true;
+        video.preload = "auto";
+        video.playsInline = true;
+        video.setAttribute("playsinline", "");
+        video.setAttribute("muted", "");
+        var vsrc = document.createElement("source");
+        vsrc.src = img.src;
+        vsrc.type = img.src.endsWith(".mp4") ? "video/mp4" : "video/webm";
+        video.appendChild(vsrc);
+        glVideoPool.appendChild(video);
+
+        var frameLoopStarted = false;
+        var corsFailed = false;
+        var gaveUp = false;
+
+        function fallbackToPlainVideo() {
+          if (gaveUp) return;
+          gaveUp = true;
+          video.pause();
+          video.remove();
+          glCanvas.remove();
+          s.gl = null;
+          appendPlainMedia(card, img);
+        }
+
+        function videoFrame() {
+          if (corsFailed || gaveUp) return;
+          if (video.readyState >= video.HAVE_CURRENT_DATA) {
+            try {
+              gl.bindTexture(gl.TEXTURE_2D, texture);
+              gl.texImage2D(gl.TEXTURE_2D, 0, gl.RGBA, gl.RGBA, gl.UNSIGNED_BYTE, video);
+              s.glTexReady = true;
+              draw();
+            } catch (e) {
+              corsFailed = true;
+              fallbackToPlainVideo();
+              return;
+            }
+          }
+          requestAnimationFrame(videoFrame);
+        }
+
+        function startFrameLoop() {
+          if (!frameLoopStarted && !gaveUp) {
+            frameLoopStarted = true;
+            var p = video.play();
+            if (p && p.catch) p.catch(function() { /* autoplay blocked — frame loop still tries */ });
+            requestAnimationFrame(videoFrame);
+          }
+        }
+
+        video.addEventListener("loadeddata", startFrameLoop);
+        video.addEventListener("canplay", startFrameLoop);
+        // If it never even loads (e.g. the CORS response the browser needs
+        // for crossOrigin="anonymous" isn't present), fall back to a plain
+        // <video> — plain playback doesn't require CORS, only the WebGL
+        // texture capture does.
+        video.addEventListener("error", fallbackToPlainVideo);
+        vsrc.addEventListener("error", fallbackToPlainVideo);
+        setTimeout(function() {
+          if (!frameLoopStarted) fallbackToPlainVideo();
+        }, 4000);
+      } else {
+        var image = new Image();
+        image.crossOrigin = "anonymous";
+        image.onload = function() {
+          try {
+            gl.bindTexture(gl.TEXTURE_2D, texture);
+            gl.texImage2D(gl.TEXTURE_2D, 0, gl.RGBA, gl.RGBA, gl.UNSIGNED_BYTE, image);
+            s.glTexReady = true;
+            updateShadow();
+            draw();
+          } catch (e) {
+            glCanvas.remove();
+            s.gl = null;
+            appendPlainMedia(card, img);
+          }
+        };
+        image.onerror = function() {
+          glCanvas.remove();
+          s.gl = null;
+          appendPlainMedia(card, img);
+        };
+        image.src = img.src;
+      }
+
+      return true;
+    }
+
+    shuffled.forEach(function(img, i) {
+      var def = layoutDefs[i];
+      var cardW = Math.round(img.w * 0.84);
+      var cardH = Math.round(img.h * 0.84);
+
+      var card = document.createElement("div");
+      card.className = "img-card";
+      card.style.width  = cardW + "px";
+      card.style.height = cardH + "px";
+      card.style.animationDelay = (i * 55) + "ms";
+      card.style.left = def.left + "px";
+      card.style.top  = def.top + "px";
+      card.style.zIndex = String(300 + i);
+
       board.appendChild(card);
       galaxyCards.push(card);
 
-      // Click to expand
-      card.addEventListener("click", function() { openOverlay(img.type, img.src); });
+      // ── Per-card state — drag/tilt (StickerDrag's stateRef) plus
+      // peel/lift/holo fields, populated by setupStickerGL below ──
+      var s = {
+        tx: 0, ty: 0,
+        dragTiltX: 0, dragTiltY: 0,
+        held: false,
+        dragStartX: 0, dragStartY: 0,
+        origTx: 0, origTy: 0,
+        lastMoveX: 0, lastMoveY: 0, lastMoveT: 0,
+        moved: 0,
+        peel: 0, lift: 0,
+        peeling: false, sticking: false,
+        peelAngle: -Math.PI / 4,
+        holoMotion: 0,
+        gl: null, glRaf: null, glLastT: null
+      };
+
+      if (!(GL_SUPPORTED && setupStickerGL(card, img, cardW, cardH, s))) {
+        appendPlainMedia(card, img);
+      }
+
+      // Same stroke + drop shadow on every card, GL or fallback —
+      // positioned so it always paints above the canvas/img/video.
+      var frame = document.createElement("div");
+      frame.className = "img-card-frame";
+      card.appendChild(frame);
+
+      function applyTransform() {
+        card.style.transform =
+          "translate3d(" + s.tx.toFixed(1) + "px, " + s.ty.toFixed(1) + "px, 0) " +
+          "rotateX(" + s.dragTiltX.toFixed(2) + "deg) rotateY(" + s.dragTiltY.toFixed(2) + "deg)";
+      }
+      applyTransform();
+
+      // handleMouseDown / handleTouchStart
+      function pointerDown(clientX, clientY) {
+        s.held = true;
+        s.moved = 0;
+        s.dragStartX = clientX;
+        s.dragStartY = clientY;
+        s.origTx = s.tx;
+        s.origTy = s.ty;
+        s.lastMoveX = clientX;
+        s.lastMoveY = clientY;
+        s.lastMoveT = performance.now();
+        card.style.zIndex = String(nextZ());
+        card.classList.add("dragging");
+        dismissDragHint();
+
+        if (s.gl) {
+          var rect = card.getBoundingClientRect();
+          var centerX = rect.left + rect.width / 2;
+          var centerY = rect.top + rect.height / 2;
+          s.peelAngle = Math.atan2(clientY - centerY, clientX - centerX);
+          s.peel = 0;
+          s.lift = 0;
+          s.peeling = true;
+          s.sticking = false;
+          s.glEnsureTick();
+        }
+      }
+
+      // handleMouseMove — tilt lerps toward target on every move event,
+      // exactly as in the source (no per-frame animation loop while held)
+      function pointerMove(clientX, clientY) {
+        if (!s.held) return;
+        var dx = clientX - s.dragStartX;
+        var dy = clientY - s.dragStartY;
+        s.tx = s.origTx + dx;
+        s.ty = s.origTy + dy;
+        s.moved = Math.max(s.moved, Math.abs(dx) + Math.abs(dy));
+
+        var now = performance.now();
+        var dt = Math.max(1, now - s.lastMoveT);
+        var velX = ((clientX - s.lastMoveX) / dt) * 16;
+        var velY = ((clientY - s.lastMoveY) / dt) * 16;
+        s.lastMoveX = clientX;
+        s.lastMoveY = clientY;
+        s.lastMoveT = now;
+
+        var targetTiltY = Math.max(-DRAG_MAX_TILT_DEG, Math.min(DRAG_MAX_TILT_DEG, velX * DRAG_TILT_SENSITIVITY));
+        var targetTiltX = Math.max(-DRAG_MAX_TILT_DEG, Math.min(DRAG_MAX_TILT_DEG, -velY * DRAG_TILT_SENSITIVITY));
+
+        s.dragTiltX += (targetTiltX - s.dragTiltX) * DRAG_TILT_SMOOTHING;
+        s.dragTiltY += (targetTiltY - s.dragTiltY) * DRAG_TILT_SMOOTHING;
+
+        applyTransform();
+      }
+
+      // handleMouseUp — settleTilt: multiplicative decay back to 0,
+      // plus the peel-release / re-stick animation for the GL surface
+      function pointerUp() {
+        if (!s.held) return;
+        s.held = false;
+        card.classList.remove("dragging");
+
+        if (s.gl) {
+          s.peeling = false;
+          s.sticking = true;
+          if (s.peel >= 0.95) {
+            var rect = card.getBoundingClientRect();
+            var centerX = rect.left + rect.width / 2;
+            var centerY = rect.top + rect.height / 2;
+            var dx2 = s.lastMoveX - centerX;
+            var dy2 = s.lastMoveY - centerY;
+            s.peelAngle = Math.atan2(-dy2, -dx2);
+            s.peel = 1;
+          }
+          s.glEnsureTick();
+        }
+
+        function settleTilt() {
+          s.dragTiltX *= 0.9;
+          s.dragTiltY *= 0.9;
+          applyTransform();
+
+          if (Math.abs(s.dragTiltX) > 0.1 || Math.abs(s.dragTiltY) > 0.1) {
+            requestAnimationFrame(settleTilt);
+          } else {
+            s.dragTiltX = 0;
+            s.dragTiltY = 0;
+            applyTransform();
+          }
+        }
+        settleTilt();
+      }
+
+      card.addEventListener("mousedown", function(e) {
+        if (window.innerWidth < 769) return;
+        e.preventDefault();
+        e.stopPropagation();
+        pointerDown(e.clientX, e.clientY);
+
+        function onMove(e2) { pointerMove(e2.clientX, e2.clientY); }
+        function onUp() {
+          pointerUp();
+          window.removeEventListener("mousemove", onMove);
+          window.removeEventListener("mouseup", onUp);
+        }
+        window.addEventListener("mousemove", onMove);
+        window.addEventListener("mouseup", onUp);
+      });
+
+      card.addEventListener("touchstart", function(e) {
+        if (window.innerWidth < 769) return;
+        var t = e.touches[0];
+        if (!t) return;
+        e.stopPropagation();
+        pointerDown(t.clientX, t.clientY);
+
+        function onMove(e2) {
+          var t2 = e2.touches[0];
+          if (t2) pointerMove(t2.clientX, t2.clientY);
+        }
+        function onEnd() {
+          pointerUp();
+          window.removeEventListener("touchmove", onMove);
+          window.removeEventListener("touchend", onEnd);
+        }
+        window.addEventListener("touchmove", onMove, { passive: true });
+        window.addEventListener("touchend", onEnd);
+      }, { passive: true });
+
+      // Click to expand — suppressed if the pointer actually dragged
+      card.addEventListener("click", function(e) {
+        if (s.moved > CLICK_MOVE_THRESHOLD) {
+          e.preventDefault();
+          e.stopPropagation();
+          return;
+        }
+        openOverlay(img.type, img.src);
+      });
     });
 
-    function ImageGalaxy(container, cards, defs) {
-      this.container = container;
-      this.cards = cards;
-      this.defs = defs;
-      this.nodes = [];
-      this.scroll = { current: 0, target: 0, last: 0 };
-      this.directionSign = 1;
-      this.direction = "down";
-      this.containerHeight = 0;
-      this.containerOffsetHeight = 0;
-      this.lastTime = 0;
-      this.raf = 0;
-      this.layout();
+    /* ─────────────────────────────────────────────
+       Canvas panning — drag empty space to pan the
+       whole board, like the Figma hand tool.
+    ───────────────────────────────────────────── */
+    var pan = { x: 0, y: 0 };
+    var panning = false;
+    var panStart = { x: 0, y: 0 };
+    var panOrig = { x: 0, y: 0 };
+
+    function applyPan() {
+      board.style.transform = "translate3d(" + pan.x.toFixed(1) + "px, " + pan.y.toFixed(1) + "px, 0)";
+      canvasEl.style.backgroundPosition = pan.x.toFixed(1) + "px " + pan.y.toFixed(1) + "px";
     }
 
-    ImageGalaxy.prototype.layout = function() {
-      var rect = this.container.getBoundingClientRect();
-      var small = window.innerWidth < 700;
-      var self = this;
-      this.nodes = this.cards.map(function(card, i) {
-        var d = self.defs[i];
-        var dim = card.querySelector(".galaxy-dim");
-        if (dim) dim.style.opacity = String(1 - d.opacity);
+    // Centre the grid in the viewport on first paint
+    var canvasRect = canvasEl.getBoundingClientRect();
+    pan.x = (canvasRect.width - layout.width) / 2;
+    pan.y = (canvasRect.height - layout.height) / 2;
+    applyPan();
 
-        var left = small ? (i % 4) * 25 + (d.x % 20) : d.x;
-        card.style.left = left + "%";
-        card.style.top = d.y + "%";
-        card.style.zIndex = String(Math.round(d.z + 300));
-        card.style.transform = "translate3d(-50%, 0px, 0) scale(1)";
+    canvasEl.addEventListener("mousedown", function(e) {
+      if (window.innerWidth < 769) return;
+      if (e.target.closest(".img-card")) return;
+      panning = true;
+      panStart.x = e.clientX;
+      panStart.y = e.clientY;
+      panOrig.x = pan.x;
+      panOrig.y = pan.y;
+      canvasEl.classList.add("panning");
+      dismissDragHint();
+    });
 
-        var box = card.getBoundingClientRect();
-        return {
-          el: card,
-          speed: d.speed,
-          z: d.z,
-          extra: 0,
-          height: box.height,
-          top: box.top - rect.top,
-          position: 0,
-          currentScale: 1,
-          isBefore: false,
-          isAfter: false
-        };
-      });
-      this.containerHeight = this.container.clientHeight;
-      this.containerOffsetHeight = this.containerHeight * 0.1;
-      this.scroll = { current: 0, target: 0, last: 0 };
-    };
+    window.addEventListener("mousemove", function(e) {
+      if (!panning) return;
+      pan.x = panOrig.x + (e.clientX - panStart.x);
+      pan.y = panOrig.y + (e.clientY - panStart.y);
+      applyPan();
+    });
 
-    ImageGalaxy.prototype.addScroll = function(velocity, direction) {
-      var v = Math.max(-60, Math.min(60, velocity));
-      this.scroll.target += v * CONFIG.scrollMultiplier;
-      this.direction = direction > 0 ? "down" : "up";
-      if (direction !== 0) this.directionSign = Math.sign(direction);
-    };
+    window.addEventListener("mouseup", function() {
+      if (!panning) return;
+      panning = false;
+      canvasEl.classList.remove("panning");
+    });
 
-    ImageGalaxy.prototype.update = function(dt) {
-      this.scroll.target += CONFIG.speed * dt * this.directionSign;
-      this.scroll.current = lerp(this.scroll.current, this.scroll.target, CONFIG.ease);
-      this.direction = this.scroll.current < this.scroll.last ? "down" : "up";
+    canvasEl.addEventListener("touchstart", function(e) {
+      if (window.innerWidth < 769) return;
+      if (e.target.closest(".img-card")) return;
+      var t = e.touches[0];
+      if (!t) return;
+      panning = true;
+      panStart.x = t.clientX;
+      panStart.y = t.clientY;
+      panOrig.x = pan.x;
+      panOrig.y = pan.y;
+      dismissDragHint();
+    }, { passive: true });
 
-      this.nodes.forEach(function(t) {
-        t.position = -this.scroll.current * t.speed - t.extra;
-        var bottom = t.position + t.top + t.height;
-        t.isBefore = bottom < -this.containerOffsetHeight;
-        t.isAfter = bottom > this.containerHeight + this.containerOffsetHeight;
+    window.addEventListener("touchmove", function(e) {
+      if (!panning) return;
+      var t = e.touches[0];
+      if (!t) return;
+      pan.x = panOrig.x + (t.clientX - panStart.x);
+      pan.y = panOrig.y + (t.clientY - panStart.y);
+      applyPan();
+    }, { passive: true });
 
-        if (this.direction === "up" && t.isBefore) {
-          t.extra = t.extra - this.containerHeight - this.containerOffsetHeight;
-          t.isBefore = false;
-          t.isAfter = false;
-        }
-        if (this.direction === "down" && t.isAfter) {
-          t.extra = t.extra + this.containerHeight;
-          t.isBefore = false;
-          t.isAfter = false;
-        }
+    window.addEventListener("touchend", function() {
+      panning = false;
+    });
 
-        var top = t.position + t.top;
-        var f = Math.max(0, Math.min(1, top / this.containerHeight));
-        var targetScale = CONFIG.scaleMin + f * (CONFIG.scaleMax - CONFIG.scaleMin);
-        t.currentScale = lerp(t.currentScale, targetScale, CONFIG.scaleEase);
-        t.el.style.transform = "translate3d(-50%, " + t.position.toFixed(2) + "px, " + t.z + "px) scale(" + t.currentScale.toFixed(3) + ")";
-      }, this);
-
-      this.scroll.last = this.scroll.current;
-    };
-
-    ImageGalaxy.prototype.start = function() {
-      var self = this;
-      function tick(now) {
-        var dt = self.lastTime ? Math.min(2, (now - self.lastTime) / 16.667) : 1;
-        self.lastTime = now;
-        self.update(dt);
-        self.raf = requestAnimationFrame(tick);
-      }
-      this.raf = requestAnimationFrame(tick);
-    };
-
-    var galaxy = new ImageGalaxy(board, galaxyCards, particleDefs);
-    galaxy.start();
-    window.addEventListener("resize", function() { galaxy.layout(); });
+    canvasEl.addEventListener("wheel", function(e) {
+      if (window.innerWidth < 769) return;
+      e.preventDefault();
+      pan.x -= e.deltaX;
+      pan.y -= e.deltaY;
+      applyPan();
+    }, { passive: false });
 
     /* ─────────────────────────────────────────────
        Lightbox
@@ -709,28 +1462,6 @@
       });
     }
 
-    /* ─────────────────────────────────────────────
-       Cursor-follow: board drifts toward a target
-       offset driven by mouse position
-    ───────────────────────────────────────────── */
-    var lastTouchY = null;
-    document.addEventListener("touchstart", function(e) {
-      lastTouchY = e.touches[0] ? e.touches[0].clientY : null;
-    }, { passive: true });
-
-    document.addEventListener("touchmove", function(e) {
-      if (lastTouchY === null || !e.touches[0]) return;
-      var nextY = e.touches[0].clientY;
-      var delta = lastTouchY - nextY;
-      galaxy.addScroll(delta, delta);
-      lastTouchY = nextY;
-    }, { passive: true });
-
-    /* ── Scroll: do nothing (no zoom) ── */
-    document.addEventListener("wheel", function(e) {
-      e.preventDefault();
-      galaxy.addScroll(e.deltaY, e.deltaY);
-    }, { passive: false });
   </script>
 
 </body>
