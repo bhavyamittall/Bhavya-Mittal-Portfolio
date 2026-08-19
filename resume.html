@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <script>
+    // Runs before paint so unlocked visitors don't see a flash of the gate.
+    if (localStorage.getItem('resume-unlocked') === '1') {
+      document.documentElement.classList.add('unlocked');
+    }
+  </script>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Resume &mdash; Bhavya Mittal</title>
+  <meta name="description" content="Resume / CV for Bhavya Mittal, product designer." />
+  <meta name="author" content="Bhavya Mittal" />
+  <meta name="robots" content="noindex, nofollow" />
+  <link rel="icon" type="image/svg+xml" href="assets/images/Logos/Favicon_ylckj8.svg" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    :root {
+      --bg: #F7F6F5; --fg: #3a3a3a; --muted: #9a9a9a; --muted2: #c8c4be;
+      --border: #e8e5e0; --blue: #2C8EFF;
+      --shadow-border: 0px 0px 0px 1px rgba(0, 0, 0, 0.06), 0px 1px 2px -1px rgba(0, 0, 0, 0.06), 0px 2px 4px 0px rgba(0, 0, 0, 0.04);
+      --shadow-border-hover: 0px 0px 0px 1px rgba(0, 0, 0, 0.08), 0px 1px 2px -1px rgba(0, 0, 0, 0.08), 0px 2px 4px 0px rgba(0, 0, 0, 0.06);
+      --font: -apple-system, BlinkMacSystemFont, "Helvetica Neue", Helvetica, Arial, sans-serif;
+    }
+    html { font-size: 15px; -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale; }
+    body { background: var(--bg); color: var(--fg); font-family: var(--font); line-height: 1.65; min-height: 100vh; }
+    a { color: var(--blue); text-decoration: underline; text-decoration-color: transparent; text-underline-offset: 2px; transition-property: color, text-decoration-color; transition-duration: 0.15s; transition-timing-function: ease; }
+    a:hover { text-decoration-color: var(--blue); }
+
+    @keyframes fadeUp { from { opacity: 0; transform: translateY(10px); filter: blur(4px); } to { opacity: 1; transform: translateY(0); filter: blur(0); } }
+    .anim { opacity: 0; animation: fadeUp 0.5s ease forwards; }
+
+    .outer { max-width: 480px; margin: 0 auto; padding: 96px 32px 140px; }
+    .back { font-size: 0.95rem; color: var(--muted); text-decoration: none; display: inline-flex; align-items: center; gap: 5px; margin-bottom: 44px; transition-property: color; transition-duration: 0.15s; transition-timing-function: ease; }
+    .back:hover { color: var(--blue); text-decoration: none; }
+    .back svg { transition-property: transform; transition-duration: 0.2s; transition-timing-function: cubic-bezier(0.34, 1.56, 0.64, 1); }
+    .back:hover svg { transform: translateX(-3px); }
+
+    html:not(.unlocked) .resume-panel { display: none; }
+    #gate-overlay { display: block; }
+    html.unlocked #gate-overlay { display: none; }
+
+    .gate-title { font-size: 1.15rem; font-weight: 600; color: var(--fg); margin-bottom: 6px; }
+    .gate-sub { font-size: 0.93rem; color: var(--muted); margin-bottom: 26px; line-height: 1.55; }
+    .gate-form { display: flex; flex-direction: column; align-items: flex-start; gap: 14px; }
+    .gate-otp { display: flex; gap: 10px; }
+    .gate-otp input {
+      width: 46px; height: 54px; font-family: var(--font); font-size: 1.4rem; font-weight: 600;
+      text-align: center; color: var(--fg); background: #fff; border: 1px solid var(--border); border-radius: 8px;
+      outline: none; box-shadow: var(--shadow-border); transition: border-color 0.15s ease, box-shadow 0.15s ease;
+      -moz-appearance: textfield;
+    }
+    .gate-otp input::-webkit-outer-spin-button,
+    .gate-otp input::-webkit-inner-spin-button { -webkit-appearance: none; margin: 0; }
+    .gate-otp input:focus { border-color: var(--blue); }
+    .gate-submit {
+      font-family: var(--font); font-size: 0.9rem; font-weight: 500; color: #fff;
+      background: var(--fg); border: none; border-radius: 6px; padding: 10px 20px;
+      cursor: pointer; transition: opacity 0.15s ease;
+    }
+    .gate-submit:hover { opacity: 0.85; }
+    .gate-submit:active { transform: scale(0.98); }
+    .gate-error { font-size: 0.8rem; color: #c1584c; min-height: 18px; margin-top: -4px; }
+    .gate-request { font-size: 0.85rem; color: var(--muted); text-decoration: none; }
+    .gate-request:hover { color: var(--blue); }
+    #gate-overlay.is-shaking { animation: gateShake 0.35s ease; }
+    @keyframes gateShake {
+      0%, 100% { transform: translateX(0); }
+      25% { transform: translateX(-6px); }
+      75% { transform: translateX(6px); }
+    }
+    @media (prefers-reduced-motion: reduce) {
+      #gate-overlay.is-shaking { animation: none; }
+    }
+
+    .resume-panel { display: flex; flex-direction: column; gap: 22px; }
+    .resume-title { font-size: 1.15rem; font-weight: 600; color: var(--fg); }
+    .resume-sub { font-size: 0.95rem; color: var(--muted); line-height: 1.6; }
+    .resume-actions { display: flex; gap: 10px; flex-wrap: wrap; }
+    .resume-btn {
+      display: inline-flex; align-items: center; gap: 8px;
+      font-size: 0.9rem; font-weight: 500; text-decoration: none;
+      padding: 10px 18px; border-radius: 6px; transition: opacity 0.15s ease, transform 0.15s ease;
+    }
+    .resume-btn:active { transform: scale(0.97); }
+    .resume-btn.primary { background: var(--fg); color: #fff; }
+    .resume-btn.primary:hover { opacity: 0.85; }
+    .resume-btn.secondary { background: #fff; color: var(--fg); border: 1px solid var(--border); box-shadow: var(--shadow-border); }
+    .resume-btn.secondary:hover { box-shadow: var(--shadow-border-hover); }
+  </style>
+</head>
+<body>
+  <div class="outer">
+    <a class="back anim" href="index.html" style="animation-delay:0ms">
+      <svg width="14" height="14" viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg" style="display:block;flex-shrink:0"><path d="M6 3L2 7L6 11M2 7H12" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      Home
+    </a>
+
+    <div id="gate-overlay" class="anim" style="animation-delay:60ms">
+      <p class="gate-title">Resume is passcode protected</p>
+      <p class="gate-sub">Enter the passcode to view it. Ask Bhavya if you don't have it.</p>
+      <form class="gate-form" id="gateForm" autocomplete="off">
+        <div class="gate-otp">
+          <input type="text" inputmode="numeric" pattern="[0-9]*" maxlength="1" class="gate-digit" data-index="0" />
+          <input type="text" inputmode="numeric" pattern="[0-9]*" maxlength="1" class="gate-digit" data-index="1" />
+          <input type="text" inputmode="numeric" pattern="[0-9]*" maxlength="1" class="gate-digit" data-index="2" />
+          <input type="text" inputmode="numeric" pattern="[0-9]*" maxlength="1" class="gate-digit" data-index="3" />
+        </div>
+        <p class="gate-error" id="gateError"></p>
+        <button class="gate-submit" type="submit">Unlock</button>
+        <a class="gate-request" href="mailto:bhavyamittalbiz@gmail.com?subject=Password%20request%3A%20Resume&amp;body=Hi%20Bhavya%2C%0A%0ACould%20you%20send%20me%20the%20passcode%20for%20your%20resume%3F%0A%0AThanks%2C%0A">Request password</a>
+      </form>
+    </div>
+
+    <div class="resume-panel anim" style="animation-delay:60ms">
+      <div>
+        <p class="resume-title">Resume</p>
+        <p class="resume-sub">Thanks for verifying &mdash; here's my CV.</p>
+      </div>
+      <div class="resume-actions">
+        <a class="resume-btn primary" href="https://drive.google.com/file/d/1ErbdDrQ5eRREuS20UU6Qw8vEYLGaI8XJ/view?usp=sharing" target="_blank" rel="noopener">View CV</a>
+        <a class="resume-btn secondary" href="https://drive.google.com/uc?export=download&id=1ErbdDrQ5eRREuS20UU6Qw8vEYLGaI8XJ" target="_blank" rel="noopener">Download</a>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    (function() {
+      var CORRECT_HASH = '9a2d94742295a879f4da56d22e59f2b5edd3efad1ddb6ba3ae603eb8bd4d40df';
+      var form   = document.getElementById('gateForm');
+      var digits = Array.from(document.querySelectorAll('.gate-digit'));
+      var error  = document.getElementById('gateError');
+
+      async function sha256Hex(str) {
+        var buf = await crypto.subtle.digest('SHA-256', new TextEncoder().encode(str));
+        return Array.from(new Uint8Array(buf)).map(function(b) { return b.toString(16).padStart(2, '0'); }).join('');
+      }
+
+      function currentCode() { return digits.map(function(d) { return d.value; }).join(''); }
+
+      function clearAndFocusFirst() {
+        digits.forEach(function(d) { d.value = ''; });
+        digits[0].focus();
+      }
+
+      async function tryUnlock() {
+        var code = currentCode();
+        if (code.length < 4) return;
+        var hash = await sha256Hex(code);
+        if (hash === CORRECT_HASH) {
+          localStorage.setItem('resume-unlocked', '1');
+          document.documentElement.classList.add('unlocked');
+        } else {
+          error.textContent = 'Wrong passcode, try again.';
+          var overlay = document.getElementById('gate-overlay');
+          overlay.classList.remove('is-shaking');
+          void overlay.offsetWidth;
+          overlay.classList.add('is-shaking');
+          clearAndFocusFirst();
+        }
+      }
+
+      digits.forEach(function(input, i) {
+        input.addEventListener('input', function() {
+          input.value = input.value.replace(/[^0-9]/g, '').slice(0, 1);
+          error.textContent = '';
+          if (input.value && i < digits.length - 1) {
+            digits[i + 1].focus();
+          } else if (input.value && i === digits.length - 1) {
+            tryUnlock();
+          }
+        });
+        input.addEventListener('keydown', function(e) {
+          if (e.key === 'Backspace' && !input.value && i > 0) {
+            digits[i - 1].focus();
+          }
+        });
+        input.addEventListener('paste', function(e) {
+          e.preventDefault();
+          var pasted = (e.clipboardData.getData('text') || '').replace(/[^0-9]/g, '').slice(0, 4);
+          pasted.split('').forEach(function(ch, idx) { if (digits[idx]) digits[idx].value = ch; });
+          if (pasted.length === 4) { tryUnlock(); } else if (digits[pasted.length]) { digits[pasted.length].focus(); }
+        });
+      });
+
+      form.addEventListener('submit', function(e) {
+        e.preventDefault();
+        tryUnlock();
+      });
+
+      if (digits[0]) digits[0].focus();
+    })();
+  </script>
+</body>
+</html>
