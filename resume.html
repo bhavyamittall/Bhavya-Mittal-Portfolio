@@ -66,14 +66,14 @@
     .gate-error { font-size: 0.8rem; color: #c1584c; min-height: 18px; margin-top: -4px; }
     .gate-request { font-size: 0.85rem; color: var(--muted); text-decoration: none; }
     .gate-request:hover { color: var(--blue); }
-    #gate-overlay.is-shaking { animation: gateShake 0.35s ease; }
+    .gate-inner.is-shaking { animation: gateShake 0.35s ease; }
     @keyframes gateShake {
       0%, 100% { transform: translateX(0); }
       25% { transform: translateX(-6px); }
       75% { transform: translateX(6px); }
     }
     @media (prefers-reduced-motion: reduce) {
-      #gate-overlay.is-shaking { animation: none; }
+      .gate-inner.is-shaking { animation: none; }
     }
 
     .resume-panel { display: flex; flex-direction: column; gap: 22px; }
@@ -100,6 +100,7 @@
     </a>
 
     <div id="gate-overlay" class="anim" style="animation-delay:60ms">
+      <div class="gate-inner" id="gateInner">
       <p class="gate-title">Resume is passcode protected</p>
       <p class="gate-sub">Enter the passcode to view it. Ask Bhavya if you don't have it.</p>
       <form class="gate-form" id="gateForm" autocomplete="off">
@@ -113,6 +114,7 @@
         <button class="gate-submit" type="submit">Unlock</button>
         <a class="gate-request" href="mailto:bhavyamittalbiz@gmail.com?subject=Password%20request%3A%20Resume&amp;body=Hi%20Bhavya%2C%0A%0ACould%20you%20send%20me%20the%20passcode%20for%20your%20resume%3F%0A%0AThanks%2C%0A">Request password</a>
       </form>
+      </div>
     </div>
 
     <div class="resume-panel anim" style="animation-delay:60ms">
@@ -155,10 +157,10 @@
           document.documentElement.classList.add('unlocked');
         } else {
           error.textContent = 'Wrong passcode, try again.';
-          var overlay = document.getElementById('gate-overlay');
-          overlay.classList.remove('is-shaking');
-          void overlay.offsetWidth;
-          overlay.classList.add('is-shaking');
+          var inner = document.getElementById('gateInner');
+          inner.classList.remove('is-shaking');
+          void inner.offsetWidth;
+          inner.classList.add('is-shaking');
           clearAndFocusFirst();
         }
       }
