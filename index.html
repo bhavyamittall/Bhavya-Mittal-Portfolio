@@ -105,6 +105,9 @@
       letter-spacing: 0.01em;
     }
     .cs-tooltip.is-visible { opacity: 1; }
+    @media (max-width: 959px) {
+      .cs-tooltip { display: none; }
+    }
     .work-card-body  { padding: 6px 0 0; display: flex; flex-direction: column; gap: 1px; }
     .work-card-title { font-size: 1rem; color: var(--fg); font-weight: 400; transition-property: color; transition-duration: 0.15s; transition-timing-function: ease; line-height: 1.4; margin-bottom: 0; }
     .work-card-meta  { display: flex; align-items: center; justify-content: space-between; }
@@ -1245,15 +1248,16 @@
         thumb.addEventListener('mouseleave', function() { video.pause(); video.currentTime = 0; });
       });
 
-      // Cursor-follow tooltip — only on thumbnail
+      // Cursor-follow tooltip — desktop only (touch taps can trigger mouseenter and leave it stuck on mobile)
       var tip = document.getElementById('cs-tooltip');
       var thumbs = document.querySelectorAll('.work-card-thumb');
       var offset = 16;
       thumbs.forEach(function(thumb) {
-        thumb.addEventListener('mouseenter', function() { tip.classList.add('is-visible'); });
+        thumb.addEventListener('mouseenter', function() { if (DESKTOP.matches) tip.classList.add('is-visible'); });
         thumb.addEventListener('mouseleave', function() { tip.classList.remove('is-visible'); });
       });
       document.addEventListener('mousemove', function(e) {
+        if (!DESKTOP.matches) return;
         tip.style.left = (e.clientX + offset) + 'px';
         tip.style.top  = e.clientY + 'px';
       });
