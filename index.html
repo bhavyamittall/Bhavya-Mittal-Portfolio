@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Bhavya Mittal &mdash; Product Designer, UX &amp; Motion</title>
+  <title>Bhavya Mittal</title>
   <meta name="description" content="Bhavya Mittal is a product designer and interaction designer based in Gurugram, India. Currently at Egon Zehnder. Case studies in interaction design, motion, and fintech UX." />
   <meta name="author" content="Bhavya Mittal" />
   <meta name="robots" content="index, follow" />
@@ -243,7 +243,7 @@
     .wrap {
       max-width: 560px;
       margin: 0 auto;
-      padding: 28px 20px 100px;
+      padding: 28px 20px 90px;
       display: flex;
       flex-direction: column;
     }
@@ -290,62 +290,149 @@
     #colRight   { margin-top: 28px; }
     #reachBlock { margin-top: 0; display: none; } /* hidden on mobile — replaced by mobileCtaBlock */
 
-    /* ── Mobile CTA block (Contact me + Know More) ── */
+    /* ── Mobile CTA overlay (Contact me + Know More) ── */
     #mobileCtaBlock {
       display: flex;
       flex-direction: row;
-      gap: 10px;
+      gap: 2px;
       align-items: center;
-      margin-top: 20px;
+      justify-content: center;
+      position: fixed;
+      z-index: 1000;
+      right: 16px;
+      bottom: 20px;
+      left: 16px;
+      max-width: 204.25px;
+      margin: 0 auto;
+      padding: 8px;
+      border: 1px solid rgba(0, 0, 0, 0.1);
+      border-radius: 999px;
+      background: rgba(255, 255, 255, 0.94);
+      box-shadow: rgba(14, 63, 126, 0.04) 0px 0px 0px 1px, rgba(42, 51, 69, 0.04) 0px 1px 1px -0.5px, rgba(42, 51, 70, 0.04) 0px 3px 3px -1.5px, rgba(42, 51, 70, 0.04) 0px 6px 6px -3px, rgba(14, 63, 126, 0.04) 0px 12px 12px -6px, rgba(14, 63, 126, 0.04) 0px 24px 24px -12px;
+      backdrop-filter: blur(8px);
+      -webkit-backdrop-filter: blur(8px);
+      transition: max-width 0.55s cubic-bezier(0.22, 1, 0.36, 1), gap 0.55s cubic-bezier(0.22, 1, 0.36, 1), padding 0.55s cubic-bezier(0.22, 1, 0.36, 1);
     }
     .mobile-cta-primary {
       display: inline-flex;
       align-items: center;
       justify-content: center;
-      padding: 1.2px;
+      gap: 0;
+      flex: 1.25 1 auto;
+      height: 30px;
+      padding: 7.5px 10px;
       font-family: var(--font);
-      background: linear-gradient(180deg, #70b8ff 0%, #1a6fd4 100%);
+      background: var(--blue);
       border: none;
-      border-radius: 3px;
+      border-radius: 999px;
       text-decoration: none;
       cursor: pointer;
       box-shadow: 0px 1px 3px rgba(44, 142, 255, 0.25);
       opacity: 0.92;
-      transition: opacity 0.15s ease, transform 0.15s ease;
+      overflow: hidden;
+      transition: opacity 0.15s ease, transform 0.15s ease, flex 0.55s cubic-bezier(0.22, 1, 0.36, 1), padding 0.55s cubic-bezier(0.22, 1, 0.36, 1), width 0.55s cubic-bezier(0.22, 1, 0.36, 1), height 0.55s cubic-bezier(0.22, 1, 0.36, 1);
       white-space: nowrap;
     }
-    .mobile-cta-primary:hover { opacity: 1; }
-    .mobile-cta-primary:active { transform: scale(0.96); }
-    .mobile-cta-primary:focus-visible { outline: none; box-shadow: 0 0 0 3.5px rgba(44, 142, 255, 0.22); }
-    .mobile-cta-primary span {
-      display: inline-flex;
-      align-items: center;
-      padding: 4px 10px;
-      min-height: 30px;
-      background: linear-gradient(180deg, #4B91F7 0%, #2C8EFF 100%);
-      border-radius: 2px;
-      color: #fff;
-      font-size: 1rem;
-      line-height: 1;
+    #mobileCtaBlock.is-compact .mobile-cta-primary {
+      flex: 0 0 auto;
+      width: 34px;
+      height: 30px;
+      padding: 0;
+      background: transparent;
+      box-shadow: none;
+    }
+    @media (hover: hover) and (pointer: fine) {
+      .mobile-cta-primary:hover { opacity: 1; }
     }
     .mobile-cta-primary:active { transform: scale(0.96); }
+    .mobile-cta-primary:focus-visible { outline: none; box-shadow: 0 0 0 3.5px rgba(44, 142, 255, 0.22); }
+    .cta-label {
+      display: inline-block;
+      flex: 0 0 auto;
+      max-width: 120px;
+      opacity: 1;
+      overflow: hidden;
+      white-space: nowrap;
+      color: inherit;
+      font-family: var(--font);
+      font-size: 12.6px;
+      font-weight: 400;
+      line-height: 13.5px;
+      transition: max-width 0.55s cubic-bezier(0.22, 1, 0.36, 1), opacity 0.25s ease, flex-basis 0.55s cubic-bezier(0.22, 1, 0.36, 1);
+    }
+    .mobile-cta-primary .cta-label { color: #fff; }
+    .mobile-cta-secondary .cta-label { color: #4891F8; }
+    #mobileCtaBlock.is-compact .cta-label {
+      flex: 0 0 0;
+      max-width: 0;
+      opacity: 0;
+    }
+    .cta-icon {
+      flex: 0 0 auto;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 0;
+      height: 30px;
+      opacity: 0;
+      overflow: hidden;
+      transform: translateY(7px);
+      transition: width 0.55s cubic-bezier(0.22, 1, 0.36, 1), opacity 0.25s ease, transform 0.3s ease;
+    }
+    .cta-icon svg { flex: 0 0 auto; display: block; }
+    .cta-icon-stack {
+      position: relative;
+      width: 34px;
+      height: 30px;
+      flex: 0 0 auto;
+      display: block;
+    }
+    .cta-icon-stack svg {
+      position: absolute;
+      inset: 0;
+      transition: opacity 0.25s ease, transform 0.3s cubic-bezier(0.34, 1.56, 0.64, 1), filter 0.25s ease;
+    }
+    .icon-mail { opacity: 1; transform: scale(1); filter: blur(0px); }
+    .icon-tick { opacity: 0; transform: scale(0.4); filter: blur(4px); }
+    .tick-path {
+      stroke-dasharray: 1;
+      stroke-dashoffset: 1;
+      transition: stroke-dashoffset 0.35s ease 0.12s;
+    }
+    .cta-icon.show-tick .icon-mail { opacity: 0; transform: scale(0.4); filter: blur(4px); }
+    .cta-icon.show-tick .icon-tick { opacity: 1; transform: scale(1); filter: blur(0px); }
+    .cta-icon.show-tick .tick-path { stroke-dashoffset: 0; }
+    #mobileCtaBlock.is-compact .cta-icon {
+      width: 34px;
+      opacity: 1;
+      transform: translateY(0);
+      transition: width 0.55s cubic-bezier(0.22, 1, 0.36, 1), opacity 0.35s ease 0.15s, transform 0.4s cubic-bezier(0.22, 1, 0.36, 1) 0.15s;
+    }
 
     .mobile-cta-secondary {
       display: inline-flex;
       align-items: center;
-      font-family: var(--font);
-      font-size: 1rem;
-      color: var(--blue);
-      text-decoration: underline;
-      text-decoration-color: var(--blue);
-      text-underline-offset: 2px;
-      min-height: 40px;
+      justify-content: center;
+      gap: 0;
+      flex: 1 1 auto;
+      height: 30px;
+      padding: 7.5px 10px;
+      text-decoration: none;
       white-space: nowrap;
-      transition-property: opacity;
-      transition-duration: 0.15s;
-      transition-timing-function: ease;
+      overflow: hidden;
+      border-radius: 999px;
+      transition: opacity 0.15s ease, transform 0.15s ease, padding 0.55s cubic-bezier(0.22, 1, 0.36, 1), gap 0.55s cubic-bezier(0.22, 1, 0.36, 1), flex 0.55s cubic-bezier(0.22, 1, 0.36, 1), width 0.55s cubic-bezier(0.22, 1, 0.36, 1), height 0.55s cubic-bezier(0.22, 1, 0.36, 1);
     }
-    .mobile-cta-secondary:hover { opacity: 0.75; }
+    #mobileCtaBlock.is-compact .mobile-cta-secondary {
+      flex: 0 0 auto;
+      width: 34px;
+      height: 30px;
+      padding: 0;
+    }
+    @media (hover: hover) and (pointer: fine) {
+      .mobile-cta-secondary:hover { opacity: 0.75; }
+    }
+    .mobile-cta-secondary:active { transform: scale(0.96); }
     .mobile-cta-secondary:focus-visible { outline: 2px solid rgba(54, 122, 246, 0.32); outline-offset: 4px; border-radius: 3px; }
 
     /* ── Mobile link bar at bottom ── */
@@ -407,7 +494,7 @@
       .cv-line     { text-align: center; }
       .section-label { margin-bottom: 32px; }
       .work-grid { padding-top: 12px; }
-      #mobileCtaBlock { justify-content: flex-start; }
+      #mobileCtaBlock { justify-content: center; }
     }
 
     /* ── DESKTOP ── */
@@ -474,7 +561,7 @@
         justify-content: center;
         padding: 0.72px;
         font-family: var(--font);
-        border-radius: 3px;
+        border-radius: 6px;
         border: none;
         background: linear-gradient(180deg, #70b8ff 0%, #1a6fd4 100%);
         box-shadow: 0px 1px 3px rgba(44, 142, 255, 0.25);
@@ -505,7 +592,7 @@
         padding: 0 12px;
         height: 30px;
         background: linear-gradient(180deg, #4B91F7 0%, #2C8EFF 100%);
-        border-radius: 2px;
+        border-radius: 4px;
         color: #fff;
         font-size: 1rem;
         font-family: var(--font);
@@ -528,7 +615,7 @@
         white-space: nowrap;
       }
       .reach-btns a[href="about.html"] .reach-btn-inner { display: none; }
-      .reach-btns a[href="about.html"]::after { content: "Know More"; }
+      .reach-btns a[href="about.html"]::after { content: "About me"; }
       .reach-btns a[href="about.html"]:hover { opacity: 0.75; }
       .reach-btns a[href="about.html"]:focus-visible { outline: 2px solid rgba(54, 122, 246, 0.32); outline-offset: 4px; border-radius: 3px; }
 
@@ -659,6 +746,17 @@
         margin: 0;
       }
     }
+    @media (prefers-reduced-motion: reduce) {
+      #mobileCtaBlock, .mobile-cta-primary, .mobile-cta-secondary, .cta-label, .cta-icon,
+      .cta-icon-stack svg, .anim {
+        transition-duration: 0.01ms !important;
+        animation-duration: 0.01ms !important;
+        transform: none !important;
+      }
+      #mobileCtaBlock.is-compact .cta-icon,
+      .cta-icon.show-tick .icon-tick,
+      .icon-mail { transform: none !important; }
+    }
   </style>
 
   <script type="text/javascript">
@@ -686,14 +784,38 @@
           <p class="site-sub">Product Design &middot; UX &middot; Motion</p>
         </div>
         <p class="anim" id="bioP1" style="animation-delay:80ms">I&rsquo;m a product designer with a background in communication design. Clarity and tastefulness are the two guiding principles of my work.</p>
-        <p class="anim" id="bioP2" style="animation-delay:130ms">I currently work at <a href="https://egonzehnder.com" target="_blank" style="color:var(--fg);text-decoration:underline;text-decoration-color:var(--fg);text-underline-offset:2px;">Egon Zehnder</a> as an interaction and motion designer, and have collaborated with companies &amp; teams across the finance and consulting industries to shape digital experiences through product thinking, interaction design, and motion.</p>
+        <p class="anim" id="bioP2" style="animation-delay:130ms">Currently at <a href="https://egonzehnder.com" target="_blank" style="color:var(--fg);text-decoration:underline;text-decoration-color:var(--fg);text-underline-offset:2px;">Egon Zehnder</a> as a design generalist, Collaborated with companies &amp; teams across the finance and consulting industries to shape digital experiences through product thinking, interaction design, visual craft and motion.</p>
       </div>
       <a href="about.html" class="anim about-link" id="aboutLink" style="animation-delay:155ms;">Read more about me <svg width="13" height="13" viewBox="0 0 13 13" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M2 6.5H11M7 2.5L11 6.5L7 10.5" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
 
       <!-- Mobile-only: CTA buttons right after bio paragraph -->
       <div id="mobileCtaBlock" class="anim" style="animation-delay:155ms">
-        <a class="mobile-cta-primary" href="https://mail.google.com/mail/?view=cm&to=bhavyamittalbiz@gmail.com" target="_blank" onclick="copyEmail(event, this)"><span>Get in touch</span></a>
-        <a class="mobile-cta-secondary" href="about.html">Know More</a>
+        <a class="mobile-cta-primary" href="https://mail.google.com/mail/?view=cm&to=bhavyamittalbiz@gmail.com" target="_blank" onclick="copyEmail(event, this)">
+          <span class="cta-label">Get in touch</span>
+          <span class="cta-icon">
+            <span class="cta-icon-stack">
+              <svg class="icon-mail" width="34" height="30" viewBox="0 0 34 30" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                <rect width="34" height="30" rx="15" fill="#2C8EFF"/>
+                <mask id="mask0_466_35" style="mask-type:alpha" maskUnits="userSpaceOnUse" x="10" y="8" width="14" height="14"><rect x="10" y="8" width="14" height="14" fill="#D9D9D9"/></mask>
+                <g mask="url(#mask0_466_35)"><path d="M11.166 20.8346V10.3346C11.166 10.0138 11.2803 9.73915 11.5087 9.51068C11.7372 9.2822 12.0118 9.16797 12.3327 9.16797H21.666C21.9868 9.16797 22.2615 9.2822 22.49 9.51068C22.7184 9.73915 22.8327 10.0138 22.8327 10.3346V17.3346C22.8327 17.6555 22.7184 17.9301 22.49 18.1586C22.2615 18.3871 21.9868 18.5013 21.666 18.5013H13.4993L11.166 20.8346ZM13.0035 17.3346H21.666V10.3346H12.3327V17.9909L13.0035 17.3346Z" fill="white"/></g>
+              </svg>
+              <svg class="icon-tick" width="34" height="30" viewBox="0 0 34 30" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                <rect width="34" height="30" rx="15" fill="#2C8EFF"/>
+                <path class="tick-path" d="M10 15.6L14.4 20L24 9.5" pathLength="1" stroke="white" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+              </svg>
+            </span>
+          </span>
+        </a>
+
+        <a class="mobile-cta-secondary" href="about.html">
+          <span class="cta-label">About me</span>
+          <span class="cta-icon">
+            <svg class="icon-knowmore" width="34" height="30" viewBox="2.835 2.5 28.33 25" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+              <mask id="mask0_466_37" style="mask-type:alpha" maskUnits="userSpaceOnUse" x="10" y="8" width="14" height="14"><rect x="10" y="8" width="14" height="14" fill="#D9D9D9"/></mask>
+              <g mask="url(#mask0_466_37)"><path d="M12.9167 18.4125C13.4417 17.8972 14.0517 17.4913 14.7469 17.1948C15.442 16.8983 16.1931 16.75 17 16.75C17.8069 16.75 18.558 16.8983 19.2531 17.1948C19.9483 17.4913 20.5583 17.8972 21.0833 18.4125V10.9167H12.9167V18.4125ZM18.4437 14.9854C18.8424 14.5868 19.0417 14.1056 19.0417 13.5417C19.0417 12.9778 18.8424 12.4965 18.4437 12.0979C18.0451 11.6993 17.5639 11.5 17 11.5C16.4361 11.5 15.9549 11.6993 15.5562 12.0979C15.1576 12.4965 14.9583 12.9778 14.9583 13.5417C14.9583 14.1056 15.1576 14.5868 15.5562 14.9854C15.9549 15.384 16.4361 15.5833 17 15.5833C17.5639 15.5833 18.0451 15.384 18.4437 14.9854ZM12.9167 20.25C12.5958 20.25 12.3212 20.1358 12.0927 19.9073C11.8642 19.6788 11.75 19.4042 11.75 19.0833V10.9167C11.75 10.5958 11.8642 10.3212 12.0927 10.0927C12.3212 9.86424 12.5958 9.75 12.9167 9.75H21.0833C21.4042 9.75 21.6788 9.86424 21.9073 10.0927C22.1358 10.3212 22.25 10.5958 22.25 10.9167V19.0833C22.25 19.4042 22.1358 19.6788 21.9073 19.9073C21.6788 20.1358 21.4042 20.25 21.0833 20.25H12.9167ZM13.9229 19.0833H20.0771C19.6493 18.7042 19.1656 18.4149 18.626 18.2156C18.0865 18.0163 17.5444 17.9167 17 17.9167C16.4556 17.9167 15.9087 18.0163 15.3594 18.2156C14.8101 18.4149 14.3312 18.7042 13.9229 19.0833ZM16.3802 14.1615C16.2101 13.9913 16.125 13.7847 16.125 13.5417C16.125 13.2986 16.2101 13.092 16.3802 12.9219C16.5503 12.7517 16.7569 12.6667 17 12.6667C17.2431 12.6667 17.4497 12.7517 17.6198 12.9219C17.7899 13.092 17.875 13.2986 17.875 13.5417C17.875 13.7847 17.7899 13.9913 17.6198 14.1615C17.4497 14.3316 17.2431 14.4167 17 14.4167C16.7569 14.4167 16.5503 14.3316 16.3802 14.1615Z" fill="#398FFB"/></g>
+            </svg>
+          </span>
+        </a>
       </div>
       <div class="reach-block anim" id="reachBlock" style="animation-delay:185ms">
         <div class="bm-logo-wrap" id="logo-wrap">
@@ -878,6 +1000,111 @@
     layout(DESKTOP.matches);
     DESKTOP.addEventListener("change", function(e) { layout(e.matches); });
 
+    // Mobile CTA: collapse to icon-only pills once the page is scrolled.
+    (function() {
+      var ctaBlock = document.getElementById("mobileCtaBlock");
+      if (!ctaBlock) return;
+      var COMPACT_THRESHOLD = 24;
+      var ticking = false;
+      var compactWidthPx = null;
+
+      // Measure the exact width the pill needs once collapsed, so it always
+      // fits its content precisely — no hand-guessed numbers to get out of sync.
+      function measureCompactWidth() {
+        var prevTransition = ctaBlock.style.transition;
+        var prevMaxWidth = ctaBlock.style.maxWidth;
+        var prevWidth = ctaBlock.style.width;
+        var hadCompact = ctaBlock.classList.contains("is-compact");
+        ctaBlock.style.transition = "none";
+        ctaBlock.classList.add("is-compact");
+        ctaBlock.style.maxWidth = "none";
+        ctaBlock.style.width = "fit-content";
+        var w = ctaBlock.getBoundingClientRect().width;
+        ctaBlock.style.width = prevWidth;
+        ctaBlock.style.maxWidth = prevMaxWidth;
+        if (!hadCompact) ctaBlock.classList.remove("is-compact");
+        void ctaBlock.offsetWidth; // flush before restoring transition
+        ctaBlock.style.transition = prevTransition;
+        return Math.ceil(w);
+      }
+
+      function applyState(isCompact) {
+        if (isCompact) {
+          if (compactWidthPx === null) compactWidthPx = measureCompactWidth();
+          ctaBlock.style.maxWidth = compactWidthPx + "px";
+          ctaBlock.classList.add("is-compact");
+        } else {
+          ctaBlock.classList.remove("is-compact");
+          ctaBlock.style.maxWidth = "";
+        }
+      }
+
+      var SCROLL_DELTA = 40; // px of continuous travel required before the state flips
+      var lastScrollY = null;
+      var travelRefY = null;
+      var lastDirection = 0; // 1 = down, -1 = up
+      function updateCtaState() {
+        ticking = false;
+        if (DESKTOP.matches) return;
+        var scrolled = window.scrollY || document.documentElement.scrollTop || 0;
+        if (lastScrollY === null) { lastScrollY = scrolled; travelRefY = scrolled; }
+        var isCompact = ctaBlock.classList.contains("is-compact");
+
+        if (scrolled <= COMPACT_THRESHOLD) {
+          isCompact = false;
+          travelRefY = scrolled;
+          lastDirection = 0;
+        } else {
+          var direction = scrolled > lastScrollY ? 1 : (scrolled < lastScrollY ? -1 : lastDirection);
+          if (direction !== 0 && direction !== lastDirection) {
+            // scroll direction just reversed — start measuring travel from here
+            travelRefY = lastScrollY;
+            lastDirection = direction;
+          }
+          var traveled = scrolled - travelRefY;
+          if (!isCompact && traveled >= SCROLL_DELTA) {
+            isCompact = true;
+            travelRefY = scrolled;
+          } else if (isCompact && traveled <= -SCROLL_DELTA) {
+            isCompact = false;
+            travelRefY = scrolled;
+          }
+        }
+        lastScrollY = scrolled;
+        applyState(isCompact);
+      }
+      var INACTIVITY_MS = 3000;
+      var inactivityTimer = null;
+      function scheduleInactivityCollapse() {
+        clearTimeout(inactivityTimer);
+        if (DESKTOP.matches) return;
+        inactivityTimer = setTimeout(function() {
+          if (DESKTOP.matches) return;
+          if (!ctaBlock.classList.contains("is-compact")) {
+            applyState(true);
+            var scrolled = window.scrollY || document.documentElement.scrollTop || 0;
+            travelRefY = scrolled;
+            lastDirection = 0;
+          }
+        }, INACTIVITY_MS);
+      }
+      window.addEventListener("resize", function() { compactWidthPx = null; }, { passive: true });
+      window.addEventListener("scroll", function() {
+        scheduleInactivityCollapse();
+        if (!ticking) {
+          window.requestAnimationFrame(updateCtaState);
+          ticking = true;
+        }
+      }, { passive: true });
+      DESKTOP.addEventListener("change", function() {
+        updateCtaState();
+        if (DESKTOP.matches) { clearTimeout(inactivityTimer); }
+        else { scheduleInactivityCollapse(); }
+      });
+      updateCtaState();
+      scheduleInactivityCollapse();
+    })();
+
     // Desktop-only case study auto-scroll.
     (function() {
       var scrollTimer = null;
@@ -934,14 +1161,19 @@
     function copyEmail(event, btn) {
       if (event) event.preventDefault();
       var email = 'bhavyamittalbiz@gmail.com';
-      var span = btn.querySelector('span');
-      var originalText = span.textContent;
+      var span = btn.querySelector('.cta-label') || btn.querySelector('span');
+      var originalText = span ? span.textContent : '';
+      var iconWrap = btn.querySelector('.cta-icon');
+      var ctaBlockEl = btn.closest('#mobileCtaBlock');
+      var isIconState = !!(ctaBlockEl && ctaBlockEl.classList.contains('is-compact') && iconWrap);
       function showCopied() {
-        span.textContent = 'Email copied';
+        if (span) span.textContent = 'Email copied';
         btn.classList.add('copied');
+        if (isIconState) iconWrap.classList.add('show-tick');
         setTimeout(function() {
-          span.textContent = originalText;
+          if (span) span.textContent = originalText;
           btn.classList.remove('copied');
+          if (isIconState) iconWrap.classList.remove('show-tick');
         }, 2400);
       }
       if (navigator.clipboard && window.isSecureContext) {
