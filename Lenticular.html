@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Lenticular Studio</title>
+<style>
+:root{box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px);
+--background:#fff;--foreground:#0a0a0a;--card:#fff;--muted:#f5f5f5;--muted-fg:#737373;--border:#e5e5e5;--primary:#171717;--primary-fg:#fafafa;--ring:#a3a3a3;--radius:.625rem}
+:root[data-theme="dark"]{--background:#0a0a0a;--foreground:#fafafa;--card:#0a0a0a;--muted:#262626;--muted-fg:#a3a3a3;--border:#262626;--primary:#fafafa;--primary-fg:#171717;--ring:#737373}
+*{box-sizing:border-box}
+body{margin:0;background:var(--background);color:var(--foreground);font:14px/1.5 system-ui,-apple-system,"Segoe UI",sans-serif}
+main{max-width:980px;margin:0 auto;padding:20px 16px 40px;display:grid;gap:16px}
+h1{font-size:22px;margin:0;letter-spacing:-.02em}p{margin:0}.muted{color:var(--muted-fg);font-size:13px}
+header{display:flex;justify-content:space-between;align-items:flex-start;gap:12px}
+.grid{display:grid;gap:16px}@media(min-width:800px){.grid{grid-template-columns:380px 1fr;align-items:start}}
+.card{background:var(--card);border:1px solid var(--border);border-radius:calc(var(--radius) + 4px);padding:16px;box-shadow:0 1px 2px rgba(0,0,0,.05)}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:6px;height:36px;padding:0 16px;border-radius:calc(var(--radius) - 2px);border:1px solid transparent;background:var(--primary);color:var(--primary-fg);font:500 14px system-ui;cursor:pointer}
+.btn.outline{background:var(--background);color:var(--foreground);border-color:var(--border)}.btn.ghost{background:none;color:var(--foreground)}
+.btn.sm{height:30px;padding:0 10px;font-size:13px}.btn.icon{width:30px;padding:0}.btn.full{width:100%}.btn:disabled{opacity:.5}
+.btn:hover{opacity:.9}.btn.outline:hover,.btn.ghost:hover{background:var(--muted);opacity:1}
+.badge{display:inline-block;border:1px solid var(--border);border-radius:99px;padding:2px 10px;font-size:12px;font-weight:500}
+#c{width:100%;display:block;border-radius:var(--radius);border:1px solid var(--border);touch-action:none;margin-bottom:12px}
+.row{display:flex;align-items:center;gap:8px;justify-content:space-between}
+.tabs{display:grid;grid-template-columns:1fr 1fr;background:var(--muted);padding:3px;border-radius:calc(var(--radius) - 2px);margin-bottom:16px}
+.tab{border:0;background:none;color:var(--muted-fg);height:30px;border-radius:calc(var(--radius) - 4px);font:500 13px system-ui;cursor:pointer}
+.tab[aria-selected=true]{background:var(--background);color:var(--foreground);box-shadow:0 1px 2px rgba(0,0,0,.1)}
+.panel{display:grid;gap:14px}.panel[hidden]{display:none}
+label{font-weight:500;font-size:13px;display:block;margin-bottom:6px}
+.inp,select{width:100%;height:36px;border:1px solid var(--border);border-radius:calc(var(--radius) - 2px);background:var(--background);color:var(--foreground);padding:0 10px;font:14px system-ui}
+.inp:focus,select:focus{outline:2px solid var(--ring);outline-offset:1px}
+.two{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+input[type=range]{width:100%;accent-color:var(--primary)}
+.sw{appearance:none;width:36px;height:20px;border-radius:99px;background:var(--border);position:relative;cursor:pointer;margin:0;flex:none}
+.sw::after{content:"";position:absolute;top:2px;left:2px;width:16px;height:16px;border-radius:50%;background:var(--background);transition:.15s;box-shadow:0 1px 2px rgba(0,0,0,.3)}
+.sw:checked{background:var(--primary)}.sw:checked::after{left:18px}
+hr{border:0;border-top:1px solid var(--border);margin:2px 0;width:100%}
+.item{display:flex;align-items:center;gap:10px;border:1px solid var(--border);border-radius:var(--radius);padding:6px}
+.item canvas{width:44px;height:44px;border-radius:6px;flex:none}.item span{flex:1;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+#info{background:var(--muted);border-radius:var(--radius);padding:10px;font-size:12.5px;color:var(--muted-fg)}
+dialog{border:1px solid var(--border);border-radius:calc(var(--radius) + 4px);background:var(--card);color:var(--foreground);padding:16px;width:min(92vw,460px)}
+dialog::backdrop{background:rgba(0,0,0,.5)}dialog img{width:100%;border-radius:var(--radius);border:1px solid var(--border);margin:12px 0}
+</style></head><body>
+<main>
+<header><div><h1>Lenticular Studio</h1><p class="muted">Interlace images for lenticular prints, with a live tilt preview.</p></div>
+<button class="btn outline sm" id="th">Dark</button></header>
+<div class="grid">
+<div class="card"><canvas id="c"></canvas>
+<div class="row"><span class="badge" id="st">Drag the card to preview</span><button class="btn outline sm" id="rc">Recenter</button></div></div>
+<div class="card">
+<div class="tabs" role="tablist"><button class="tab" role="tab" aria-selected="true" data-p="pf">Frames</button><button class="tab" role="tab" aria-selected="false" data-p="pp">Print</button></div>
+<div class="panel" id="pf"><div id="fl" class="panel" style="gap:8px"></div>
+<div class="row"><label class="btn outline" style="margin:0"><input id="fi" type="file" accept="image/*" multiple hidden>Add images</label><button class="btn ghost" id="rs">Reset demo</button></div>
+<p class="muted">2 to 6 frames. Frame 1 sets the aspect ratio; others are cropped to fit.</p></div>
+<div class="panel" id="pp" hidden>
+<div class="two"><div><label for="wi">Print width (in)</label><input class="inp" id="wi" type="number" value="4" min="1" max="24" step=".25"></div>
+<div><label for="dp">Resolution</label><select id="dp"><option>300</option><option>600</option><option selected>720</option><option>1200</option></select></div></div>
+<div class="two"><div><label for="lp">Lens LPI</label><select id="lp"><option>40</option><option selected>50</option><option>60</option><option>75</option><option>100</option></select></div>
+<div><label for="rg">Tilt range: <span id="rv">18</span>°</label><input type="range" id="rg" min="8" max="40" value="18"></div></div>
+<div class="row"><div><label style="margin:0" for="fl2">Flip order for printing</label><p class="muted">On for strips placed under a lens</p></div><input type="checkbox" class="sw" id="fl2" checked></div>
+<div id="info"></div></div>
+<hr style="margin:16px 0"><button class="btn full" id="ex">Export interlaced PNG</button>
+</div></div></main>
+<dialog id="dlg"><div class="row"><b>Interlaced image ready</b><button class="btn ghost sm icon" id="cl">✕</button></div>
+<img id="ri" alt="Interlaced output"><p class="muted" id="rm"></p>
+<div class="row" style="margin-top:12px"><a class="btn full" id="dl" download>Download PNG</a></div>
+<p class="muted" style="margin-top:8px">If the download is blocked, long-press the image and choose Save.</p></dialog>
+<script>
+const $=id=>document.getElementById(id),cl=v=>Math.max(-1,Math.min(1,v)),sm=(a,b,x)=>{x=Math.min(1,Math.max(0,(x-a)/(b-a)));return x*x*(3-2*x)};
+const mk=(w,h,d)=>{const c=document.createElement('canvas');c.width=w;c.height=h;d&&d(c.getContext('2d'));return c};
+function fit(s,w,h){const k=Math.max(w/s.width,h/s.height);return mk(w,h,g=>{g.imageSmoothingQuality='high';g.drawImage(s,(w-s.width*k)/2,(h-s.height*k)/2,s.width*k,s.height*k)})}
+// ---- demo frames (procedural) ----
+const W0=720,H0=972;
+function mtn(g,c){[[0,700,160,520,300,640,470,470,620,620,720,560],[0,820,200,680,380,780,560,650,720,740]].forEach((p,i)=>{g.fillStyle=c[i];g.beginPath();g.moveTo(0,H0);for(let k=0;k<p.length;k+=2)g.lineTo(p[k],p[k+1]+(i?60:0));g.lineTo(W0,H0);g.fill()})}
+function ttl(g,t,c){g.fillStyle=c;g.font='bold 84px system-ui,sans-serif';g.textAlign='center';g.fillText(t,W0/2,H0-90)}
+const demo=()=>[{name:'Day',src:mk(W0,H0,g=>{let s=g.createLinearGradient(0,0,0,H0);s.addColorStop(0,'#3aa0ff');s.addColorStop(.6,'#ffc36b');s.addColorStop(1,'#ff8a5c');g.fillStyle=s;g.fillRect(0,0,W0,H0);
+ let r=g.createRadialGradient(500,300,40,500,300,300);r.addColorStop(0,'rgba(255,240,150,.9)');r.addColorStop(1,'rgba(255,240,150,0)');g.fillStyle=r;g.fillRect(0,0,W0,H0);
+ g.fillStyle=g.strokeStyle='#fff4a8';g.lineWidth=8;g.lineCap='round';g.beginPath();g.arc(500,300,100,0,7);g.fill();
+ for(let i=0;i<14;i++){const a=i/14*6.283;g.beginPath();g.moveTo(500+Math.cos(a)*125,300+Math.sin(a)*125);g.lineTo(500+Math.cos(a)*165,300+Math.sin(a)*165);g.stroke()}
+ g.strokeStyle='#2b2b3a';g.lineWidth=6;[[150,200],[230,250],[100,290]].forEach(([x,y])=>{g.beginPath();g.moveTo(x-28,y);g.quadraticCurveTo(x-10,y-24,x,y);g.quadraticCurveTo(x+10,y-24,x+28,y);g.stroke()});
+ mtn(g,['#c4573f','#7a2f3a']);ttl(g,'DAY','#fff')})},
+{name:'Night',src:mk(W0,H0,g=>{let s=g.createLinearGradient(0,0,0,H0);s.addColorStop(0,'#05061a');s.addColorStop(.7,'#1b2060');s.addColorStop(1,'#3a2a70');g.fillStyle=s;g.fillRect(0,0,W0,H0);
+ let q=7;const rn=()=>(q=q*16807%2147483647)/2147483647;g.fillStyle='#fff';for(let i=0;i<110;i++){g.globalAlpha=.4+rn()*.6;g.beginPath();g.arc(rn()*W0,rn()*560,rn()*2.6+.6,0,7);g.fill()}g.globalAlpha=1;
+ g.fillStyle='#e8efff';g.beginPath();g.arc(500,300,100,0,7);g.fill();g.fillStyle='#0c1038';g.beginPath();g.arc(540,280,92,0,7);g.fill();
+ mtn(g,['#161a4a','#0b0d2c']);g.fillStyle='#ffd36b';g.fillRect(300,690,26,26);g.fillRect(250,730,22,22);ttl(g,'NIGHT','#cfd8ff')})}];
+let frames=demo(),pf=[],PW=720,PH=972,Lp=8,ridge,t=0,target=0,g0=null,sensor=false,userActive=false,drag=false;
+const cv=$('c'),ctx=cv.getContext('2d');
+const aspect=()=>frames[0].src.width/frames[0].src.height;
+function updateInfo(){
+  const wi=+$('wi').value||4,dpi=+$('dp').value,lpi=+$('lp').value,N=frames.length,pitch=dpi/lpi;
+  Lp=Math.max(4,PW/(wi*lpi));
+  ridge=mk(PW,PH,g=>{for(let x=0;x<PW;x+=Lp){const l=g.createLinearGradient(x,0,x+Lp,0);l.addColorStop(0,'rgba(0,0,0,.18)');l.addColorStop(.35,'rgba(255,255,255,.1)');l.addColorStop(.7,'rgba(0,0,0,0)');l.addColorStop(1,'rgba(0,0,0,.2)');g.fillStyle=l;g.fillRect(x,0,Lp,PH)}});
+  const W=Math.round(wi*dpi),H=Math.round(W/aspect());
+  $('info').innerHTML=`${W}×${H}px · ${wi}×${(H/dpi).toFixed(2)} in<br>${pitch.toFixed(2)}px per lens · ${(pitch/N).toFixed(2)}px per frame`+(pitch/N<2?'<br><b>Frames under 2px wide will blur. Lower LPI, use fewer frames, or raise resolution.</b>':'')+(W*H>16.7e6?'<br>Output exceeds 16.7MP and will be scaled down.':'');
+}
+function renderList(){const fl=$('fl');fl.innerHTML='';
+  frames.forEach((f,i)=>{const r=document.createElement('div');r.className='item';r.append(fit(f.src,88,88));
+    const n=document.createElement('span');n.textContent=`${i+1}. ${f.name}`;r.append(n);
+    if(i){const u=document.createElement('button');u.className='btn ghost sm icon';u.textContent='↑';u.onclick=()=>{[frames[i-1],frames[i]]=[frames[i],frames[i-1]];rebuild()};r.append(u)}
+    if(frames.length>2){const d=document.createElement('button');d.className='btn ghost sm icon';d.textContent='✕';d.onclick=()=>{frames.splice(i,1);rebuild()};r.append(d)}
+    fl.append(r)})}
+function rebuild(){PH=Math.round(PW/aspect());cv.width=PW;cv.height=PH;pf=frames.map(f=>fit(f.src,PW,PH));renderList();updateInfo()}
+function draw(){const N=pf.length;ctx.drawImage(pf[0],0,0);
+  for(let x=0;x<PW&&N>1;x+=Lp){const tl=t+(x/PW-.5)*.6,pos=(cl(tl)+1)/2*(N-1),i=Math.min(Math.floor(pos),N-2),w=Math.min(Lp,PW-x),bw=sm(.3,.7,pos-i)*w;
+    ctx.drawImage(pf[i],x,0,w,PH,x,0,w,PH);if(bw>.05)ctx.drawImage(pf[i+1],x,0,bw,PH,x,0,bw,PH)}
+  ctx.drawImage(ridge,0,0);const gx=PW*(.5+t*.7),gr=ctx.createLinearGradient(gx-160,0,gx+160,PH*.4);
+  gr.addColorStop(0,'rgba(255,255,255,0)');gr.addColorStop(.5,'rgba(255,255,255,.22)');gr.addColorStop(1,'rgba(255,255,255,0)');ctx.fillStyle=gr;ctx.fillRect(0,0,PW,PH)}
+function loop(ts){if(!userActive)target=Math.sin(ts/1100)*.9;t+=(target-t)*.18;draw();requestAnimationFrame(loop)}
+// ---- sensors: always on ----
+const rng=()=>+$('rg').value,iOS=/iP(hone|ad|od)/.test(navigator.userAgent);let oriOK=false;
+function onOri(e){if(e.gamma==null)return;oriOK=sensor=userActive=true;if(g0===null)g0=e.gamma;target=cl((e.gamma-g0)/rng())}
+function onMot(e){const a=e.accelerationIncludingGravity;if(oriOK||!a||a.x==null)return;sensor=userActive=true;const x=iOS?a.x:-a.x;if(g0===null)g0=x;target=cl((x-g0)/(rng()/18*3.5))}
+addEventListener('deviceorientation',onOri);addEventListener('deviceorientationabsolute',onOri);addEventListener('devicemotion',onMot);
+try{if('Accelerometer' in window){const ac=new Accelerometer({frequency:30});ac.addEventListener('reading',()=>{if(oriOK)return;sensor=userActive=true;const x=-ac.x;if(g0===null)g0=x;target=cl((x-g0)/(rng()/18*3.5))});ac.addEventListener('error',()=>{});ac.start()}}catch(e){}
+addEventListener('pointerdown',async()=>{try{for(const C of [window.DeviceOrientationEvent,window.DeviceMotionEvent])if(C&&C.requestPermission)await C.requestPermission()}catch(e){}},{once:true});
+setInterval(()=>{$('st').textContent=sensor?'Tilt sensor live':'Drag the card to preview'},500);
+$('rc').onclick=()=>{g0=null};$('rg').oninput=e=>{$('rv').textContent=e.target.value};
+cv.addEventListener('pointerdown',e=>{drag=true;cv.setPointerCapture(e.pointerId)});cv.addEventListener('pointerup',()=>drag=false);
+cv.addEventListener('pointermove',e=>{if(!drag||sensor)return;userActive=true;const r=cv.getBoundingClientRect();target=cl((e.clientX-r.left)/r.width*2-1)});
+// ---- UI ----
+$('th').onclick=()=>{const d=document.documentElement,dk=d.dataset.theme==='dark';d.dataset.theme=dk?'light':'dark';$('th').textContent=dk?'Dark':'Light'};
+document.querySelectorAll('.tab').forEach(b=>b.onclick=()=>{document.querySelectorAll('.tab').forEach(x=>{x.setAttribute('aria-selected',x===b);$(x.dataset.p).hidden=x!==b})});
+['wi','dp','lp'].forEach(i=>$(i).oninput=updateInfo);
+$('rs').onclick=()=>{frames=demo();rebuild()};
+$('fi').onchange=async e=>{for(const f of e.target.files){if(frames.length>=6)break;try{const b=await createImageBitmap(f);frames.push({name:f.name,src:b})}catch(x){}}e.target.value='';rebuild()};
+// ---- export ----
+const crcT=(()=>{const t=[];for(let n=0;n<256;n++){let c=n;for(let k=0;k<8;k++)c=c&1?0xEDB88320^(c>>>1):c>>>1;t[n]=c>>>0}return t})();
+const crc=b=>{let c=-1;for(const v of b)c=crcT[(c^v)&255]^(c>>>8);return(c^-1)>>>0};
+async function exportPNG(){
+  const btn=$('ex'),wi=+$('wi').value||4,N=frames.length;let dpi=+$('dp').value,W=Math.round(wi*dpi),H=Math.round(W/aspect());
+  if(W*H>16.7e6){const k=Math.sqrt(16.7e6/(W*H));W=Math.floor(W*k);H=Math.floor(H*k);dpi*=k}
+  const pitch=dpi/+$('lp').value,flip=$('fl2').checked,km=new Uint8Array(W);
+  for(let x=0;x<W;x++){let k=Math.floor((x%pitch)/pitch*N);km[x]=flip?N-1-k:k}
+  btn.disabled=true;const out=new ImageData(W,H),o=new Uint32Array(out.data.buffer);
+  for(let k=0;k<N;k++){btn.textContent=`Interlacing ${k+1}/${N}…`;await new Promise(r=>setTimeout(r,30));
+    const d=new Uint32Array(fit(frames[k].src,W,H).getContext('2d').getImageData(0,0,W,H).data.buffer);
+    for(let y=0,b=0;y<H;y++,b+=W)for(let x=0;x<W;x++)if(km[x]===k)o[b+x]=d[b+x]}
+  const blob=await new Promise(r=>mk(W,H,g=>g.putImageData(out,0,0)).toBlob(r,'image/png'));
+  const by=new Uint8Array(await blob.arrayBuffer()),ppm=Math.round(dpi/.0254),ch=new Uint8Array(21),dv=new DataView(ch.buffer);
+  dv.setUint32(0,9);ch.set([112,72,89,115],4);dv.setUint32(8,ppm);dv.setUint32(12,ppm);ch[16]=1;dv.setUint32(17,crc(ch.subarray(4,17)));
+  const fin=new Blob([by.subarray(0,33),ch,by.subarray(33)],{type:'image/png'}),u=URL.createObjectURL(fin);
+  $('ri').src=u;$('dl').href=u;$('dl').download=`lenticular-${N}f-${$('lp').value}lpi.png`;
+  $('rm').textContent=`${W}×${H}px at ${Math.round(dpi)} DPI. Print at ${(W/dpi).toFixed(2)} in wide, strips aligned to a ${$('lp').value} LPI lens.`;
+  $('dlg').showModal();btn.disabled=false;btn.textContent='Export interlaced PNG'}
+$('ex').onclick=exportPNG;$('cl').onclick=()=>$('dlg').close();
+rebuild();requestAnimationFrame(loop);
+</script></body></html>
