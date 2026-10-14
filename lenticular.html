@@ -110,8 +110,12 @@ function onOri(e){if(e.gamma==null)return;oriOK=sensor=userActive=true;if(g0===n
 function onMot(e){const a=e.accelerationIncludingGravity;if(oriOK||!a||a.x==null)return;sensor=userActive=true;const x=iOS?a.x:-a.x;if(g0===null)g0=x;target=cl((x-g0)/(rng()/18*3.5))}
 addEventListener('deviceorientation',onOri);addEventListener('deviceorientationabsolute',onOri);addEventListener('devicemotion',onMot);
 try{if('Accelerometer' in window){const ac=new Accelerometer({frequency:30});ac.addEventListener('reading',()=>{if(oriOK)return;sensor=userActive=true;const x=-ac.x;if(g0===null)g0=x;target=cl((x-g0)/(rng()/18*3.5))});ac.addEventListener('error',()=>{});ac.start()}}catch(e){}
-addEventListener('pointerdown',async()=>{try{for(const C of [window.DeviceOrientationEvent,window.DeviceMotionEvent])if(C&&C.requestPermission)await C.requestPermission()}catch(e){}},{once:true});
-setInterval(()=>{$('st').textContent=sensor?'Tilt sensor live':'Drag the card to preview'},500);
+let denied=false;
+function askMotion(){if(sensor)return;const ps=[];
+  for(const C of [window.DeviceOrientationEvent,window.DeviceMotionEvent])if(C&&C.requestPermission)ps.push(C.requestPermission());
+  if(ps.length)Promise.allSettled(ps).then(r=>{denied=!r.some(x=>x.value==='granted')})}
+['click','touchend'].forEach(n=>addEventListener(n,askMotion));
+setInterval(()=>{$('st').textContent=sensor?'Tilt sensor live':denied?'Motion blocked: Settings > Safari > Motion & Orientation':iOS?'Tap anywhere to allow motion':'Drag the card to preview'},500);
 $('rc').onclick=()=>{g0=null};$('rg').oninput=e=>{$('rv').textContent=e.target.value};
 cv.addEventListener('pointerdown',e=>{drag=true;cv.setPointerCapture(e.pointerId)});cv.addEventListener('pointerup',()=>drag=false);
 cv.addEventListener('pointermove',e=>{if(!drag||sensor)return;userActive=true;const r=cv.getBoundingClientRect();target=cl((e.clientX-r.left)/r.width*2-1)});
