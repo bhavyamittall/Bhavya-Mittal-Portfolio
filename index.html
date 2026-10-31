@@ -77,7 +77,7 @@
     .work-card:active { transform: scale(0.96); transition-duration: 0.15s; }
     .work-card:hover .work-card-title { color: var(--blue); }
     .work-card-thumb { width: 100%; aspect-ratio: 4/3; background: #f0efeb; overflow: hidden; border-radius: 3px; position: relative; }
-    .work-card-thumb img { width: 100%; height: 100%; object-fit: cover; display: block; outline: 1px solid rgba(0, 0, 0, 0.1); outline-offset: -1px; }
+    .work-card-thumb img { width: 100%; height: 100%; object-fit: cover; display: block; }
 
     /* ── Custom tooltip ── */
     .cs-tooltip {
@@ -255,6 +255,7 @@
       max-width: 318px;
       padding: 14px 18px;
       border: 1px solid rgba(0, 0, 0, 0.11);
+      border-radius: 3px;
       background: rgba(255, 255, 255, 0.22);
       box-shadow: rgba(0, 0, 0, 0.06) 0px 2px 4px 0px inset;
       color: var(--muted);
@@ -307,8 +308,12 @@
       box-shadow: rgba(14, 63, 126, 0.04) 0px 0px 0px 1px, rgba(42, 51, 69, 0.04) 0px 1px 1px -0.5px, rgba(42, 51, 70, 0.04) 0px 3px 3px -1.5px, rgba(42, 51, 70, 0.04) 0px 6px 6px -3px, rgba(14, 63, 126, 0.04) 0px 12px 12px -6px, rgba(14, 63, 126, 0.04) 0px 24px 24px -12px;
       backdrop-filter: blur(8px);
       -webkit-backdrop-filter: blur(8px);
-      transition: max-width 0.55s cubic-bezier(0.22, 1, 0.36, 1), gap 0.55s cubic-bezier(0.22, 1, 0.36, 1), padding 0.55s cubic-bezier(0.22, 1, 0.36, 1);
+      transition: max-width 0.55s cubic-bezier(0.22, 1, 0.36, 1), gap 0.55s cubic-bezier(0.22, 1, 0.36, 1), padding 0.55s cubic-bezier(0.22, 1, 0.36, 1), translate 0.4s cubic-bezier(0.22, 1, 0.36, 1);
+      scale: 0.9;                 /* whole tray a little smaller, proportions unchanged */
+      transform-origin: 50% 100%; /* shrinks toward its bottom edge, so the 20px bottom gap stays */
     }
+    #mobileCtaBlock .cta-label { font-weight: 500; }
+    #mobileCtaBlock.is-compact { padding: 8px 12px; }
     .mobile-cta-primary {
       display: inline-flex;
       align-items: center;
@@ -316,25 +321,24 @@
       gap: 0;
       flex: 1.25 1 auto;
       height: 30px;
-      padding: 7.5px 10px;
+      padding: 6.5px 9px;
       font-family: var(--font);
-      background: var(--blue);
-      border: none;
+      background: linear-gradient(to bottom, #4B91F7 0%, #2C8EFF 100%);
+      border: 1px solid #83B9FF;
       border-radius: 999px;
       text-decoration: none;
       cursor: pointer;
       box-shadow: 0px 1px 3px rgba(44, 142, 255, 0.25);
       opacity: 0.92;
       overflow: hidden;
-      transition: opacity 0.15s ease, transform 0.15s ease, flex 0.55s cubic-bezier(0.22, 1, 0.36, 1), padding 0.55s cubic-bezier(0.22, 1, 0.36, 1), width 0.55s cubic-bezier(0.22, 1, 0.36, 1), height 0.55s cubic-bezier(0.22, 1, 0.36, 1);
+      transition: opacity 0.15s ease, transform 0.15s ease, flex 0.55s cubic-bezier(0.22, 1, 0.36, 1), padding 0.55s cubic-bezier(0.22, 1, 0.36, 1), width 0.55s cubic-bezier(0.22, 1, 0.36, 1), height 0.55s cubic-bezier(0.22, 1, 0.36, 1), box-shadow 0.55s cubic-bezier(0.22, 1, 0.36, 1);
       white-space: nowrap;
     }
     #mobileCtaBlock.is-compact .mobile-cta-primary {
       flex: 0 0 auto;
-      width: 34px;
-      height: 30px;
+      width: 28px;   /* perfect circle, same diameter as the headshot */
+      height: 28px;
       padding: 0;
-      background: transparent;
       box-shadow: none;
     }
     @media (hover: hover) and (pointer: fine) {
@@ -379,8 +383,8 @@
     .cta-headshot { flex: 0 0 auto; display: block; width: 28px; height: 28px; border-radius: 50%; object-fit: cover; }
     .cta-icon-stack {
       position: relative;
-      width: 34px;
-      height: 30px;
+      width: 28px;
+      height: 28px;
       flex: 0 0 auto;
       display: block;
     }
@@ -400,7 +404,7 @@
     .cta-icon.show-tick .icon-tick { opacity: 1; transform: scale(1); filter: blur(0px); }
     .cta-icon.show-tick .tick-path { stroke-dashoffset: 0; }
     #mobileCtaBlock.is-compact .cta-icon {
-      width: 34px;
+      width: 28px;
       opacity: 1;
       transform: translateY(0);
       transition: width 0.55s cubic-bezier(0.22, 1, 0.36, 1), opacity 0.35s ease 0.15s, transform 0.4s cubic-bezier(0.22, 1, 0.36, 1) 0.15s;
@@ -413,16 +417,17 @@
       gap: 0;
       flex: 1 1 auto;
       height: 30px;
-      padding: 7.5px 10px;
+      padding: 7.5px 9px;
       text-decoration: none;
       white-space: nowrap;
       overflow: hidden;
       border-radius: 999px;
       transition: opacity 0.15s ease, transform 0.15s ease, padding 0.55s cubic-bezier(0.22, 1, 0.36, 1), gap 0.55s cubic-bezier(0.22, 1, 0.36, 1), flex 0.55s cubic-bezier(0.22, 1, 0.36, 1), width 0.55s cubic-bezier(0.22, 1, 0.36, 1), height 0.55s cubic-bezier(0.22, 1, 0.36, 1);
     }
+    #mobileCtaBlock.is-compact .mobile-cta-primary .cta-icon { height: 28px; flex: 0 0 auto; }
     #mobileCtaBlock.is-compact .mobile-cta-secondary {
       flex: 0 0 auto;
-      width: 34px;
+      width: 28px;
       height: 30px;
       padding: 0;
     }
@@ -624,6 +629,7 @@
         width: 318px;
         padding: 14px 18px;
         border: 1px solid rgba(0, 0, 0, 0.11);
+        border-radius: 3px;
         background: rgba(255, 255, 255, 0.22);
         box-shadow: rgba(0, 0, 0, 0.06) 0px 2px 4px 0px inset;
         color: var(--muted);
@@ -713,8 +719,6 @@
         height: 100%;
         object-fit: cover;
         display: block;
-        outline: 1px solid rgba(0, 0, 0, 0.1);
-        outline-offset: -1px;
       }
 
       .work-card-body {
@@ -758,7 +762,7 @@
     .other-heading { font-size: 14px; font-weight: 600; color: var(--fg); line-height: 1.65; margin: 0 0 20px; text-wrap: balance; }
     .other-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
     .other-card { display: flex; flex-direction: column; cursor: default; }
-    .other-thumb { width: 100%; aspect-ratio: 4 / 3; background: #f0efeb; border-radius: 3px; overflow: hidden; position: relative; outline: 1px solid rgba(0, 0, 0, 0.1); outline-offset: -1px; }
+    .other-thumb { width: 100%; aspect-ratio: 4 / 3; background: #f0efeb; border-radius: 3px; overflow: hidden; position: relative; }
     .other-thumb img { width: 100%; height: 100%; object-fit: cover; display: block; }
     .other-body { padding: 6px 0 0; display: flex; flex-direction: column; gap: 1px; }
     .other-name { font-size: 14px; color: var(--fg); font-weight: 400; line-height: 1.4; margin: 0; }
@@ -790,6 +794,52 @@
     .mobile-text-links a { font-size: 14px; color: var(--fg); text-decoration: underline; text-decoration-color: rgba(58, 58, 58, 0.15); text-decoration-color: color-mix(in srgb, var(--fg) 15%, transparent); text-underline-offset: 2px; white-space: nowrap; min-height: 40px; display: inline-flex; align-items: center; transition: opacity 0.15s ease; }
     .mobile-text-links a:active { opacity: 0.6; }
     .mobile-text-links a:focus-visible { outline: 2px solid rgba(54, 122, 246, 0.32); outline-offset: 4px; border-radius: 3px; }
+    /* ── Skeleton loaders: only shown while media is genuinely still loading ── */
+    @keyframes sk-shimmer { 0% { background-position: 200% 0; } 100% { background-position: -200% 0; } }
+    .ss::before { content: ""; position: absolute; inset: 0; z-index: 3; pointer-events: none; opacity: 0; transition: opacity 0.3s ease;
+      background: linear-gradient(90deg, #f0efeb 0%, #e4e2dc 50%, #f0efeb 100%); background-size: 200% 100%; }
+    .ss::after { content: ""; position: absolute; inset: 0; z-index: 4; pointer-events: none; border-radius: inherit; box-shadow: inset 0 0 0 1px rgba(0, 0, 0, 0.1); }
+    .ss.is-loading::before { opacity: 1; animation: sk-shimmer 1.4s linear infinite; }
+    .cta-headshot.is-loading { background: linear-gradient(90deg, #ecebe7 0%, #dedcd6 50%, #ecebe7 100%); background-size: 200% 100%; animation: sk-shimmer 1.4s linear infinite; }
+    @media (prefers-reduced-motion: reduce) { .ss.is-loading::before, .cta-headshot.is-loading { animation: none; } }
+    /* ── Mobile pull-up section (overscroll at the bottom of the page) ── */
+    #pullPanel { display: none; }
+    @media (max-width: 959px) {
+      html, body { overscroll-behavior-y: none; }
+      #pullPanel { display: block; position: fixed; left: 0; right: 0; bottom: 0; height: 0; overflow: hidden; z-index: 900; pointer-events: none; visibility: hidden;
+        background: #4a8cf7; box-shadow: inset 0 10px 10px -10px rgba(0, 0, 0, 0.28); }
+      #pullPanel.is-active { visibility: visible; }
+      #pullPanel .pull-inner { position: absolute; left: 0; right: 0; bottom: 0; height: 112px; display: flex; flex-direction: row; align-items: center; justify-content: center; gap: 18px; text-align: left; padding: 0 24px; }
+      #pullPanel .pull-copy { min-width: 0; }
+      #pullPanel .pull-title { margin: 0; font-size: 14px; line-height: 1.5; font-weight: 500; color: #2159c9; }
+      #pullPanel .pull-text { margin: 0; font-size: 14px; line-height: 1.5; color: #fff; }
+      #pullPanel .pull-ring { display: block; flex: 0 0 auto; overflow: visible; }
+      #pullPanel .ring-track { fill: none; stroke: #2159c9; stroke-width: 4; }
+      #pullPanel .ring-prog { fill: none; stroke: #e8eaf0; stroke-width: 4; stroke-linecap: round; stroke-dasharray: 94.25; stroke-dashoffset: 94.25; transform: rotate(-90deg); transform-origin: 18px 18px; }
+      #pullPanel .ring-check { fill: none; stroke: #fff; stroke-width: 3; stroke-linecap: round; stroke-linejoin: round; opacity: 0; transition: opacity 0.2s ease; }
+      #pullPanel.is-done .ring-check { opacity: 1; }
+      #pullPanel.is-done .ring-track, #pullPanel.is-done .ring-prog { opacity: 0; }
+      /* page content rides up with the panel; the fixed tray slides away */
+      #wrap > :not(#mobileCtaBlock) { translate: 0 var(--pull-shift, 0px); }
+      html.is-pulling #mobileCtaBlock { translate: 0 140px; }
+    }
+    .ss { touch-action: pan-y pinch-zoom; }
+    .ss .ss-slide { -webkit-user-select: none; user-select: none; -webkit-user-drag: none; }
+    /* ── Mobile: eased fade of the page background under the tray, so content dissolves cleanly at the bottom edge ── */
+    @media (max-width: 959px) {
+      body::after {
+        content: ""; position: fixed; left: 0; right: 0; bottom: 0; z-index: 800; pointer-events: none;
+        height: calc(150px + env(safe-area-inset-bottom, 0px));
+        /* same colour as --bg at every stop (no "transparent" keyword => no grey, muddy mid-tones); alpha follows an ease-out curve */
+        background: linear-gradient(to top,
+          rgba(247, 246, 245, 1) 0%, rgba(247, 246, 245, 0.987) 8.1%, rgba(247, 246, 245, 0.951) 15.5%,
+          rgba(247, 246, 245, 0.896) 22.5%, rgba(247, 246, 245, 0.825) 29%, rgba(247, 246, 245, 0.741) 35.3%,
+          rgba(247, 246, 245, 0.648) 41.2%, rgba(247, 246, 245, 0.55) 47.1%, rgba(247, 246, 245, 0.45) 52.9%,
+          rgba(247, 246, 245, 0.352) 58.8%, rgba(247, 246, 245, 0.259) 64.7%, rgba(247, 246, 245, 0.175) 70.6%,
+          rgba(247, 246, 245, 0.104) 77.5%, rgba(247, 246, 245, 0.049) 84.5%, rgba(247, 246, 245, 0.013) 91.9%,
+          rgba(247, 246, 245, 0) 100%);
+      }
+    }
     .work-card-desc { font-size: 14px; color: var(--muted); line-height: 1.5; margin: 0; text-wrap: pretty; }
     @media (max-width: 480px) { .other-grid { grid-template-columns: 1fr; } }
     /* Mobile / tablet only: more breathing room */
@@ -833,7 +883,7 @@
     <div id="colLeft">
       <div id="bioGroup">
         <div class="name-block anim" id="nameBlock" style="animation-delay:0ms">
-          <p class="site-name">Hey, It's Bhavya Mittal</p>
+          <h1 class="site-name">Hey, It's Bhavya Mittal</h1>
         </div>
         <p class="anim" id="bioP1" style="animation-delay:80ms">I&rsquo;m a product designer with a background in communication design. Clarity and tastefulness are the two guiding principles of my work.</p>
         <p class="anim" id="bioP2" style="animation-delay:130ms"><span class="bio-line">Currently at <a href="https://egonzehnder.com/" target="_blank" style="color:var(--fg);text-decoration:underline;text-decoration-color:rgba(58,58,58,0.15);text-decoration-color:color-mix(in srgb, var(--fg) 15%, transparent);text-underline-offset:2px;">Egon Zehnder</a>. Working across Product, interaction, motion and visual mediums in Finance, Consulting and Healthcare.</span><span class="bio-line">Love working with systems, cultures, world building and <a href="https://en.wikipedia.org/wiki/Rasa_(aesthetics)" target="_blank" rel="noopener" style="color:var(--fg);text-decoration:underline;text-decoration-color:rgba(58,58,58,0.15);text-decoration-color:color-mix(in srgb, var(--fg) 15%, transparent);text-underline-offset:2px;">रस(Rasas)</a>.</span></p>
@@ -846,13 +896,13 @@
           <span class="cta-label">Get in touch</span>
           <span class="cta-icon">
             <span class="cta-icon-stack">
-              <svg class="icon-mail" width="34" height="30" viewBox="0 0 34 30" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-                <rect width="34" height="30" rx="15" fill="#2C8EFF"/>
+              <svg class="icon-mail" width="28" height="28" viewBox="3 1 28 28" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                <circle cx="17" cy="15" r="14" fill="none"/>
                 <mask id="mask0_466_35" style="mask-type:alpha" maskUnits="userSpaceOnUse" x="10" y="8" width="14" height="14"><rect x="10" y="8" width="14" height="14" fill="#D9D9D9"/></mask>
                 <g mask="url(#mask0_466_35)"><path d="M11.166 20.8346V10.3346C11.166 10.0138 11.2803 9.73915 11.5087 9.51068C11.7372 9.2822 12.0118 9.16797 12.3327 9.16797H21.666C21.9868 9.16797 22.2615 9.2822 22.49 9.51068C22.7184 9.73915 22.8327 10.0138 22.8327 10.3346V17.3346C22.8327 17.6555 22.7184 17.9301 22.49 18.1586C22.2615 18.3871 21.9868 18.5013 21.666 18.5013H13.4993L11.166 20.8346ZM13.0035 17.3346H21.666V10.3346H12.3327V17.9909L13.0035 17.3346Z" fill="white"/></g>
               </svg>
-              <svg class="icon-tick" width="34" height="30" viewBox="0 0 34 30" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-                <rect width="34" height="30" rx="15" fill="#2C8EFF"/>
+              <svg class="icon-tick" width="28" height="28" viewBox="3 1 28 28" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                <circle cx="17" cy="15" r="14" fill="none"/>
                 <path class="tick-path" d="M10 15.6L14.4 20L24 9.5" pathLength="1" stroke="white" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
               </svg>
             </span>
@@ -1069,7 +1119,21 @@
     </div>
   </div>
 
-  <script>
+  <!-- Mobile pull-up: keep pulling past the end of the page and hold to copy the email -->
+<div id="pullPanel" aria-hidden="true">
+  <div class="pull-inner">
+    <svg class="pull-ring" viewBox="0 0 36 36" width="30" height="30" focusable="false">
+      <circle class="ring-track" cx="18" cy="18" r="15" />
+      <circle class="ring-prog" cx="18" cy="18" r="15" />
+      <path class="ring-check" d="M11 18.5l5 5 9-10" />
+    </svg>
+    <div class="pull-copy">
+      <p class="pull-title">Liked the work?</p>
+      <p class="pull-text">Hold the scroll to copy email address</p>
+    </div>
+  </div>
+</div>
+<script>
     var DESKTOP    = window.matchMedia("(min-width: 960px)");
     var wrap       = document.getElementById("wrap");
     var nameBlock  = document.getElementById("nameBlock");
@@ -1275,38 +1339,119 @@
     })();
 
     // Copy email
+    /* ── Copy feedback: soft tick sound + haptic ── */
+    var _copyAudio = null;
+    function primeCopyAudio() {            // must run inside the tap so mobile browsers allow sound
+      try {
+        var AC = window.AudioContext || window.webkitAudioContext;
+        if (!AC) return;
+        if (!_copyAudio) _copyAudio = new AC();
+        if (_copyAudio.state === 'suspended') _copyAudio.resume();
+      } catch (e) {}
+    }
+    function playCopySound() {
+      // Soft, rounded "tock" + a gentle two-note rise: tactile and reassuring, nothing sharp
+      try {
+        if (!_copyAudio) return;
+        var ac = _copyAudio, t = ac.currentTime;
+
+        // 1) tock: a short low sine "thump" with a quick downward pitch drop (no noise, no high end)
+        var th = ac.createOscillator(), tg = ac.createGain();
+        th.type = 'sine';
+        th.frequency.setValueAtTime(320, t);
+        th.frequency.exponentialRampToValueAtTime(140, t + 0.05);
+        tg.gain.setValueAtTime(0.0001, t);
+        tg.gain.exponentialRampToValueAtTime(0.16, t + 0.006);
+        tg.gain.exponentialRampToValueAtTime(0.0001, t + 0.07);
+        th.connect(tg); tg.connect(ac.destination);
+        th.start(t); th.stop(t + 0.09);
+
+        // 2) two soft rising notes (E5 -> A5), gentle attack, run through a low-pass to round them off
+        var lp = ac.createBiquadFilter(); lp.type = 'lowpass'; lp.frequency.value = 1800; lp.connect(ac.destination);
+        [[659, 0.045], [880, 0.12]].forEach(function (note) {
+          var o = ac.createOscillator(), g = ac.createGain(), st = t + note[1];
+          o.type = 'sine';
+          o.frequency.setValueAtTime(note[0], st);
+          g.gain.setValueAtTime(0.0001, st);
+          g.gain.exponentialRampToValueAtTime(0.07, st + 0.014);
+          g.gain.exponentialRampToValueAtTime(0.0001, st + 0.18);
+          o.connect(g); g.connect(lp);
+          o.start(st); o.stop(st + 0.2);
+        });
+      } catch (e) {}
+    }
+    function copyHaptic() {
+      try {
+        if (navigator.vibrate) { navigator.vibrate([12, 40, 12]); return; }   // Android / Chrome
+        // iOS Safari 17.4+: toggling a switch input produces a light haptic tick
+        var l = document.createElement('label');
+        l.setAttribute('aria-hidden', 'true');
+        l.style.cssText = 'position:fixed;left:-9999px;top:0;opacity:0;pointer-events:none';
+        var i = document.createElement('input');
+        i.type = 'checkbox'; i.setAttribute('switch', '');
+        l.appendChild(i); document.body.appendChild(l);
+        l.click();
+        setTimeout(function() { if (l.parentNode) l.parentNode.removeChild(l); }, 120);
+      } catch (e) {}
+    }
     function copyEmail(event, btn) {
       if (event) event.preventDefault();
+      primeCopyAudio();
       var email = 'bhavyamittalbiz@gmail.com';
+      // Second tap right after a failed copy: open the mail app instead, so the visitor can still reach out
+      if (btn.getAttribute('data-copy-failed') === '1') {
+        btn.removeAttribute('data-copy-failed');
+        window.location.href = 'mailto:' + email;
+        return;
+      }
       var span = btn.querySelector('.cta-label') || btn.querySelector('span');
       var originalText = span ? span.textContent : '';
       var iconWrap = btn.querySelector('.cta-icon');
       var ctaBlockEl = btn.closest('#mobileCtaBlock');
       var isIconState = !!(ctaBlockEl && ctaBlockEl.classList.contains('is-compact') && iconWrap);
+      function restore() {
+        if (span) span.textContent = originalText;
+        btn.classList.remove('copied');
+        if (isIconState) iconWrap.classList.remove('show-tick');
+      }
       function showCopied() {
+        btn.removeAttribute('data-copy-failed');
+        playCopySound(); copyHaptic();
         if (span) span.textContent = 'Email copied';
         btn.classList.add('copied');
         if (isIconState) iconWrap.classList.add('show-tick');
-        setTimeout(function() {
-          if (span) span.textContent = originalText;
-          btn.classList.remove('copied');
-          if (isIconState) iconWrap.classList.remove('show-tick');
-        }, 2400);
+        setTimeout(restore, 2400);
       }
+      function showFailed() {
+        // nothing was copied, so never say it was: clear message, one long buzz, no success sound
+        try { if (navigator.vibrate) navigator.vibrate(40); } catch (e) {}
+        if (span && !isIconState) span.textContent = 'Couldn\u2019t copy';
+        btn.setAttribute('data-copy-failed', '1');
+        setTimeout(function () { if (span) span.textContent = originalText; }, 2400);
+        setTimeout(function () { btn.removeAttribute('data-copy-failed'); }, 6000);   // forget the failure after a while
+      }
+      copyText(email, showCopied, showFailed);
+    }
+    // Clipboard API first, then the old execCommand route; reports failure instead of assuming success
+    function copyText(text, ok, fail) {
       if (navigator.clipboard && window.isSecureContext) {
-        navigator.clipboard.writeText(email).then(showCopied).catch(function() { fallbackCopy(email, showCopied); });
+        navigator.clipboard.writeText(text).then(function () { if (ok) ok(); }, function () { fallbackCopy(text, ok, fail); });
       } else {
-        fallbackCopy(email, showCopied);
+        fallbackCopy(text, ok, fail);
       }
     }
-    function fallbackCopy(text, cb) {
+    function fallbackCopy(text, ok, fail) {
       var ta = document.createElement('textarea');
       ta.value = text;
+      ta.setAttribute('readonly', '');
       ta.style.cssText = 'position:fixed;top:0;left:0;opacity:0;pointer-events:none';
       document.body.appendChild(ta);
       ta.focus(); ta.select();
-      try { document.execCommand('copy'); cb(); } catch(e) {}
+      try { ta.setSelectionRange(0, text.length); } catch (e) {}
+      var success = false;
+      try { success = document.execCommand('copy'); } catch (e) { success = false; }
       document.body.removeChild(ta);
+      if (success) { if (ok) ok(); } else if (fail) { fail(); }
     }
 
     /* ── BM interactive logo ── */
@@ -1401,23 +1546,34 @@
         if (el.tagName === 'VIDEO') {
           el.loop = false;   // let each video play to the end, then move on
           el.addEventListener('ended', function () {
-            if (inst.running && inst.slides[inst.idx] === el) advance(inst);
+            if (!inst.running || inst.slides[inst.idx] !== el) return;
+            if (inst.manual) {                          // user took over: keep the video they chose looping
+              try { el.currentTime = 0; } catch (e) {}
+              var pr = el.play(); if (pr && pr.catch) pr.catch(function () {});
+              return;
+            }
+            advance(inst);
           });
         }
       });
       return inst;
     }
-    function load(inst) {
-      if (inst.loaded) return;
-      inst.loaded = true;
-      inst.slides.forEach(function (el) {
-        var src = el.getAttribute('data-src');
-        if (!src) return;
-        el.removeAttribute('data-src');
-        el.src = src;
-        if (el.tagName === 'VIDEO') { el.preload = 'auto'; el.load(); }
-      });
+    // Load ahead only: fetch one slide at a time (the next one; the previous one too once the visitor swipes)
+    function loadSlide(inst, i) {
+      var el = inst.slides[i];
+      if (!el) return;
+      var src = el.getAttribute('data-src');
+      if (!src) return;
+      el.removeAttribute('data-src');
+      el.src = src;
+      if (el.tagName === 'VIDEO') { el.preload = 'auto'; el.load(); }
     }
+    function preloadAround(inst, n, both) {
+      var len = inst.slides.length;
+      loadSlide(inst, (n + 1) % len);
+      if (both) loadSlide(inst, (n - 1 + len) % len);
+    }
+    function load(inst) { preloadAround(inst, inst.idx, false); }
     function state(el) {
       if (el.tagName === 'DIV') return 'ready';
       if (el.getAttribute('data-failed')) return 'failed';
@@ -1466,7 +1622,7 @@
     function render(inst) {
       var el = inst.slides[inst.idx], p;
       if (el.tagName === 'VIDEO') p = (isFinite(el.duration) && el.duration > 0) ? el.currentTime / el.duration : 0;
-      else p = Math.min(1, (performance.now() - inst.t0) / inst.ms);
+      else p = inst.manual ? 1 : Math.min(1, (performance.now() - inst.t0) / inst.ms);
       inst.fills.forEach(function (f, i) {
         f.style.transform = 'scaleX(' + (i < inst.idx ? 1 : (i === inst.idx ? Math.max(0, Math.min(1, p)) : 0)) + ')';
       });
@@ -1491,16 +1647,19 @@
           } else { el.pause(); }
         }
       });
+      if (play) preloadAround(inst, n, false);        // start fetching the slide after this one
     }
     function schedule(inst, ms) {
       clearTimeout(inst.timer);
       inst.timer = setTimeout(function () { advance(inst); }, ms);
     }
     function advance(inst) {
-      if (!inst.running) return;
+      if (!inst.running || inst.manual) return;
       var len = inst.slides.length, next = -1, pending = false;
       for (var k = 1; k < len; k++) {
-        var j = (inst.idx + k) % len, st = state(inst.slides[j]);
+        var j = (inst.idx + k) % len;
+        loadSlide(inst, j);                           // make sure the slide we're waiting for is actually loading
+        var st = state(inst.slides[j]);
         if (st === 'ready') { next = j; break; }
         if (st === 'pending') { pending = true; break; }
       }
@@ -1521,8 +1680,9 @@
       tick(inst);
     }
     function stop(inst) {
-      clearTimeout(inst.timer); clearTimeout(inst.intent);
-      inst.running = false;
+      clearTimeout(inst.timer); clearTimeout(inst.intent); clearTimeout(inst.settleTimer);
+      inst.running = false; inst.manual = false; inst.animating = false;
+      inst.slides.forEach(function (el) { el.style.transition = ''; el.style.transform = ''; el.style.opacity = ''; });
       cancelAnimationFrame(inst.raf);
       inst.root.classList.remove('is-on');
       inst.fills.forEach(function (f) { f.style.transform = 'scaleX(0)'; });
@@ -1566,10 +1726,126 @@
     }
     function onScroll() { if (!ticking) { ticking = true; requestAnimationFrame(pickTouch); } }
 
+
+    // ── Swipe / drag the carousel left or right: slides follow the finger and override the automatic change ──
+    var SWIPE_MIN = 8, SWIPE_FRACTION = 0.18, SWIPE_VELOCITY = 0.4;
+    function nextIndex(inst, dir) {
+      var len = inst.slides.length;
+      for (var k = 1; k < len; k++) {
+        var j = ((inst.idx + dir * k) % len + len) % len;
+        if (state(inst.slides[j]) !== 'failed') return j;
+      }
+      return inst.idx;
+    }
+    function beginManual(inst) {
+      if (current && current !== inst) stop(current);
+      preloadAround(inst, inst.idx, true);
+      clearTimeout(inst.timer); clearTimeout(inst.intent);
+      inst.manual = true;
+      if (!inst.running) { inst.running = true; inst.root.classList.add('is-on'); tick(inst); }
+      current = inst;
+    }
+    function resetSlideStyle(el) { el.style.transition = ''; el.style.transform = ''; el.style.opacity = ''; }
+    function finalize(inst, n) {                         // apply the final state without any flash
+      var changed = n !== inst.idx;
+      inst.slides.forEach(function (el, i) {
+        el.style.transition = 'none';
+        el.classList.toggle('is-active', i === n);
+        el.style.transform = ''; el.style.opacity = '';
+      });
+      void inst.root.offsetWidth;
+      inst.slides.forEach(function (el, i) {
+        el.style.transition = '';
+        if (el.tagName === 'VIDEO') {
+          if (i === n) { if (changed) { try { el.currentTime = 0; } catch (e) {} } var pr = el.play(); if (pr && pr.catch) pr.catch(function () {}); }
+          else { el.pause(); }
+        }
+      });
+      inst.idx = n; inst.t0 = performance.now(); inst.lastSample = 0;
+      preloadAround(inst, n, true);
+      inst.nbIdx = -1; inst.animating = false;
+      updateBarColor(inst);
+    }
+    function bindSwipe(inst) {
+      var root = inst.root, sx = 0, sy = 0, t0 = 0, dx = 0, W = 0, dir = 0, pid = null;
+      var down = false, decided = false, horiz = false;
+      inst.nbIdx = -1;
+      root.style.touchAction = 'pan-y pinch-zoom';         // vertical scrolling and pinch-zoom stay native
+      var link = root.closest('a'); if (link) link.setAttribute('draggable', 'false');
+      root.querySelectorAll('img').forEach(function (im) { im.setAttribute('draggable', 'false'); });
+
+      function setDir(d) {
+        if (d === dir) return;
+        if (inst.nbIdx >= 0) resetSlideStyle(inst.slides[inst.nbIdx]);
+        dir = d; inst.nbIdx = nextIndex(inst, dir);
+        if (inst.nbIdx === inst.idx) inst.nbIdx = -1; else loadSlide(inst, inst.nbIdx);
+      }
+      function drag() {
+        var cur = inst.slides[inst.idx];
+        cur.style.transition = 'none'; cur.style.opacity = '1'; cur.style.transform = 'translateX(' + dx + 'px)';
+        if (inst.nbIdx >= 0) {
+          var nb = inst.slides[inst.nbIdx];
+          nb.style.transition = 'none'; nb.style.opacity = '1';
+          nb.style.transform = 'translateX(' + (dx + (dir > 0 ? W : -W)) + 'px)';
+        }
+      }
+      function settle(commit) {
+        inst.animating = true;
+        var cur = inst.slides[inst.idx], nb = inst.nbIdx >= 0 ? inst.slides[inst.nbIdx] : null;
+        var tr = reduce.matches ? 'none' : 'transform 0.32s cubic-bezier(0.22, 1, 0.36, 1)';
+        cur.style.transition = tr; if (nb) nb.style.transition = tr;
+        if (commit && nb) { cur.style.transform = 'translateX(' + (-dir * W) + 'px)'; nb.style.transform = 'translateX(0px)'; }
+        else { cur.style.transform = 'translateX(0px)'; if (nb) nb.style.transform = 'translateX(' + (dir > 0 ? W : -W) + 'px)'; }
+        var target = (commit && nb) ? inst.nbIdx : inst.idx;
+        clearTimeout(inst.settleTimer);
+        inst.settleTimer = setTimeout(function () { finalize(inst, target); dir = 0; }, reduce.matches ? 0 : 340);
+      }
+
+      root.addEventListener('pointerdown', function (e) {
+        if (e.pointerType === 'mouse' && e.button !== 0) return;
+        if (inst.animating) return;
+        sx = e.clientX; sy = e.clientY; t0 = performance.now(); dx = 0; dir = 0;
+        W = root.clientWidth; pid = e.pointerId; down = true; decided = false; horiz = false;
+      });
+      root.addEventListener('pointermove', function (e) {
+        if (!down || e.pointerId !== pid) return;
+        var mx = e.clientX - sx, my = e.clientY - sy;
+        if (!decided) {
+          if (Math.abs(mx) < SWIPE_MIN && Math.abs(my) < SWIPE_MIN) return;
+          decided = true; horiz = Math.abs(mx) > Math.abs(my) * 1.2;
+          if (!horiz) { down = false; return; }
+          beginManual(inst);
+          try { root.setPointerCapture(pid); } catch (err) {}
+        }
+        if (!horiz) return;
+        dx = Math.max(-W, Math.min(W, mx));
+        setDir(dx < 0 ? 1 : -1);
+        drag();
+      });
+      function end(e) {
+        if (!down || e.pointerId !== pid) return;
+        down = false;
+        if (!horiz) return;
+        inst.swipedAt = performance.now();
+        var dt = Math.max(1, performance.now() - t0), vel = dx / dt;
+        var commit = e.type !== 'pointercancel' && inst.nbIdx >= 0 &&
+          (Math.abs(dx) > W * SWIPE_FRACTION || (Math.abs(vel) > SWIPE_VELOCITY && Math.abs(dx) > 20));
+        settle(commit);
+      }
+      root.addEventListener('pointerup', end);
+      root.addEventListener('pointercancel', end);
+      // a swipe that starts on a link must not open it
+      var linkEl = root.closest('a');
+      (linkEl || root).addEventListener('click', function (e) {
+        if (inst.swipedAt && performance.now() - inst.swipedAt < 400) { e.preventDefault(); e.stopPropagation(); }
+      }, true);
+    }
+
     document.querySelectorAll('.ss').forEach(function (root) {
       var inst = create(root);
       if (!inst) return;
       insts.push(inst);
+      bindSwipe(inst);
       root.addEventListener('mouseenter', function () { intentStart(inst); });
       root.addEventListener('mouseleave', function () { if (hoverMode.matches) intentStop(inst); });
       var fr = root.closest('.other-link') || root;
@@ -1582,6 +1858,177 @@
     window.addEventListener('load', function () { setTimeout(pickTouch, 300); });
     document.addEventListener('visibilitychange', function () { if (document.hidden) stopAll(); else onScroll(); });
     if (hoverMode.addEventListener) hoverMode.addEventListener('change', stopAll);
+  })();
+</script>
+<script>
+  // Skeleton loaders: a shimmer is shown only for media that has not finished loading yet.
+  // Already-loaded (e.g. cached) media never shows one.
+  (function () {
+    function done(el) { return el.tagName === 'VIDEO' ? el.readyState >= 2 : el.complete; }
+    function watch(el, host) {
+      if (!el || done(el)) return;
+      host.classList.add('is-loading');
+      var finished = false;
+      function end() {
+        if (finished) return; finished = true;
+        host.classList.remove('is-loading');
+      }
+      ['load', 'loadeddata', 'error'].forEach(function (ev) { el.addEventListener(ev, end, { once: true }); });
+      setTimeout(end, 10000);   // safety net: never leave a skeleton on forever
+    }
+    document.querySelectorAll('.ss').forEach(function (root) {
+      var first = root.querySelector('.ss-slide.is-active');
+      if (first && first.tagName !== 'DIV' && first.getAttribute('src')) watch(first, root);
+    });
+    var hs = document.querySelector('.cta-headshot');
+    if (hs) watch(hs, hs);
+  })();
+</script>
+<script>
+  // Mobile pull-up: at the very end of the page, keep dragging up (rubber-band) and hold; the ring fills with
+  // pull depth + time, then the email is copied. Letting go springs the section shut.
+  (function () {
+    var panel = document.getElementById('pullPanel'), wrap = document.getElementById('wrap');
+    if (!panel || !wrap) return;
+    var mq = window.matchMedia('(max-width: 959px)');
+    var reduce = window.matchMedia('(prefers-reduced-motion: reduce)');
+    var inner = panel.querySelector('.pull-inner'), title = panel.querySelector('.pull-title'), text = panel.querySelector('.pull-text');
+    var ring = panel.querySelector('.ring-prog'), C = 2 * Math.PI * 15;
+    var EMAIL = 'bhavyamittalbiz@gmail.com', H_MAX = 112, DEAD = 10;
+    var TITLE0 = title.textContent, TEXT0 = text.innerHTML;
+
+    var touching = false, pulling = false, startY = 0, baseDy = null, d = 0;
+    var h = 0, v = 0, target = 0, progress = 0, done = false, raf = null, last = 0;
+
+    function atBottom() { return window.scrollY + window.innerHeight >= document.documentElement.scrollHeight - 2; }
+    function clamp(x, a, b) { return Math.max(a, Math.min(b, x)); }
+    function rubber(x) { return H_MAX * (1 - Math.exp(-x / 170)); }
+
+    // Haptics: Android/Chrome vibrate(); iOS Safari 17.4+ falls back to toggling a hidden switch (best effort)
+    function iosTick(times) {
+      try {
+        var l = document.createElement('label'), i = document.createElement('input');
+        l.setAttribute('aria-hidden', 'true');
+        l.style.cssText = 'position:fixed;left:-9999px;top:0;opacity:0;pointer-events:none';
+        i.type = 'checkbox'; i.setAttribute('switch', '');
+        l.appendChild(i); document.body.appendChild(l); l.click();
+        setTimeout(function () { if (l.parentNode) l.parentNode.removeChild(l); }, 120);
+        if (times > 1) setTimeout(function () { iosTick(times - 1); }, 70);
+      } catch (e) {}
+    }
+    function buzz(pattern, iosTimes) {
+      try { if (navigator.vibrate) { navigator.vibrate(pattern); return; } iosTick(iosTimes || 1); } catch (e) {}
+    }
+    var startedFeedback = false, lastStep = 0;
+
+    var copyFailed = false;
+    function copyNow() {
+      function ok() {
+        copyFailed = false;
+        panel.classList.remove('is-failed'); panel.classList.add('is-done');
+        title.textContent = 'Email copied';
+        text.textContent = EMAIL;
+        if (window.playCopySound) playCopySound();
+        buzz([22, 50, 38], 2);                         // success: a firmer double pulse
+      }
+      function fail() {
+        copyFailed = true;
+        panel.classList.remove('is-done'); panel.classList.add('is-failed');
+        title.textContent = 'Couldn\u2019t copy';
+        text.textContent = touching ? 'Let go to try again' : EMAIL;
+        buzz(40, 1);                                   // one long buzz, no success sound
+      }
+      copyText(EMAIL, ok, fail);
+    }
+    function complete() {
+      done = true; progress = 1;
+      copyNow();
+    }
+    function resetUI() {
+      done = false;
+      panel.classList.remove('is-done', 'is-failed', 'is-active');
+      copyFailed = false;
+      title.textContent = TITLE0; text.innerHTML = TEXT0;
+      document.documentElement.classList.remove('is-pulling');
+      wrap.style.removeProperty('--pull-shift');
+      panel.style.height = '0px';
+    }
+
+    function frame(now) {
+      var dt = Math.min(0.032, (now - last) / 1000 || 0.016); last = now;
+      if (touching && pulling && !atBottom()) window.scrollTo(0, document.documentElement.scrollHeight);   // keep the page pinned while pulling
+      // spring: follows the finger while held, bounces shut on release
+      var k = touching ? 235 : 130, c = touching ? 22 : 10.5;
+      if (reduce.matches) { h = target; v = 0; }
+      else {
+        v += (k * (target - h) - c * v) * dt; h += v * dt;
+        if (h < 0) { h = 0; if (v < 0) v = 0; }
+      }
+      panel.style.height = h + 'px';
+      wrap.style.setProperty('--pull-shift', (-h) + 'px');
+      inner.style.opacity = clamp(h / 60, 0, 1);
+      panel.classList.toggle('is-active', h > 0.5);
+
+      // haptic: once when the section first appears
+      if (touching && pulling && !startedFeedback && h > 6) { startedFeedback = true; lastStep = 0; buzz(16, 1); }
+
+      // progress ring: pull depth + time
+      var depth = clamp(h / H_MAX, 0, 1);
+      if (touching && pulling && !done) {
+        progress += depth > 0.12 ? dt * (0.25 + 0.9 * depth) / 1.4 : -dt * 0.8;
+        progress = clamp(progress, 0, 1);
+        // haptic ticks as the ring builds (every 10%, getting a touch longer)
+        var step = Math.floor(progress * 10);
+        if (step > lastStep && progress < 1) { buzz(10 + step * 1.5, 1); }
+        lastStep = Math.max(0, step);
+        if (progress >= 1) complete();
+      } else if (!touching) {
+        progress = clamp(progress - dt * 2.5, 0, 1);
+      }
+      ring.style.strokeDashoffset = (C * (1 - progress)) + '';
+
+      if (touching || h > 0.3 || Math.abs(v) > 1 || progress > 0.001) raf = requestAnimationFrame(frame);
+      else { raf = null; resetUI(); }
+    }
+    function loop() { if (!raf) { last = performance.now(); raf = requestAnimationFrame(frame); } }
+
+    document.addEventListener('touchstart', function (e) {
+      if (!mq.matches || e.touches.length !== 1) return;
+      if (window.primeCopyAudio) primeCopyAudio();
+      touching = true; pulling = false; baseDy = null; d = 0; startedFeedback = false; lastStep = 0;
+      if (done || progress > 0) {                       // fresh cycle: clear the previous result
+        done = false; progress = 0; copyFailed = false;
+        panel.classList.remove('is-done', 'is-failed');
+        title.textContent = TITLE0; text.innerHTML = TEXT0;
+        ring.style.strokeDashoffset = C + '';
+      }
+      startY = e.touches[0].clientY;
+      if (h > 0) loop();
+    }, { passive: true });
+
+    document.addEventListener('touchmove', function (e) {
+      if (!touching || !mq.matches) return;
+      var dy = startY - e.touches[0].clientY;           // positive = finger moving up
+      if (!pulling && !atBottom()) { baseDy = null; return; }   // ordinary scrolling
+      if (baseDy === null || (!pulling && dy < baseDy)) baseDy = dy;
+      var raw = dy - baseDy - DEAD;                      // extra pull beyond the end of the page
+      if (!pulling && raw <= 0) return;
+      pulling = true;
+      d = Math.max(0, raw);
+      target = rubber(d);
+      document.documentElement.classList.add('is-pulling');
+      loop();
+    }, { passive: true });
+
+    function release() {
+      if (!touching) return;
+      touching = false; pulling = false; target = 0; startedFeedback = false; lastStep = 0;
+      if (window.primeCopyAudio) primeCopyAudio();
+      if (copyFailed) copyNow();                      // lifting the finger is a fresh touch: retry the copy once
+      loop();
+    }
+    document.addEventListener('touchend', release, { passive: true });
+    document.addEventListener('touchcancel', release, { passive: true });
   })();
 </script>
 </body>
