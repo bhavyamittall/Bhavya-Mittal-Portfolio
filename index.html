@@ -20,6 +20,7 @@
   <link rel="icon" type="image/svg+xml" href="assets/images/Logos/Favicon_ylckj8.svg" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200&amp;icon_names=mail" />
   <script type="application/ld+json">{"@context":"https://schema.org","@type":"Person","name":"Bhavya Mittal","url":"https://bhavyamittal.com/","jobTitle":"Product Designer","worksFor":{"@type":"Organization","name":"Egon Zehnder"},"address":{"@type":"PostalAddress","addressLocality":"Gurugram","addressCountry":"IN"},"sameAs":["https://www.behance.net/bhavyamittall","https://cal.com/bhavyamittal"]}</script>
   <style>
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
@@ -76,7 +77,7 @@
     .work-card-thumb:hover { opacity: 0.94; box-shadow: rgba(60, 64, 67, 0.3) 0px 1px 2px 0px, rgba(60, 64, 67, 0.15) 0px 1px 3px 1px; }
     .work-card:active { transform: scale(0.96); transition-duration: 0.15s; }
     .work-card:hover .work-card-title { color: var(--blue); }
-    .work-card-thumb { width: 100%; aspect-ratio: 4/3; background: #f0efeb; overflow: hidden; border-radius: 3px; position: relative; }
+    .work-card-thumb { width: 100%; aspect-ratio: 4/3; background: #f0efeb; overflow: hidden; border-radius: 4px; position: relative; }
     .work-card-thumb img { width: 100%; height: 100%; object-fit: cover; display: block; }
 
     /* ── Custom tooltip ── */
@@ -88,7 +89,7 @@
       font-size: 0.82rem;
       font-weight: 500;
       padding: 6px 12px;
-      border-radius: 3px;
+      border-radius: 4px;
       pointer-events: none;
       opacity: 0;
       transform: translate(0, -50%);
@@ -149,7 +150,7 @@
       color: var(--muted);
       background: transparent;
       border: 0;
-      border-radius: 3px;
+      border-radius: 4px;
       padding: 12px 20px;
       min-height: 44px;
       box-shadow: var(--shadow-border);
@@ -187,7 +188,7 @@
       color: var(--muted);
       font-size: 14px;
       background: var(--bg);
-      border-radius: 3px;
+      border-radius: 4px;
       white-space: nowrap;
       z-index: 2;
       clip-path: inset(0 100% 0 0);
@@ -255,7 +256,7 @@
       max-width: 318px;
       padding: 14px 18px;
       border: 1px solid rgba(0, 0, 0, 0.11);
-      border-radius: 3px;
+      border-radius: 4px;
       background: rgba(255, 255, 255, 0.22);
       box-shadow: rgba(0, 0, 0, 0.06) 0px 2px 4px 0px inset;
       color: var(--muted);
@@ -276,7 +277,7 @@
       text-underline-offset: 2px;
     }
     .as-seen-mobile a:hover { color: var(--fg); text-decoration-color: var(--fg); }
-    .as-seen-mobile a:focus-visible { outline: 2px solid rgba(54, 122, 246, 0.32); outline-offset: 3px; border-radius: 3px; }
+    .as-seen-mobile a:focus-visible { outline: 2px solid rgba(54, 122, 246, 0.32); outline-offset: 3px; border-radius: 4px; }
     /* Desktop footer links hidden on mobile */
     .cv-line-desktop { display: none; }
 
@@ -301,7 +302,7 @@
       left: 16px;
       max-width: 204.25px;
       margin: 0 auto;
-      padding: 8px;
+      padding: 6px;
       border: 1px solid rgba(0, 0, 0, 0.1);
       border-radius: 999px;
       background: rgba(255, 255, 255, 0.94);
@@ -313,7 +314,7 @@
       transform-origin: 50% 100%; /* shrinks toward its bottom edge, so the 20px bottom gap stays */
     }
     #mobileCtaBlock .cta-label { font-weight: 500; }
-    #mobileCtaBlock.is-compact { padding: 8px 12px; }
+    #mobileCtaBlock.is-compact { padding: 6px 10px; gap: 3px; }
     .mobile-cta-primary {
       display: inline-flex;
       align-items: center;
@@ -388,7 +389,7 @@
       flex: 0 0 auto;
       display: block;
     }
-    .cta-icon-stack svg {
+    .cta-icon-stack svg, .cta-icon-stack .icon-mail-font {
       position: absolute;
       inset: 0;
       transition: opacity 0.25s ease, transform 0.3s cubic-bezier(0.34, 1.56, 0.64, 1), filter 0.25s ease;
@@ -435,7 +436,7 @@
       .mobile-cta-secondary:hover { opacity: 0.75; }
     }
     .mobile-cta-secondary:active { transform: scale(0.96); }
-    .mobile-cta-secondary:focus-visible { outline: 2px solid rgba(54, 122, 246, 0.32); outline-offset: 4px; border-radius: 3px; }
+    .mobile-cta-secondary:focus-visible { outline: 2px solid rgba(54, 122, 246, 0.32); outline-offset: 4px; border-radius: 4px; }
 
     /* ── Mobile link bar at bottom ── */
     #mobileLinkBar {
@@ -618,7 +619,7 @@
       .reach-btns a[href="about.html"] .reach-btn-inner { display: none; }
       .reach-btns a[href="about.html"]::after { content: "About me"; }
       .reach-btns a[href="about.html"]:hover { opacity: 0.75; }
-      .reach-btns a[href="about.html"]:focus-visible { outline: 2px solid rgba(54, 122, 246, 0.32); outline-offset: 4px; border-radius: 3px; }
+      .reach-btns a[href="about.html"]:focus-visible { outline: 2px solid rgba(54, 122, 246, 0.32); outline-offset: 4px; border-radius: 4px; }
 
       /* Hide mobile cv-line */
       #cvLine { display: none; }
@@ -629,7 +630,7 @@
         width: 318px;
         padding: 14px 18px;
         border: 1px solid rgba(0, 0, 0, 0.11);
-        border-radius: 3px;
+        border-radius: 4px;
         background: rgba(255, 255, 255, 0.22);
         box-shadow: rgba(0, 0, 0, 0.06) 0px 2px 4px 0px inset;
         color: var(--muted);
@@ -650,7 +651,7 @@
         text-underline-offset: 2px;
       }
       .as-seen-desktop a:hover { color: var(--fg); text-decoration-color: var(--fg); }
-      .as-seen-desktop a:focus-visible { outline: 2px solid rgba(54, 122, 246, 0.32); outline-offset: 3px; border-radius: 3px; }
+      .as-seen-desktop a:focus-visible { outline: 2px solid rgba(54, 122, 246, 0.32); outline-offset: 3px; border-radius: 4px; }
 
       .cv-line-desktop {
         display: flex !important;
@@ -671,7 +672,7 @@
         transition-timing-function: ease;
       }
       .cv-line-desktop a:hover { text-decoration-color: var(--muted); }
-      .cv-line-desktop a:focus-visible { outline: 2px solid rgba(54, 122, 246, 0.32); outline-offset: 4px; border-radius: 3px; }
+      .cv-line-desktop a:focus-visible { outline: 2px solid rgba(54, 122, 246, 0.32); outline-offset: 4px; border-radius: 4px; }
       .cv-line-desktop a[aria-disabled="true"] {
         opacity: 0.45;
         cursor: default;
@@ -709,7 +710,7 @@
         width: 84.24%;
         height: auto;
         aspect-ratio: 4 / 3;
-        border-radius: 3px;
+        border-radius: 4px;
         overflow: hidden;
         background: #eceae5;
         margin-left: auto;
@@ -762,7 +763,7 @@
     .other-heading { font-size: 14px; font-weight: 600; color: var(--fg); line-height: 1.65; margin: 0 0 20px; text-wrap: balance; }
     .other-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
     .other-card { display: flex; flex-direction: column; cursor: default; }
-    .other-thumb { width: 100%; aspect-ratio: 4 / 3; background: #f0efeb; border-radius: 3px; overflow: hidden; position: relative; }
+    .other-thumb { width: 100%; aspect-ratio: 4 / 3; background: #f0efeb; border-radius: 4px; overflow: hidden; position: relative; }
     .other-thumb img { width: 100%; height: 100%; object-fit: cover; display: block; }
     .other-body { padding: 6px 0 0; display: flex; flex-direction: column; gap: 1px; }
     .other-name { font-size: 14px; color: var(--fg); font-weight: 400; line-height: 1.4; margin: 0; }
@@ -793,7 +794,7 @@
     .mobile-text-links { display: flex; flex-direction: row; flex-wrap: nowrap; justify-content: center; align-items: center; gap: 20px; }
     .mobile-text-links a { font-size: 14px; color: var(--fg); text-decoration: underline; text-decoration-color: rgba(58, 58, 58, 0.15); text-decoration-color: color-mix(in srgb, var(--fg) 15%, transparent); text-underline-offset: 2px; white-space: nowrap; min-height: 40px; display: inline-flex; align-items: center; transition: opacity 0.15s ease; }
     .mobile-text-links a:active { opacity: 0.6; }
-    .mobile-text-links a:focus-visible { outline: 2px solid rgba(54, 122, 246, 0.32); outline-offset: 4px; border-radius: 3px; }
+    .mobile-text-links a:focus-visible { outline: 2px solid rgba(54, 122, 246, 0.32); outline-offset: 4px; border-radius: 4px; }
     /* ── Skeleton loaders: only shown while media is genuinely still loading ── */
     @keyframes sk-shimmer { 0% { background-position: 200% 0; } 100% { background-position: -200% 0; } }
     .ss::before { content: ""; position: absolute; inset: 0; z-index: 3; pointer-events: none; opacity: 0; transition: opacity 0.3s ease;
@@ -840,6 +841,65 @@
           rgba(247, 246, 245, 0) 100%);
       }
     }
+    /* ── Contact bottom sheet ── */
+    html.sheet-open, html.sheet-open body { overflow: hidden; }
+    .contact-layer { position: fixed; inset: 0; z-index: 1300; visibility: hidden; pointer-events: none; transition: visibility 0s linear 0.45s; }
+    .contact-layer.is-open { visibility: visible; pointer-events: auto; transition-delay: 0s; }
+    .contact-backdrop { position: absolute; inset: 0; background: rgba(28, 28, 30, 0.34); opacity: 0; transition: opacity 0.35s ease; }
+    .contact-layer.is-open .contact-backdrop { opacity: 1; }
+    .contact-sheet { position: absolute; left: 0; right: 0; bottom: 0; max-width: 440px; margin: 0 auto; outline: none;
+      background: #fff; border-radius: 14px 14px 0 0; box-shadow: 0 -8px 30px rgba(0, 0, 0, 0.12);
+      padding: 0 20px calc(22px + env(safe-area-inset-bottom, 0px));
+      transform: translateY(105%); transition: transform 0.45s cubic-bezier(0.22, 1, 0.36, 1); }
+    .contact-layer.is-open .contact-sheet { transform: translateY(0); }
+    .sheet-grab { display: flex; justify-content: center; padding: 10px 0 6px; touch-action: none; cursor: grab; }
+    .sheet-handle { width: 36px; height: 4px; border-radius: 2px; background: rgba(0, 0, 0, 0.14); }
+    .sheet-head { display: flex; align-items: center; justify-content: space-between; margin-bottom: 14px; touch-action: none; }
+    .sheet-title { margin: 0; font-size: 14px; line-height: 1.5; font-weight: 500; color: var(--fg); }
+        /* Digital visiting card (inside the contact sheet): 3D tilt + glare + shine */
+    .vc-stage { perspective: 720px; margin-bottom: 12px; touch-action: none; }
+    .visiting-card { position: relative; display: flex; flex-direction: column; justify-content: flex-start; gap: 18px; aspect-ratio: 1.8 / 1; padding: 16px;
+      border: 1px solid #83B9FF; border-radius: 4px; color: #fff;
+      background: linear-gradient(to bottom, #4B91F7 0%, #2C8EFF 100%); box-shadow: 0 6px 16px rgba(44, 142, 255, 0.22);
+      transform-style: preserve-3d; transform: rotateX(var(--vc-rx, 0deg)) rotateY(var(--vc-ry, 0deg)); will-change: transform;
+      }
+    .vc-bloom { position: absolute; inset: 0; width: 100%; height: 100%; display: block; visibility: hidden; }
+    .vc-bloom.is-ready { visibility: visible; }
+    .vc-clip { position: absolute; inset: 0; border-radius: inherit; overflow: hidden; pointer-events: none; }
+    .vc-shine { position: absolute; top: -25%; bottom: -25%; left: 0; width: 45%; opacity: 0; transform: translateX(-160%) skewX(-18deg);
+      background: linear-gradient(90deg, rgba(255, 255, 255, 0) 0%, rgba(255, 255, 255, 0.7) 50%, rgba(255, 255, 255, 0) 100%); }
+    .visiting-card.is-shining .vc-shine { animation: vc-shine 0.95s cubic-bezier(0.3, 0.6, 0.2, 1) both; }
+    .visiting-card.is-shining.shine-rev .vc-shine { animation-direction: reverse; }
+    @keyframes vc-shine { 0% { transform: translateX(-160%) skewX(-18deg); opacity: 0; } 20% { opacity: 1; } 80% { opacity: 1; } 100% { transform: translateX(330%) skewX(-18deg); opacity: 0; } }
+    .vc-main { transform: translateZ(18px); }
+    .vc-main { margin: 0; }   /* name and designation sit at the top left */
+    .visiting-card p { margin: 0; font-size: 14px; line-height: 1.5; }
+    .vc-name { font-weight: 600; color: #fff; }
+    .vc-role { font-weight: 400; color: rgba(255, 255, 255, 0.82); }
+    @media (prefers-reduced-motion: reduce) { .visiting-card.is-shining .vc-shine { animation: none; } }
+    .email-box { display: flex; align-items: center; gap: 8px; padding: 6px 6px 6px 14px; border: 1px solid rgba(0, 0, 0, 0.11); border-radius: 4px; background: #fbfaf9; box-shadow: rgba(0, 0, 0, 0.05) 0 2px 4px 0 inset; }
+    .email-text { flex: 1 1 auto; min-width: 0; font-size: 14px; line-height: 1.5; font-weight: 500; color: var(--fg); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; -webkit-user-select: all; user-select: all; }
+    .copy-btn { flex: 0 0 auto; display: inline-flex; align-items: center; justify-content: center; width: 36px; height: 36px; padding: 0; border: 0; border-radius: 50%; background: transparent; color: var(--muted); cursor: pointer; transition: color 0.15s ease, transform 0.15s ease; }
+    .copy-btn:hover { color: var(--fg); }
+    .copy-btn:active { transform: scale(0.9); }
+    .copy-btn .ic-check { display: none; }
+    .copy-btn.is-ok { color: #2C8EFF; }
+    .copy-btn.is-ok .ic-copy { display: none; }
+    .copy-btn.is-ok .ic-check { display: block; }
+    .copy-btn.is-fail { color: #d64545; }
+    .sheet-status { position: absolute; width: 1px; height: 1px; margin: 0; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; }
+    .sheet-links { display: grid; grid-template-columns: repeat(3, 1fr); gap: 8px; margin-top: 12px; }
+    .sheet-links a { display: flex; align-items: center; justify-content: center; min-height: 44px; padding: 0 8px; border: 1px solid rgba(0, 0, 0, 0.11); border-radius: 4px; color: var(--fg); font-size: 14px; text-decoration: none; transition: background 0.15s ease, transform 0.15s ease; }
+    .sheet-links a:hover { background: rgba(0, 0, 0, 0.03); }
+    .sheet-links a:active { transform: scale(0.97); }
+    .contact-sheet :focus-visible { outline: 2px solid rgba(54, 122, 246, 0.45); outline-offset: 2px; }
+    @media (min-width: 600px) { .contact-sheet { bottom: 24px; border-radius: 14px; padding-bottom: 22px; } }
+    @media (prefers-reduced-motion: reduce) { .contact-sheet, .contact-backdrop { transition-duration: 0.01ms; } }
+    /* Material Symbols "mail": same 14px footprint and white colour as the previous icon (filled variant) */
+    .material-symbols-outlined { font-family: 'Material Symbols Outlined'; font-weight: normal; font-style: normal; line-height: 1; letter-spacing: normal; text-transform: none; white-space: nowrap; word-wrap: normal; direction: ltr; -webkit-font-smoothing: antialiased; font-feature-settings: 'liga'; font-variation-settings: 'FILL' 1, 'wght' 400, 'GRAD' 0, 'opsz' 20; }
+    .icon-mail-font { display: none; align-items: center; justify-content: center; font-size: 16.8px; color: #fff; -webkit-user-select: none; user-select: none; }
+    html.msym-ready .icon-mail-font { display: flex; }
+    html.msym-ready svg.icon-mail { display: none; }
     .work-card-desc { font-size: 14px; color: var(--muted); line-height: 1.5; margin: 0; text-wrap: pretty; }
     @media (max-width: 480px) { .other-grid { grid-template-columns: 1fr; } }
     /* Mobile / tablet only: more breathing room */
@@ -892,7 +952,7 @@
 
       <!-- Mobile-only: CTA buttons right after bio paragraph -->
       <div id="mobileCtaBlock" class="anim" style="animation-delay:155ms">
-        <a class="mobile-cta-primary" href="https://mail.google.com/mail/?view=cm&to=bhavyamittalbiz@gmail.com" target="_blank" onclick="copyEmail(event, this)">
+        <a class="mobile-cta-primary" href="https://mail.google.com/mail/?view=cm&to=bhavyamittalbiz@gmail.com" target="_blank" onclick="openContact(event, this)" aria-haspopup="dialog">
           <span class="cta-label">Get in touch</span>
           <span class="cta-icon">
             <span class="cta-icon-stack">
@@ -901,6 +961,7 @@
                 <mask id="mask0_466_35" style="mask-type:alpha" maskUnits="userSpaceOnUse" x="10" y="8" width="14" height="14"><rect x="10" y="8" width="14" height="14" fill="#D9D9D9"/></mask>
                 <g mask="url(#mask0_466_35)"><path d="M11.166 20.8346V10.3346C11.166 10.0138 11.2803 9.73915 11.5087 9.51068C11.7372 9.2822 12.0118 9.16797 12.3327 9.16797H21.666C21.9868 9.16797 22.2615 9.2822 22.49 9.51068C22.7184 9.73915 22.8327 10.0138 22.8327 10.3346V17.3346C22.8327 17.6555 22.7184 17.9301 22.49 18.1586C22.2615 18.3871 21.9868 18.5013 21.666 18.5013H13.4993L11.166 20.8346ZM13.0035 17.3346H21.666V10.3346H12.3327V17.9909L13.0035 17.3346Z" fill="white"/></g>
               </svg>
+              <span class="icon-mail icon-mail-font material-symbols-outlined" aria-hidden="true">mail</span>
               <svg class="icon-tick" width="28" height="28" viewBox="3 1 28 28" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
                 <circle cx="17" cy="15" r="14" fill="none"/>
                 <path class="tick-path" d="M10 15.6L14.4 20L24 9.5" pathLength="1" stroke="white" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
@@ -943,7 +1004,7 @@
           </div>
         </div>
         <div class="reach-btns">
-          <a class="reach-btn" id="emailBtn" href="https://mail.google.com/mail/?view=cm&to=bhavyamittalbiz@gmail.com" target="_blank" aria-label="Copy email address" onclick="copyEmail(event, this)">
+          <a class="reach-btn" id="emailBtn" href="https://mail.google.com/mail/?view=cm&to=bhavyamittalbiz@gmail.com" target="_blank" aria-label="Get in touch" onclick="openContact(event, this)" aria-haspopup="dialog">
             <span id="emailBtn-inner">Get in touch</span>
           </a>
           <a class="reach-btn" href="about.html">
@@ -1119,7 +1180,39 @@
     </div>
   </div>
 
-  <!-- Mobile pull-up: keep pulling past the end of the page and hold to copy the email -->
+  <!-- Contact bottom sheet (opened by the Get in touch buttons) -->
+<div class="contact-layer" id="contactLayer" aria-hidden="true">
+  <div class="contact-backdrop" data-close></div>
+  <div class="contact-sheet" role="dialog" aria-modal="true" aria-labelledby="contactTitle" tabindex="-1">
+    <div class="sheet-grab"><span class="sheet-handle"></span></div>
+    <div class="sheet-head">
+      <h2 class="sheet-title" id="contactTitle">Get in touch</h2>
+    </div>
+    <div class="vc-stage">
+      <div class="visiting-card" aria-label="Digital visiting card">
+        <div class="vc-clip" aria-hidden="true"><canvas class="vc-bloom"></canvas><span class="vc-shine"></span></div>
+        <div class="vc-main">
+          <p class="vc-name">Bhavya Mittal</p>
+          <p class="vc-role">Designer</p>
+        </div>
+      </div>
+    </div>
+    <div class="email-box">
+      <span class="email-text" id="contactEmail">bhavyamittalbiz@gmail.com</span>
+      <button type="button" class="copy-btn" id="copyBtn" aria-label="Copy email address">
+        <svg class="ic-copy" width="18" height="18" viewBox="0 0 16 16" fill="none" aria-hidden="true" focusable="false"><rect x="5.5" y="5.5" width="8" height="8" rx="1.8" stroke="currentColor" stroke-width="1.4"/><path d="M10.5 3.8V3.5A1.5 1.5 0 0 0 9 2H3.5A1.5 1.5 0 0 0 2 3.5V9A1.5 1.5 0 0 0 3.5 10.5h.3" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"/></svg>
+        <svg class="ic-check" width="18" height="18" viewBox="0 0 16 16" fill="none" aria-hidden="true" focusable="false"><path d="M3.5 8.5l3 3 6-7" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      </button>
+    </div>
+    <p class="sheet-status" role="status" aria-live="polite"></p>
+    <div class="sheet-links">
+      <a href="https://www.linkedin.com/in/bhavyamittalll/" target="_blank" rel="noopener">LinkedIn</a>
+      <a href="resume.html">CV</a>
+      <a href="https://www.behance.net/bhavyamittall" target="_blank" rel="noopener">Behance</a>
+    </div>
+  </div>
+</div>
+<!-- Mobile pull-up: keep pulling past the end of the page and hold to copy the email -->
 <div id="pullPanel" aria-hidden="true">
   <div class="pull-inner">
     <svg class="pull-ring" viewBox="0 0 36 36" width="30" height="30" focusable="false">
@@ -1393,44 +1486,6 @@
         l.click();
         setTimeout(function() { if (l.parentNode) l.parentNode.removeChild(l); }, 120);
       } catch (e) {}
-    }
-    function copyEmail(event, btn) {
-      if (event) event.preventDefault();
-      primeCopyAudio();
-      var email = 'bhavyamittalbiz@gmail.com';
-      // Second tap right after a failed copy: open the mail app instead, so the visitor can still reach out
-      if (btn.getAttribute('data-copy-failed') === '1') {
-        btn.removeAttribute('data-copy-failed');
-        window.location.href = 'mailto:' + email;
-        return;
-      }
-      var span = btn.querySelector('.cta-label') || btn.querySelector('span');
-      var originalText = span ? span.textContent : '';
-      var iconWrap = btn.querySelector('.cta-icon');
-      var ctaBlockEl = btn.closest('#mobileCtaBlock');
-      var isIconState = !!(ctaBlockEl && ctaBlockEl.classList.contains('is-compact') && iconWrap);
-      function restore() {
-        if (span) span.textContent = originalText;
-        btn.classList.remove('copied');
-        if (isIconState) iconWrap.classList.remove('show-tick');
-      }
-      function showCopied() {
-        btn.removeAttribute('data-copy-failed');
-        playCopySound(); copyHaptic();
-        if (span) span.textContent = 'Email copied';
-        btn.classList.add('copied');
-        if (isIconState) iconWrap.classList.add('show-tick');
-        setTimeout(restore, 2400);
-      }
-      function showFailed() {
-        // nothing was copied, so never say it was: clear message, one long buzz, no success sound
-        try { if (navigator.vibrate) navigator.vibrate(40); } catch (e) {}
-        if (span && !isIconState) span.textContent = 'Couldn\u2019t copy';
-        btn.setAttribute('data-copy-failed', '1');
-        setTimeout(function () { if (span) span.textContent = originalText; }, 2400);
-        setTimeout(function () { btn.removeAttribute('data-copy-failed'); }, 6000);   // forget the failure after a while
-      }
-      copyText(email, showCopied, showFailed);
     }
     // Clipboard API first, then the old execCommand route; reports failure instead of assuming success
     function copyText(text, ok, fail) {
@@ -1994,6 +2049,7 @@
 
     document.addEventListener('touchstart', function (e) {
       if (!mq.matches || e.touches.length !== 1) return;
+      if (document.documentElement.classList.contains('sheet-open')) return;
       if (window.primeCopyAudio) primeCopyAudio();
       touching = true; pulling = false; baseDy = null; d = 0; startedFeedback = false; lastStep = 0;
       if (done || progress > 0) {                       // fresh cycle: clear the previous result
@@ -2029,6 +2085,443 @@
     }
     document.addEventListener('touchend', release, { passive: true });
     document.addEventListener('touchcancel', release, { passive: true });
+  })();
+</script>
+<script>
+  // Contact bottom sheet: opened by both Get in touch buttons
+  (function () {
+    var layer = document.getElementById('contactLayer');
+    if (!layer) return;
+    var sheet = layer.querySelector('.contact-sheet'), emailEl = document.getElementById('contactEmail');
+    var copyBtn = document.getElementById('copyBtn'), status = layer.querySelector('.sheet-status');
+    var html = document.documentElement, EMAIL = emailEl.textContent.trim(), lastFocus = null, resetT = null;
+
+    // ── Halftone Bloom (Originkit) background for the visiting card: plain-JS port of the WebGL2 component, preset values ──
+    var bloom = (function () {
+      var canvas = layer.querySelector('.vc-bloom'), stage = layer.querySelector('.vc-stage');
+      var noop = { start: function () {}, stop: function () {} };
+      if (!canvas || !stage) return noop;
+      var CFG = { bg: '#2C8EFF', c1: '#5C98DD', c2: '#105BB3', speed: 32 / 50, size: 1.54, angle: Math.PI, dot: 6, hover: 1.99, reach: 304 };
+      var LAYERS = 86, GAIN = 0.48, TURN = 0.32, SWELL = 1.1, REST = 0.42, CAP = 0.55, MAX_DPR = 2;
+      var reduce = window.matchMedia('(prefers-reduced-motion: reduce)');
+
+      var VERT = '#version 300 es\nconst vec2 P[3] = vec2[3](vec2(-1.0, -1.0), vec2(3.0, -1.0), vec2(-1.0, 3.0));\nvoid main() { gl_Position = vec4(P[gl_VertexID], 0.0, 1.0); }\n';
+      var FIELD = `#version 300 es
+precision highp float;
+uniform vec2 uRes;
+uniform float uTime;
+uniform vec3 uC1;
+uniform vec3 uC2;
+uniform float uSize;
+uniform float uAngle;
+out vec4 o;
+const float TAU = 6.28318530718;
+const float LAYERS = ${LAYERS.toFixed(1)};
+const float GAIN = ${GAIN.toFixed(3)};
+const vec2 CENTRE = vec2(-0.25, 0.56);
+const float TILT = 1.4;
+const float ZOOM = 1.05;
+const float THETA = 2.13;
+const float SHEAR = 0.965;
+const float SHRINK = 0.957;
+const vec2 WARP_FREQ = vec2(0.45, 2.5);
+const vec2 WARP_AMP = vec2(0.13, 0.028);
+const vec2 ASPECT = vec2(2.2, 0.18);
+const float OFFSET = 0.37;
+const float GLOW = 0.0021;
+const float SOFT = 0.0019;
+const float FALLOFF = 0.37;
+const float PHASE = 23.0;
+const float CYCLE = 0.16;
+const float HUE_TRAVEL = 2.0;
+mat2 rot(float a) { float c = cos(a), s = sin(a); return mat2(c, s, -s, c); }
+void main() {
+  vec2 R = uRes;
+  vec2 pos = (gl_FragCoord.xy - 0.5 * R) / R.y;
+  pos = rot(uAngle) * pos / uSize;
+  float t = uTime * 0.49 + PHASE;
+  float breath = (-sin(uTime * 0.735) + sin(uTime * 0.49 + 1.0)) * 0.25 + 0.5;
+  vec2 u = rot(TILT) * ((pos - CENTRE) * (ZOOM - breath * 0.085));
+  mat2 fold = mat2(cos(THETA), sin(THETA), -SHEAR, cos(THETA));
+  vec3 col = vec3(0.0);
+  for (float i = 1.0; i <= LAYERS; i += 1.0) {
+    u.x -= sin(u.y * WARP_FREQ.x + t + i * 0.007) * WARP_AMP.x;
+    u.y -= sin(u.x * WARP_FREQ.y - t + i * 0.02) * WARP_AMP.y;
+    u = fold * u * SHRINK;
+    vec2 q = (u - vec2(OFFSET + breath * 0.1, 0.0)) * ASPECT;
+    float g = GLOW / (dot(q, q) + SOFT) * (0.25 + breath * 0.4);
+    float r = length(u);
+    float k = sin(i * CYCLE + t * 1.2 + r * HUE_TRAVEL) * 0.5 + 0.5;
+    col += g * mix(uC1, uC2, k) * (0.62 + 0.5 * k) * exp2(-r * FALLOFF);
+  }
+  vec3 x = max(col * GAIN, 0.0);
+  col = (x * (2.51 * x + 0.03)) / (x * (2.43 * x + 0.59) + 0.14);
+  col = pow(clamp(col, 0.0, 1.0), vec3(0.85, 0.92, 0.98));
+  col *= 1.0 - smoothstep(0.5, 1.6, length(pos)) * 0.07;
+  o = vec4(col, 1.0);
+}
+`;
+      var FINISH = `#version 300 es
+precision highp float;
+uniform sampler2D uField;
+uniform vec2 uRes;
+uniform float uTime;
+uniform vec3 uBg;
+uniform float uPaper;
+uniform vec2 uMouse;
+uniform float uOn;
+uniform float uReach;
+uniform float uCell;
+uniform float uPR;
+out vec4 o;
+const float PI = 3.14159265359;
+const vec3 LUMA = vec3(0.2126, 0.7152, 0.0722);
+const float TURN = ${TURN.toFixed(4)};
+const float SWELL = ${SWELL.toFixed(4)};
+const float REST = ${REST.toFixed(4)};
+const float CAP = ${CAP.toFixed(4)};
+float ign(vec2 p, float f) { p += 5.588238 * mod(f, 64.0); return fract(52.9829189 * fract(0.06711056 * p.x + 0.00583715 * p.y)); }
+vec3 scene(vec2 uv) { return max(texture(uField, clamp(uv, 0.0, 1.0)).rgb, 0.0); }
+void main() {
+  vec2 frag = gl_FragCoord.xy;
+  vec2 uv = frag / uRes;
+  mat2 turn = mat2(cos(TURN), -sin(TURN), sin(TURN), cos(TURN));
+  vec2 rp = turn * frag;
+  vec2 c = (floor(rp / uCell) + 0.5) * uCell;
+  vec2 src = transpose(turn) * c;
+  vec3 soft = scene(uv);
+  vec3 ink = scene(src / uRes);
+  float lvl = clamp(dot(ink, LUMA), 0.0, 1.0);
+  float radius = uCell * sqrt(pow(lvl, 0.9) / PI);
+  float presence = smoothstep(0.03, 0.16, lvl) * REST;
+  if (uOn > 0.0) {
+    vec2 d = (src - uMouse) / uReach;
+    float w = uOn * exp(-dot(d, d));
+    if (w > 1e-4) {
+      radius *= 1.0 + SWELL * w;
+      presence = mix(presence, 1.0, min(w, 1.0));
+    }
+  }
+  radius = min(radius, uCell * CAP);
+  float aa = 0.7 * uPR;
+  float dm = 1.0 - smoothstep(radius - aa, radius + aa, length(rp - c));
+  vec3 dots = ink * min(0.8 / max(lvl, 1e-3), 2.2) * dm;
+  vec3 L = mix(soft, dots, presence);
+  vec3 dark = uBg + L * (1.0 - uBg);
+  float strength = clamp(max(L.r, max(L.g, L.b)), 0.0, 1.0);
+  vec3 paper = uBg * (1.0 - strength) + L * 0.96;
+  vec3 col = mix(dark, paper, uPaper);
+  col += (ign(frag, floor(uTime * 24.0)) - 0.5) / 255.0;
+  o = vec4(clamp(col, 0.0, 1.0), 1.0);
+}
+`;
+      function hex(h) { h = h.replace('#', ''); return [parseInt(h.slice(0, 2), 16) / 255, parseInt(h.slice(2, 4), 16) / 255, parseInt(h.slice(4, 6), 16) / 255]; }
+      function clampN(v, lo, hi) { return v < lo ? lo : v > hi ? hi : v; }
+      function link(gl, frag) {
+        function sh(type, src) {
+          var o = gl.createShader(type); gl.shaderSource(o, src); gl.compileShader(o);
+          if (!gl.getShaderParameter(o, gl.COMPILE_STATUS)) { console.error('HalftoneBloom shader:', gl.getShaderInfoLog(o)); gl.deleteShader(o); return null; }
+          return o;
+        }
+        var vs = sh(gl.VERTEX_SHADER, VERT), fs = sh(gl.FRAGMENT_SHADER, frag);
+        if (!vs || !fs) return null;
+        var prog = gl.createProgram(); gl.attachShader(prog, vs); gl.attachShader(prog, fs); gl.linkProgram(prog);
+        gl.deleteShader(vs); gl.deleteShader(fs);
+        if (!gl.getProgramParameter(prog, gl.LINK_STATUS)) { console.error('HalftoneBloom link:', gl.getProgramInfoLog(prog)); gl.deleteProgram(prog); return null; }
+        return prog;
+      }
+      function locs(gl, prog, names) { var out = {}; names.forEach(function (n) { out[n] = gl.getUniformLocation(prog, n); }); return out; }
+
+      var gl = null, field, finish, uf, un, vao, fbo, tex = null, tw = 0, th = 0, half = false;
+      var ready = false, failed = false, running = false, raf = 0, last = -1, clock = 12, mx = 0, my = 0, on = 0;
+      var ptr = { tx: 0, ty: 0, inside: false };
+      var bg = hex(CFG.bg), c1 = hex(CFG.c1), c2 = hex(CFG.c2);
+      var bgLum = 0.2126 * bg[0] + 0.7152 * bg[1] + 0.0722 * bg[2];
+
+      function init() {
+        if (ready) return true; if (failed) return false;
+        gl = canvas.getContext('webgl2', { antialias: false, alpha: false, depth: false, stencil: false });
+        if (!gl) { failed = true; return false; }
+        field = link(gl, FIELD); finish = link(gl, FINISH);
+        if (!field || !finish) { failed = true; return false; }
+        uf = locs(gl, field, ['uRes', 'uTime', 'uC1', 'uC2', 'uSize', 'uAngle']);
+        un = locs(gl, finish, ['uField', 'uRes', 'uTime', 'uBg', 'uPaper', 'uMouse', 'uOn', 'uReach', 'uCell', 'uPR']);
+        vao = gl.createVertexArray(); gl.bindVertexArray(vao);
+        fbo = gl.createFramebuffer(); half = !!gl.getExtension('EXT_color_buffer_float');
+        canvas.addEventListener('webglcontextlost', function (e) { e.preventDefault(); failed = true; ready = false; running = false; cancelAnimationFrame(raf); canvas.classList.remove('is-ready'); });
+        ready = true; return true;
+      }
+      function resizeTarget(nw, nh) {
+        if (nw === tw && nh === th && tex) return;
+        for (var attempt = 0; attempt < 2; attempt++) {
+          if (tex) gl.deleteTexture(tex);
+          tex = gl.createTexture(); gl.bindTexture(gl.TEXTURE_2D, tex);
+          gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_MIN_FILTER, gl.LINEAR); gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_MAG_FILTER, gl.LINEAR);
+          gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_WRAP_S, gl.CLAMP_TO_EDGE); gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_WRAP_T, gl.CLAMP_TO_EDGE);
+          gl.texImage2D(gl.TEXTURE_2D, 0, half ? gl.RGBA16F : gl.RGBA8, nw, nh, 0, gl.RGBA, half ? gl.HALF_FLOAT : gl.UNSIGNED_BYTE, null);
+          gl.bindFramebuffer(gl.FRAMEBUFFER, fbo); gl.framebufferTexture2D(gl.FRAMEBUFFER, gl.COLOR_ATTACHMENT0, gl.TEXTURE_2D, tex, 0);
+          var ok = gl.checkFramebufferStatus(gl.FRAMEBUFFER) === gl.FRAMEBUFFER_COMPLETE;
+          gl.bindFramebuffer(gl.FRAMEBUFFER, null);
+          if (ok || !half) break; half = false;
+        }
+        tw = nw; th = nh;
+      }
+      // pointer in CSS px relative to the card stage
+      function read(e) {
+        var r = stage.getBoundingClientRect();
+        ptr.tx = e.clientX - r.left; ptr.ty = e.clientY - r.top;
+        ptr.inside = e.clientX >= r.left && e.clientX <= r.right && e.clientY >= r.top && e.clientY <= r.bottom;
+      }
+      function out(e) { if (!e.relatedTarget) ptr.inside = false; }
+
+      function draw(now) {
+        if (!running) return;
+        raf = requestAnimationFrame(draw);
+        var dt = last < 0 ? 0 : clampN((now - last) / 1000, 0, 0.05); last = now;
+        if (!reduce.matches) clock = (clock + dt * CFG.speed) % 3600;
+        var dpr = Math.min(window.devicePixelRatio || 1, MAX_DPR);
+        var cw = canvas.clientWidth || 350, ch = canvas.clientHeight || 194;
+        var bw = Math.max(1, Math.round(cw * dpr)), bh = Math.max(1, Math.round(ch * dpr));
+        if (canvas.width !== bw || canvas.height !== bh) { canvas.width = bw; canvas.height = bh; }
+        resizeTarget(Math.max(1, Math.round(bw / 2)), Math.max(1, Math.round(bh / 2)));
+        var present = ptr.inside ? 1 : 0;
+        if (present && on < 0.02) { mx = ptr.tx; my = ptr.ty; }
+        on += (present - on) * (1 - Math.exp(-dt * 5));
+        var k = 1 - Math.exp(-dt * 16);
+        mx += (ptr.tx - mx) * k; my += (ptr.ty - my) * k;
+
+        gl.bindFramebuffer(gl.FRAMEBUFFER, fbo); gl.viewport(0, 0, tw, th); gl.useProgram(field);
+        gl.uniform2f(uf.uRes, tw, th); gl.uniform1f(uf.uTime, clock);
+        gl.uniform3f(uf.uC1, c1[0], c1[1], c1[2]); gl.uniform3f(uf.uC2, c2[0], c2[1], c2[2]);
+        gl.uniform1f(uf.uSize, CFG.size); gl.uniform1f(uf.uAngle, CFG.angle);
+        gl.drawArrays(gl.TRIANGLES, 0, 3);
+
+        var pr = bw / cw;
+        gl.bindFramebuffer(gl.FRAMEBUFFER, null); gl.viewport(0, 0, bw, bh); gl.useProgram(finish);
+        gl.activeTexture(gl.TEXTURE0); gl.bindTexture(gl.TEXTURE_2D, tex); gl.uniform1i(un.uField, 0);
+        gl.uniform2f(un.uRes, bw, bh); gl.uniform1f(un.uTime, clock);
+        gl.uniform3f(un.uBg, bg[0], bg[1], bg[2]); gl.uniform1f(un.uPaper, clampN((bgLum - 0.35) / 0.3, 0, 1));
+        gl.uniform2f(un.uMouse, mx * pr, (ch - my) * pr); gl.uniform1f(un.uOn, on * CFG.hover);
+        gl.uniform1f(un.uReach, CFG.reach * pr); gl.uniform1f(un.uCell, CFG.dot * pr); gl.uniform1f(un.uPR, pr);
+        gl.drawArrays(gl.TRIANGLES, 0, 3);
+        canvas.classList.add('is-ready');
+        if (reduce.matches) { running = false; cancelAnimationFrame(raf); window.removeEventListener('pointermove', read); }   // one still frame
+      }
+      return {
+        start: function () {
+          if (running || !init()) return;
+          running = true; last = -1;
+          window.addEventListener('pointermove', read, { passive: true }); window.addEventListener('pointerdown', read, { passive: true });
+          document.addEventListener('pointerout', out);
+          raf = requestAnimationFrame(draw);
+        },
+        stop: function () {
+          running = false; cancelAnimationFrame(raf); on = 0; ptr.inside = false;
+          window.removeEventListener('pointermove', read); window.removeEventListener('pointerdown', read); document.removeEventListener('pointerout', out);
+        }
+      };
+    })();
+
+    // ── Visiting card FX: mouse tracking on desktop, gyroscope on phones, shine at a tilt threshold ──
+    var cardFx = (function () {
+      var card = layer.querySelector('.visiting-card'), stage = layer.querySelector('.vc-stage');
+      if (!card || !stage) return { start: function () {}, stop: function () {}, ask: function () {} };
+      var MAX = 14, THRESH = 9, COOLDOWN = 1100;
+      var reduce = window.matchMedia('(prefers-reduced-motion: reduce)');
+      var fine = window.matchMedia('(hover: hover) and (pointer: fine)');
+      var tx = 0, ty = 0, cx = 0, cy = 0, raf = null, active = false, above = false, lastShine = 0, base = null, motionOK = null, asked = false;
+      function clamp(v, a, b) { return Math.max(a, Math.min(b, v)); }
+      function paint() {
+        card.style.setProperty('--vc-rx', cy.toFixed(2) + 'deg');
+        card.style.setProperty('--vc-ry', cx.toFixed(2) + 'deg');
+      }
+      function shine(dir) {
+        var now = performance.now();
+        if (now - lastShine < COOLDOWN) return;
+        lastShine = now;
+        card.classList.remove('is-shining', 'shine-rev'); void card.offsetWidth;
+        if (dir < 0) card.classList.add('shine-rev');
+        card.classList.add('is-shining');
+      }
+      card.addEventListener('animationend', function (e) { if (e.target.classList && e.target.classList.contains('vc-shine')) card.classList.remove('is-shining', 'shine-rev'); });
+      function loop() {
+        if (!active) return;
+        cx += (tx - cx) * 0.12; cy += (ty - cy) * 0.12;
+        paint();
+        debugTick(performance.now());
+        var m = Math.max(Math.abs(cx), Math.abs(cy));
+        if (m > THRESH && !above) { above = true; if (!reduce.matches) shine(Math.abs(cx) >= Math.abs(cy) ? -cx : cy); }
+        else if (m < THRESH * 0.6) above = false;
+        raf = requestAnimationFrame(loop);
+      }
+      // card turns to face the cursor / finger
+      function aim(x, y, r, spanX, spanY) {
+        var nx = clamp((x - (r.left + r.width / 2)) / spanX, -1, 1), ny = clamp((y - (r.top + r.height / 2)) / spanY, -1, 1);
+        tx = -nx * MAX; ty = ny * MAX;
+      }
+      function onMouse(e) { if (e.pointerType === 'touch') return; aim(e.clientX, e.clientY, stage.getBoundingClientRect(), window.innerWidth / 2, window.innerHeight / 2); }
+      function onTouch(e) { if (e.pointerType !== 'touch') return; var r = stage.getBoundingClientRect(); aim(e.clientX, e.clientY, r, r.width / 2, r.height / 2); }
+      function onTouchEnd() { tx = 0; ty = 0; }
+      var SENS = 14;                                         // degrees of phone tilt for a full card tilt
+      var gotOrient = 0, gotMotion = 0, lastB = null, lastG = null;
+      function applyTilt(g, b) {
+        if (!base) base = { b: b, g: g };                  // the pose when the card opened is "flat"
+        var dg = g - base.g, db = b - base.b;
+        var ang = (window.screen && screen.orientation && screen.orientation.angle) || window.orientation || 0;
+        var dx = dg, dy = db;                               // portrait
+        if (ang === 90) { dx = db; dy = -dg; } else if (ang === 270 || ang === -90) { dx = -db; dy = dg; }
+        tx = -clamp(dx / SENS, -1, 1) * MAX;
+        ty = -clamp(dy / SENS, -1, 1) * MAX;
+        base.g += dg * 0.006; base.b += db * 0.006;        // slowly re-centres, so any resting angle becomes the new "flat"
+      }
+      function onOrient(e) {
+        if (e.beta == null || e.gamma == null) return;
+        gotOrient++; lastB = e.beta; lastG = e.gamma;
+        applyTilt(e.gamma, e.beta);
+      }
+      // fallback for phones/browsers that never deliver deviceorientation: derive the tilt from the accelerometer (gravity)
+      function onMotion(e) {
+        if (gotOrient > 0) return;
+        var a = e.accelerationIncludingGravity;
+        if (!a || a.x == null || a.y == null || a.z == null) return;
+        gotMotion++;
+        var g = -Math.atan2(a.x, Math.sqrt(a.y * a.y + a.z * a.z)) * 180 / Math.PI;
+        var b = Math.atan2(a.y, a.z) * 180 / Math.PI;
+        lastB = b; lastG = g;
+        applyTilt(g, b);
+      }
+      // add ?gyro=debug (or #gyro) to the address to see what the sensors report under the card
+      var dbg = null;
+      if (/[?&#]gyro/.test(location.href)) {
+        dbg = document.createElement('pre');
+        dbg.style.cssText = 'margin:8px 0 0;font:11px/1.4 ui-monospace,Menlo,monospace;color:#555;white-space:pre-wrap';
+        stage.parentNode.insertBefore(dbg, stage.nextSibling);
+      }
+      function debugTick(now) {
+        if (!dbg || now - (debugTick.t || 0) < 250) return; debugTick.t = now;
+        dbg.textContent = 'secure ' + window.isSecureContext + ' | top ' + (window.top === window) + ' | reduceMotion ' + reduce.matches +
+          ' | permission ' + motionOK + '\norientation events ' + gotOrient + ' | motion events ' + gotMotion +
+          '\nbeta ' + (lastB == null ? '-' : lastB.toFixed(1)) + '  gamma ' + (lastG == null ? '-' : lastG.toFixed(1));
+      }
+      function bindMotion() { if (active && motionOK) { window.addEventListener('deviceorientation', onOrient); window.addEventListener('devicemotion', onMotion); } }
+      return {
+        ask: function () {                                  // must run inside the tap that opens the sheet (iOS asks permission here)
+          if (fine.matches || asked) return;
+          asked = true;
+          var DOE = window.DeviceOrientationEvent;
+          if (DOE && typeof DOE.requestPermission === 'function') {
+            DOE.requestPermission().then(function (r) { motionOK = (r === 'granted'); bindMotion(); }).catch(function () { motionOK = false; });
+          } else { motionOK = !!DOE; }
+        },
+        start: function () {
+          if (active) return;
+          active = true; base = null; gotOrient = 0; gotMotion = 0; tx = ty = cx = cy = 0; above = false;
+          if (fine.matches) document.addEventListener('pointermove', onMouse);
+          stage.addEventListener('pointerdown', onTouch); stage.addEventListener('pointermove', onTouch);
+          stage.addEventListener('pointerup', onTouchEnd); stage.addEventListener('pointercancel', onTouchEnd);
+          bindMotion();
+          raf = requestAnimationFrame(loop);
+        },
+        stop: function () {
+          active = false; cancelAnimationFrame(raf);
+          document.removeEventListener('pointermove', onMouse); window.removeEventListener('deviceorientation', onOrient); window.removeEventListener('devicemotion', onMotion);
+          stage.removeEventListener('pointerdown', onTouch); stage.removeEventListener('pointermove', onTouch);
+          stage.removeEventListener('pointerup', onTouchEnd); stage.removeEventListener('pointercancel', onTouchEnd);
+          tx = ty = cx = cy = 0; paint(); card.classList.remove('is-shining', 'shine-rev');
+        }
+      };
+    })();
+
+    function isOpen() { return layer.classList.contains('is-open'); }
+    function open(trigger) {
+      if (isOpen()) return;
+      lastFocus = trigger || document.activeElement;
+      layer.classList.add('is-open'); layer.setAttribute('aria-hidden', 'false'); html.classList.add('sheet-open');
+      cardFx.start(); bloom.start();
+      setTimeout(function () { try { copyBtn.focus({ preventScroll: true }); } catch (e) {} }, 80);
+    }
+    function close() {
+      if (!isOpen()) return;
+      layer.classList.remove('is-open'); layer.setAttribute('aria-hidden', 'true'); html.classList.remove('sheet-open');
+      cardFx.stop(); bloom.stop();
+      sheet.style.transform = '';
+      if (lastFocus && lastFocus.focus) { try { lastFocus.focus({ preventScroll: true }); } catch (e) {} }
+    }
+    window.openContact = function (e, trigger) {
+      if (e) e.preventDefault();
+      if (window.primeCopyAudio) primeCopyAudio();
+      cardFx.ask();
+      open(trigger);
+    };
+
+    layer.addEventListener('click', function (e) { if (e.target.closest('[data-close]')) close(); });
+    document.addEventListener('keydown', function (e) {
+      if (!isOpen()) return;
+      if (e.key === 'Escape') { close(); return; }
+      if (e.key !== 'Tab') return;
+      var f = layer.querySelectorAll('button, a[href]');
+      if (!f.length) return;
+      var first = f[0], last = f[f.length - 1];
+      if (e.shiftKey && document.activeElement === first) { e.preventDefault(); last.focus(); }
+      else if (!e.shiftKey && document.activeElement === last) { e.preventDefault(); first.focus(); }
+    });
+
+    // copy, with an honest result
+    function flash(text, cls) {
+      status.textContent = text;                      // announced to screen readers; the icon shows the result visually
+      copyBtn.classList.remove('is-ok', 'is-fail'); if (cls) copyBtn.classList.add(cls);
+      clearTimeout(resetT);
+      resetT = setTimeout(function () { status.textContent = ''; copyBtn.classList.remove('is-ok', 'is-fail'); }, 2200);
+    }
+    function selectEmail() {
+      try { var r = document.createRange(); r.selectNodeContents(emailEl); var sel = window.getSelection(); sel.removeAllRanges(); sel.addRange(r); } catch (e) {}
+    }
+    copyBtn.addEventListener('click', function () {
+      if (window.primeCopyAudio) primeCopyAudio();
+      copyText(EMAIL, function () {
+        if (window.playCopySound) playCopySound();
+        if (window.copyHaptic) copyHaptic();
+        flash('Email copied', 'is-ok');
+      }, function () {
+        try { if (navigator.vibrate) navigator.vibrate(40); } catch (e) {}
+        flash('Couldn\u2019t copy', 'is-fail');
+        selectEmail();                                  // leave the address selected so it can be copied by hand
+      });
+    });
+
+    // drag the handle / title down to dismiss
+    var drag = { on: false, y0: 0, t0: 0, dy: 0, id: null };
+    [layer.querySelector('.sheet-grab'), layer.querySelector('.sheet-head')].forEach(function (g) {
+      g.addEventListener('pointerdown', function (e) {
+        if (e.target.closest('.sheet-close')) return;
+        drag = { on: true, y0: e.clientY, t0: performance.now(), dy: 0, id: e.pointerId };
+        try { g.setPointerCapture(e.pointerId); } catch (err) {}
+        sheet.style.transition = 'none';
+      });
+      g.addEventListener('pointermove', function (e) {
+        if (!drag.on || e.pointerId !== drag.id) return;
+        drag.dy = Math.max(0, e.clientY - drag.y0);
+        sheet.style.transform = 'translateY(' + drag.dy + 'px)';
+      });
+      function end(e) {
+        if (!drag.on || e.pointerId !== drag.id) return;
+        drag.on = false;
+        var vel = drag.dy / Math.max(1, performance.now() - drag.t0);
+        sheet.style.transition = '';
+        if (drag.dy > 90 || vel > 0.6) close(); else sheet.style.transform = '';
+      }
+      g.addEventListener('pointerup', end);
+      g.addEventListener('pointercancel', end);
+    });
+  })();
+</script>
+<script>
+  // Use the Material Symbols "mail" icon once the icon font is ready; until then (or if it fails) the previous SVG icon stays
+  (function () {
+    if (!document.fonts || !document.fonts.load) return;
+    document.fonts.load("14px 'Material Symbols Outlined'", 'mail').then(function (faces) {
+      if (faces && faces.length) document.documentElement.classList.add('msym-ready');
+    }).catch(function () {});
   })();
 </script>
 </body>
