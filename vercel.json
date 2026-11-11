@@ -1,0 +1,8 @@
+{
+  "redirects": [
+    { "source": "/sand.html", "destination": "/sand", "permanent": true }
+  ],
+  "rewrites": [
+    { "source": "/sand", "destination": "/sand.html" }
+  ]
+}
