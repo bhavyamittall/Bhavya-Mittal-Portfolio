@@ -2884,7 +2884,7 @@ void main() {
       var ctx = canvas.getContext('2d');
       var color = '#4C83C3', drawing = false, last = null, strokes = [], currentStroke = null;
       var dpr = Math.min(window.devicePixelRatio || 1, 2);
-      var socket = null, clientId = Math.random().toString(36).slice(2), peers = [];
+      var socket = null, clientId = Math.random().toString(36).slice(2), peers = [], leavingPage = false, reconnectTimer = null;
       var presence = document.getElementById('crayonPresence');
 
       function connect() {
@@ -2902,12 +2902,28 @@ void main() {
           else if (msg.type === 'remove') { var removed = new Set(msg.ids || []); strokes = strokes.filter(function (item) { return !removed.has(item.id); }); redraw(); }
           else if (msg.type === 'clear') { strokes = []; redraw(); }
         });
-        socket.addEventListener('close', function () { presence.textContent = 'Offline · reconnecting'; setTimeout(connect, 2000); });
+        socket.addEventListener('close', function () {
+          if (leavingPage) return;
+          presence.textContent = 'Offline · reconnecting';
+          reconnectTimer = setTimeout(function () { reconnectTimer = null; if (!leavingPage) connect(); }, 2000);
+        });
         socket.addEventListener('error', function () { presence.textContent = 'Connecting…'; });
       }
       // A lease heartbeat lets the relay detect closed or frozen browser tabs
       // even when the WebSocket close event never reaches the server.
       setInterval(function () { send({ type: 'heartbeat' }); }, 15000);
+      window.addEventListener('pagehide', function () {
+        leavingPage = true;
+        clearTimeout(reconnectTimer); reconnectTimer = null;
+        if (socket && socket.readyState === WebSocket.OPEN) {
+          try { socket.send(JSON.stringify({ type: 'leave' })); socket.close(); } catch (_) {}
+        }
+      });
+      window.addEventListener('pageshow', function () {
+        if (!leavingPage) return;
+        leavingPage = false;
+        if (!socket || (socket.readyState !== WebSocket.OPEN && socket.readyState !== WebSocket.CONNECTING)) connect();
+      });
       function send(message) { if (socket && socket.readyState === WebSocket.OPEN) { socket.send(JSON.stringify(message)); return true; } return false; }
       function updatePresence() { presence.textContent = peers.length ? peers.length + ' other' + (peers.length === 1 ? '' : 's') + ' here' : 'Drawing solo'; }
 
