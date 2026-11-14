@@ -2884,7 +2884,7 @@ void main() {
       var ctx = canvas.getContext('2d');
       var color = '#4C83C3', drawing = false, last = null, strokes = [], currentStroke = null;
       var dpr = Math.min(window.devicePixelRatio || 1, 2);
-      var socket = null, clientId = Math.random().toString(36).slice(2), peers = [], leavingPage = false, reconnectTimer = null;
+      var socket = null, clientId = Math.random().toString(36).slice(2), peers = [], partnerId = null, soloMode = false, leavingPage = false, reconnectTimer = null;
       var presence = document.getElementById('crayonPresence');
 
       function connect() {
@@ -2894,7 +2894,12 @@ void main() {
         socket.addEventListener('open', function () { socket.send(JSON.stringify({ type: 'join', id: clientId })); });
         socket.addEventListener('message', function (event) {
           var msg; try { msg = JSON.parse(event.data); } catch (_) { return; }
-          if (msg.type === 'state') { strokes = msg.strokes || []; redraw(); peers = msg.peers || []; updatePresence(); }
+          if (msg.type === 'state') {
+            var localOwn = strokes.filter(function(s){return s.owner===clientId;});
+            strokes = (msg.strokes || []).filter(function(s){return s.owner!==clientId;}).concat(localOwn);
+            partnerId = msg.partnerId || null; soloMode = !!msg.solo; redraw(); peers = msg.peers || []; updatePresence();
+          }
+          else if (msg.type === 'visibility') { partnerId = msg.partnerId || null; soloMode = !!msg.solo; peers = partnerId ? [partnerId] : []; redraw(); updatePresence(); }
           else if (msg.type === 'peers') { peers = msg.peers || []; updatePresence(); }
           else if (msg.type === 'begin') { strokes.push(msg.stroke); drawStroke(msg.stroke); }
           else if (msg.type === 'points') { var s = strokes.find(function (item) { return item.id === msg.id; }); if (s) { var from = s.points[s.points.length - 1]; msg.points.forEach(function (p) { crayonSegment(px(from), px(p), s.color, s.width); s.points.push(p); from = p; }); } }
@@ -2925,7 +2930,7 @@ void main() {
         if (!socket || (socket.readyState !== WebSocket.OPEN && socket.readyState !== WebSocket.CONNECTING)) connect();
       });
       function send(message) { if (socket && socket.readyState === WebSocket.OPEN) { socket.send(JSON.stringify(message)); return true; } return false; }
-      function updatePresence() { presence.textContent = peers.length ? peers.length + ' other' + (peers.length === 1 ? '' : 's') + ' here' : 'Drawing solo'; }
+      function updatePresence() { presence.textContent = soloMode ? 'Solo mode · canvas is full' : peers.length ? '1 other here' : 'Drawing solo'; }
 
       function resize() {
         var old = document.createElement('canvas');
@@ -2967,7 +2972,7 @@ void main() {
       }
       function redraw() {
         ctx.clearRect(0,0,canvas.width/dpr,canvas.height/dpr);
-        strokes.forEach(drawStroke);
+        strokes.forEach(function(s){if(s.owner===clientId||(!soloMode&&partnerId&&s.owner===partnerId))drawStroke(s);});
       }
       function drawStroke(s) {
         if (!s || !s.points || !s.points.length) return;
@@ -3011,12 +3016,12 @@ void main() {
         var rowEl=document.querySelector('.crayon-row'); if(rowEl) rowEl.classList.remove('is-open');
         currentStroke={id:clientId+'-'+Date.now()+'-'+Math.random().toString(36).slice(2),owner:clientId,color:color,width:e.pointerType==='pen'&&e.pressure?13+e.pressure*8:19,points:[last]};
         strokes.push(currentStroke);
-        crayonSegment(px(last),{x:px(last).x+.1,y:px(last).y+.1},color,currentStroke.width); send({type:'begin',stroke:currentStroke}); e.preventDefault();
+        crayonSegment(px(last),{x:px(last).x+.1,y:px(last).y+.1},color,currentStroke.width); if(!soloMode)send({type:'begin',stroke:currentStroke}); e.preventDefault();
       }
       function move(e) {
         if(!drawing||!currentStroke) return;
         var p=point(e); crayonSegment(px(last),px(p),currentStroke.color,currentStroke.width);
-        currentStroke.points.push(p); last=p; send({type:'points',id:currentStroke.id,points:[p]}); e.preventDefault();
+        currentStroke.points.push(p); last=p; if(!soloMode)send({type:'points',id:currentStroke.id,points:[p]}); e.preventDefault();
       }
       function up(){drawing=false;last=null;currentStroke=null;}
       canvas.addEventListener('pointerdown',down);
@@ -3065,10 +3070,12 @@ void main() {
       syncTools();
 
       document.getElementById('crayonUndo').addEventListener('click',function(){
-        if(!send({type:'undo'})){for(var i=strokes.length-1;i>=0;i--){if(strokes[i].owner===clientId){strokes.splice(i,1);break;}}redraw();}
+        var id=null; for(var i=strokes.length-1;i>=0;i--){if(strokes[i].owner===clientId){id=strokes[i].id;strokes.splice(i,1);break;}}
+        redraw(); if(id&&!soloMode)send({type:'undo',id:id});
       });
       document.getElementById('crayonClear').addEventListener('click',function(){
-        if(!send({type:'clear'})){strokes=strokes.filter(function(s){return s.owner!==clientId;});redraw();}
+        var ids=strokes.filter(function(s){return s.owner===clientId;}).map(function(s){return s.id;});
+        strokes=strokes.filter(function(s){return s.owner!==clientId;}); redraw(); if(ids.length&&!soloMode)send({type:'clear'});
       });
       document.getElementById('crayonPostcard').addEventListener('click', function(){
         var out = createPostcard();
