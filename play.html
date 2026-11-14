@@ -1078,7 +1078,7 @@
     }
     .crayon-action svg { display: block; }
     .crayon-action:hover { color: var(--fg); box-shadow: var(--shadow-border-hover); }
-    .crayon-action:active { transform: scale(0.94); }
+    .crayon-action:active { transform: scale(0.96); }
     .crayon-action:focus-visible, .crayon-color:focus-visible {
       outline: 2px solid rgba(44,142,255,.55);
       outline-offset: 4px;
@@ -1342,6 +1342,9 @@
         <span class="crayon-tool-divider" aria-hidden="true"></span>
         <button class="crayon-action" id="crayonUndo" aria-label="Undo my last stroke" title="Undo my last stroke"><svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true" focusable="false"><path d="M5.6 3.2L2.6 6.2l3 3M2.9 6.2h6.3a3.7 3.7 0 0 1 0 7.4H5.8" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
         <button class="crayon-action" id="crayonClear" aria-label="Clear my drawings" title="Clear my drawings"><svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true" focusable="false"><path d="M2.5 4h11M6 4V2.8c0-.4.3-.8.8-.8h2.4c.5 0 .8.4.8.8V4M4 4l.6 8.4c0 .9.7 1.6 1.6 1.6h3.6c.9 0 1.6-.7 1.6-1.6L12 4M6.8 6.8v4M9.2 6.8v4" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
+        <button class="crayon-action download-action" id="crayonPostcard" aria-label="Download postcard" title="Download postcard">
+          <svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M8 1.8v8.1m0 0 3-3m-3 3-3-3M2.5 10.3v2.1c0 .7.6 1.3 1.3 1.3h8.4c.7 0 1.3-.6 1.3-1.3v-2.1" stroke="currentColor" stroke-width="1.25" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </button>
         <span id="crayonPresence" role="status" aria-live="polite">Connecting…</span>
       </div>
     </div>
@@ -2921,7 +2924,8 @@ void main() {
         return { x: (e.clientX - r.left) / r.width, y: (e.clientY - r.top) / r.height };
       }
       function px(p) { var r = canvas.getBoundingClientRect(); return { x: p.x * r.width, y: p.y * r.height }; }
-      function crayonSegment(a, b, strokeColor, width) {
+      function crayonSegment(a, b, strokeColor, width, targetCtx, paperColor) {
+        var paint = targetCtx || ctx;
         var dx=b.x-a.x, dy=b.y-a.y, distance=Math.hypot(dx,dy);
         var steps=Math.max(1,Math.ceil(distance/Math.max(1.4,width*.22)));
         for(var i=0;i<=steps;i++){
@@ -2929,18 +2933,18 @@ void main() {
           for(var k=0;k<9;k++){
             var angle=Math.random()*Math.PI*2, radius=Math.random()*width*.48;
             var dot=Math.max(.45,Math.random()*width*.16);
-            ctx.globalAlpha=.12+Math.random()*.22; ctx.fillStyle=strokeColor;
-            ctx.beginPath();
-            ctx.ellipse(x+Math.cos(angle)*radius,y+Math.sin(angle)*radius,dot*(1.2+Math.random()),dot*(.65+Math.random()*.6),angle,0,Math.PI*2);
-            ctx.fill();
+            paint.globalAlpha=.12+Math.random()*.22; paint.fillStyle=strokeColor;
+            paint.beginPath();
+            paint.ellipse(x+Math.cos(angle)*radius,y+Math.sin(angle)*radius,dot*(1.2+Math.random()),dot*(.65+Math.random()*.6),angle,0,Math.PI*2);
+            paint.fill();
           }
           for(var f=0;f<3;f++){
             if(Math.random()>.48) continue;
-            ctx.globalAlpha=.12+Math.random()*.16; ctx.fillStyle='#F7F6F5';
-            ctx.beginPath(); ctx.arc(x+(Math.random()-.5)*width,y+(Math.random()-.5)*width,Math.random()*1.4,0,Math.PI*2); ctx.fill();
+            paint.globalAlpha=.12+Math.random()*.16; paint.fillStyle=paperColor||'#F7F6F5';
+            paint.beginPath(); paint.arc(x+(Math.random()-.5)*width,y+(Math.random()-.5)*width,Math.random()*1.4,0,Math.PI*2); paint.fill();
           }
         }
-        ctx.globalAlpha=1;
+        paint.globalAlpha=1;
       }
       function redraw() {
         ctx.clearRect(0,0,canvas.width/dpr,canvas.height/dpr);
@@ -2951,12 +2955,42 @@ void main() {
         if(s.points.length===1){var p=px(s.points[0]);crayonSegment(p,{x:p.x+.1,y:p.y+.1},s.color,s.width);}
         else for(var i=1;i<s.points.length;i++) crayonSegment(px(s.points[i-1]),px(s.points[i]),s.color,s.width);
       }
+      function createPostcard() {
+        var out = document.createElement('canvas'); out.width = 1600; out.height = 1000;
+        var g = out.getContext('2d'), w = out.width, h = out.height, paper = '#d5d5d5';
+        g.fillStyle = paper; g.fillRect(0, 0, w, h);
+        g.fillStyle = '#666666'; g.textAlign = 'left'; g.textBaseline = 'alphabetic';
+        g.font = '22px Arial, sans-serif'; g.fillText('We were little once.', 112, 748);
+        g.fillText("Let's not forget how to play :)", 112, 788);
+        g.font = '22px Arial, sans-serif'; g.fillText('from, Bhavya.', 112, 900);
+
+        var area = { x: 690, y: 82, w: 820, h: 835 };
+        var own = strokes.filter(function (s) { return s.owner === clientId || (s.id && s.id.indexOf(clientId + '-') === 0); });
+        if (!own.length) return out;
+        var source = canvas.getBoundingClientRect();
+        var scale = Math.min(area.w / source.width, area.h / source.height);
+        var drawW = source.width * scale, drawH = source.height * scale;
+        var left = area.x + (area.w - drawW) / 2, top = area.y + (area.h - drawH) / 2;
+        g.save(); g.beginPath(); g.rect(area.x, area.y, area.w, area.h); g.clip();
+        own.forEach(function (s) {
+          if (!s.points || !s.points.length) return;
+          if (s.points.length === 1) {
+            var p = s.points[0], a = { x: left + p.x * drawW, y: top + p.y * drawH };
+            crayonSegment(a, { x: a.x + .1, y: a.y + .1 }, s.color, s.width * scale * 2.8, g, paper);
+          } else for (var i = 1; i < s.points.length; i++) {
+            var p0 = s.points[i - 1], p1 = s.points[i];
+            crayonSegment({ x: left + p0.x * drawW, y: top + p0.y * drawH }, { x: left + p1.x * drawW, y: top + p1.y * drawH }, s.color, s.width * scale * 2.8, g, paper);
+          }
+        });
+        g.restore();
+        return out;
+      }
       function down(e) {
         if(e.button!==undefined && e.button!==0) return;
         drawing=true; canvas.setPointerCapture(e.pointerId); last=point(e);
         var note=document.querySelector('.crayon-note'); if(note) note.classList.add('is-gone'); var hint=document.querySelector('.crayon-center-hint'); if(hint) hint.classList.add('is-gone');
         var rowEl=document.querySelector('.crayon-row'); if(rowEl) rowEl.classList.remove('is-open');
-        currentStroke={id:clientId+'-'+Date.now()+'-'+Math.random().toString(36).slice(2),color:color,width:e.pointerType==='pen'&&e.pressure?13+e.pressure*8:19,points:[last]};
+        currentStroke={id:clientId+'-'+Date.now()+'-'+Math.random().toString(36).slice(2),owner:clientId,color:color,width:e.pointerType==='pen'&&e.pressure?13+e.pressure*8:19,points:[last]};
         strokes.push(currentStroke);
         crayonSegment(px(last),{x:px(last).x+.1,y:px(last).y+.1},color,currentStroke.width); send({type:'begin',stroke:currentStroke}); e.preventDefault();
       }
@@ -3011,8 +3045,21 @@ void main() {
       window.addEventListener('resize', syncTools);
       syncTools();
 
-      document.getElementById('crayonUndo').addEventListener('click',function(){if(!send({type:'undo'})){strokes.pop();redraw();}});
-      document.getElementById('crayonClear').addEventListener('click',function(){if(!send({type:'clear'})){strokes=[];redraw();}});
+      document.getElementById('crayonUndo').addEventListener('click',function(){
+        if(!send({type:'undo'})){for(var i=strokes.length-1;i>=0;i--){if(strokes[i].owner===clientId){strokes.splice(i,1);break;}}redraw();}
+      });
+      document.getElementById('crayonClear').addEventListener('click',function(){
+        if(!send({type:'clear'})){strokes=strokes.filter(function(s){return s.owner!==clientId;});redraw();}
+      });
+      document.getElementById('crayonPostcard').addEventListener('click', function(){
+        var out = createPostcard();
+        out.toBlob(function(blob){
+          if(!blob) return;
+          var url=URL.createObjectURL(blob),a=document.createElement('a');
+          a.href=url;a.download='bhavya-mittal-postcard.png';a.click();
+          setTimeout(function(){URL.revokeObjectURL(url);},1000);
+        },'image/png');
+      });
       connect();
     })();
   </script>
