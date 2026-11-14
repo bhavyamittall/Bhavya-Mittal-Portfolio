@@ -6,9 +6,6 @@
   "rewrites": [
     { "source": "/sand", "destination": "/sand.html" },
     { "source": "/play", "destination": "/play.html" }
-  ],
-  "crons": [
-    { "path": "/api/cleanup", "schedule": "* * * * *" }
   ]
 }
 
