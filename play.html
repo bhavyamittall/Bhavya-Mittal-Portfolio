@@ -2889,6 +2889,11 @@ void main() {
       var socket = null, clientId = Math.random().toString(36).slice(2), peers = [], partnerId = null, soloMode = false, leavingPage = false, reconnectTimer = null;
       var presence = document.getElementById('crayonPresence');
 
+      function crayonHaptic(pattern) {
+        if (!navigator.vibrate) return;
+        try { navigator.vibrate(pattern || 8); } catch (_) {}
+      }
+
       function connect() {
         var url = window.CRAYON_SOCKET_URL || ((location.protocol === 'https:' ? 'wss://' : 'ws://') + location.host + '/api/draw');
         if (!location.host || location.protocol === 'file:') { presence.textContent = 'Multiplayer unavailable'; return; }
@@ -3064,6 +3069,7 @@ void main() {
           if(row) row.classList.remove('is-open');
           color=button.getAttribute('data-color');
           document.querySelectorAll('.crayon-color').forEach(function(b){b.setAttribute('aria-pressed',b===button?'true':'false');});
+          crayonHaptic(8);
         });
       });
       // Hide the colour tray once the canvas has scrolled out of view
@@ -3096,14 +3102,17 @@ void main() {
       syncTools();
 
       document.getElementById('crayonUndo').addEventListener('click',function(){
+        crayonHaptic(8);
         var id=null; for(var i=strokes.length-1;i>=0;i--){if(strokes[i].owner===clientId){id=strokes[i].id;strokes.splice(i,1);break;}}
         if(id){drawingLimitReached=false;syncSessionLimits();} redraw(); if(id&&!soloMode)send({type:'undo',id:id}); updatePresence();
       });
       document.getElementById('crayonClear').addEventListener('click',function(){
+        crayonHaptic([12,24,12]);
         var ids=strokes.filter(function(s){return s.owner===clientId;}).map(function(s){return s.id;});
         strokes=strokes.filter(function(s){return s.owner!==clientId;}); drawingLimitReached=false;syncSessionLimits();redraw(); if(ids.length&&!soloMode)send({type:'clear'});updatePresence();
       });
       document.getElementById('crayonPostcard').addEventListener('click', function(){
+        crayonHaptic(8);
         var out = createPostcard();
         out.toBlob(function(blob){
           if(!blob) return;
