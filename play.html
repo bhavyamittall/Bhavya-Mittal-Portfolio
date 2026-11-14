@@ -1,0 +1,3021 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Bhavya Mittal</title>
+  <meta name="description" content="Bhavya Mittal is a product designer and interaction designer based in Gurugram, India. Currently at Egon Zehnder. Case studies in interaction design, motion, and fintech UX." />
+  <meta name="author" content="Bhavya Mittal" />
+  <meta name="robots" content="index, follow" />
+  <meta name="google" content="notranslate" />
+  <link rel="canonical" href="https://bhavyamittal.com/play" />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://bhavyamittal.com/play" />
+  <meta property="og:title" content="Bhavya Mittal &mdash; Product Designer, UX &amp; Motion" />
+  <meta property="og:description" content="Product designer and interaction designer based in Gurugram, India. Case studies in interaction design, motion, and fintech UX." />
+  <meta property="og:site_name" content="Bhavya Mittal" />
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="Bhavya Mittal &mdash; Product Designer, UX &amp; Motion" />
+  <meta name="twitter:description" content="Product designer and interaction designer based in Gurugram, India." />
+  <link rel="icon" type="image/svg+xml" href="assets/images/Logos/Favicon_ylckj8.svg" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200&amp;icon_names=mail" />
+  <script type="application/ld+json">{"@context":"https://schema.org","@type":"Person","name":"Bhavya Mittal","url":"https://bhavyamittal.com/","jobTitle":"Product Designer","worksFor":{"@type":"Organization","name":"Egon Zehnder"},"address":{"@type":"PostalAddress","addressLocality":"Gurugram","addressCountry":"IN"},"sameAs":["https://www.behance.net/bhavyamittall","https://cal.com/bhavyamittal"]}</script>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    :root {
+      --bg: #F7F6F5; --fg: #3a3a3a; --muted: #9a9a9a; --muted2: #c8c4be;
+      --border: #e8e5e0; --blue: #2C8EFF;
+      --shadow-border: 0px 0px 0px 1px rgba(0, 0, 0, 0.06), 0px 1px 2px -1px rgba(0, 0, 0, 0.06), 0px 2px 4px 0px rgba(0, 0, 0, 0.04);
+      --shadow-border-hover: 0px 0px 0px 1px rgba(0, 0, 0, 0.08), 0px 1px 2px -1px rgba(0, 0, 0, 0.08), 0px 2px 4px 0px rgba(0, 0, 0, 0.06);
+      --shadow-image: 0px 0px 0px 1px rgba(0, 0, 0, 0.05), 0px 12px 32px -24px rgba(0, 0, 0, 0.28);
+      --font: -apple-system, BlinkMacSystemFont, "Helvetica Neue", Helvetica, Arial, sans-serif;
+      --check-opacity-dur: 550ms;
+      --check-rotate-dur: 550ms;
+      --check-rotate-from: 80deg;
+      --check-bob-dur: 450ms;
+      --check-y-amount: 40px;
+      --check-blur-dur: 500ms;
+      --check-blur-from: 10px;
+      --check-path-dur: 550ms;
+      --check-path-delay: 80ms;
+      --check-ease-out: cubic-bezier(0.22, 1, 0.36, 1);
+      --check-ease-opacity: cubic-bezier(0.22, 1, 0.36, 1);
+      --check-ease-rotate: cubic-bezier(0.22, 1, 0.36, 1);
+      --check-ease-bob: cubic-bezier(0.34, 1.35, 0.64, 1);
+      --check-ease-path: cubic-bezier(0.22, 1, 0.36, 1);
+    }
+    html {
+      font-size: 15px;
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+    }
+    body {
+      background: var(--bg); color: var(--fg);
+      font-family: var(--font); font-size: 14px; line-height: 1.65;
+    }
+    @keyframes fadeUp { from { opacity: 0; transform: translateY(10px); filter: blur(4px); } to { opacity: 1; transform: translateY(0); filter: blur(0); } }
+    .anim { opacity: 0; animation: fadeUp 0.5s ease forwards; }
+
+    a { color: var(--blue); text-decoration: underline; text-decoration-color: transparent; text-underline-offset: 2px; transition-property: color, text-decoration-color; transition-duration: 0.15s; transition-timing-function: ease; }
+    a:hover { text-decoration-color: var(--blue); }
+
+    p { font-size: 14px; line-height: 1.65; color: var(--fg); margin-bottom: 18px; text-wrap: pretty; }
+    p:last-of-type { margin-bottom: 0; }
+
+    .site-name { font-size: 14px; font-weight: 500; color: var(--fg); line-height: 1.4; margin-bottom: 0; text-wrap: balance; }
+    .site-sub  { font-size: 14px; color: var(--muted); line-height: 1.65; margin-bottom: 0; }
+    .name-block { margin-bottom: 1.775em; } /* = one blank bio line, same as the gap before "Like to work…" */
+
+    .section-label { font-size: 14px; color: var(--muted); font-weight: 400; margin-bottom: 20px; text-wrap: balance; }
+
+    .work-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
+    .work-card { text-decoration: none; display: flex; flex-direction: column; transition-property: transform, opacity; transition-duration: 0.2s; transition-timing-function: ease; }
+    .work-card:hover { opacity: 1; transform: none; }
+    .work-card-thumb { cursor: pointer; transition-property: opacity, box-shadow, transform; transition-duration: 0.2s; transition-timing-function: ease; }
+    .work-card-thumb:hover { opacity: 0.94; box-shadow: rgba(60, 64, 67, 0.3) 0px 1px 2px 0px, rgba(60, 64, 67, 0.15) 0px 1px 3px 1px; }
+    .work-card:active { transform: scale(0.96); transition-duration: 0.15s; }
+    .work-card:hover .work-card-title { color: var(--blue); }
+    .work-card-thumb { width: 100%; aspect-ratio: 4/3; background: #f0efeb; overflow: hidden; border-radius: 4px; position: relative; }
+    .work-card-thumb img { width: 100%; height: 100%; object-fit: cover; display: block; }
+
+    /* ── Custom tooltip ── */
+    .cs-tooltip {
+      position: fixed;
+      background: var(--fg);
+      color: var(--bg);
+      font-family: var(--font);
+      font-size: 0.82rem;
+      font-weight: 500;
+      padding: 6px 12px;
+      border-radius: 4px;
+      pointer-events: none;
+      opacity: 0;
+      transform: translate(0, -50%);
+      transition: opacity 0.18s ease;
+      white-space: nowrap;
+      z-index: 9999;
+      letter-spacing: 0.01em;
+    }
+    .cs-tooltip.is-visible { opacity: 1; }
+    @media (max-width: 959px) {
+      .cs-tooltip { display: none; }
+    }
+    .work-card-body  { padding: 6px 0 0; display: flex; flex-direction: column; gap: 1px; }
+    .work-card-title { font-size: 14px; color: var(--fg); font-weight: 400; transition-property: color; transition-duration: 0.15s; transition-timing-function: ease; line-height: 1.4; margin-bottom: 0; }
+    .work-card-meta  { display: flex; align-items: center; justify-content: space-between; }
+    .work-card-tag   { font-size: 14px; color: var(--muted); }
+    .work-card-date  { font-size: 14px; color: var(--muted); font-variant-numeric: tabular-nums; }
+
+
+    /* ── BM interactive logo ── */
+    .bm-logo-wrap { width: 31px; cursor: pointer; position: relative; margin-bottom: 4px; }
+    #bm-logo { width: 100%; height: auto; display: block; overflow: visible; }
+    .eye-group { transform-box: fill-box; transform-origin: center center; }
+    #right-eyebrow, #left-eyebrow { transform-box: fill-box; transform-origin: center center; transition: transform 0.18s ease-out; }
+    #right-eye-wink { display: none; }
+    .winking #right-eye-wink { display: block; }
+    .winking #right-eye { display: none; }
+    #left-eye-sleep, #right-eye-sleep { display: none; }
+    .sleeping #left-eye-sleep, .sleeping #right-eye-sleep { display: block; }
+    .sleeping #left-eye, .sleeping #right-eye { display: none; }
+    .z-char { fill: #5683d3; font-family: Arial Black, Arial, sans-serif; font-weight: 900; opacity: 0; }
+    @keyframes zFloat { 0% { opacity:0; transform:translate(0px,0px) scale(0.7); } 15% { opacity:1; } 80% { opacity:0.85; } 100% { opacity:0; transform:translate(-22px,-80px) scale(1.2); } }
+    @keyframes blink { 0% { transform:scaleY(1); } 40% { transform:scaleY(0.04); } 60% { transform:scaleY(0.04); } 100% { transform:scaleY(1); } }
+    @keyframes wakeBlink { 0% { transform:scaleY(1); } 12% { transform:scaleY(0.04); } 26% { transform:scaleY(1); } 40% { transform:scaleY(0.04); } 58% { transform:scaleY(1); } 100% { transform:scaleY(1); } }
+    #breath-wrap { transform-origin: bottom center; }
+    @keyframes breathe { 0% { transform:scaleY(1) translateY(0px); } 55% { transform:scaleY(1.018) translateY(-4px); } 100% { transform:scaleY(1) translateY(0px); } }
+    .sleeping #breath-wrap { animation: breathe 3.8s cubic-bezier(0.45,0,0.55,1) infinite; }
+
+    /* ── About link ── */
+    .about-link { display: none; }
+
+    /* cv-line inside reach block */
+    .cv-line { font-size: 14px; color: var(--fg); margin-bottom: 0; margin-top: 4px; }
+    .cv-line a { color: var(--blue); transition-property: opacity; transition-duration: 0.15s; transition-timing-function: ease; }
+    .cv-line a:hover { opacity: 0.75; }
+
+    /* ── Reach block ── */
+    .reach-block { display: flex; flex-direction: column; gap: 10px; align-items: flex-start; }
+    .reach-label { font-size: 14px; color: var(--fg); margin-bottom: 0; line-height: 1.65; }
+    .reach-btns  { display: flex; flex-direction: column; gap: 6px; align-items: flex-start; }
+
+    .reach-btn {
+      position: relative;
+      display: inline-flex;
+      align-items: center;
+      font-family: var(--font);
+      font-size: 14px;
+      color: var(--muted);
+      background: transparent;
+      border: 0;
+      border-radius: 4px;
+      padding: 12px 20px;
+      min-height: 44px;
+      box-shadow: var(--shadow-border);
+      cursor: pointer;
+      text-decoration: none;
+      overflow: hidden;
+      white-space: nowrap;
+      transition-property: box-shadow, color, transform;
+      transition-duration: 0.2s;
+      transition-timing-function: ease;
+      line-height: 1.4;
+      outline: none;
+    }
+    .reach-btn:hover { box-shadow: var(--shadow-border-hover); color: var(--fg); }
+    .reach-btn:focus-visible { box-shadow: var(--shadow-border-hover), 0 0 0 3.5px rgba(44, 142, 255, 0.22); }
+    .reach-btn:active { transform: scale(0.96); transition-duration: 0.15s; }
+
+    .reach-btn-inner {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      position: relative;
+      z-index: 1;
+    }
+    .reach-icon { flex-shrink: 0; display: block; }
+
+    /* "Copied" overlay expands from right */
+    .reach-btn-confirm {
+      position: absolute;
+      top: 0; left: 0; right: 0; bottom: 0;
+      display: inline-flex;
+      align-items: center;
+      gap: 5px;
+      padding: 0 10px;
+      color: var(--muted);
+      font-size: 14px;
+      background: var(--bg);
+      border-radius: 4px;
+      white-space: nowrap;
+      z-index: 2;
+      clip-path: inset(0 100% 0 0);
+      transition-property: clip-path;
+      transition-duration: 0.4s;
+      transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+    }
+    .reach-btn.copied .reach-btn-confirm {
+      clip-path: inset(0 0% 0 0);
+    }
+
+    .t-success-check {
+      display: inline-block;
+      transform-origin: center;
+      opacity: 0;
+      will-change: transform, opacity, filter;
+    }
+    .t-success-check svg { display: block; overflow: visible; }
+    .t-success-check svg polyline {
+      stroke-dasharray: 17;
+      stroke-dashoffset: 17;
+    }
+    .t-success-check[data-state="in"] {
+      animation:
+        t-check-fade   var(--check-opacity-dur) var(--check-ease-opacity) forwards,
+        t-check-rotate var(--check-rotate-dur)  var(--check-ease-rotate)  forwards,
+        t-check-blur   var(--check-blur-dur)    var(--check-ease-out)     forwards,
+        t-check-bob    var(--check-bob-dur)     var(--check-ease-bob)     forwards;
+    }
+    .t-success-check[data-state="in"] svg polyline {
+      animation: t-check-draw var(--check-path-dur) var(--check-ease-path) var(--check-path-delay, 0ms) forwards;
+    }
+
+    @keyframes t-check-fade { from { opacity: 0; } to { opacity: 1; } }
+    @keyframes t-check-rotate { from { transform: rotate(var(--check-rotate-from)); } to { transform: rotate(0deg); } }
+    @keyframes t-check-blur { from { filter: blur(var(--check-blur-from)); } to { filter: blur(0); } }
+    @keyframes t-check-bob { from { translate: 0 var(--check-y-amount); } to { translate: 0 0; } }
+    @keyframes t-check-draw { to { stroke-dashoffset: 0; } }
+
+    @media (prefers-reduced-motion: reduce) {
+      .t-success-check { animation: none !important; opacity: 1; }
+      .t-success-check svg polyline { animation: none !important; stroke-dashoffset: 0 !important; }
+    }
+
+    /* ── MOBILE (default) ── */
+    /* All direct children of wrap are a flat flex column.
+       JS reorders them into:
+       nameBlock → bioP1 → bioP2 → colRight → reachBlock → mobileClock */
+    .wrap {
+      max-width: 560px;
+      margin: 0 auto;
+      padding: 28px 20px 90px;
+      display: flex;
+      flex-direction: column;
+    }
+
+    /* On mobile colLeft is invisible wrapper — its children are hoisted out by JS */
+    #colLeft { display: contents; }
+
+    /* clock-spacer hidden by default (mobile) */
+    .clock-spacer { display: none; }
+    .as-seen-desktop { display: none; }
+    .as-seen-mobile {
+      width: 100%;
+      max-width: 318px;
+      padding: 14px 18px;
+      border: 1px solid rgba(0, 0, 0, 0.11);
+      border-radius: 4px;
+      background: rgba(255, 255, 255, 0.22);
+      box-shadow: rgba(0, 0, 0, 0.06) 0px 2px 4px 0px inset;
+      color: var(--muted);
+      font-size: 0.92rem;
+      line-height: 1.35;
+      text-align: left;
+    }
+    .as-seen-mobile p {
+      margin: 0;
+      color: var(--muted);
+      font-size: inherit;
+      line-height: inherit;
+    }
+    .as-seen-mobile a {
+      color: var(--muted);
+      text-decoration: underline;
+      text-decoration-color: var(--muted);
+      text-underline-offset: 2px;
+    }
+    .as-seen-mobile a:hover { color: var(--fg); text-decoration-color: var(--fg); }
+    .as-seen-mobile a:focus-visible { outline: 2px solid rgba(54, 122, 246, 0.32); outline-offset: 3px; border-radius: 4px; }
+    /* Desktop footer links hidden on mobile */
+    .cv-line-desktop { display: none; }
+
+    /* spacing between flat mobile blocks */
+    #bioGroup   { margin-bottom: 0; }
+    #bioP1      { display: none; } /* mobile shows only bioP2 (the fuller desktop paragraph) */
+    #bioP2      { margin-bottom: 0; }
+    #colRight   { margin-top: 28px; }
+    #reachBlock { margin-top: 0; display: none; } /* hidden on mobile — replaced by mobileCtaBlock */
+
+    /* ── Mobile CTA overlay (Contact me + Know More) ── */
+    #mobileCtaBlock {
+      display: flex;
+      flex-direction: row;
+      gap: 2px;
+      align-items: center;
+      justify-content: center;
+      position: fixed;
+      z-index: 1000;
+      right: 16px;
+      bottom: 20px;
+      left: 16px;
+      max-width: 204.25px;
+      margin: 0 auto;
+      padding: 6px;
+      border: 1px solid rgba(0, 0, 0, 0.1);
+      border-radius: 999px;
+      background: rgba(255, 255, 255, 0.94);
+      box-shadow: rgba(14, 63, 126, 0.04) 0px 0px 0px 1px, rgba(42, 51, 69, 0.04) 0px 1px 1px -0.5px, rgba(42, 51, 70, 0.04) 0px 3px 3px -1.5px, rgba(42, 51, 70, 0.04) 0px 6px 6px -3px, rgba(14, 63, 126, 0.04) 0px 12px 12px -6px, rgba(14, 63, 126, 0.04) 0px 24px 24px -12px;
+      backdrop-filter: blur(8px);
+      -webkit-backdrop-filter: blur(8px);
+      transition: max-width 0.55s cubic-bezier(0.22, 1, 0.36, 1), gap 0.55s cubic-bezier(0.22, 1, 0.36, 1), padding 0.55s cubic-bezier(0.22, 1, 0.36, 1), translate 0.4s cubic-bezier(0.22, 1, 0.36, 1);
+      scale: 0.9;                 /* whole tray a little smaller, proportions unchanged */
+      transform-origin: 50% 100%; /* shrinks toward its bottom edge, so the 20px bottom gap stays */
+    }
+    #mobileCtaBlock .cta-label { font-weight: 500; }
+    #mobileCtaBlock.is-compact { padding: 6px 10px; gap: 3px; }
+    .mobile-cta-primary {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0;
+      flex: 1.25 1 auto;
+      height: 30px;
+      padding: 6.5px 9px;
+      font-family: var(--font);
+      background: linear-gradient(to bottom, #4B91F7 0%, #2C8EFF 100%);
+      border: 1px solid #83B9FF;
+      border-radius: 999px;
+      text-decoration: none;
+      cursor: pointer;
+      box-shadow: 0px 1px 3px rgba(44, 142, 255, 0.25);
+      opacity: 0.92;
+      overflow: hidden;
+      transition: opacity 0.15s ease, transform 0.15s ease, flex 0.55s cubic-bezier(0.22, 1, 0.36, 1), padding 0.55s cubic-bezier(0.22, 1, 0.36, 1), width 0.55s cubic-bezier(0.22, 1, 0.36, 1), height 0.55s cubic-bezier(0.22, 1, 0.36, 1), box-shadow 0.55s cubic-bezier(0.22, 1, 0.36, 1);
+      white-space: nowrap;
+    }
+    #mobileCtaBlock.is-compact .mobile-cta-primary {
+      flex: 0 0 auto;
+      width: 28px;   /* perfect circle, same diameter as the headshot */
+      height: 28px;
+      padding: 0;
+      box-shadow: none;
+    }
+    @media (hover: hover) and (pointer: fine) {
+      .mobile-cta-primary:hover { opacity: 1; }
+    }
+    .mobile-cta-primary:active { transform: scale(0.96); }
+    .mobile-cta-primary:focus-visible { outline: none; box-shadow: 0 0 0 3.5px rgba(44, 142, 255, 0.22); }
+    .cta-label {
+      display: inline-block;
+      flex: 0 0 auto;
+      max-width: 120px;
+      opacity: 1;
+      overflow: hidden;
+      white-space: nowrap;
+      color: inherit;
+      font-family: var(--font);
+      font-size: 12.6px;
+      font-weight: 400;
+      line-height: 13.5px;
+      transition: max-width 0.55s cubic-bezier(0.22, 1, 0.36, 1), opacity 0.25s ease, flex-basis 0.55s cubic-bezier(0.22, 1, 0.36, 1);
+    }
+    .mobile-cta-primary .cta-label { color: #fff; }
+    .mobile-cta-secondary .cta-label { color: #4891F8; }
+    #mobileCtaBlock.is-compact .cta-label {
+      flex: 0 0 0;
+      max-width: 0;
+      opacity: 0;
+    }
+    .cta-icon {
+      flex: 0 0 auto;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 0;
+      height: 30px;
+      opacity: 0;
+      overflow: hidden;
+      transform: translateY(7px);
+      transition: width 0.55s cubic-bezier(0.22, 1, 0.36, 1), opacity 0.25s ease, transform 0.3s ease;
+    }
+    .cta-icon svg { flex: 0 0 auto; display: block; }
+    .cta-headshot { flex: 0 0 auto; display: block; width: 28px; height: 28px; border-radius: 50%; object-fit: cover; }
+    .cta-icon-stack {
+      position: relative;
+      width: 28px;
+      height: 28px;
+      flex: 0 0 auto;
+      display: block;
+    }
+    .cta-icon-stack svg, .cta-icon-stack .icon-mail-font {
+      position: absolute;
+      inset: 0;
+      transition: opacity 0.25s ease, transform 0.3s cubic-bezier(0.34, 1.56, 0.64, 1), filter 0.25s ease;
+    }
+    .icon-mail { opacity: 1; transform: scale(1); filter: blur(0px); }
+    .icon-tick { opacity: 0; transform: scale(0.4); filter: blur(4px); }
+    .tick-path {
+      stroke-dasharray: 1;
+      stroke-dashoffset: 1;
+      transition: stroke-dashoffset 0.35s ease 0.12s;
+    }
+    .cta-icon.show-tick .icon-mail { opacity: 0; transform: scale(0.4); filter: blur(4px); }
+    .cta-icon.show-tick .icon-tick { opacity: 1; transform: scale(1); filter: blur(0px); }
+    .cta-icon.show-tick .tick-path { stroke-dashoffset: 0; }
+    #mobileCtaBlock.is-compact .cta-icon {
+      width: 28px;
+      opacity: 1;
+      transform: translateY(0);
+      transition: width 0.55s cubic-bezier(0.22, 1, 0.36, 1), opacity 0.35s ease 0.15s, transform 0.4s cubic-bezier(0.22, 1, 0.36, 1) 0.15s;
+    }
+
+    .mobile-cta-secondary {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0;
+      flex: 1 1 auto;
+      height: 30px;
+      padding: 7.5px 9px;
+      text-decoration: none;
+      white-space: nowrap;
+      overflow: hidden;
+      border-radius: 999px;
+      transition: opacity 0.15s ease, transform 0.15s ease, padding 0.55s cubic-bezier(0.22, 1, 0.36, 1), gap 0.55s cubic-bezier(0.22, 1, 0.36, 1), flex 0.55s cubic-bezier(0.22, 1, 0.36, 1), width 0.55s cubic-bezier(0.22, 1, 0.36, 1), height 0.55s cubic-bezier(0.22, 1, 0.36, 1);
+    }
+    #mobileCtaBlock.is-compact .mobile-cta-primary .cta-icon { height: 28px; flex: 0 0 auto; }
+    #mobileCtaBlock.is-compact .mobile-cta-secondary {
+      flex: 0 0 auto;
+      width: 28px;
+      height: 30px;
+      padding: 0;
+    }
+    @media (hover: hover) and (pointer: fine) {
+      .mobile-cta-secondary:hover { opacity: 0.75; }
+    }
+    .mobile-cta-secondary:active { transform: scale(0.96); }
+    .mobile-cta-secondary:focus-visible { outline: 2px solid rgba(54, 122, 246, 0.32); outline-offset: 4px; border-radius: 4px; }
+
+    /* ── Mobile link bar at bottom ── */
+    #mobileLinkBar {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 20px;
+      margin-top: 48px;
+      padding-top: 24px;
+    }
+
+    /* Playground text link */
+    .mobile-playground-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      font-family: var(--font);
+      font-size: 0.95rem;
+      color: var(--muted);
+      text-decoration: underline;
+      text-underline-offset: 2px;
+      text-decoration-color: var(--muted);
+      transition: color 0.15s ease;
+    }
+    .mobile-playground-link:hover { color: var(--fg); text-decoration-color: var(--fg); }
+
+    /* Icon row */
+    .mobile-icon-row {
+      display: flex;
+      flex-direction: row;
+      align-items: center;
+      gap: 20px;
+    }
+    .mobile-icon-link {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--muted);
+      text-decoration: none;
+      transition: color 0.15s ease, transform 0.15s ease;
+      width: 44px;
+      height: 44px;
+    }
+    .mobile-icon-link:hover { color: var(--fg); }
+    .mobile-icon-link:active { transform: scale(0.92); }
+    .mobile-icon-link svg { display: block; }
+
+    /* name block above top gradient on mobile */
+    .name-block { position: relative; z-index: 101; }
+
+    @media (max-width: 480px) { .work-grid { grid-template-columns: 1fr; } }
+
+    /* ── Mobile only: centre-align bio + cta ── */
+    @media (max-width: 959px) {
+      .reach-block { align-items: center; }
+      .reach-btns  { align-items: center; }
+      .cv-line     { text-align: center; }
+      .section-label { margin-bottom: 32px; }
+      .work-grid { padding-top: 12px; }
+      #mobileCtaBlock { justify-content: center; }
+    }
+
+    /* ── DESKTOP ── */
+    @media (min-width: 960px) {
+      /* Page scrolls natively. Left column is pinned; right column flows past it. */
+      html { scrollbar-width: none; }
+      html::-webkit-scrollbar { display: none; }
+
+      .wrap {
+        max-width: none;
+        width: 100%;
+        min-height: 100vh;
+        margin: 0;
+        display: grid;
+        grid-template-columns: 32% 68%;
+        padding: 0;
+        align-items: start;
+        overflow: visible;
+      }
+
+      .name-block { position: static; z-index: auto; }
+
+      /* ── Left column ── */
+      #colLeft {
+        display: flex;
+        flex-direction: column;
+        justify-content: flex-start;
+        padding: 56px 48px 56px 72px;
+        position: sticky;
+        top: 0;
+        height: 100vh;
+        z-index: 1;
+      }
+
+      #bioGroup   { margin-bottom: 0; }
+      /* Hide mobile-only elements on desktop */
+      #mobileCtaBlock { display: none; }
+      #mobileLinkBar  { display: none; }
+      .as-seen-mobile { display: none; }
+
+      #bioP1      { display: none; }
+      #bioP2      { font-size: 14px; line-height: 1.65; color: var(--fg); margin-bottom: 0; }
+      .about-link { display: none; }
+
+      /* CTA sits right after bio */
+      #reachBlock {
+        margin-top: 28px;
+        display: flex;
+        flex-direction: column;
+        gap: 0;
+        align-items: flex-start;
+        flex: 0 0 auto;
+      }
+
+      /* Push footer area to bottom */
+      .as-seen-desktop { margin-top: auto !important; }
+      .bm-logo-wrap { display: none; }
+      .reach-btns {
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        gap: 16px;
+        margin-top: 0;
+      }
+
+      /* Reach out — blue gradient border button */
+      #emailBtn {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        padding: 0.72px;
+        font-family: var(--font);
+        border-radius: 6px;
+        border: none;
+        background: linear-gradient(180deg, #70b8ff 0%, #1a6fd4 100%);
+        box-shadow: 0px 1px 3px rgba(44, 142, 255, 0.25);
+        user-select: none;
+        -webkit-user-select: none;
+        touch-action: manipulation;
+        cursor: pointer;
+        transition-property: opacity, transform, box-shadow;
+        transition-duration: 0.15s;
+        transition-timing-function: ease;
+        opacity: 0.92;
+        min-height: 34px;
+        text-decoration: none;
+      }
+      #emailBtn:hover { opacity: 1; box-shadow: 0px 2px 6px rgba(44, 142, 255, 0.35); }
+      #emailBtn:active { transform: scale(0.96); }
+      #emailBtn:focus {
+        outline: none;
+        box-shadow: 0px 0px 0px 3.5px rgba(44, 142, 255, 0.22);
+      }
+      #emailBtn .reach-btn-inner { display: none; }
+      #emailBtn .reach-btn-confirm { display: none; }
+      #emailBtn::before { display: none; }
+      #emailBtn-inner {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        padding: 0 12px;
+        height: 30px;
+        background: linear-gradient(180deg, #4B91F7 0%, #2C8EFF 100%);
+        border-radius: 4px;
+        color: #fff;
+        font-size: 14px;
+        font-family: var(--font);
+        line-height: 1;
+        white-space: nowrap;
+      }
+
+      /* Convince me more — plain blue underline link */
+      .reach-btns a[href="about.html"] {
+        background: transparent;
+        border: none;
+        padding: 8px 0;
+        min-height: 40px;
+        box-shadow: none;
+        font-size: 14px;
+        color: var(--blue);
+        text-decoration: underline;
+        text-decoration-color: var(--blue);
+        text-underline-offset: 2px;
+        white-space: nowrap;
+      }
+      .reach-btns a[href="about.html"] .reach-btn-inner { display: none; }
+      .reach-btns a[href="about.html"]::after { content: "About me"; }
+      .reach-btns a[href="about.html"]:hover { opacity: 0.75; }
+      .reach-btns a[href="about.html"]:focus-visible { outline: 2px solid rgba(54, 122, 246, 0.32); outline-offset: 4px; border-radius: 4px; }
+
+      /* Hide mobile cv-line */
+      #cvLine { display: none; }
+
+      /* Footer links */
+      .as-seen-desktop {
+        display: block;
+        width: 318px;
+        padding: 14px 18px;
+        border: 1px solid rgba(0, 0, 0, 0.11);
+        border-radius: 4px;
+        background: rgba(255, 255, 255, 0.22);
+        box-shadow: rgba(0, 0, 0, 0.06) 0px 2px 4px 0px inset;
+        color: var(--muted);
+        font-size: 0.92rem;
+        line-height: 1.35;
+        margin-bottom: 16px;
+      }
+      .as-seen-desktop p {
+        margin: 0;
+        color: var(--muted);
+        font-size: inherit;
+        line-height: inherit;
+      }
+      .as-seen-desktop a {
+        color: var(--muted);
+        text-decoration: underline;
+        text-decoration-color: var(--muted);
+        text-underline-offset: 2px;
+      }
+      .as-seen-desktop a:hover { color: var(--fg); text-decoration-color: var(--fg); }
+      .as-seen-desktop a:focus-visible { outline: 2px solid rgba(54, 122, 246, 0.32); outline-offset: 3px; border-radius: 4px; }
+
+      .cv-line-desktop {
+        display: flex !important;
+        gap: 20px;
+        margin-top: 0;
+      }
+      .cv-line-desktop a {
+        font-size: 14px;
+        color: var(--muted);
+        text-decoration: underline;
+        text-decoration-color: transparent;
+        text-underline-offset: 2px;
+        min-height: 40px;
+        display: inline-flex;
+        align-items: center;
+        transition-property: text-decoration-color, color;
+        transition-duration: 0.15s;
+        transition-timing-function: ease;
+      }
+      .cv-line-desktop a:hover { text-decoration-color: var(--muted); }
+      .cv-line-desktop a:focus-visible { outline: 2px solid rgba(54, 122, 246, 0.32); outline-offset: 4px; border-radius: 4px; }
+      .cv-line-desktop a[aria-disabled="true"] {
+        opacity: 0.45;
+        cursor: default;
+        pointer-events: none;
+        text-decoration-color: transparent;
+      }
+
+      /* ── Right column ── */
+      #colRight {
+        position: relative;
+        margin-top: 0;
+        padding: 100vh 72px 120px 48px; /* 100vh top = first case study starts just below the fold */
+        display: block;
+      }
+      .section-label { display: none; }
+      .clock-spacer  { display: none; }
+
+      .work-grid {
+        display: flex;
+        flex-direction: column;
+        gap: 72px;
+      }
+
+      .work-card {
+        display: flex;
+        flex-direction: column;
+        gap: 0;
+        text-decoration: none;
+      }
+      .work-card:hover { opacity: 0.9; transform: none; }
+
+      .work-card-thumb {
+        width: 84.24%;
+        height: auto;
+        aspect-ratio: 4 / 3;
+        border-radius: 4px;
+        overflow: hidden;
+        background: #eceae5;
+        margin-left: auto;
+      }
+      .work-card-thumb img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        display: block;
+      }
+
+      .work-card-body {
+        width: 84.24%;
+        margin-left: auto;
+        padding: 14px 0 0;
+        display: flex;
+        flex-direction: row;
+        align-items: baseline;
+        justify-content: space-between;
+      }
+      .work-card-title {
+        font-size: 14px;
+        color: var(--muted);
+        font-weight: 400;
+        margin: 0;
+      }
+      .work-card:hover .work-card-title { color: var(--muted); }
+      .work-card-meta { display: contents; }
+      .work-card-tag  { display: none; }
+      .work-card-date {
+        font-size: 14px;
+        color: var(--muted);
+        font-variant-numeric: tabular-nums;
+        margin: 0;
+      }
+    }
+    @media (prefers-reduced-motion: reduce) {
+      #mobileCtaBlock, .mobile-cta-primary, .mobile-cta-secondary, .cta-label, .cta-icon,
+      .cta-icon-stack svg, .anim {
+        transition-duration: 0.01ms !important;
+        animation-duration: 0.01ms !important;
+        transform: none !important;
+      }
+      #mobileCtaBlock.is-compact .cta-icon,
+      .cta-icon.show-tick .icon-tick,
+      .icon-mail { transform: none !important; }
+    }
+    /* ── Other Things I've Made (non-clickable cards) ── */
+    .other-section { margin-top: 56px; }
+    .other-heading { font-size: 14px; font-weight: 600; color: var(--fg); line-height: 1.65; margin: 0 0 20px; text-wrap: balance; }
+    .other-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
+    .other-card { display: flex; flex-direction: column; cursor: default; }
+    .other-thumb { width: 100%; aspect-ratio: 4 / 3; background: #f0efeb; border-radius: 4px; overflow: hidden; position: relative; }
+    .other-thumb img { width: 100%; height: 100%; object-fit: cover; display: block; }
+    .other-body { padding: 6px 0 0; display: flex; flex-direction: column; gap: 1px; }
+    .other-name { font-size: 14px; color: var(--fg); font-weight: 400; line-height: 1.4; margin: 0; }
+    .other-desc { font-size: 14px; color: var(--muted); line-height: 1.5; margin: 0; text-wrap: pretty; }
+    /* ── Thumbnail preview slideshow (static until hover / scrolled into focus) ── */
+    .ss .ss-slide { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; display: block; opacity: 0; transition: opacity 0.5s ease; }
+    .ss .ss-slide.is-active { opacity: 1; }
+    .ss .ss-ph { display: flex; align-items: center; justify-content: center; background: #eceae5; color: var(--muted); font-size: 0.8125rem; }
+    .ss .ss-ph::after { content: attr(data-label); }
+    .ss .ss-ph[data-tone="2"] { background: #e4e1da; }
+    .ss .ss-ph[data-tone="3"] { background: #dbd7ce; }
+    @media (prefers-reduced-motion: reduce) { .ss .ss-slide { transition: none; } }
+    /* Progress bar: one segment per slide, shown while the preview plays.
+       Colour (black or white) is chosen in JS from the brightness of the content behind it. */
+    .ss .ss-bar { position: absolute; left: 0; right: 0; bottom: 0; display: flex; gap: 2px; z-index: 2; mix-blend-mode: normal; opacity: 0; transition: opacity 0.25s ease; pointer-events: none; }
+    .ss.is-on .ss-bar { opacity: 1; }
+    .ss { --bar-fill: #fff; --bar-track: rgba(255, 255, 255, 0.4); }
+    .ss .ss-bar span { flex: 1; height: 3px; border-radius: 0; background: var(--bar-track); overflow: hidden; transition: background-color 0.2s ease; }
+    .ss .ss-bar i { display: block; width: 100%; height: 100%; background: var(--bar-fill); transform: scaleX(0); transform-origin: left center; }
+    .other-link { color: inherit; text-decoration: none; cursor: pointer; transition: transform 0.15s ease; }
+    .other-link:active { transform: scale(0.96); }
+    .other-link .other-thumb { transition-property: opacity, box-shadow; transition-duration: 0.2s; transition-timing-function: ease; }
+    .other-link:hover .other-thumb { opacity: 0.94; box-shadow: rgba(60, 64, 67, 0.3) 0px 1px 2px 0px, rgba(60, 64, 67, 0.15) 0px 1px 3px 1px; }
+    #bioP2 .bio-line { display: block; }
+    #bioP2 .bio-line + .bio-line { margin-top: 1.65em; }   /* one blank line, as before */
+    @media (max-width: 959px) { #bioP2 .bio-line { text-wrap: balance; } }
+    /* Mobile footer: plain text links in one straight line */
+    .mobile-text-links { display: flex; flex-direction: row; flex-wrap: nowrap; justify-content: center; align-items: center; gap: 20px; }
+    .mobile-text-links a { font-size: 14px; color: var(--fg); text-decoration: underline; text-decoration-color: rgba(58, 58, 58, 0.15); text-decoration-color: color-mix(in srgb, var(--fg) 15%, transparent); text-underline-offset: 2px; white-space: nowrap; min-height: 40px; display: inline-flex; align-items: center; transition: opacity 0.15s ease; }
+    .mobile-text-links a:active { opacity: 0.6; }
+    .mobile-text-links a:focus-visible { outline: 2px solid rgba(54, 122, 246, 0.32); outline-offset: 4px; border-radius: 4px; }
+    /* ── Skeleton loaders: only shown while media is genuinely still loading ── */
+    @keyframes sk-shimmer { 0% { background-position: 200% 0; } 100% { background-position: -200% 0; } }
+    .ss::before { content: ""; position: absolute; inset: 0; z-index: 3; pointer-events: none; opacity: 0; transition: opacity 0.3s ease;
+      background: linear-gradient(90deg, #f0efeb 0%, #e4e2dc 50%, #f0efeb 100%); background-size: 200% 100%; }
+    .ss::after { content: ""; position: absolute; inset: 0; z-index: 4; pointer-events: none; border-radius: inherit; box-shadow: inset 0 0 0 1px rgba(0, 0, 0, 0.1); }
+    .ss.is-loading::before { opacity: 1; animation: sk-shimmer 1.4s linear infinite; }
+    .cta-headshot.is-loading { background: linear-gradient(90deg, #ecebe7 0%, #dedcd6 50%, #ecebe7 100%); background-size: 200% 100%; animation: sk-shimmer 1.4s linear infinite; }
+    @media (prefers-reduced-motion: reduce) { .ss.is-loading::before, .cta-headshot.is-loading { animation: none; } }
+    /* ── Mobile pull-up section (overscroll at the bottom of the page) ── */
+    #pullPanel { display: none; }
+    @media (max-width: 959px) {
+      html, body { overscroll-behavior-y: none; }
+      #pullPanel { display: block; position: fixed; left: 0; right: 0; bottom: 0; height: 0; overflow: hidden; z-index: 900; pointer-events: none; visibility: hidden;
+        background: #4a8cf7; box-shadow: inset 0 10px 10px -10px rgba(0, 0, 0, 0.28); }
+      #pullPanel.is-active { visibility: visible; }
+      #pullPanel .pull-inner { position: absolute; left: 0; right: 0; bottom: 0; height: 112px; display: flex; flex-direction: row; align-items: center; justify-content: center; gap: 18px; text-align: left; padding: 0 24px; }
+      #pullPanel .pull-copy { min-width: 0; }
+      #pullPanel .pull-title { margin: 0; font-size: 14px; line-height: 1.5; font-weight: 500; color: #2159c9; }
+      #pullPanel .pull-text { margin: 0; font-size: 14px; line-height: 1.5; color: #fff; }
+      #pullPanel .pull-ring { display: block; flex: 0 0 auto; overflow: visible; }
+      #pullPanel .ring-track { fill: none; stroke: #2159c9; stroke-width: 4; }
+      #pullPanel .ring-prog { fill: none; stroke: #e8eaf0; stroke-width: 4; stroke-linecap: round; stroke-dasharray: 94.25; stroke-dashoffset: 94.25; transform: rotate(-90deg); transform-origin: 18px 18px; }
+      #pullPanel .ring-check { fill: none; stroke: #fff; stroke-width: 3; stroke-linecap: round; stroke-linejoin: round; opacity: 0; transition: opacity 0.2s ease; }
+      #pullPanel.is-done .ring-check { opacity: 1; }
+      #pullPanel.is-done .ring-track, #pullPanel.is-done .ring-prog { opacity: 0; }
+      /* page content rides up with the panel; the fixed tray slides away */
+      #wrap > :not(#mobileCtaBlock) { translate: 0 var(--pull-shift, 0px); }
+      html.is-pulling #mobileCtaBlock { translate: 0 140px; }
+    }
+    .ss { touch-action: pan-y pinch-zoom; }
+    .ss .ss-slide { -webkit-user-select: none; user-select: none; -webkit-user-drag: none; }
+    /* ── Mobile: eased fade of the page background under the tray, so content dissolves cleanly at the bottom edge ── */
+    @media (max-width: 959px) {
+      body::after {
+        content: ""; position: fixed; left: 0; right: 0; bottom: 0; z-index: 800; pointer-events: none;
+        height: calc(150px + env(safe-area-inset-bottom, 0px));
+        /* same colour as --bg at every stop (no "transparent" keyword => no grey, muddy mid-tones); alpha follows an ease-out curve */
+        background: linear-gradient(to top,
+          rgba(247, 246, 245, 1) 0%, rgba(247, 246, 245, 0.987) 8.1%, rgba(247, 246, 245, 0.951) 15.5%,
+          rgba(247, 246, 245, 0.896) 22.5%, rgba(247, 246, 245, 0.825) 29%, rgba(247, 246, 245, 0.741) 35.3%,
+          rgba(247, 246, 245, 0.648) 41.2%, rgba(247, 246, 245, 0.55) 47.1%, rgba(247, 246, 245, 0.45) 52.9%,
+          rgba(247, 246, 245, 0.352) 58.8%, rgba(247, 246, 245, 0.259) 64.7%, rgba(247, 246, 245, 0.175) 70.6%,
+          rgba(247, 246, 245, 0.104) 77.5%, rgba(247, 246, 245, 0.049) 84.5%, rgba(247, 246, 245, 0.013) 91.9%,
+          rgba(247, 246, 245, 0) 100%);
+      }
+    }
+    /* ── Contact bottom sheet ── */
+    html.sheet-open, html.sheet-open body { overflow: hidden; }
+    .contact-layer { position: fixed; inset: 0; z-index: 1300; visibility: hidden; pointer-events: none; transition: visibility 0s linear 0.45s; }
+    .contact-layer.is-open { visibility: visible; pointer-events: auto; transition-delay: 0s; }
+    .contact-backdrop { position: absolute; inset: 0; background: rgba(28, 28, 30, 0.34); opacity: 0; transition: opacity 0.35s ease; }
+    .contact-layer.is-open .contact-backdrop { opacity: 1; }
+    .contact-sheet { position: absolute; left: 0; right: 0; bottom: 0; max-width: 440px; margin: 0 auto; outline: none;
+      background: #fff; border-radius: 14px 14px 0 0; box-shadow: 0 -8px 30px rgba(0, 0, 0, 0.12);
+      padding: 0 20px calc(22px + env(safe-area-inset-bottom, 0px));
+      transform: translateY(105%); transition: transform 0.45s cubic-bezier(0.22, 1, 0.36, 1); }
+    .contact-layer.is-open .contact-sheet { transform: translateY(0); }
+    .sheet-grab { display: flex; justify-content: center; padding: 10px 0 6px; touch-action: none; cursor: grab; }
+    .sheet-handle { width: 36px; height: 4px; border-radius: 2px; background: rgba(0, 0, 0, 0.14); }
+    .sheet-head { display: flex; align-items: center; justify-content: space-between; margin-bottom: 14px; touch-action: none; }
+    .sheet-title { margin: 0; font-size: 14px; line-height: 1.5; font-weight: 500; color: var(--fg); }
+        /* Digital visiting card (inside the contact sheet): 3D tilt + glare + shine */
+    .vc-stage { perspective: 720px; margin-bottom: 12px; touch-action: none; }
+    .visiting-card { position: relative; display: flex; flex-direction: column; justify-content: flex-start; gap: 18px; aspect-ratio: 1.8 / 1; padding: 16px;
+      border: 1px solid #83B9FF; border-radius: 4px; color: #fff;
+      background: linear-gradient(to bottom, #4B91F7 0%, #2C8EFF 100%); box-shadow: 0 6px 16px rgba(44, 142, 255, 0.22);
+      transform-style: preserve-3d; transform: rotateX(var(--vc-rx, 0deg)) rotateY(var(--vc-ry, 0deg)); will-change: transform;
+      }
+    .vc-bloom { position: absolute; inset: 0; width: 100%; height: 100%; display: block; visibility: hidden; }
+    .vc-bloom.is-ready { visibility: visible; }
+    .vc-clip { position: absolute; inset: 0; border-radius: inherit; overflow: hidden; pointer-events: none; }
+    .vc-shine { position: absolute; top: -25%; bottom: -25%; left: 0; width: 45%; opacity: 0; transform: translateX(-160%) skewX(-18deg);
+      background: linear-gradient(90deg, rgba(255, 255, 255, 0) 0%, rgba(255, 255, 255, 0.7) 50%, rgba(255, 255, 255, 0) 100%); }
+    .visiting-card.is-shining .vc-shine { animation: vc-shine 0.95s cubic-bezier(0.3, 0.6, 0.2, 1) both; }
+    .visiting-card.is-shining.shine-rev .vc-shine { animation-direction: reverse; }
+    @keyframes vc-shine { 0% { transform: translateX(-160%) skewX(-18deg); opacity: 0; } 20% { opacity: 1; } 80% { opacity: 1; } 100% { transform: translateX(330%) skewX(-18deg); opacity: 0; } }
+    .vc-main { transform: translateZ(18px); }
+    .vc-main { margin: 0; }   /* name and designation sit at the top left */
+    .visiting-card p { margin: 0; font-size: 14px; line-height: 1.5; }
+    .vc-name { font-weight: 600; color: #fff; }
+    .vc-role { font-weight: 400; color: rgba(255, 255, 255, 0.82); }
+    @media (prefers-reduced-motion: reduce) { .visiting-card.is-shining .vc-shine { animation: none; } }
+    .email-box { display: flex; align-items: center; gap: 8px; padding: 6px 6px 6px 14px; border: 1px solid rgba(0, 0, 0, 0.11); border-radius: 4px; background: #fbfaf9; box-shadow: rgba(0, 0, 0, 0.05) 0 2px 4px 0 inset; }
+    .email-text { flex: 1 1 auto; min-width: 0; font-size: 14px; line-height: 1.5; font-weight: 500; color: var(--fg); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; -webkit-user-select: all; user-select: all; }
+    .copy-btn { flex: 0 0 auto; display: inline-flex; align-items: center; justify-content: center; width: 36px; height: 36px; padding: 0; border: 0; border-radius: 50%; background: transparent; color: var(--muted); cursor: pointer; transition: color 0.15s ease, transform 0.15s ease; }
+    .copy-btn:hover { color: var(--fg); }
+    .copy-btn:active { transform: scale(0.9); }
+    /* copy <-> tick: both icons stacked, cross-fading with a blur and a small scale */
+    .copy-btn { position: relative; }
+    .copy-btn svg { position: absolute; top: 50%; left: 50%; margin: -9px 0 0 -9px; display: block;
+      transition: opacity 0.3s ease, filter 0.3s ease, transform 0.38s cubic-bezier(0.34, 1.3, 0.64, 1); }
+    .copy-btn .ic-copy { opacity: 1; filter: blur(0); transform: scale(1); }
+    .copy-btn .ic-check { opacity: 0; filter: blur(4px); transform: scale(0.55); }
+    .copy-btn.is-ok { color: #2C8EFF; }
+    .copy-btn.is-ok .ic-copy { opacity: 0; filter: blur(4px); transform: scale(0.55); }
+    .copy-btn.is-ok .ic-check { opacity: 1; filter: blur(0); transform: scale(1); }
+    .copy-btn.is-fail { color: #d64545; }
+    .sheet-status { position: absolute; width: 1px; height: 1px; margin: 0; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; }
+    .sheet-links { display: grid; grid-template-columns: repeat(3, 1fr); gap: 8px; margin-top: 12px; }
+    .sheet-links a { display: flex; align-items: center; justify-content: center; min-height: 44px; padding: 0 8px; border: 1px solid rgba(0, 0, 0, 0.11); border-radius: 4px; color: var(--fg); font-size: 14px; text-decoration: none; transition: background 0.15s ease, transform 0.15s ease; }
+    .sheet-links a:hover { background: rgba(0, 0, 0, 0.03); }
+    .sheet-links a:active { transform: scale(0.97); }
+    .contact-sheet :focus-visible { outline: 2px solid rgba(54, 122, 246, 0.45); outline-offset: 2px; }
+    @media (min-width: 600px) { .contact-sheet { bottom: 24px; border-radius: 14px; padding-bottom: 22px; } }
+    @media (prefers-reduced-motion: reduce) { .contact-sheet, .contact-backdrop, .copy-btn svg { transition-duration: 0.01ms; } }
+    /* Material Symbols "mail": same 14px footprint and white colour as the previous icon (filled variant) */
+    .material-symbols-outlined { font-family: 'Material Symbols Outlined'; font-weight: normal; font-style: normal; line-height: 1; letter-spacing: normal; text-transform: none; white-space: nowrap; word-wrap: normal; direction: ltr; -webkit-font-smoothing: antialiased; font-feature-settings: 'liga'; font-variation-settings: 'FILL' 1, 'wght' 400, 'GRAD' 0, 'opsz' 20; }
+    .icon-mail-font { display: none; align-items: center; justify-content: center; font-size: 16.8px; color: #fff; -webkit-user-select: none; user-select: none; }
+    html.msym-ready .icon-mail-font { display: flex; }
+    html.msym-ready svg.icon-mail { display: none; }
+    /* Arrow navigation + edge blur (desktop only; touch uses swipe) */
+    .ss .ss-arrow, .ss .ss-blur { display: none; }
+    @media (hover: hover) and (pointer: fine) {
+      .ss .ss-arrow { display: flex; position: absolute; top: 50%; z-index: 5; width: 45px; height: 45px; align-items: center; justify-content: center; margin-top: -22.5px;
+        color: #fff; cursor: pointer; opacity: 0; transition: opacity 0.25s ease; filter: drop-shadow(0 1px 6px rgba(0, 0, 0, 0.35)); -webkit-tap-highlight-color: transparent; }
+      .ss .ss-arrow-l { left: 14px; }
+      .ss .ss-arrow-r { right: 14px; }
+      .ss:hover .ss-arrow { opacity: 1; }
+      .ss .ss-blur { display: block; position: absolute; top: 0; bottom: 0; width: 42%; z-index: 3; pointer-events: none; opacity: 0; visibility: hidden;
+        -webkit-backdrop-filter: blur(40px); backdrop-filter: blur(40px); transition: opacity 0.4s ease, visibility 0s linear 0.4s; }
+      .ss .ss-blur-l { left: 0; -webkit-mask-image: linear-gradient(to right, #000 0%, transparent 100%); mask-image: linear-gradient(to right, #000 0%, transparent 100%); }
+      .ss .ss-blur-r { right: 0; -webkit-mask-image: linear-gradient(to left, #000 0%, transparent 100%); mask-image: linear-gradient(to left, #000 0%, transparent 100%); }
+      .ss.hover-l .ss-blur-l, .ss.hover-r .ss-blur-r { opacity: 1; visibility: visible; transition-delay: 0s; }
+    }
+    .work-card-desc { font-size: 14px; color: var(--muted); line-height: 1.5; margin: 0; text-wrap: pretty; }
+    @media (max-width: 480px) { .other-grid { grid-template-columns: 1fr; } }
+    /* Mobile / tablet only: more breathing room */
+    @media (max-width: 959px) {
+      .work-grid { row-gap: 48px; column-gap: 20px; }
+      .work-card-body { padding-top: 14px; gap: 6px; }
+      .other-heading { margin-bottom: 32px; }
+      .other-grid { row-gap: 48px; column-gap: 20px; }
+      .other-body { padding-top: 14px; gap: 6px; }
+    }
+    @media (min-width: 960px) {
+      /* Case study cards now carry a description: stack title over description */
+      .work-card-body { flex-direction: column; align-items: stretch; justify-content: flex-start; gap: 1px; }
+      .work-card-title,
+      .work-card:hover .work-card-title { color: var(--fg); }
+      .other-section { width: 84.24%; margin-left: auto; margin-top: 96px; }
+      .other-heading { margin-bottom: 32px; }
+      .other-grid { display: flex; flex-direction: column; gap: 72px; }
+      .other-body { padding-top: 14px; }
+
+      /* Landing view = name, bio, quick links only */
+      #reachBlock, .as-seen-desktop { display: none !important; }
+      .cv-line-desktop { margin-top: auto; }
+
+    }
+
+    /* ── Wax crayon drawing space ── */
+    #drawingSpace {
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 100vh;
+      z-index: 4;
+      pointer-events: none;
+    }
+    #crayonCanvas {
+      display: block;
+      width: 100%;
+      height: 100%;
+      touch-action: none;
+      pointer-events: auto;
+      cursor: crosshair;
+      /* soft fade into the page background at the bottom edge and at the left edge (where it meets the name/bio column),
+         so strokes dissolve instead of cutting off. The two gradients are intersected. */
+      -webkit-mask-image:
+        linear-gradient(to bottom, #000 0, #000 calc(100% - 440px), rgba(0,0,0,.6) calc(100% - 230px), transparent 100%),
+        linear-gradient(to right, transparent 0, rgba(0,0,0,.6) 60px, #000 140px);
+      -webkit-mask-composite: source-in;
+      mask-image:
+        linear-gradient(to bottom, #000 0, #000 calc(100% - 440px), rgba(0,0,0,.6) calc(100% - 230px), transparent 100%),
+        linear-gradient(to right, transparent 0, rgba(0,0,0,.6) 60px, #000 140px);
+      mask-composite: intersect;
+    }
+    #crayonTools {
+      position: absolute;   /* lives inside #drawingSpace, so it scrolls up with the page just like the drawing */
+      inset: 0;
+      z-index: 2;
+      pointer-events: none;
+      transition: opacity 0.3s ease, translate 0.4s cubic-bezier(0.22, 1, 0.36, 1), visibility 0s linear 0s;
+    }
+    /* note: top-right, same grey as the CV / Behance / LinkedIn links, level with the page's top padding */
+    .crayon-note {
+      position: absolute;
+      top: 56px;
+      right: 72px;
+      max-width: 210px;
+      margin: 0;
+      font-size: 14px;
+      line-height: 1.65;
+      color: var(--muted);
+      text-align: right;
+      text-wrap: balance;
+      transition: opacity 0.5s ease, filter 0.5s ease;
+    }
+    /* fades and blurs away the moment someone starts drawing */
+    .crayon-note.is-gone { opacity: 0; filter: blur(8px); }
+    .crayon-hint-icon { display: none; }
+    /* desktop: animated "draw here" gesture in the centre of the canvas; fades away when drawing starts */
+    .crayon-center-hint {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      translate: -50% -50%;
+      width: 132px;
+      height: 99px;
+      overflow: visible;
+      color: var(--muted);
+      opacity: 0.1;
+      pointer-events: none;
+      transition: opacity 0.5s ease, filter 0.5s ease;
+    }
+    .crayon-center-hint.is-gone { opacity: 0; filter: blur(8px); }
+    /* picker: bottom-right, vertically centred on the CV / Behance... row (same 56px bottom inset, same 40px row height) */
+    .crayon-row {
+      position: absolute;
+      right: 72px;
+      bottom: 56px;
+      min-height: 40px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      pointer-events: auto;
+    }
+    #crayonPresence { color: var(--muted); font-size: 11px; white-space: nowrap; margin-left: 4px; }
+    #crayonTools.is-hidden {
+      opacity: 0;
+      translate: 0 16px;
+      visibility: hidden;
+      pointer-events: none;
+      transition: opacity 0.3s ease, translate 0.4s cubic-bezier(0.22, 1, 0.36, 1), visibility 0s linear 0.4s;
+    }
+    .crayon-color {
+      width: 20px;
+      height: 20px;
+      padding: 0;
+      border: 0;
+      border-radius: 50%;
+      background: var(--swatch);
+      cursor: pointer;
+      position: relative;
+      transition: transform .15s ease;
+    }
+    .crayon-color:hover { transform: scale(1.15); }
+    .crayon-color[aria-pressed="true"]::after {
+      content: "";
+      position: absolute;
+      inset: -4px;
+      border: 1px solid var(--fg);
+      border-radius: 50%;
+    }
+    .crayon-tool-divider {
+      width: 1px;
+      height: 20px;
+      background: rgba(58,58,58,.14);
+      margin: 0 2px;
+    }
+    .crayon-action {
+      display: grid;
+      place-items: center;
+      width: 28px;
+      height: 28px;
+      padding: 0;
+      border: 0;
+      background: #fff;
+      box-shadow: var(--shadow-border);
+      color: var(--muted);
+      border-radius: 50%;
+      cursor: pointer;
+      font: inherit;
+      line-height: 1;
+      transition: color 0.15s ease, box-shadow 0.15s ease, transform 0.15s ease;
+    }
+    .crayon-action svg { display: block; }
+    .crayon-action:hover { color: var(--fg); box-shadow: var(--shadow-border-hover); }
+    .crayon-action:active { transform: scale(0.94); }
+    .crayon-action:focus-visible, .crayon-color:focus-visible {
+      outline: 2px solid rgba(44,142,255,.55);
+      outline-offset: 4px;
+    }
+    /* ── Mobile: the drawing area fills the first screen between the bio and the bottom CTA ── */
+    #seeWork { display: none; }
+    @media (max-width: 959px) {
+      #colRight { position: relative; margin-top: 0; }
+      #drawingSpace {
+        position: relative;
+        /* break out of the page's 20px side padding so strokes run edge to edge instead of being clipped */
+        width: 100vw;
+        margin-left: calc(50% - 50vw);
+        height: calc(100svh - var(--canvas-top, 260px));
+        min-height: 340px;
+      }
+      /* fade into the page at the top (toward the bio) and bottom (toward the picker / CTA); no side fades */
+      #crayonCanvas {
+        -webkit-mask-image: linear-gradient(to bottom, transparent 0, #000 70px, #000 calc(100% - 150px), transparent 100%);
+        mask-image: linear-gradient(to bottom, transparent 0, #000 70px, #000 calc(100% - 150px), transparent 100%);
+        -webkit-mask-composite: source-over;
+        mask-composite: add;
+      }
+      /* note: centred in the canvas */
+      .crayon-note {
+        top: calc(50% - 40px);
+        left: 50%;
+        right: auto;
+        translate: -50% -50%;
+        width: max-content;   /* without this the box shrinks to the 50% left of its left:50% anchor, forcing a third line */
+        max-width: 260px;
+        text-align: center;
+        opacity: 0.4;
+      }
+      .crayon-center-hint { display: none; }
+      .crayon-hint-icon { display: block; width: 84px; height: 63px; margin: 0 auto 6px; overflow: visible; opacity: 0.25; /* x the note's 40% = 10% */ }
+      /* the blur-out when drawing starts still wins over the 40% resting opacity */
+      .crayon-note.is-gone { opacity: 0; }
+      /* picker: centred, sitting just above the CTA. Collapsed = current colour + undo + clear; tap the colour to expand */
+      .crayon-row {
+        left: 50%;
+        right: auto;
+        translate: -50% 0;
+        bottom: calc(env(safe-area-inset-bottom, 0px) + 88px);   /* ~18px above the pill */
+      }
+      .crayon-tool-divider { display: none; }
+      /* collapsed: the other swatches shrink to nothing (the -4px side margins cancel the row's 8px gap); opening animates them back in */
+      .crayon-color {
+        transition: width 0.4s cubic-bezier(0.22, 1, 0.36, 1), margin 0.4s cubic-bezier(0.22, 1, 0.36, 1), opacity 0.3s ease, transform 0.4s cubic-bezier(0.22, 1, 0.36, 1), visibility 0s linear 0s;
+      }
+      .crayon-color:not([aria-pressed="true"]) {
+        width: 0;
+        margin: 0 -4px;
+        opacity: 0;
+        transform: scale(0.3);
+        visibility: hidden;
+        pointer-events: none;
+        transition-delay: 0s, 0s, 0s, 0s, 0.4s;   /* hide from focus order only after the collapse finishes */
+      }
+      .crayon-row.is-open .crayon-color:not([aria-pressed="true"]) {
+        width: 20px;
+        margin: 0;
+        opacity: 1;
+        transform: none;
+        visibility: visible;
+        pointer-events: auto;
+        transition-delay: 0s;
+      }
+      /* the selected swatch's ring extends 4px past the dot, so add 4px of margin: ring-to-undo and undo-to-clear are then both 8px */
+      .crayon-row:not(.is-open) .crayon-color[aria-pressed="true"] { margin-right: 4px; }
+      .crayon-row.is-open .crayon-color[aria-pressed="true"] { margin: 0 4px; }
+
+      /* first screen: "See the work instead?" replaces the regular CTA until the page is scrolled */
+      html:not(.past-canvas) #mobileCtaBlock { translate: 0 140px; pointer-events: none; }
+      #seeWork {
+        display: inline-flex;
+        align-items: center;
+        gap: 10px;
+        position: fixed;
+        z-index: 1000;
+        left: 50%;
+        bottom: calc(34px + env(safe-area-inset-bottom, 0px));
+        translate: -50% 0;
+        height: 36px;
+        padding: 0 8px 0 9.5px;
+        font: 500 15px/1 var(--font);
+        color: #fff;
+        white-space: nowrap;
+        background: linear-gradient(to bottom, #4B91F7 0%, #2C8EFF 100%);
+        border: 1px solid #83B9FF;
+        border-radius: 999px;
+        box-shadow: 0px 1px 3px rgba(44, 142, 255, 0.25);
+        cursor: pointer;
+        -webkit-tap-highlight-color: transparent;
+        transition: opacity 0.3s ease, translate 0.4s cubic-bezier(0.22, 1, 0.36, 1), transform 0.15s ease;
+      }
+      #seeWork:active { transform: scale(0.97); }
+      #seeWork .sw-arrow { display: grid; place-items: center; width: 20px; height: 20px; border-radius: 50%; background: #fff; color: #2C8EFF; }
+      html.past-canvas #seeWork { opacity: 0; translate: -50% 20px; pointer-events: none; }
+      /* "See the work" scroll lands the first card 20px from the top, matching the 20px left/right margins */
+      .work-grid .work-card:first-child { scroll-margin-top: calc(20px + env(safe-area-inset-top, 0px)); }
+    }
+
+  </style>
+
+  <script type="text/javascript">
+  </script>
+  <script type="text/javascript">
+  </script>
+  <script type="text/javascript">
+  </script>
+  <script type="text/javascript">
+    (function(c,l,a,r,i,t,y){
+        c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};
+        t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i;
+        y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);
+    })(window, document, "clarity", "script", "w3a28ja1pc");
+  </script>
+</head>
+<body>
+  <div class="wrap" id="wrap">
+
+    <!-- col-left: on desktop is a flex column; on mobile JS pulls its children out flat -->
+    <div id="colLeft">
+      <div id="bioGroup">
+        <div class="name-block anim" id="nameBlock" style="animation-delay:0ms">
+          <h1 class="site-name">Hey, It's Bhavya Mittal</h1>
+        </div>
+        <p class="anim" id="bioP1" style="animation-delay:80ms">I&rsquo;m a product designer with a background in communication design. Clarity and tastefulness are the two guiding principles of my work.</p>
+        <p class="anim" id="bioP2" style="animation-delay:130ms"><span class="bio-line">Currently at <a href="https://egonzehnder.com/" target="_blank" style="color:var(--fg);text-decoration:underline;text-decoration-color:rgba(58,58,58,0.15);text-decoration-color:color-mix(in srgb, var(--fg) 15%, transparent);text-underline-offset:2px;">Egon Zehnder</a>. Working across Product, interaction, motion and visual mediums in Finance, Consulting and Healthcare.</span><span class="bio-line">Love working with systems, cultures, world building and <a href="https://en.wikipedia.org/wiki/Rasa_(aesthetics)" target="_blank" rel="noopener" style="color:var(--fg);text-decoration:underline;text-decoration-color:rgba(58,58,58,0.15);text-decoration-color:color-mix(in srgb, var(--fg) 15%, transparent);text-underline-offset:2px;">रस(Rasas)</a>.</span></p>
+      </div>
+      <a href="about.html" class="anim about-link" id="aboutLink" style="animation-delay:155ms;">Read more about me <svg width="13" height="13" viewBox="0 0 13 13" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M2 6.5H11M7 2.5L11 6.5L7 10.5" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
+
+      <!-- Mobile-only: CTA buttons right after bio paragraph -->
+      <div id="mobileCtaBlock" class="anim" style="animation-delay:155ms">
+        <a class="mobile-cta-primary" href="https://mail.google.com/mail/?view=cm&to=bhavyamittalbiz@gmail.com" target="_blank" onclick="openContact(event, this)" aria-haspopup="dialog">
+          <span class="cta-label">Get in touch</span>
+          <span class="cta-icon">
+            <span class="cta-icon-stack">
+              <svg class="icon-mail" width="28" height="28" viewBox="3 1 28 28" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                <circle cx="17" cy="15" r="14" fill="none"/>
+                <mask id="mask0_466_35" style="mask-type:alpha" maskUnits="userSpaceOnUse" x="10" y="8" width="14" height="14"><rect x="10" y="8" width="14" height="14" fill="#D9D9D9"/></mask>
+                <g mask="url(#mask0_466_35)"><path d="M11.166 20.8346V10.3346C11.166 10.0138 11.2803 9.73915 11.5087 9.51068C11.7372 9.2822 12.0118 9.16797 12.3327 9.16797H21.666C21.9868 9.16797 22.2615 9.2822 22.49 9.51068C22.7184 9.73915 22.8327 10.0138 22.8327 10.3346V17.3346C22.8327 17.6555 22.7184 17.9301 22.49 18.1586C22.2615 18.3871 21.9868 18.5013 21.666 18.5013H13.4993L11.166 20.8346ZM13.0035 17.3346H21.666V10.3346H12.3327V17.9909L13.0035 17.3346Z" fill="white"/></g>
+              </svg>
+              <span class="icon-mail icon-mail-font material-symbols-outlined" aria-hidden="true">mail</span>
+              <svg class="icon-tick" width="28" height="28" viewBox="3 1 28 28" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                <circle cx="17" cy="15" r="14" fill="none"/>
+                <path class="tick-path" d="M10 15.6L14.4 20L24 9.5" pathLength="1" stroke="white" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+              </svg>
+            </span>
+          </span>
+        </a>
+
+        <a class="mobile-cta-secondary" href="about.html" aria-label="About me">
+          <span class="cta-label">About me</span>
+          <span class="cta-icon">
+            <img class="cta-headshot" src="https://raw.githubusercontent.com/bhavyamittall/Bhavya-Mittal-Portfolio/main/assets/images/Index%20Images/Headshot%20Bhavya.webp" alt="" width="28" height="28" decoding="async" />
+          </span>
+        </a>
+      </div>
+      <div class="reach-block anim" id="reachBlock" style="animation-delay:185ms">
+        <div class="bm-logo-wrap" id="logo-wrap">
+          <div id="breath-wrap">
+          <svg id="bm-logo" viewBox="0 0 707.48 603.4" xmlns="http://www.w3.org/2000/svg">
+            <defs><style>.cls-2{fill:#5683d3;}</style></defs>
+            <g id="layer-main">
+              <polygon id="nose" class="cls-2" points="519.93 568.37 519.93 603.4 319.25 603.4 319.25 548.4 449.67 548.4 328.54 291.88 389.37 291.88 519.93 568.37"/>
+              <polygon id="right-eyebrow" class="cls-2" points="707.48 70.01 675.5 114.75 599.89 60.73 449.9 108.15 449.9 50.47 609.51 0 707.48 70.01"/>
+              <g id="right-eye-group" class="eye-group">
+                <rect id="right-eye"       class="cls-2" x="450.13" y="155.89" width="55"  height="135.99"/>
+                <rect id="right-eye-wink"  class="cls-2" x="440"    y="208"    width="90"  height="28"/>
+                <rect id="right-eye-sleep" class="cls-2" x="432"    y="213"    width="100" height="26"/>
+              </g>
+              <g id="left-eye-group" class="eye-group">
+                <rect id="left-eye"        class="cls-2" x="206.91" y="155.89" width="55"  height="135.99"/>
+                <rect id="left-eye-sleep"  class="cls-2" x="185"    y="213"    width="100" height="26"/>
+              </g>
+              <polygon id="left-eyebrow" class="cls-2" points="263.06 52.2 263.06 109.89 107.59 60.73 31.97 114.75 0 70.01 97.97 0 263.06 52.2"/>
+              <g id="zzz-group" style="pointer-events:none;">
+                <text id="z1" class="z-char" x="595" y="108" font-size="50">z</text>
+                <text id="z2" class="z-char" x="620" y="55"  font-size="72">Z</text>
+              </g>
+            </g>
+          </svg>
+          </div>
+        </div>
+        <div class="reach-btns">
+          <a class="reach-btn" id="emailBtn" href="https://mail.google.com/mail/?view=cm&to=bhavyamittalbiz@gmail.com" target="_blank" aria-label="Get in touch" onclick="openContact(event, this)" aria-haspopup="dialog">
+            <span id="emailBtn-inner">Get in touch</span>
+          </a>
+          <a class="reach-btn" href="about.html">
+            <span class="reach-btn-inner">
+              <svg class="reach-icon" width="14" height="14" viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <rect x=".5" y="2.5" width="13" height="11" rx="1.5" stroke="currentColor" stroke-width="1.2"/>
+                <path d="M.5 6h13" stroke="currentColor" stroke-width="1.2"/>
+                <path d="M4 .5V4M10 .5V4" stroke="currentColor" stroke-width="1.2" stroke-linecap="round"/>
+              </svg>
+              Schedule a meet
+            </span>
+          </a>
+        </div>
+        <p class="cv-line" id="cvLine"><a href="resume.html">CV</a> &middot; <a href="https://www.behance.net/bhavyamittall" target="_blank">Behance</a> &middot; <a href="https://www.linkedin.com/in/bhavyamittalll/" target="_blank">LinkedIn</a>.</p>
+      </div>
+      <div class="clock-spacer"></div>
+      <div class="as-seen-desktop anim" style="animation-delay:205ms">
+        <p>As seen on:</p>
+        <p><a href="https://abduzeedo.com/node/89275" target="_blank">Abduzeedo</a> and <a href="https://www.wallofportfolios.in/portfolios/bhavya-mittal/" target="_blank">Wall of Portfolios</a></p>
+      </div>
+      <!-- Desktop footer links -->
+      <div class="cv-line-desktop anim" style="animation-delay:220ms">
+        <a href="https://mail.google.com/mail/?view=cm&to=bhavyamittalbiz@gmail.com" target="_blank" onclick="openContact(event, this)" aria-haspopup="dialog">Get in touch</a>
+        <a href="about.html">About</a>
+        <a href="https://www.linkedin.com/in/bhavyamittalll/" target="_blank">LinkedIn</a>
+        <a href="playground.html">Playground</a>
+      </div>
+    </div>
+    <div class="anim" id="colRight" style="animation-delay:240ms">
+      <div id="drawingSpace" aria-label="Open drawing area">
+        <canvas id="crayonCanvas" aria-label="Draw in the empty space using a wax crayon brush"></canvas>
+    <div id="crayonTools" role="group" aria-label="Crayon colour selector">
+      <p class="crayon-note"><svg class="crayon-hint-icon" viewBox="0 0 96 72" fill="none" aria-hidden="true" focusable="false">
+        <g>
+          <path d="M2 16 C12 6 27 2 42 5 C58 9 56 23 44 33 C36 40 28 45 34 46 C45 47 57 41 66 38" pathLength="1" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" stroke-dasharray="1" stroke-dashoffset="1">
+            <animate attributeName="stroke-dashoffset" values="1;0;0" keyTimes="0;0.7;1" calcMode="spline" keySplines=".45 0 .55 1;0 0 1 1" dur="3.4s" repeatCount="indefinite"/>
+          </path>
+          <g>
+            <animateMotion path="M2 16 C12 6 27 2 42 5 C58 9 56 23 44 33 C36 40 28 45 34 46 C45 47 57 41 66 38" keyPoints="0;1;1" keyTimes="0;0.7;1" calcMode="spline" keySplines=".45 0 .55 1;0 0 1 1" dur="3.4s" repeatCount="indefinite"/>
+            <!-- pointing hand, fingertip at the origin so it rides the end of the stroke -->
+            <g transform="rotate(-8) scale(1.7) translate(-8 -3)" stroke="currentColor" stroke-width="1.15" stroke-linecap="round" stroke-linejoin="round" style="fill:var(--bg)">
+              <path d="M18 11a2 2 0 1 1 4 0v3a8 8 0 0 1-8 8h-2c-2.8 0-4.5-.86-5.99-2.34l-3.6-3.6a2 2 0 0 1 2.83-2.82L7 15V4a2 2 0 0 1 4 0v5.5"/>
+              <path d="M10 9.5V9a2 2 0 0 1 4 0v1M14 10a2 2 0 0 1 4 0v1" style="fill:none"/>
+            </g>
+          </g>
+          <animate attributeName="opacity" values="1;1;0" keyTimes="0;0.86;1" dur="3.4s" repeatCount="indefinite"/>
+        </g>
+      </svg>
+      A little space to draw, doodle, and feel like a kid again :)</p>
+      <svg class="crayon-center-hint" viewBox="0 0 96 72" fill="none" aria-hidden="true" focusable="false">
+        <g>
+          <path d="M2 16 C12 6 27 2 42 5 C58 9 56 23 44 33 C36 40 28 45 34 46 C45 47 57 41 66 38" pathLength="1" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" stroke-dasharray="1" stroke-dashoffset="1">
+            <animate attributeName="stroke-dashoffset" values="1;0;0" keyTimes="0;0.7;1" calcMode="spline" keySplines=".45 0 .55 1;0 0 1 1" dur="3.4s" repeatCount="indefinite"/>
+          </path>
+          <g>
+            <animateMotion path="M2 16 C12 6 27 2 42 5 C58 9 56 23 44 33 C36 40 28 45 34 46 C45 47 57 41 66 38" keyPoints="0;1;1" keyTimes="0;0.7;1" calcMode="spline" keySplines=".45 0 .55 1;0 0 1 1" dur="3.4s" repeatCount="indefinite"/>
+            <!-- pointing hand, fingertip at the origin so it rides the end of the stroke -->
+            <g transform="rotate(-8) scale(1.7) translate(-8 -3)" stroke="currentColor" stroke-width="1.15" stroke-linecap="round" stroke-linejoin="round" style="fill:var(--bg)">
+              <path d="M18 11a2 2 0 1 1 4 0v3a8 8 0 0 1-8 8h-2c-2.8 0-4.5-.86-5.99-2.34l-3.6-3.6a2 2 0 0 1 2.83-2.82L7 15V4a2 2 0 0 1 4 0v5.5"/>
+              <path d="M10 9.5V9a2 2 0 0 1 4 0v1M14 10a2 2 0 0 1 4 0v1" style="fill:none"/>
+            </g>
+          </g>
+          <animate attributeName="opacity" values="1;1;0" keyTimes="0;0.86;1" dur="3.4s" repeatCount="indefinite"/>
+        </g>
+      </svg>
+      <div class="crayon-row">
+        <button class="crayon-color" style="--swatch:#D94B42" data-color="#D94B42" aria-label="Red crayon" aria-pressed="false"></button>
+        <button class="crayon-color" style="--swatch:#E6A23C" data-color="#E6A23C" aria-label="Yellow crayon" aria-pressed="false"></button>
+        <button class="crayon-color" style="--swatch:#4D9B72" data-color="#4D9B72" aria-label="Green crayon" aria-pressed="false"></button>
+        <button class="crayon-color" style="--swatch:#4C83C3" data-color="#4C83C3" aria-label="Blue crayon" aria-pressed="true"></button>
+        <button class="crayon-color" style="--swatch:#8B6BB1" data-color="#8B6BB1" aria-label="Purple crayon" aria-pressed="false"></button>
+        <button class="crayon-color" style="--swatch:#343434" data-color="#343434" aria-label="Black crayon" aria-pressed="false"></button>
+        <span class="crayon-tool-divider" aria-hidden="true"></span>
+        <button class="crayon-action" id="crayonUndo" aria-label="Undo last stroke" title="Undo"><svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true" focusable="false"><path d="M5.6 3.2L2.6 6.2l3 3M2.9 6.2h6.3a3.7 3.7 0 0 1 0 7.4H5.8" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
+        <button class="crayon-action" id="crayonClear" aria-label="Clear drawing" title="Clear all"><svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true" focusable="false"><path d="M2.5 4h11M6 4V2.8c0-.4.3-.8.8-.8h2.4c.5 0 .8.4.8.8V4M4 4l.6 8.4c0 .9.7 1.6 1.6 1.6h3.6c.9 0 1.6-.7 1.6-1.6L12 4M6.8 6.8v4M9.2 6.8v4" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
+        <span id="crayonPresence" role="status" aria-live="polite">Connecting…</span>
+      </div>
+    </div>
+      </div>
+      <div class="work-grid">
+        <div class="work-card">
+          <a class="work-card-thumb ss" href="sleep-onset.html">
+            <img crossorigin="anonymous" class="ss-slide is-active" src="https://raw.githubusercontent.com/bhavyamittall/Bhavya-Mittal-Portfolio/main/assets/images/Index%20Images/Sleep_Onset_-_thumbnail_jvz9uk.webp" alt="Sleep Onset" />
+            <video crossorigin="anonymous" class="ss-slide" data-src="https://raw.githubusercontent.com/bhavyamittall/Bhavya-Mittal-Portfolio/main/assets/images/Index%20Images/Sleep%20onset/Combined%20Thumbnail.webm" muted playsinline preload="none"></video>
+          </a>
+          <div class="work-card-body">
+            <p class="work-card-title">Designing for a better sleep.</p>
+            <p class="work-card-desc">Not another sleep tracker/habit builder. Builds bespoke routines, around your biology, for the best sleep, ever.</p>
+          </div>
+        </div>
+        <div class="work-card">
+          <a class="work-card-thumb ss" href="wipe-it.html">
+            <img crossorigin="anonymous" class="ss-slide is-active" src="https://raw.githubusercontent.com/bhavyamittall/Bhavya-Mittal-Portfolio/main/assets/images/Index%20Images/Wipe_it_-_thumbnail_ggnfvw.gif" alt="Wipe It" />
+            <video crossorigin="anonymous" class="ss-slide" data-src="https://raw.githubusercontent.com/bhavyamittall/Bhavya-Mittal-Portfolio/main/assets/images/Index%20Images/WipeIt_Promo.webm" muted playsinline preload="none"></video>
+          </a>
+          <div class="work-card-body">
+            <p class="work-card-title">Nevermind</p>
+            <p class="work-card-desc">Erase long texts on your mobile just like you do on a paper. Because why not?</p>
+          </div>
+        </div>
+        <div class="work-card">
+          <a class="work-card-thumb ss" href="https://www.bloomn.in/" target="_blank">
+            <!-- Static first frame only. Plays when the slideshow starts. -->
+            <video crossorigin="anonymous" class="ss-slide is-active" src="https://raw.githubusercontent.com/bhavyamittall/Bhavya-Mittal-Portfolio/main/assets/images/Index%20Images/Bloomn_Thumbnail.webm#t=0.001" muted playsinline preload="metadata"></video>
+            <video crossorigin="anonymous" class="ss-slide" data-src="https://raw.githubusercontent.com/bhavyamittall/Bhavya-Mittal-Portfolio/main/assets/images/Index%20Images/Bloomn/Bloomn_Demo.webm" muted playsinline preload="none"></video>
+          </a>
+          <div class="work-card-body">
+            <p class="work-card-title">Bloomn</p>
+            <p class="work-card-desc">An AI-native motion design system for interfaces that adds whimsy to static interfaces at the ease of just a click.</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="other-section">
+        <h2 class="other-heading">More work</h2>
+        <div class="other-grid">
+        <div class="other-card">
+          <div class="other-thumb ss">
+            <img crossorigin="anonymous" class="ss-slide is-active" src="https://raw.githubusercontent.com/bhavyamittall/Bhavya-Mittal-Portfolio/main/assets/images/Index%20Images/Cymatics/Cymatics_1.webp" alt="Cymatics Visual System" />
+            <img crossorigin="anonymous" class="ss-slide" data-src="https://raw.githubusercontent.com/bhavyamittall/Bhavya-Mittal-Portfolio/main/assets/images/Index%20Images/Cymatics/Cymatics_2.webp" alt="Cymatics Visual System" />
+            <video crossorigin="anonymous" class="ss-slide" data-src="https://raw.githubusercontent.com/bhavyamittall/Bhavya-Mittal-Portfolio/main/assets/images/Index%20Images/Cymatics/Hypothetical%20work.webm" muted playsinline preload="none"></video>
+          </div>
+          <div class="other-body">
+            <p class="other-name">Cymatics Visual System</p>
+            <p class="other-desc">Visual exploration of how Cymatics can be used as a visual language in a brand context.</p>
+          </div>
+        </div>
+        <a class="other-card other-link" href="https://www.figma.com/proto/IzzetSmfcnKSVWqCBnJyA1/Material-Transition---Deck?node-id=309-147&amp;t=TODFsbShYKLBBquD-1&amp;scaling=contain&amp;content-scaling=fixed&amp;page-id=123%3A2868" target="_blank" rel="noopener">
+          <div class="other-thumb ss">
+            <!-- Static first image loads with the page; everything else loads when the preview starts. Videos play last. -->
+            <img crossorigin="anonymous" class="ss-slide is-active" src="https://raw.githubusercontent.com/bhavyamittall/Bhavya-Mittal-Portfolio/main/assets/images/Index%20Images/Material/Material_1.webp" alt="Material Intelligence SAAS" />
+            <img crossorigin="anonymous" class="ss-slide" data-src="https://raw.githubusercontent.com/bhavyamittall/Bhavya-Mittal-Portfolio/main/assets/images/Index%20Images/Material/Material_1.5.webp" alt="Material Intelligence SAAS" />
+            <img crossorigin="anonymous" class="ss-slide" data-src="https://raw.githubusercontent.com/bhavyamittall/Bhavya-Mittal-Portfolio/main/assets/images/Index%20Images/Material/Material_2.webp" alt="Material Intelligence SAAS" />
+            <img crossorigin="anonymous" class="ss-slide" data-src="https://raw.githubusercontent.com/bhavyamittall/Bhavya-Mittal-Portfolio/main/assets/images/Index%20Images/Material/Material_3.webp" alt="Material Intelligence SAAS" />
+            <img crossorigin="anonymous" class="ss-slide" data-src="https://raw.githubusercontent.com/bhavyamittall/Bhavya-Mittal-Portfolio/main/assets/images/Index%20Images/Material/Material_4.webp" alt="Material Intelligence SAAS" />
+            <img crossorigin="anonymous" class="ss-slide" data-src="https://raw.githubusercontent.com/bhavyamittall/Bhavya-Mittal-Portfolio/main/assets/images/Index%20Images/Material/Material_5.webp" alt="Material Intelligence SAAS" />
+            <img crossorigin="anonymous" class="ss-slide" data-src="https://raw.githubusercontent.com/bhavyamittall/Bhavya-Mittal-Portfolio/main/assets/images/Index%20Images/Material/Material_6.webp" alt="Material Intelligence SAAS" />
+            <video crossorigin="anonymous" class="ss-slide" data-src="https://raw.githubusercontent.com/bhavyamittall/Bhavya-Mittal-Portfolio/main/assets/images/Index%20Images/Material/Material.webm" muted playsinline preload="none"></video>
+            <video crossorigin="anonymous" class="ss-slide" data-src="https://raw.githubusercontent.com/bhavyamittall/Bhavya-Mittal-Portfolio/main/assets/images/Index%20Images/Material/Material%202.webm" muted playsinline preload="none"></video>
+          </div>
+          <div class="other-body" data-nosnippet>
+            <p class="other-name">Material Intelligence SAAS</p>
+            <p class="other-desc">An AI-native materials intelligence platform that helps companies map supply chains, discover alternatives, and make smarter sourcing decisions. Product Demo.</p>
+          </div>
+        </a>
+        <a class="other-card other-link" href="https://www.behance.net/gallery/220586773/Ad-FIlm-WhatsApp-Chat-Lock-Feature" target="_blank" rel="noopener">
+          <div class="other-thumb ss">
+            <img crossorigin="anonymous" class="ss-slide is-active" src="https://raw.githubusercontent.com/bhavyamittall/Bhavya-Mittal-Portfolio/main/assets/images/Index%20Images/Ad%20film/Jagat%20Ad%20Film%20%281%29.webp" alt="Directed WhatsApp Launch Film" />
+            <video crossorigin="anonymous" class="ss-slide" data-src="https://raw.githubusercontent.com/bhavyamittall/Bhavya-Mittal-Portfolio/main/assets/images/Index%20Images/Ad%20film/JagatKoHatao%20-%20W%20Subs.webm" muted playsinline preload="none"></video>
+          </div>
+          <div class="other-body">
+            <p class="other-name">Directed WhatsApp Launch Film</p>
+            <p class="other-desc">Ad for WhatsApp&rsquo;s Chat Lock feature - exploring &ldquo;Jagat&rdquo; as a metaphor for someone constantly evading privacy.</p>
+          </div>
+        </a>
+        <div class="other-card">
+          <div class="other-thumb ss">
+            <!-- First image loads with the page; the rest load when the preview starts. Videos play last. -->
+            <img crossorigin="anonymous" class="ss-slide is-active" src="https://raw.githubusercontent.com/bhavyamittall/Bhavya-Mittal-Portfolio/main/assets/images/Index%20Images/Creative%20Direction/Sound%20Infographic.webp" alt="Creative Direction" />
+            <img crossorigin="anonymous" class="ss-slide" data-src="https://raw.githubusercontent.com/bhavyamittall/Bhavya-Mittal-Portfolio/main/assets/images/Index%20Images/Creative%20Direction/sound_infographic_1x.webp" alt="Creative Direction" />
+            <img crossorigin="anonymous" class="ss-slide" data-src="https://raw.githubusercontent.com/bhavyamittall/Bhavya-Mittal-Portfolio/main/assets/images/Index%20Images/Creative%20Direction/astro_planner_1x.webp" alt="Creative Direction" />
+            <img crossorigin="anonymous" class="ss-slide" data-src="https://raw.githubusercontent.com/bhavyamittall/Bhavya-Mittal-Portfolio/main/assets/images/Index%20Images/Creative%20Direction/iconography_1x.webp" alt="Creative Direction" />
+            <img crossorigin="anonymous" class="ss-slide" data-src="https://raw.githubusercontent.com/bhavyamittall/Bhavya-Mittal-Portfolio/main/assets/images/Index%20Images/Creative%20Direction/vishwas_1_1x.webp" alt="Creative Direction" />
+            <video crossorigin="anonymous" class="ss-slide" data-src="https://raw.githubusercontent.com/bhavyamittall/Bhavya-Mittal-Portfolio/main/assets/images/Index%20Images/Creative%20Direction/Human%20Behaviour.webm" muted playsinline preload="none"></video>
+            <video crossorigin="anonymous" class="ss-slide" data-src="https://raw.githubusercontent.com/bhavyamittall/Bhavya-Mittal-Portfolio/main/assets/images/Index%20Images/Creative%20Direction/Navic%20Infographic.webm" muted playsinline preload="none"></video>
+          </div>
+          <div class="other-body">
+            <p class="other-name">Creative Direction</p>
+            <p class="other-desc">A combined catalogue of stuff that I have directed. Some were developed as full scale projects, some are just visual sneezes.</p>
+          </div>
+        </div>
+        <div class="other-card">
+          <div class="other-thumb ss">
+            <!-- First image loads with the page; the rest load when the preview starts. Videos play last. -->
+            <img crossorigin="anonymous" class="ss-slide is-active" src="https://raw.githubusercontent.com/bhavyamittall/Bhavya-Mittal-Portfolio/main/assets/images/Index%20Images/photography/Photograph_1.webp" alt="Photography" />
+            <img crossorigin="anonymous" class="ss-slide" data-src="https://raw.githubusercontent.com/bhavyamittall/Bhavya-Mittal-Portfolio/main/assets/images/Index%20Images/photography/Photograph_2.webp" alt="Photography" />
+            <img crossorigin="anonymous" class="ss-slide" data-src="https://raw.githubusercontent.com/bhavyamittall/Bhavya-Mittal-Portfolio/main/assets/images/Index%20Images/photography/Photograph_3.webp" alt="Photography" />
+            <img crossorigin="anonymous" class="ss-slide" data-src="https://raw.githubusercontent.com/bhavyamittall/Bhavya-Mittal-Portfolio/main/assets/images/Index%20Images/photography/Photograph_3%20%281%29.webp" alt="Photography" />
+            <img crossorigin="anonymous" class="ss-slide" data-src="https://raw.githubusercontent.com/bhavyamittall/Bhavya-Mittal-Portfolio/main/assets/images/Index%20Images/photography/Photograph_3%20%282%29.webp" alt="Photography" />
+            <img crossorigin="anonymous" class="ss-slide" data-src="https://raw.githubusercontent.com/bhavyamittall/Bhavya-Mittal-Portfolio/main/assets/images/Index%20Images/photography/Photograph_3%20%283%29.webp" alt="Photography" />
+            <img crossorigin="anonymous" class="ss-slide" data-src="https://raw.githubusercontent.com/bhavyamittall/Bhavya-Mittal-Portfolio/main/assets/images/Index%20Images/photography/Photograph_3%20%284%29.webp" alt="Photography" />
+            <img crossorigin="anonymous" class="ss-slide" data-src="https://raw.githubusercontent.com/bhavyamittall/Bhavya-Mittal-Portfolio/main/assets/images/Index%20Images/photography/Photograph_3%20%285%29.webp" alt="Photography" />
+          </div>
+          <div class="other-body">
+            <p class="other-name">Photography</p>
+            <p class="other-desc">Some Shots from the series, and some standalone photographs, from campaigns, experiments.</p>
+          </div>
+        </div>
+        <div class="other-card">
+          <div class="other-thumb ss">
+            <!-- First image loads with the page; the rest load when the preview starts. Videos play last. -->
+            <img crossorigin="anonymous" class="ss-slide is-active" src="https://raw.githubusercontent.com/bhavyamittall/Bhavya-Mittal-Portfolio/main/assets/images/Index%20Images/Filmography/Filmography_1.webp" alt="Filmography" />
+            <img crossorigin="anonymous" class="ss-slide" data-src="https://raw.githubusercontent.com/bhavyamittall/Bhavya-Mittal-Portfolio/main/assets/images/Index%20Images/Filmography/Filmography_1%20%281%29.webp" alt="Filmography" />
+            <img crossorigin="anonymous" class="ss-slide" data-src="https://raw.githubusercontent.com/bhavyamittall/Bhavya-Mittal-Portfolio/main/assets/images/Index%20Images/Filmography/Filmography_1%20%282%29.webp" alt="Filmography" />
+            <img crossorigin="anonymous" class="ss-slide" data-src="https://raw.githubusercontent.com/bhavyamittall/Bhavya-Mittal-Portfolio/main/assets/images/Index%20Images/Filmography/Filmography_1%20%283%29.webp" alt="Filmography" />
+            <img crossorigin="anonymous" class="ss-slide" data-src="https://raw.githubusercontent.com/bhavyamittall/Bhavya-Mittal-Portfolio/main/assets/images/Index%20Images/Filmography/Filmography_1%20%284%29.webp" alt="Filmography" />
+          </div>
+          <div class="other-body">
+            <p class="other-name">Filmography</p>
+            <p class="other-desc">Short Films, AD Films. 8+ Selections, Won 4+ film fests and Selected and screened in 12+ film fest including NID Anvaya, Himachal Film fest and more.</p>
+          </div>
+        </div>
+        </div>
+      </div>
+      <div class="clock-spacer"></div>
+    </div>
+
+    <!-- Mobile-only: link bar at very bottom -->
+    <div id="mobileLinkBar" class="anim" style="animation-delay:260ms">
+
+      <div class="as-seen-mobile">
+        <p>As seen on:</p>
+        <p><a href="https://abduzeedo.com/node/89275" target="_blank">Abduzeedo</a> and <a href="https://www.wallofportfolios.in/portfolios/bhavya-mittal/" target="_blank">Wall of Portfolios</a></p>
+      </div>
+
+      <!-- Text links in one line -->
+      <nav class="mobile-text-links" aria-label="Links">
+        <a href="resume.html">CV</a>
+        <a href="https://www.behance.net/bhavyamittall" target="_blank" rel="noopener">Behance</a>
+        <a href="https://www.linkedin.com/in/bhavyamittalll/" target="_blank" rel="noopener">LinkedIn</a>
+        <a href="playground.html">Playground</a>
+      </nav>
+    </div>
+  </div>
+
+  <!-- Contact bottom sheet (opened by the Get in touch buttons) -->
+<div class="contact-layer" id="contactLayer" aria-hidden="true">
+  <div class="contact-backdrop" data-close></div>
+  <div class="contact-sheet" role="dialog" aria-modal="true" aria-labelledby="contactTitle" tabindex="-1">
+    <div class="sheet-grab"><span class="sheet-handle"></span></div>
+    <div class="sheet-head">
+      <h2 class="sheet-title" id="contactTitle">Get in touch</h2>
+    </div>
+    <div class="vc-stage">
+      <div class="visiting-card" aria-label="Digital visiting card">
+        <div class="vc-clip" aria-hidden="true"><canvas class="vc-bloom"></canvas><span class="vc-shine"></span></div>
+        <div class="vc-main">
+          <p class="vc-name">Bhavya Mittal</p>
+          <p class="vc-role">Designer</p>
+        </div>
+      </div>
+    </div>
+    <div class="email-box">
+      <span class="email-text" id="contactEmail">bhavyamittalbiz@gmail.com</span>
+      <button type="button" class="copy-btn" id="copyBtn" aria-label="Copy email address">
+        <svg class="ic-copy" width="18" height="18" viewBox="0 0 16 16" fill="none" aria-hidden="true" focusable="false"><rect x="5.5" y="5.5" width="8" height="8" rx="1.8" stroke="currentColor" stroke-width="1.4"/><path d="M10.5 3.8V3.5A1.5 1.5 0 0 0 9 2H3.5A1.5 1.5 0 0 0 2 3.5V9A1.5 1.5 0 0 0 3.5 10.5h.3" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"/></svg>
+        <svg class="ic-check" width="18" height="18" viewBox="0 0 16 16" fill="none" aria-hidden="true" focusable="false"><path d="M3.5 8.5l3 3 6-7" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      </button>
+    </div>
+    <p class="sheet-status" role="status" aria-live="polite"></p>
+    <div class="sheet-links">
+      <a href="https://www.linkedin.com/in/bhavyamittalll/" target="_blank" rel="noopener">LinkedIn</a>
+      <a href="resume.html">CV</a>
+      <a href="https://www.behance.net/bhavyamittall" target="_blank" rel="noopener">Behance</a>
+    </div>
+  </div>
+</div>
+<!-- Mobile pull-up: keep pulling past the end of the page and hold to copy the email -->
+<div id="pullPanel" aria-hidden="true">
+  <div class="pull-inner">
+    <svg class="pull-ring" viewBox="0 0 36 36" width="30" height="30" focusable="false">
+      <circle class="ring-track" cx="18" cy="18" r="15" />
+      <circle class="ring-prog" cx="18" cy="18" r="15" />
+      <path class="ring-check" d="M11 18.5l5 5 9-10" />
+    </svg>
+    <div class="pull-copy">
+      <p class="pull-title">Liked the work?</p>
+      <p class="pull-text">Hold the scroll to copy email address</p>
+    </div>
+  </div>
+</div>
+<script>
+    var DESKTOP    = window.matchMedia("(min-width: 960px)");
+    var wrap       = document.getElementById("wrap");
+    var nameBlock  = document.getElementById("nameBlock");
+    var colLeft    = document.getElementById("colLeft");
+    var colRight   = document.getElementById("colRight");
+    var bioGroup   = document.getElementById("bioGroup");
+    var bioP1      = document.getElementById("bioP1");
+    var bioP2      = document.getElementById("bioP2");
+    var reachBlock = document.getElementById("reachBlock");
+
+    function toMobile() {
+      // Flat order in wrap: bioGroup (name+bio), mobileCtaBlock, colRight, mobileLinkBar
+      wrap.insertBefore(bioGroup, wrap.firstChild);
+      // mobileCtaBlock goes right after bioGroup
+      var mobileCtaBlock = document.getElementById("mobileCtaBlock");
+      if (mobileCtaBlock) wrap.insertBefore(mobileCtaBlock, colRight);
+      // mobileLinkBar stays at very bottom (already last child)
+      // Mobile: name-block above gradient
+      nameBlock.style.position = "relative";
+      nameBlock.style.zIndex   = "101";
+      // Hide the old reach block on mobile
+      reachBlock.style.display = "none";
+    }
+
+    function toDesktop() {
+      // bioGroup and reachBlock back inside colLeft
+      colLeft.insertBefore(bioGroup, colLeft.firstChild);
+      var spacer = colLeft.querySelector(".clock-spacer");
+      colLeft.insertBefore(reachBlock, spacer);
+      // Restore reach block for desktop
+      reachBlock.style.display = "";
+      // Reset name-block positioning
+      nameBlock.style.position = "";
+      nameBlock.style.zIndex   = "";
+    }
+
+    function layout(isDesktop) {
+      if (isDesktop) toDesktop(); else toMobile();
+    }
+
+    layout(DESKTOP.matches);
+    DESKTOP.addEventListener("change", function(e) { layout(e.matches); });
+
+    // Mobile CTA: collapse to icon-only pills once the page is scrolled.
+    (function() {
+      var ctaBlock = document.getElementById("mobileCtaBlock");
+      if (!ctaBlock) return;
+      var COMPACT_THRESHOLD = 24;
+      var ticking = false;
+      var compactWidthPx = null;
+
+      // Measure the exact width the pill needs once collapsed, so it always
+      // fits its content precisely — no hand-guessed numbers to get out of sync.
+      function measureCompactWidth() {
+        var prevTransition = ctaBlock.style.transition;
+        var prevMaxWidth = ctaBlock.style.maxWidth;
+        var prevWidth = ctaBlock.style.width;
+        var hadCompact = ctaBlock.classList.contains("is-compact");
+        ctaBlock.style.transition = "none";
+        ctaBlock.classList.add("is-compact");
+        ctaBlock.style.maxWidth = "none";
+        ctaBlock.style.width = "fit-content";
+        var w = ctaBlock.getBoundingClientRect().width;
+        ctaBlock.style.width = prevWidth;
+        ctaBlock.style.maxWidth = prevMaxWidth;
+        if (!hadCompact) ctaBlock.classList.remove("is-compact");
+        void ctaBlock.offsetWidth; // flush before restoring transition
+        ctaBlock.style.transition = prevTransition;
+        return Math.ceil(w);
+      }
+
+      function applyState(isCompact) {
+        if (isCompact) {
+          if (compactWidthPx === null) compactWidthPx = measureCompactWidth();
+          ctaBlock.style.maxWidth = compactWidthPx + "px";
+          ctaBlock.classList.add("is-compact");
+        } else {
+          ctaBlock.classList.remove("is-compact");
+          ctaBlock.style.maxWidth = "";
+        }
+      }
+
+      var SCROLL_DELTA = 40; // px of continuous travel required before the state flips
+      var lastScrollY = null;
+      var travelRefY = null;
+      var lastDirection = 0; // 1 = down, -1 = up
+      // "See the work instead?" hook: keep the tray fully open while its smooth scroll runs, then resume normal behaviour
+      var holdOpen = false, holdTimer = null;
+      function releaseHold() {
+        holdOpen = false;
+        var y = window.scrollY || document.documentElement.scrollTop || 0;
+        lastScrollY = y; travelRefY = y; lastDirection = 0;
+      }
+      window.holdCtaOpen = function() {
+        holdOpen = true;
+        applyState(false);
+        clearTimeout(holdTimer);
+        holdTimer = setTimeout(releaseHold, 700);   // fallback if no scroll events follow
+      };
+      function updateCtaState() {
+        ticking = false;
+        if (DESKTOP.matches) return;
+        var scrolled = window.scrollY || document.documentElement.scrollTop || 0;
+        if (holdOpen) {
+          applyState(false);
+          clearTimeout(holdTimer);
+          holdTimer = setTimeout(releaseHold, 200);  // scroll has settled once events stop for 200ms
+          return;
+        }
+        if (lastScrollY === null) { lastScrollY = scrolled; travelRefY = scrolled; }
+        var isCompact = ctaBlock.classList.contains("is-compact");
+
+        if (scrolled <= COMPACT_THRESHOLD) {
+          isCompact = false;
+          travelRefY = scrolled;
+          lastDirection = 0;
+        } else {
+          var direction = scrolled > lastScrollY ? 1 : (scrolled < lastScrollY ? -1 : lastDirection);
+          if (direction !== 0 && direction !== lastDirection) {
+            // scroll direction just reversed — start measuring travel from here
+            travelRefY = lastScrollY;
+            lastDirection = direction;
+          }
+          var traveled = scrolled - travelRefY;
+          if (!isCompact && traveled >= SCROLL_DELTA) {
+            isCompact = true;
+            travelRefY = scrolled;
+          } else if (isCompact && traveled <= -SCROLL_DELTA) {
+            isCompact = false;
+            travelRefY = scrolled;
+          }
+        }
+        lastScrollY = scrolled;
+        applyState(isCompact);
+      }
+      var INACTIVITY_MS = 3000;
+      var inactivityTimer = null;
+      function scheduleInactivityCollapse() {
+        clearTimeout(inactivityTimer);
+        if (DESKTOP.matches) return;
+        inactivityTimer = setTimeout(function() {
+          if (DESKTOP.matches) return;
+          if (!ctaBlock.classList.contains("is-compact")) {
+            applyState(true);
+            var scrolled = window.scrollY || document.documentElement.scrollTop || 0;
+            travelRefY = scrolled;
+            lastDirection = 0;
+          }
+        }, INACTIVITY_MS);
+      }
+      window.addEventListener("resize", function() { compactWidthPx = null; }, { passive: true });
+      window.addEventListener("scroll", function() {
+        scheduleInactivityCollapse();
+        if (!ticking) {
+          window.requestAnimationFrame(updateCtaState);
+          ticking = true;
+        }
+      }, { passive: true });
+      DESKTOP.addEventListener("change", function() {
+        updateCtaState();
+        if (DESKTOP.matches) { clearTimeout(inactivityTimer); }
+        else { scheduleInactivityCollapse(); }
+      });
+      updateCtaState();
+      scheduleInactivityCollapse();
+    })();
+
+    // Desktop-only scroll-linked intro.
+    // At scroll 0 the name + bio sit mid-left and the case studies are below the fold.
+    // Scrolling pulls the first case study up while the name + bio rise to the top-left;
+    // both arrive together, the name + bio stay put, and the case studies keep moving.
+    (function() {
+      var linksEl   = colLeft.querySelector(".cv-line-desktop");
+      var startOffset = 0, range = 1, ticking = false;
+
+      function update() {
+        ticking = false;
+        if (!DESKTOP.matches) return;
+        var p = Math.min(1, Math.max(0, window.scrollY / range));
+        bioGroup.style.transform = "translate3d(0," + (startOffset * (1 - p)) + "px,0)";
+      }
+
+      function measure() {
+        if (!DESKTOP.matches) { bioGroup.style.transform = ""; return; }
+        var vh     = window.innerHeight;
+        var padTop = parseFloat(getComputedStyle(colLeft).paddingTop) || 0;
+        var linksTop = linksEl ? linksEl.getBoundingClientRect().top : vh - padTop;
+        // start about halfway down, but never closer than 48px to the links on short screens
+        var startTop = Math.min(vh * 0.48, linksTop - bioGroup.offsetHeight - 48);
+        startOffset  = Math.max(0, startTop - padTop);
+        // scroll distance for the first case study to reach the top margin (where the name rests)
+        var cardTop = parseFloat(getComputedStyle(colRight).paddingTop) || vh;
+        range = Math.max(1, cardTop - padTop);
+        update();
+      }
+
+      window.addEventListener("scroll", function() {
+        if (!ticking) { ticking = true; requestAnimationFrame(update); }
+      }, { passive: true });
+      window.addEventListener("resize", measure);
+      window.addEventListener("load", measure);
+      DESKTOP.addEventListener("change", measure);
+      measure();
+    })();
+
+    // Copy email
+    /* ── Copy feedback: soft tick sound + haptic ── */
+    var _copyAudio = null;
+    function primeCopyAudio() {            // must run inside the tap so mobile browsers allow sound
+      try {
+        var AC = window.AudioContext || window.webkitAudioContext;
+        if (!AC) return;
+        if (!_copyAudio) _copyAudio = new AC();
+        if (_copyAudio.state === 'suspended') _copyAudio.resume();
+      } catch (e) {}
+    }
+    function playCopySound() {
+      // Soft, rounded "tock" + a gentle two-note rise: tactile and reassuring, nothing sharp
+      try {
+        if (!_copyAudio) return;
+        var ac = _copyAudio, t = ac.currentTime;
+
+        // 1) tock: a short low sine "thump" with a quick downward pitch drop (no noise, no high end)
+        var th = ac.createOscillator(), tg = ac.createGain();
+        th.type = 'sine';
+        th.frequency.setValueAtTime(320, t);
+        th.frequency.exponentialRampToValueAtTime(140, t + 0.05);
+        tg.gain.setValueAtTime(0.0001, t);
+        tg.gain.exponentialRampToValueAtTime(0.16, t + 0.006);
+        tg.gain.exponentialRampToValueAtTime(0.0001, t + 0.07);
+        th.connect(tg); tg.connect(ac.destination);
+        th.start(t); th.stop(t + 0.09);
+
+        // 2) two soft rising notes (E5 -> A5), gentle attack, run through a low-pass to round them off
+        var lp = ac.createBiquadFilter(); lp.type = 'lowpass'; lp.frequency.value = 1800; lp.connect(ac.destination);
+        [[659, 0.045], [880, 0.12]].forEach(function (note) {
+          var o = ac.createOscillator(), g = ac.createGain(), st = t + note[1];
+          o.type = 'sine';
+          o.frequency.setValueAtTime(note[0], st);
+          g.gain.setValueAtTime(0.0001, st);
+          g.gain.exponentialRampToValueAtTime(0.07, st + 0.014);
+          g.gain.exponentialRampToValueAtTime(0.0001, st + 0.18);
+          o.connect(g); g.connect(lp);
+          o.start(st); o.stop(st + 0.2);
+        });
+      } catch (e) {}
+    }
+    function copyHaptic() {
+      try {
+        if (navigator.vibrate) { navigator.vibrate([12, 40, 12]); return; }   // Android / Chrome
+        // iOS Safari 17.4+: toggling a switch input produces a light haptic tick
+        var l = document.createElement('label');
+        l.setAttribute('aria-hidden', 'true');
+        l.style.cssText = 'position:fixed;left:-9999px;top:0;opacity:0;pointer-events:none';
+        var i = document.createElement('input');
+        i.type = 'checkbox'; i.setAttribute('switch', '');
+        l.appendChild(i); document.body.appendChild(l);
+        l.click();
+        setTimeout(function() { if (l.parentNode) l.parentNode.removeChild(l); }, 120);
+      } catch (e) {}
+    }
+    // Clipboard API first, then the old execCommand route; reports failure instead of assuming success
+    function copyText(text, ok, fail) {
+      if (navigator.clipboard && window.isSecureContext) {
+        navigator.clipboard.writeText(text).then(function () { if (ok) ok(); }, function () { fallbackCopy(text, ok, fail); });
+      } else {
+        fallbackCopy(text, ok, fail);
+      }
+    }
+    function fallbackCopy(text, ok, fail) {
+      var ta = document.createElement('textarea');
+      ta.value = text;
+      ta.setAttribute('readonly', '');
+      ta.style.cssText = 'position:fixed;top:0;left:0;opacity:0;pointer-events:none';
+      document.body.appendChild(ta);
+      ta.focus(); ta.select();
+      try { ta.setSelectionRange(0, text.length); } catch (e) {}
+      var success = false;
+      try { success = document.execCommand('copy'); } catch (e) { success = false; }
+      document.body.removeChild(ta);
+      if (success) { if (ok) ok(); } else if (fail) { fail(); }
+    }
+
+    /* ── BM interactive logo ── */
+    (function() {
+      var wrap=document.getElementById('logo-wrap'),svg=document.getElementById('bm-logo');
+      if(!wrap||!svg)return;
+      var leftEye=document.getElementById('left-eye'),rightEye=document.getElementById('right-eye');
+      var leftEyeGrp=document.getElementById('left-eye-group'),rightEyeGrp=document.getElementById('right-eye-group');
+      var leftBrow=document.getElementById('left-eyebrow'),rightBrow=document.getElementById('right-eyebrow');
+      var z1=document.getElementById('z1'),z2=document.getElementById('z2');
+      var L_BASE_X=206.91,L_BASE_Y=155.89,R_BASE_X=450.13,R_BASE_Y=155.89;
+      var L_CX=L_BASE_X+27.5,L_CY=L_BASE_Y+68,R_CX=R_BASE_X+27.5,R_CY=R_BASE_Y+68;
+      var EYE_MAX_X=42,EYE_MAX_Y=36,BROW_MAX_Y=14,BROW_MAX_R=4,BLINK_DUR=150;
+      var isWinking=false,isCurious=false,isSleeping=false,isWakingUp=false;
+      var hoverCount=0,idleTimer=null,curiousTimer=null,sleepTimer=null,zLoopTimer=null;
+      var tLX=0,tLY=0,tRX=0,tRY=0,cLX=0,cLY=0,cRX=0,cRY=0,tBY=0,tBR=0,cBY=0,cBR=0;
+      function lerp(a,b,t){return a+(b-a)*t;}
+      function toSVG(cx,cy){var r=svg.getBoundingClientRect();return{x:(cx-r.left)*(707.48/r.width),y:(cy-r.top)*(603.4/r.height)};}
+      function playZs(){z1.style.animation='none';z2.style.animation='none';void z1.offsetWidth;z1.style.animation='zFloat 1.7s ease-out forwards';setTimeout(function(){if(!isSleeping)return;z2.style.animation='none';void z2.offsetWidth;z2.style.animation='zFloat 2.0s ease-out forwards';},750);}
+      function stopZLoop(){clearInterval(zLoopTimer);zLoopTimer=null;[z1,z2].forEach(function(z){z.style.animation='none';void z.offsetWidth;});}
+      function enterSleep(){if(isSleeping||isWakingUp||isWinking)return;isSleeping=true;wrap.classList.add('sleeping');leftBrow.style.transition=rightBrow.style.transition='transform 0.7s ease-in-out';leftBrow.style.transform='translateY(28px) rotate(2deg)';rightBrow.style.transform='translateY(28px) rotate(-2deg)';tLX=tLY=tRX=tRY=tBY=tBR=0;playZs();zLoopTimer=setInterval(function(){if(isSleeping)playZs();},3400);}
+      function exitSleep(){if(!isSleeping||isWakingUp)return;isSleeping=false;isWakingUp=true;stopZLoop();wrap.classList.remove('sleeping');leftBrow.style.transition=rightBrow.style.transition='transform 0.3s ease-out';leftBrow.style.transform=rightBrow.style.transform='';var wd=560;[leftEyeGrp,rightEyeGrp].forEach(function(g){g.style.animation='wakeBlink '+wd+'ms ease-in-out';});setTimeout(function(){[leftEyeGrp,rightEyeGrp].forEach(function(g){g.style.animation='none';void g.offsetWidth;g.style.animation='';});isWakingUp=false;resetSleepTimer();},wd);}
+      function resetSleepTimer(){clearTimeout(sleepTimer);if(isSleeping||isWakingUp)return;sleepTimer=setTimeout(enterSleep,5000);}
+      function activityPing(){if(isSleeping){exitSleep();}else if(!isWakingUp){resetSleepTimer();}}
+      function enterCurious(){if(isWinking||isCurious||isSleeping||isWakingUp)return;isCurious=true;tLX=-8;tLY=-10;tRX=8;tRY=-10;leftBrow.style.transition=rightBrow.style.transition='transform 0.28s cubic-bezier(0.34,1.56,0.64,1)';leftBrow.style.transform='translateY(-18px) rotate(5deg)';rightBrow.style.transform='translateY(-28px) rotate(-10deg)';curiousTimer=setTimeout(exitCurious,2600);}
+      function exitCurious(){isCurious=false;leftBrow.style.transition=rightBrow.style.transition='transform 0.22s ease-out';leftBrow.style.transform=rightBrow.style.transform='';tLX=tLY=tRX=tRY=tBY=tBR=0;}
+      function updateTarget(cx,cy){if(isCurious||isSleeping||isWakingUp)return;var p=toSVG(cx,cy);tLX=Math.max(-1,Math.min(1,(p.x-L_CX)/160))*EYE_MAX_X;tLY=Math.max(-1,Math.min(1,(p.y-L_CY)/150))*EYE_MAX_Y;tRX=Math.max(-1,Math.min(1,(p.x-R_CX)/160))*EYE_MAX_X;tRY=Math.max(-1,Math.min(1,(p.y-R_CY)/150))*EYE_MAX_Y;tBY=-Math.max(-1,Math.min(1,(p.y-300)/200))*BROW_MAX_Y;tBR=Math.max(-1,Math.min(1,(p.x-353)/200))*BROW_MAX_R;if(isWinking){clearTimeout(idleTimer);idleTimer=setTimeout(enterCurious,hoverCount>=3?1200:2200);}}
+      function tick(){cLX=lerp(cLX,tLX,0.22);cLY=lerp(cLY,tLY,0.22);cRX=lerp(cRX,tRX,0.22);cRY=lerp(cRY,tRY,0.22);cBY=lerp(cBY,tBY,0.12);cBR=lerp(cBR,tBR,0.12);if(!isSleeping&&!isWakingUp){leftEye.setAttribute('x',L_BASE_X+cLX);leftEye.setAttribute('y',L_BASE_Y+cLY);}if(!isWinking&&!isSleeping&&!isWakingUp){rightEye.setAttribute('x',R_BASE_X+cRX);rightEye.setAttribute('y',R_BASE_Y+cRY);}if(!isWinking&&!isCurious&&!isSleeping){leftBrow.style.transform='translateY('+cBY+'px) rotate('+(-cBR)+'deg)';rightBrow.style.transform='translateY('+cBY+'px) rotate('+cBR+'deg)';}requestAnimationFrame(tick);}
+      function triggerBlink(){if(isWinking||isCurious||isSleeping||isWakingUp){setTimeout(triggerBlink,2800+Math.random()*3200);return;}[leftEyeGrp,rightEyeGrp].forEach(function(g){g.style.animation='blink '+BLINK_DUR+'ms ease-in-out';});setTimeout(function(){[leftEyeGrp,rightEyeGrp].forEach(function(g){g.style.animation='none';void g.offsetWidth;g.style.animation='';});setTimeout(triggerBlink,2800+Math.random()*3200);},BLINK_DUR);}
+      wrap.addEventListener('mouseenter',function(){activityPing();if(isSleeping||isWakingUp)return;hoverCount++;isWinking=true;wrap.classList.add('winking');rightBrow.style.transition='transform 0.18s ease-out';rightBrow.style.transform='translateY(22px) rotate(-14deg)';clearTimeout(idleTimer);idleTimer=setTimeout(enterCurious,hoverCount>=3?1200:2200);});
+      wrap.addEventListener('mouseleave',function(){clearTimeout(idleTimer);isWinking=false;wrap.classList.remove('winking');if(!isCurious&&!isSleeping){rightBrow.style.transform='';rightBrow.style.transition='transform 0.18s ease-out';}rightEye.setAttribute('x',R_BASE_X);rightEye.setAttribute('y',R_BASE_Y);if(!isCurious&&!isSleeping){tLX=tLY=tRX=tRY=tBY=tBR=0;}});
+      wrap.addEventListener('click',function(){if(navigator.vibrate)navigator.vibrate(10);});
+      wrap.addEventListener('touchstart',function(){if(navigator.vibrate)navigator.vibrate(10);},{passive:true});
+      document.addEventListener('mousemove',function(e){activityPing();updateTarget(e.clientX,e.clientY);});
+      document.addEventListener('touchmove',function(e){activityPing();updateTarget(e.touches[0].clientX,e.touches[0].clientY);},{passive:true});
+      document.addEventListener('touchstart',function(){activityPing();},{passive:true});
+      document.addEventListener('keydown',activityPing);
+      document.addEventListener('click',activityPing);
+      document.addEventListener('visibilitychange',function(){if(document.hidden){clearTimeout(sleepTimer);enterSleep();}else{activityPing();}});
+      document.addEventListener('mouseleave',function(){if(!isWinking&&!isCurious){tLX=tLY=tRX=tRY=tBY=tBR=0;}resetSleepTimer();});
+      tick();triggerBlink();resetSleepTimer();
+    })();
+  </script>
+  <span class="cs-tooltip" id="cs-tooltip">Open Case study</span>
+
+  <script>
+    (function() {
+      // Cursor-follow tooltip — desktop only (touch taps can trigger mouseenter and leave it stuck on mobile)
+      var tip = document.getElementById('cs-tooltip');
+      var thumbs = document.querySelectorAll('.work-card-thumb');
+      var offset = 16;
+      thumbs.forEach(function(thumb) {
+        thumb.addEventListener('mouseenter', function() { if (DESKTOP.matches) tip.classList.add('is-visible'); });
+        thumb.addEventListener('mouseleave', function() { tip.classList.remove('is-visible'); });
+      });
+      document.addEventListener('mousemove', function(e) {
+        if (!DESKTOP.matches) return;
+        tip.style.left = (e.clientX + offset) + 'px';
+        tip.style.top  = e.clientY + 'px';
+      });
+    })();
+  </script>
+<script>
+  // Thumbnail preview slideshow
+  // - Page load: only each card's first (static) thumbnail is fetched.
+  // - Desktop: hovering a thumbnail for a moment starts its slideshow.
+  // - Touch: the thumbnail settled near the middle of the screen after scrolling/swiping starts.
+  // - Only one thumbnail animates at a time; leaving it returns to the static thumbnail.
+  (function () {
+    var IMG_MS = 2000, FIRST_MS = 900, HOVER_INTENT = 250, TOUCH_SETTLE = 500;
+    var reduce = window.matchMedia('(prefers-reduced-motion: reduce)');
+    var hoverMode = window.matchMedia('(hover: hover) and (pointer: fine)');
+    var insts = [], current = null;
+
+    function create(root) {
+      var slides = Array.prototype.slice.call(root.querySelectorAll('.ss-slide'));
+      if (slides.length < 2) return null;
+      var inst = { root: root, slides: slides, idx: 0, timer: null, intent: null, running: false, loaded: false, raf: null, t0: 0, ms: IMG_MS, fills: [] };
+      var bar = document.createElement('div');
+      bar.className = 'ss-bar'; bar.setAttribute('aria-hidden', 'true');
+      slides.forEach(function () {
+        var seg = document.createElement('span'), fill = document.createElement('i');
+        seg.appendChild(fill); bar.appendChild(seg); inst.fills.push(fill);
+      });
+      root.appendChild(bar);
+      slides.forEach(function (el) {
+        if (el.tagName === 'DIV') return;
+        el.addEventListener('error', function () {
+          el.setAttribute('data-failed', '1');
+          if (inst.running && inst.slides[inst.idx] === el) advance(inst);
+        });
+        if (el.tagName === 'VIDEO') {
+          el.loop = false;   // let each video play to the end, then move on
+          el.addEventListener('ended', function () {
+            if (!inst.running || inst.slides[inst.idx] !== el) return;
+            if (inst.manual) {                          // user took over: keep the video they chose looping
+              try { el.currentTime = 0; } catch (e) {}
+              var pr = el.play(); if (pr && pr.catch) pr.catch(function () {});
+              return;
+            }
+            advance(inst);
+          });
+        }
+      });
+      return inst;
+    }
+    // Load ahead only: fetch one slide at a time (the next one; the previous one too once the visitor swipes)
+    function loadSlide(inst, i) {
+      var el = inst.slides[i];
+      if (!el) return;
+      var src = el.getAttribute('data-src');
+      if (!src) return;
+      el.removeAttribute('data-src');
+      el.src = src;
+      if (el.tagName === 'VIDEO') { el.preload = 'auto'; el.load(); }
+    }
+    function preloadAround(inst, n, both) {
+      var len = inst.slides.length;
+      loadSlide(inst, (n + 1) % len);
+      if (both) loadSlide(inst, (n - 1 + len) % len);
+    }
+    function load(inst) { preloadAround(inst, inst.idx, false); }
+    function state(el) {
+      if (el.tagName === 'DIV') return 'ready';
+      if (el.getAttribute('data-failed')) return 'failed';
+      if (el.tagName === 'IMG') return (el.complete && el.naturalWidth > 0) ? 'ready' : 'pending';
+      return el.readyState >= 2 ? 'ready' : 'pending';
+    }
+    // Images/placeholders: fixed time. Videos: advance on 'ended'; this is only a safety net.
+    function duration(el) {
+      if (el.tagName !== 'VIDEO') return IMG_MS;
+      return (isFinite(el.duration) && el.duration > 0 ? el.duration * 1000 : 30000) + 5000;
+    }
+    function resetVideo(v) { v.pause(); try { v.currentTime = 0; } catch (e) {} }
+    // ── Bar colour: black on light content, white on dark content ──
+    var cv = document.createElement('canvas'); cv.width = 32; cv.height = 4;
+    var cx = cv.getContext('2d', { willReadFrequently: true });
+    function lumOf(r, g, b) { return 0.2126 * r + 0.7152 * g + 0.0722 * b; }
+    function sampleLum(inst, el) {
+      if (el.tagName === 'DIV') {                       // placeholder: read its background colour
+        var m = getComputedStyle(el).backgroundColor.match(/\d+(\.\d+)?/g);
+        return m ? lumOf(+m[0], +m[1], +m[2]) : null;
+      }
+      var vw = el.tagName === 'VIDEO' ? el.videoWidth : el.naturalWidth;
+      var vh = el.tagName === 'VIDEO' ? el.videoHeight : el.naturalHeight;
+      if (!vw || !vh || (el.tagName === 'VIDEO' && el.readyState < 2)) return null;
+      var bw = inst.root.clientWidth, bh = inst.root.clientHeight;
+      if (!bw || !bh) return null;
+      var scale = Math.max(bw / vw, bh / vh);           // object-fit: cover
+      var visW = bw / scale, visH = bh / scale;
+      var sx = (vw - visW) / 2, sy = (vh - visH) / 2 + visH * 0.9, sh = visH * 0.1;
+      try {
+        cx.drawImage(el, sx, sy, visW, sh, 0, 0, 32, 4);
+        var d = cx.getImageData(0, 0, 32, 4).data, sum = 0, n = 0;
+        for (var i = 0; i < d.length; i += 4) { sum += lumOf(d[i], d[i + 1], d[i + 2]); n++; }
+        return sum / n;
+      } catch (e) { return null; }                      // tainted canvas (no CORS) -> keep default
+    }
+    function updateBarColor(inst) {
+      var L = sampleLum(inst, inst.slides[inst.idx]);
+      if (L === null) return;
+      var dark = L >= 150;                              // light content -> black bar
+      if (dark === inst.barDark) return;
+      inst.barDark = dark;
+      inst.root.style.setProperty('--bar-fill', dark ? '#000' : '#fff');
+      inst.root.style.setProperty('--bar-track', dark ? 'rgba(0, 0, 0, 0.22)' : 'rgba(255, 255, 255, 0.4)');
+    }
+    function render(inst) {
+      var el = inst.slides[inst.idx], p;
+      if (el.tagName === 'VIDEO') p = (isFinite(el.duration) && el.duration > 0) ? el.currentTime / el.duration : 0;
+      else p = inst.manual ? 1 : Math.min(1, (performance.now() - inst.t0) / inst.ms);
+      inst.fills.forEach(function (f, i) {
+        f.style.transform = 'scaleX(' + (i < inst.idx ? 1 : (i === inst.idx ? Math.max(0, Math.min(1, p)) : 0)) + ')';
+      });
+    }
+    function tick(inst) {
+      if (!inst.running) return;
+      render(inst);
+      var now = performance.now();
+      if (now - (inst.lastSample || 0) > 250) { inst.lastSample = now; updateBarColor(inst); }
+      inst.raf = requestAnimationFrame(function () { tick(inst); });
+    }
+    function show(inst, n, play) {
+      inst.idx = n;
+      if (play) { inst.t0 = performance.now(); inst.ms = duration(inst.slides[n]); }
+      inst.slides.forEach(function (el, i) {
+        var on = i === n;
+        el.classList.toggle('is-active', on);
+        if (el.tagName === 'VIDEO') {
+          if (on && play) {
+            try { el.currentTime = 0; } catch (e) {}
+            var p = el.play(); if (p && p.catch) p.catch(function () { if (inst.running && inst.slides[inst.idx] === el) schedule(inst, IMG_MS); });
+          } else { el.pause(); }
+        }
+      });
+      if (play) preloadAround(inst, n, false);        // start fetching the slide after this one
+    }
+    function schedule(inst, ms) {
+      clearTimeout(inst.timer);
+      inst.timer = setTimeout(function () { advance(inst); }, ms);
+    }
+    function advance(inst) {
+      if (!inst.running || inst.manual) return;
+      var len = inst.slides.length, next = -1, pending = false;
+      for (var k = 1; k < len; k++) {
+        var j = (inst.idx + k) % len;
+        loadSlide(inst, j);                           // make sure the slide we're waiting for is actually loading
+        var st = state(inst.slides[j]);
+        if (st === 'ready') { next = j; break; }
+        if (st === 'pending') { pending = true; break; }
+      }
+      if (pending) { schedule(inst, 250); return; }          // wait for the next slide to finish loading
+      if (next < 0) { schedule(inst, duration(inst.slides[inst.idx])); return; }
+      show(inst, next, true);
+      schedule(inst, duration(inst.slides[next]));
+    }
+    function start(inst) {
+      if (inst.running || reduce.matches) return;
+      if (current && current !== inst) stop(current);
+      load(inst);
+      inst.running = true; current = inst;
+      inst.root.classList.add('is-on');
+      var first = inst.slides[0];
+      if (first.tagName === 'VIDEO') { show(inst, 0, true); schedule(inst, duration(first)); }
+      else { inst.idx = 0; inst.t0 = performance.now(); inst.ms = FIRST_MS; schedule(inst, FIRST_MS); }
+      tick(inst);
+    }
+    function stop(inst) {
+      clearTimeout(inst.timer); clearTimeout(inst.intent); clearTimeout(inst.settleTimer);
+      inst.running = false; inst.manual = false; inst.animating = false;
+      inst.root.classList.remove('hover-l', 'hover-r');
+      inst.slides.forEach(function (el) { el.style.transition = ''; el.style.transform = ''; el.style.opacity = ''; });
+      cancelAnimationFrame(inst.raf);
+      inst.root.classList.remove('is-on');
+      inst.fills.forEach(function (f) { f.style.transform = 'scaleX(0)'; });
+      if (current === inst) current = null;
+      show(inst, 0, false);
+      inst.slides.forEach(function (el) { if (el.tagName === 'VIDEO') resetVideo(el); });
+    }
+    function stopAll() { insts.forEach(stop); touchCandidate = null; clearTimeout(touchTimer); }
+
+    // ── Desktop: hover / keyboard focus ──
+    function intentStart(inst) {
+      if (!hoverMode.matches) return;
+      load(inst);
+      clearTimeout(inst.intent);
+      inst.intent = setTimeout(function () { start(inst); }, HOVER_INTENT);
+    }
+    function intentStop(inst) { clearTimeout(inst.intent); stop(inst); }
+
+    // ── Touch: thumbnail settled near the centre of the screen ──
+    var touchCandidate = null, touchTimer = null, ticking = false;
+    function pickTouch() {
+      ticking = false;
+      if (hoverMode.matches) return;
+      var vh = window.innerHeight, best = null, bestD = Infinity;
+      insts.forEach(function (inst) {
+        var r = inst.root.getBoundingClientRect();
+        if (!r.height) return;
+        var visible = Math.min(r.bottom, vh) - Math.max(r.top, 0);
+        if (visible / r.height < 0.6) return;
+        var d = Math.abs((r.top + r.bottom) / 2 - vh / 2);
+        if (d < bestD) { bestD = d; best = inst; }
+      });
+      if (best === touchCandidate) return;
+      touchCandidate = best;
+      clearTimeout(touchTimer);
+      if (current && current !== best) stop(current);
+      if (best) {
+        load(best);
+        touchTimer = setTimeout(function () { if (touchCandidate === best) start(best); }, TOUCH_SETTLE);
+      }
+    }
+    function onScroll() { if (!ticking) { ticking = true; requestAnimationFrame(pickTouch); } }
+
+
+    // ── Swipe / drag the carousel left or right: slides follow the finger and override the automatic change ──
+    var SWIPE_MIN = 8, SWIPE_FRACTION = 0.18, SWIPE_VELOCITY = 0.4;
+    function nextIndex(inst, dir) {
+      var len = inst.slides.length;
+      for (var k = 1; k < len; k++) {
+        var j = ((inst.idx + dir * k) % len + len) % len;
+        if (state(inst.slides[j]) !== 'failed') return j;
+      }
+      return inst.idx;
+    }
+    function beginManual(inst) {
+      if (current && current !== inst) stop(current);
+      preloadAround(inst, inst.idx, true);
+      clearTimeout(inst.timer); clearTimeout(inst.intent);
+      inst.manual = true;
+      if (!inst.running) { inst.running = true; inst.root.classList.add('is-on'); tick(inst); }
+      current = inst;
+    }
+    function resetSlideStyle(el) { el.style.transition = ''; el.style.transform = ''; el.style.opacity = ''; }
+    function finalize(inst, n) {                         // apply the final state without any flash
+      var changed = n !== inst.idx;
+      inst.slides.forEach(function (el, i) {
+        el.style.transition = 'none';
+        el.classList.toggle('is-active', i === n);
+        el.style.transform = ''; el.style.opacity = '';
+      });
+      void inst.root.offsetWidth;
+      inst.slides.forEach(function (el, i) {
+        el.style.transition = '';
+        if (el.tagName === 'VIDEO') {
+          if (i === n) { if (changed) { try { el.currentTime = 0; } catch (e) {} } var pr = el.play(); if (pr && pr.catch) pr.catch(function () {}); }
+          else { el.pause(); }
+        }
+      });
+      inst.idx = n; inst.t0 = performance.now(); inst.lastSample = 0;
+      preloadAround(inst, n, true);
+      inst.nbIdx = -1; inst.animating = false;
+      updateBarColor(inst);
+    }
+    function bindSwipe(inst) {
+      var root = inst.root, sx = 0, sy = 0, t0 = 0, dx = 0, W = 0, dir = 0, pid = null;
+      var down = false, decided = false, horiz = false;
+      inst.nbIdx = -1;
+      root.style.touchAction = 'pan-y pinch-zoom';         // vertical scrolling and pinch-zoom stay native
+      var link = root.closest('a'); if (link) link.setAttribute('draggable', 'false');
+      root.querySelectorAll('img').forEach(function (im) { im.setAttribute('draggable', 'false'); });
+
+      function setDir(d) {
+        if (d === dir) return;
+        if (inst.nbIdx >= 0) resetSlideStyle(inst.slides[inst.nbIdx]);
+        dir = d; inst.nbIdx = nextIndex(inst, dir);
+        if (inst.nbIdx === inst.idx) inst.nbIdx = -1; else loadSlide(inst, inst.nbIdx);
+      }
+      function drag() {
+        var cur = inst.slides[inst.idx];
+        cur.style.transition = 'none'; cur.style.opacity = '1'; cur.style.transform = 'translateX(' + dx + 'px)';
+        if (inst.nbIdx >= 0) {
+          var nb = inst.slides[inst.nbIdx];
+          nb.style.transition = 'none'; nb.style.opacity = '1';
+          nb.style.transform = 'translateX(' + (dx + (dir > 0 ? W : -W)) + 'px)';
+        }
+      }
+      function settle(commit) {
+        inst.animating = true;
+        var cur = inst.slides[inst.idx], nb = inst.nbIdx >= 0 ? inst.slides[inst.nbIdx] : null;
+        var tr = reduce.matches ? 'none' : 'transform 0.32s cubic-bezier(0.22, 1, 0.36, 1)';
+        cur.style.transition = tr; if (nb) nb.style.transition = tr;
+        if (commit && nb) { cur.style.transform = 'translateX(' + (-dir * W) + 'px)'; nb.style.transform = 'translateX(0px)'; }
+        else { cur.style.transform = 'translateX(0px)'; if (nb) nb.style.transform = 'translateX(' + (dir > 0 ? W : -W) + 'px)'; }
+        var target = (commit && nb) ? inst.nbIdx : inst.idx;
+        clearTimeout(inst.settleTimer);
+        inst.settleTimer = setTimeout(function () { finalize(inst, target); dir = 0; }, reduce.matches ? 0 : 340);
+      }
+
+      // ── Arrow navigation (desktop): Blur Carousel style arrows + edge blur, same slide animation as a swipe ──
+      inst.go = function (d) {
+        if (inst.animating) return;
+        beginManual(inst);                                  // takes over from the automatic change
+        W = root.clientWidth; dx = 0; dir = 0;
+        setDir(d);
+        if (inst.nbIdx < 0) return;
+        var cur = inst.slides[inst.idx], nb = inst.slides[inst.nbIdx];
+        cur.style.transition = 'none'; cur.style.opacity = '1'; cur.style.transform = 'translateX(0px)';
+        nb.style.transition = 'none'; nb.style.opacity = '1'; nb.style.transform = 'translateX(' + (d > 0 ? W : -W) + 'px)';
+        void root.offsetWidth;
+        settle(true);
+      };
+      [['l', -1, '15 18 9 12 15 6', 'Previous image'], ['r', 1, '9 18 15 12 9 6', 'Next image']].forEach(function (a) {
+        var side = a[0], d = a[1];
+        var blur = document.createElement('span'); blur.className = 'ss-blur ss-blur-' + side; blur.setAttribute('aria-hidden', 'true');
+        var btn = document.createElement('span'); btn.className = 'ss-arrow ss-arrow-' + side;
+        btn.setAttribute('role', 'button'); btn.setAttribute('aria-label', a[3]);
+        btn.innerHTML = '<svg width="27" height="27" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="' + a[2] + '"/></svg>';
+        btn.addEventListener('pointerdown', function (e) { e.stopPropagation(); });     // don't start a swipe from an arrow
+        btn.addEventListener('click', function (e) { e.preventDefault(); e.stopPropagation(); inst.go(d); });   // and never follow the card's link
+        btn.addEventListener('pointerenter', function () { root.classList.add('hover-' + side); });
+        btn.addEventListener('pointerleave', function () { root.classList.remove('hover-' + side); });
+        root.appendChild(blur); root.appendChild(btn);
+      });
+
+      root.addEventListener('pointerdown', function (e) {
+        if (e.pointerType === 'mouse' && e.button !== 0) return;
+        if (inst.animating) return;
+        sx = e.clientX; sy = e.clientY; t0 = performance.now(); dx = 0; dir = 0;
+        W = root.clientWidth; pid = e.pointerId; down = true; decided = false; horiz = false;
+      });
+      root.addEventListener('pointermove', function (e) {
+        if (!down || e.pointerId !== pid) return;
+        var mx = e.clientX - sx, my = e.clientY - sy;
+        if (!decided) {
+          if (Math.abs(mx) < SWIPE_MIN && Math.abs(my) < SWIPE_MIN) return;
+          decided = true; horiz = Math.abs(mx) > Math.abs(my) * 1.2;
+          if (!horiz) { down = false; return; }
+          beginManual(inst);
+          try { root.setPointerCapture(pid); } catch (err) {}
+        }
+        if (!horiz) return;
+        dx = Math.max(-W, Math.min(W, mx));
+        setDir(dx < 0 ? 1 : -1);
+        drag();
+      });
+      function end(e) {
+        if (!down || e.pointerId !== pid) return;
+        down = false;
+        if (!horiz) return;
+        inst.swipedAt = performance.now();
+        var dt = Math.max(1, performance.now() - t0), vel = dx / dt;
+        var commit = e.type !== 'pointercancel' && inst.nbIdx >= 0 &&
+          (Math.abs(dx) > W * SWIPE_FRACTION || (Math.abs(vel) > SWIPE_VELOCITY && Math.abs(dx) > 20));
+        settle(commit);
+      }
+      root.addEventListener('pointerup', end);
+      root.addEventListener('pointercancel', end);
+      // a swipe that starts on a link must not open it
+      var linkEl = root.closest('a');
+      (linkEl || root).addEventListener('click', function (e) {
+        if (inst.swipedAt && performance.now() - inst.swipedAt < 400) { e.preventDefault(); e.stopPropagation(); }
+      }, true);
+    }
+
+    document.querySelectorAll('.ss').forEach(function (root) {
+      var inst = create(root);
+      if (!inst) return;
+      insts.push(inst);
+      bindSwipe(inst);
+      root.addEventListener('mouseenter', function () { intentStart(inst); });
+      root.addEventListener('mouseleave', function () { if (hoverMode.matches) intentStop(inst); });
+      var fr = root.closest('.other-link') || root;
+      fr.addEventListener('focusin', function () { intentStart(inst); });
+      fr.addEventListener('focusout', function () { if (hoverMode.matches) intentStop(inst); });
+    });
+
+    document.addEventListener('scroll', onScroll, { capture: true, passive: true });
+    window.addEventListener('resize', onScroll);
+    window.addEventListener('load', function () { setTimeout(pickTouch, 300); });
+    document.addEventListener('visibilitychange', function () { if (document.hidden) stopAll(); else onScroll(); });
+    if (hoverMode.addEventListener) hoverMode.addEventListener('change', stopAll);
+  })();
+</script>
+<script>
+  // Skeleton loaders: a shimmer is shown only for media that has not finished loading yet.
+  // Already-loaded (e.g. cached) media never shows one.
+  (function () {
+    function done(el) { return el.tagName === 'VIDEO' ? el.readyState >= 2 : el.complete; }
+    function watch(el, host) {
+      if (!el || done(el)) return;
+      host.classList.add('is-loading');
+      var finished = false;
+      function end() {
+        if (finished) return; finished = true;
+        host.classList.remove('is-loading');
+      }
+      ['load', 'loadeddata', 'error'].forEach(function (ev) { el.addEventListener(ev, end, { once: true }); });
+      setTimeout(end, 10000);   // safety net: never leave a skeleton on forever
+    }
+    document.querySelectorAll('.ss').forEach(function (root) {
+      var first = root.querySelector('.ss-slide.is-active');
+      if (first && first.tagName !== 'DIV' && first.getAttribute('src')) watch(first, root);
+    });
+    var hs = document.querySelector('.cta-headshot');
+    if (hs) watch(hs, hs);
+  })();
+</script>
+<script>
+  // Mobile pull-up: at the very end of the page, keep dragging up (rubber-band) and hold; the ring fills with
+  // pull depth + time, then the email is copied. Letting go springs the section shut.
+  (function () {
+    var panel = document.getElementById('pullPanel'), wrap = document.getElementById('wrap');
+    if (!panel || !wrap) return;
+    var mq = window.matchMedia('(max-width: 959px)');
+    var reduce = window.matchMedia('(prefers-reduced-motion: reduce)');
+    var inner = panel.querySelector('.pull-inner'), title = panel.querySelector('.pull-title'), text = panel.querySelector('.pull-text');
+    var ring = panel.querySelector('.ring-prog'), C = 2 * Math.PI * 15;
+    var EMAIL = 'bhavyamittalbiz@gmail.com', H_MAX = 112, DEAD = 10;
+    var TITLE0 = title.textContent, TEXT0 = text.innerHTML;
+
+    var touching = false, pulling = false, startY = 0, baseDy = null, d = 0;
+    var h = 0, v = 0, target = 0, progress = 0, done = false, raf = null, last = 0;
+
+    function atBottom() { return window.scrollY + window.innerHeight >= document.documentElement.scrollHeight - 2; }
+    function clamp(x, a, b) { return Math.max(a, Math.min(b, x)); }
+    function rubber(x) { return H_MAX * (1 - Math.exp(-x / 170)); }
+
+    // Haptics: Android/Chrome vibrate(); iOS Safari 17.4+ falls back to toggling a hidden switch (best effort)
+    function iosTick(times) {
+      try {
+        var l = document.createElement('label'), i = document.createElement('input');
+        l.setAttribute('aria-hidden', 'true');
+        l.style.cssText = 'position:fixed;left:-9999px;top:0;opacity:0;pointer-events:none';
+        i.type = 'checkbox'; i.setAttribute('switch', '');
+        l.appendChild(i); document.body.appendChild(l); l.click();
+        setTimeout(function () { if (l.parentNode) l.parentNode.removeChild(l); }, 120);
+        if (times > 1) setTimeout(function () { iosTick(times - 1); }, 70);
+      } catch (e) {}
+    }
+    function buzz(pattern, iosTimes) {
+      try { if (navigator.vibrate) { navigator.vibrate(pattern); return; } iosTick(iosTimes || 1); } catch (e) {}
+    }
+    var startedFeedback = false, lastStep = 0;
+
+    var copyFailed = false;
+    function copyNow() {
+      function ok() {
+        copyFailed = false;
+        panel.classList.remove('is-failed'); panel.classList.add('is-done');
+        title.textContent = 'Email copied';
+        text.textContent = EMAIL;
+        if (window.playCopySound) playCopySound();
+        buzz([22, 50, 38], 2);                         // success: a firmer double pulse
+      }
+      function fail() {
+        copyFailed = true;
+        panel.classList.remove('is-done'); panel.classList.add('is-failed');
+        title.textContent = 'Couldn\u2019t copy';
+        text.textContent = touching ? 'Let go to try again' : EMAIL;
+        buzz(40, 1);                                   // one long buzz, no success sound
+      }
+      copyText(EMAIL, ok, fail);
+    }
+    function complete() {
+      done = true; progress = 1;
+      copyNow();
+    }
+    function resetUI() {
+      done = false;
+      panel.classList.remove('is-done', 'is-failed', 'is-active');
+      copyFailed = false;
+      title.textContent = TITLE0; text.innerHTML = TEXT0;
+      document.documentElement.classList.remove('is-pulling');
+      wrap.style.removeProperty('--pull-shift');
+      panel.style.height = '0px';
+    }
+
+    function frame(now) {
+      var dt = Math.min(0.032, (now - last) / 1000 || 0.016); last = now;
+      if (touching && pulling && !atBottom()) window.scrollTo(0, document.documentElement.scrollHeight);   // keep the page pinned while pulling
+      // spring: follows the finger while held, bounces shut on release
+      var k = touching ? 235 : 130, c = touching ? 22 : 10.5;
+      if (reduce.matches) { h = target; v = 0; }
+      else {
+        v += (k * (target - h) - c * v) * dt; h += v * dt;
+        if (h < 0) { h = 0; if (v < 0) v = 0; }
+      }
+      panel.style.height = h + 'px';
+      wrap.style.setProperty('--pull-shift', (-h) + 'px');
+      inner.style.opacity = clamp(h / 60, 0, 1);
+      panel.classList.toggle('is-active', h > 0.5);
+
+      // haptic: once when the section first appears
+      if (touching && pulling && !startedFeedback && h > 6) { startedFeedback = true; lastStep = 0; buzz(16, 1); }
+
+      // progress ring: pull depth + time
+      var depth = clamp(h / H_MAX, 0, 1);
+      if (touching && pulling && !done) {
+        progress += depth > 0.12 ? dt * (0.25 + 0.9 * depth) / 1.4 : -dt * 0.8;
+        progress = clamp(progress, 0, 1);
+        // haptic ticks as the ring builds (every 10%, getting a touch longer)
+        var step = Math.floor(progress * 10);
+        if (step > lastStep && progress < 1) { buzz(10 + step * 1.5, 1); }
+        lastStep = Math.max(0, step);
+        if (progress >= 1) complete();
+      } else if (!touching) {
+        progress = clamp(progress - dt * 2.5, 0, 1);
+      }
+      ring.style.strokeDashoffset = (C * (1 - progress)) + '';
+
+      if (touching || h > 0.3 || Math.abs(v) > 1 || progress > 0.001) raf = requestAnimationFrame(frame);
+      else { raf = null; resetUI(); }
+    }
+    function loop() { if (!raf) { last = performance.now(); raf = requestAnimationFrame(frame); } }
+
+    document.addEventListener('touchstart', function (e) {
+      if (!mq.matches || e.touches.length !== 1) return;
+      if (document.documentElement.classList.contains('sheet-open')) return;
+      if (window.primeCopyAudio) primeCopyAudio();
+      touching = true; pulling = false; baseDy = null; d = 0; startedFeedback = false; lastStep = 0;
+      if (done || progress > 0) {                       // fresh cycle: clear the previous result
+        done = false; progress = 0; copyFailed = false;
+        panel.classList.remove('is-done', 'is-failed');
+        title.textContent = TITLE0; text.innerHTML = TEXT0;
+        ring.style.strokeDashoffset = C + '';
+      }
+      startY = e.touches[0].clientY;
+      if (h > 0) loop();
+    }, { passive: true });
+
+    document.addEventListener('touchmove', function (e) {
+      if (!touching || !mq.matches) return;
+      var dy = startY - e.touches[0].clientY;           // positive = finger moving up
+      if (!pulling && !atBottom()) { baseDy = null; return; }   // ordinary scrolling
+      if (baseDy === null || (!pulling && dy < baseDy)) baseDy = dy;
+      var raw = dy - baseDy - DEAD;                      // extra pull beyond the end of the page
+      if (!pulling && raw <= 0) return;
+      pulling = true;
+      d = Math.max(0, raw);
+      target = rubber(d);
+      document.documentElement.classList.add('is-pulling');
+      loop();
+    }, { passive: true });
+
+    function release() {
+      if (!touching) return;
+      touching = false; pulling = false; target = 0; startedFeedback = false; lastStep = 0;
+      if (window.primeCopyAudio) primeCopyAudio();
+      if (copyFailed) copyNow();                      // lifting the finger is a fresh touch: retry the copy once
+      loop();
+    }
+    document.addEventListener('touchend', release, { passive: true });
+    document.addEventListener('touchcancel', release, { passive: true });
+  })();
+</script>
+<script>
+  // Contact bottom sheet: opened by both Get in touch buttons
+  (function () {
+    var layer = document.getElementById('contactLayer');
+    if (!layer) return;
+    var sheet = layer.querySelector('.contact-sheet'), emailEl = document.getElementById('contactEmail');
+    var copyBtn = document.getElementById('copyBtn'), status = layer.querySelector('.sheet-status');
+    var html = document.documentElement, EMAIL = emailEl.textContent.trim(), lastFocus = null, resetT = null;
+
+    // ── Halftone Bloom (Originkit) background for the visiting card: plain-JS port of the WebGL2 component, preset values ──
+    var bloom = (function () {
+      var canvas = layer.querySelector('.vc-bloom'), stage = layer.querySelector('.vc-stage');
+      var noop = { start: function () {}, stop: function () {} };
+      if (!canvas || !stage) return noop;
+      var CFG = { bg: '#2C8EFF', c1: '#5C98DD', c2: '#105BB3', speed: 32 / 50, size: 1.54, angle: Math.PI, dot: 6, hover: 1.99, reach: 304 };
+      var LAYERS = 86, GAIN = 0.48, TURN = 0.32, SWELL = 1.1, REST = 0.42, CAP = 0.55, MAX_DPR = 2;
+      var reduce = window.matchMedia('(prefers-reduced-motion: reduce)');
+
+      var VERT = '#version 300 es\nconst vec2 P[3] = vec2[3](vec2(-1.0, -1.0), vec2(3.0, -1.0), vec2(-1.0, 3.0));\nvoid main() { gl_Position = vec4(P[gl_VertexID], 0.0, 1.0); }\n';
+      var FIELD = `#version 300 es
+precision highp float;
+uniform vec2 uRes;
+uniform float uTime;
+uniform vec3 uC1;
+uniform vec3 uC2;
+uniform float uSize;
+uniform float uAngle;
+out vec4 o;
+const float TAU = 6.28318530718;
+const float LAYERS = ${LAYERS.toFixed(1)};
+const float GAIN = ${GAIN.toFixed(3)};
+const vec2 CENTRE = vec2(-0.25, 0.56);
+const float TILT = 1.4;
+const float ZOOM = 1.05;
+const float THETA = 2.13;
+const float SHEAR = 0.965;
+const float SHRINK = 0.957;
+const vec2 WARP_FREQ = vec2(0.45, 2.5);
+const vec2 WARP_AMP = vec2(0.13, 0.028);
+const vec2 ASPECT = vec2(2.2, 0.18);
+const float OFFSET = 0.37;
+const float GLOW = 0.0021;
+const float SOFT = 0.0019;
+const float FALLOFF = 0.37;
+const float PHASE = 23.0;
+const float CYCLE = 0.16;
+const float HUE_TRAVEL = 2.0;
+mat2 rot(float a) { float c = cos(a), s = sin(a); return mat2(c, s, -s, c); }
+void main() {
+  vec2 R = uRes;
+  vec2 pos = (gl_FragCoord.xy - 0.5 * R) / R.y;
+  pos = rot(uAngle) * pos / uSize;
+  float t = uTime * 0.49 + PHASE;
+  float breath = (-sin(uTime * 0.735) + sin(uTime * 0.49 + 1.0)) * 0.25 + 0.5;
+  vec2 u = rot(TILT) * ((pos - CENTRE) * (ZOOM - breath * 0.085));
+  mat2 fold = mat2(cos(THETA), sin(THETA), -SHEAR, cos(THETA));
+  vec3 col = vec3(0.0);
+  for (float i = 1.0; i <= LAYERS; i += 1.0) {
+    u.x -= sin(u.y * WARP_FREQ.x + t + i * 0.007) * WARP_AMP.x;
+    u.y -= sin(u.x * WARP_FREQ.y - t + i * 0.02) * WARP_AMP.y;
+    u = fold * u * SHRINK;
+    vec2 q = (u - vec2(OFFSET + breath * 0.1, 0.0)) * ASPECT;
+    float g = GLOW / (dot(q, q) + SOFT) * (0.25 + breath * 0.4);
+    float r = length(u);
+    float k = sin(i * CYCLE + t * 1.2 + r * HUE_TRAVEL) * 0.5 + 0.5;
+    col += g * mix(uC1, uC2, k) * (0.62 + 0.5 * k) * exp2(-r * FALLOFF);
+  }
+  vec3 x = max(col * GAIN, 0.0);
+  col = (x * (2.51 * x + 0.03)) / (x * (2.43 * x + 0.59) + 0.14);
+  col = pow(clamp(col, 0.0, 1.0), vec3(0.85, 0.92, 0.98));
+  col *= 1.0 - smoothstep(0.5, 1.6, length(pos)) * 0.07;
+  o = vec4(col, 1.0);
+}
+`;
+      var FINISH = `#version 300 es
+precision highp float;
+uniform sampler2D uField;
+uniform vec2 uRes;
+uniform float uTime;
+uniform vec3 uBg;
+uniform float uPaper;
+uniform vec2 uMouse;
+uniform float uOn;
+uniform float uReach;
+uniform float uCell;
+uniform float uPR;
+out vec4 o;
+const float PI = 3.14159265359;
+const vec3 LUMA = vec3(0.2126, 0.7152, 0.0722);
+const float TURN = ${TURN.toFixed(4)};
+const float SWELL = ${SWELL.toFixed(4)};
+const float REST = ${REST.toFixed(4)};
+const float CAP = ${CAP.toFixed(4)};
+float ign(vec2 p, float f) { p += 5.588238 * mod(f, 64.0); return fract(52.9829189 * fract(0.06711056 * p.x + 0.00583715 * p.y)); }
+vec3 scene(vec2 uv) { return max(texture(uField, clamp(uv, 0.0, 1.0)).rgb, 0.0); }
+void main() {
+  vec2 frag = gl_FragCoord.xy;
+  vec2 uv = frag / uRes;
+  mat2 turn = mat2(cos(TURN), -sin(TURN), sin(TURN), cos(TURN));
+  vec2 rp = turn * frag;
+  vec2 c = (floor(rp / uCell) + 0.5) * uCell;
+  vec2 src = transpose(turn) * c;
+  vec3 soft = scene(uv);
+  vec3 ink = scene(src / uRes);
+  float lvl = clamp(dot(ink, LUMA), 0.0, 1.0);
+  float radius = uCell * sqrt(pow(lvl, 0.9) / PI);
+  float presence = smoothstep(0.03, 0.16, lvl) * REST;
+  if (uOn > 0.0) {
+    vec2 d = (src - uMouse) / uReach;
+    float w = uOn * exp(-dot(d, d));
+    if (w > 1e-4) {
+      radius *= 1.0 + SWELL * w;
+      presence = mix(presence, 1.0, min(w, 1.0));
+    }
+  }
+  radius = min(radius, uCell * CAP);
+  float aa = 0.7 * uPR;
+  float dm = 1.0 - smoothstep(radius - aa, radius + aa, length(rp - c));
+  vec3 dots = ink * min(0.8 / max(lvl, 1e-3), 2.2) * dm;
+  vec3 L = mix(soft, dots, presence);
+  vec3 dark = uBg + L * (1.0 - uBg);
+  float strength = clamp(max(L.r, max(L.g, L.b)), 0.0, 1.0);
+  vec3 paper = uBg * (1.0 - strength) + L * 0.96;
+  vec3 col = mix(dark, paper, uPaper);
+  col += (ign(frag, floor(uTime * 24.0)) - 0.5) / 255.0;
+  o = vec4(clamp(col, 0.0, 1.0), 1.0);
+}
+`;
+      function hex(h) { h = h.replace('#', ''); return [parseInt(h.slice(0, 2), 16) / 255, parseInt(h.slice(2, 4), 16) / 255, parseInt(h.slice(4, 6), 16) / 255]; }
+      function clampN(v, lo, hi) { return v < lo ? lo : v > hi ? hi : v; }
+      function link(gl, frag) {
+        function sh(type, src) {
+          var o = gl.createShader(type); gl.shaderSource(o, src); gl.compileShader(o);
+          if (!gl.getShaderParameter(o, gl.COMPILE_STATUS)) { console.error('HalftoneBloom shader:', gl.getShaderInfoLog(o)); gl.deleteShader(o); return null; }
+          return o;
+        }
+        var vs = sh(gl.VERTEX_SHADER, VERT), fs = sh(gl.FRAGMENT_SHADER, frag);
+        if (!vs || !fs) return null;
+        var prog = gl.createProgram(); gl.attachShader(prog, vs); gl.attachShader(prog, fs); gl.linkProgram(prog);
+        gl.deleteShader(vs); gl.deleteShader(fs);
+        if (!gl.getProgramParameter(prog, gl.LINK_STATUS)) { console.error('HalftoneBloom link:', gl.getProgramInfoLog(prog)); gl.deleteProgram(prog); return null; }
+        return prog;
+      }
+      function locs(gl, prog, names) { var out = {}; names.forEach(function (n) { out[n] = gl.getUniformLocation(prog, n); }); return out; }
+
+      var gl = null, field, finish, uf, un, vao, fbo, tex = null, tw = 0, th = 0, half = false;
+      var ready = false, failed = false, running = false, raf = 0, last = -1, clock = 12, mx = 0, my = 0, on = 0;
+      var ptr = { tx: 0, ty: 0, inside: false };
+      var bg = hex(CFG.bg), c1 = hex(CFG.c1), c2 = hex(CFG.c2);
+      var bgLum = 0.2126 * bg[0] + 0.7152 * bg[1] + 0.0722 * bg[2];
+
+      function init() {
+        if (ready) return true; if (failed) return false;
+        gl = canvas.getContext('webgl2', { antialias: false, alpha: false, depth: false, stencil: false });
+        if (!gl) { failed = true; return false; }
+        field = link(gl, FIELD); finish = link(gl, FINISH);
+        if (!field || !finish) { failed = true; return false; }
+        uf = locs(gl, field, ['uRes', 'uTime', 'uC1', 'uC2', 'uSize', 'uAngle']);
+        un = locs(gl, finish, ['uField', 'uRes', 'uTime', 'uBg', 'uPaper', 'uMouse', 'uOn', 'uReach', 'uCell', 'uPR']);
+        vao = gl.createVertexArray(); gl.bindVertexArray(vao);
+        fbo = gl.createFramebuffer(); half = !!gl.getExtension('EXT_color_buffer_float');
+        canvas.addEventListener('webglcontextlost', function (e) { e.preventDefault(); failed = true; ready = false; running = false; cancelAnimationFrame(raf); canvas.classList.remove('is-ready'); });
+        ready = true; return true;
+      }
+      function resizeTarget(nw, nh) {
+        if (nw === tw && nh === th && tex) return;
+        for (var attempt = 0; attempt < 2; attempt++) {
+          if (tex) gl.deleteTexture(tex);
+          tex = gl.createTexture(); gl.bindTexture(gl.TEXTURE_2D, tex);
+          gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_MIN_FILTER, gl.LINEAR); gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_MAG_FILTER, gl.LINEAR);
+          gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_WRAP_S, gl.CLAMP_TO_EDGE); gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_WRAP_T, gl.CLAMP_TO_EDGE);
+          gl.texImage2D(gl.TEXTURE_2D, 0, half ? gl.RGBA16F : gl.RGBA8, nw, nh, 0, gl.RGBA, half ? gl.HALF_FLOAT : gl.UNSIGNED_BYTE, null);
+          gl.bindFramebuffer(gl.FRAMEBUFFER, fbo); gl.framebufferTexture2D(gl.FRAMEBUFFER, gl.COLOR_ATTACHMENT0, gl.TEXTURE_2D, tex, 0);
+          var ok = gl.checkFramebufferStatus(gl.FRAMEBUFFER) === gl.FRAMEBUFFER_COMPLETE;
+          gl.bindFramebuffer(gl.FRAMEBUFFER, null);
+          if (ok || !half) break; half = false;
+        }
+        tw = nw; th = nh;
+      }
+      // pointer in CSS px relative to the card stage
+      function read(e) {
+        var r = stage.getBoundingClientRect();
+        ptr.tx = e.clientX - r.left; ptr.ty = e.clientY - r.top;
+        ptr.inside = e.clientX >= r.left && e.clientX <= r.right && e.clientY >= r.top && e.clientY <= r.bottom;
+      }
+      function out(e) { if (!e.relatedTarget) ptr.inside = false; }
+
+      function draw(now) {
+        if (!running) return;
+        raf = requestAnimationFrame(draw);
+        var dt = last < 0 ? 0 : clampN((now - last) / 1000, 0, 0.05); last = now;
+        if (!reduce.matches) clock = (clock + dt * CFG.speed) % 3600;
+        var dpr = Math.min(window.devicePixelRatio || 1, MAX_DPR);
+        var cw = canvas.clientWidth || 350, ch = canvas.clientHeight || 194;
+        var bw = Math.max(1, Math.round(cw * dpr)), bh = Math.max(1, Math.round(ch * dpr));
+        if (canvas.width !== bw || canvas.height !== bh) { canvas.width = bw; canvas.height = bh; }
+        resizeTarget(Math.max(1, Math.round(bw / 2)), Math.max(1, Math.round(bh / 2)));
+        var present = ptr.inside ? 1 : 0;
+        if (present && on < 0.02) { mx = ptr.tx; my = ptr.ty; }
+        on += (present - on) * (1 - Math.exp(-dt * 5));
+        var k = 1 - Math.exp(-dt * 16);
+        mx += (ptr.tx - mx) * k; my += (ptr.ty - my) * k;
+
+        gl.bindFramebuffer(gl.FRAMEBUFFER, fbo); gl.viewport(0, 0, tw, th); gl.useProgram(field);
+        gl.uniform2f(uf.uRes, tw, th); gl.uniform1f(uf.uTime, clock);
+        gl.uniform3f(uf.uC1, c1[0], c1[1], c1[2]); gl.uniform3f(uf.uC2, c2[0], c2[1], c2[2]);
+        gl.uniform1f(uf.uSize, CFG.size); gl.uniform1f(uf.uAngle, CFG.angle);
+        gl.drawArrays(gl.TRIANGLES, 0, 3);
+
+        var pr = bw / cw;
+        gl.bindFramebuffer(gl.FRAMEBUFFER, null); gl.viewport(0, 0, bw, bh); gl.useProgram(finish);
+        gl.activeTexture(gl.TEXTURE0); gl.bindTexture(gl.TEXTURE_2D, tex); gl.uniform1i(un.uField, 0);
+        gl.uniform2f(un.uRes, bw, bh); gl.uniform1f(un.uTime, clock);
+        gl.uniform3f(un.uBg, bg[0], bg[1], bg[2]); gl.uniform1f(un.uPaper, clampN((bgLum - 0.35) / 0.3, 0, 1));
+        gl.uniform2f(un.uMouse, mx * pr, (ch - my) * pr); gl.uniform1f(un.uOn, on * CFG.hover);
+        gl.uniform1f(un.uReach, CFG.reach * pr); gl.uniform1f(un.uCell, CFG.dot * pr); gl.uniform1f(un.uPR, pr);
+        gl.drawArrays(gl.TRIANGLES, 0, 3);
+        canvas.classList.add('is-ready');
+        if (reduce.matches) { running = false; cancelAnimationFrame(raf); window.removeEventListener('pointermove', read); }   // one still frame
+      }
+      return {
+        start: function () {
+          if (running || !init()) return;
+          running = true; last = -1;
+          window.addEventListener('pointermove', read, { passive: true }); window.addEventListener('pointerdown', read, { passive: true });
+          document.addEventListener('pointerout', out);
+          raf = requestAnimationFrame(draw);
+        },
+        stop: function () {
+          running = false; cancelAnimationFrame(raf); on = 0; ptr.inside = false;
+          window.removeEventListener('pointermove', read); window.removeEventListener('pointerdown', read); document.removeEventListener('pointerout', out);
+        }
+      };
+    })();
+
+    // ── Visiting card FX: mouse tracking on desktop, gyroscope on phones, shine at a tilt threshold ──
+    var cardFx = (function () {
+      var card = layer.querySelector('.visiting-card'), stage = layer.querySelector('.vc-stage');
+      if (!card || !stage) return { start: function () {}, stop: function () {}, ask: function () {} };
+      var MAX = 14, THRESH = 9, COOLDOWN = 1100;
+      var reduce = window.matchMedia('(prefers-reduced-motion: reduce)');
+      var fine = window.matchMedia('(hover: hover) and (pointer: fine)');
+      var tx = 0, ty = 0, cx = 0, cy = 0, raf = null, active = false, above = false, lastShine = 0, base = null, motionOK = null, asked = false;
+      function clamp(v, a, b) { return Math.max(a, Math.min(b, v)); }
+      function paint() {
+        card.style.setProperty('--vc-rx', cy.toFixed(2) + 'deg');
+        card.style.setProperty('--vc-ry', cx.toFixed(2) + 'deg');
+      }
+      function shine(dir) {
+        var now = performance.now();
+        if (now - lastShine < COOLDOWN) return;
+        lastShine = now;
+        card.classList.remove('is-shining', 'shine-rev'); void card.offsetWidth;
+        if (dir < 0) card.classList.add('shine-rev');
+        card.classList.add('is-shining');
+      }
+      card.addEventListener('animationend', function (e) { if (e.target.classList && e.target.classList.contains('vc-shine')) card.classList.remove('is-shining', 'shine-rev'); });
+      function loop() {
+        if (!active) return;
+        cx += (tx - cx) * 0.12; cy += (ty - cy) * 0.12;
+        paint();
+        debugTick(performance.now());
+        var m = Math.max(Math.abs(cx), Math.abs(cy));
+        if (m > THRESH && !above) { above = true; if (!reduce.matches) shine(Math.abs(cx) >= Math.abs(cy) ? -cx : cy); }
+        else if (m < THRESH * 0.6) above = false;
+        raf = requestAnimationFrame(loop);
+      }
+      // card turns to face the cursor / finger
+      function aim(x, y, r, spanX, spanY) {
+        var nx = clamp((x - (r.left + r.width / 2)) / spanX, -1, 1), ny = clamp((y - (r.top + r.height / 2)) / spanY, -1, 1);
+        tx = -nx * MAX; ty = ny * MAX;
+      }
+      function onMouse(e) { if (e.pointerType === 'touch') return; aim(e.clientX, e.clientY, stage.getBoundingClientRect(), window.innerWidth / 2, window.innerHeight / 2); }
+      function onTouch(e) { if (e.pointerType !== 'touch') return; var r = stage.getBoundingClientRect(); aim(e.clientX, e.clientY, r, r.width / 2, r.height / 2); }
+      function onTouchEnd() { tx = 0; ty = 0; }
+      var SENS = 14;                                         // degrees of phone tilt for a full card tilt
+      var gotOrient = 0, gotMotion = 0, lastB = null, lastG = null;
+      function applyTilt(g, b) {
+        if (!base) base = { b: b, g: g };                  // the pose when the card opened is "flat"
+        var dg = g - base.g, db = b - base.b;
+        var ang = (window.screen && screen.orientation && screen.orientation.angle) || window.orientation || 0;
+        var dx = dg, dy = db;                               // portrait
+        if (ang === 90) { dx = db; dy = -dg; } else if (ang === 270 || ang === -90) { dx = -db; dy = dg; }
+        tx = -clamp(dx / SENS, -1, 1) * MAX;
+        ty = -clamp(dy / SENS, -1, 1) * MAX;
+        base.g += dg * 0.006; base.b += db * 0.006;        // slowly re-centres, so any resting angle becomes the new "flat"
+      }
+      function onOrient(e) {
+        if (e.beta == null || e.gamma == null) return;
+        gotOrient++; lastB = e.beta; lastG = e.gamma;
+        applyTilt(e.gamma, e.beta);
+      }
+      // fallback for phones/browsers that never deliver deviceorientation: derive the tilt from the accelerometer (gravity)
+      function onMotion(e) {
+        if (gotOrient > 0) return;
+        var a = e.accelerationIncludingGravity;
+        if (!a || a.x == null || a.y == null || a.z == null) return;
+        gotMotion++;
+        var g = -Math.atan2(a.x, Math.sqrt(a.y * a.y + a.z * a.z)) * 180 / Math.PI;
+        var b = Math.atan2(a.y, a.z) * 180 / Math.PI;
+        lastB = b; lastG = g;
+        applyTilt(g, b);
+      }
+      // add ?gyro=debug (or #gyro) to the address to see what the sensors report under the card
+      var dbg = null;
+      if (/[?&#]gyro/.test(location.href)) {
+        dbg = document.createElement('pre');
+        dbg.style.cssText = 'margin:8px 0 0;font:11px/1.4 ui-monospace,Menlo,monospace;color:#555;white-space:pre-wrap';
+        stage.parentNode.insertBefore(dbg, stage.nextSibling);
+      }
+      function debugTick(now) {
+        if (!dbg || now - (debugTick.t || 0) < 250) return; debugTick.t = now;
+        dbg.textContent = 'secure ' + window.isSecureContext + ' | top ' + (window.top === window) + ' | reduceMotion ' + reduce.matches +
+          ' | permission ' + motionOK + '\norientation events ' + gotOrient + ' | motion events ' + gotMotion +
+          '\nbeta ' + (lastB == null ? '-' : lastB.toFixed(1)) + '  gamma ' + (lastG == null ? '-' : lastG.toFixed(1));
+      }
+      function bindMotion() { if (active && motionOK) { window.addEventListener('deviceorientation', onOrient); window.addEventListener('devicemotion', onMotion); } }
+      return {
+        ask: function () {                                  // must run inside the tap that opens the sheet (iOS asks permission here)
+          if (fine.matches || asked) return;
+          asked = true;
+          var DOE = window.DeviceOrientationEvent;
+          if (DOE && typeof DOE.requestPermission === 'function') {
+            DOE.requestPermission().then(function (r) { motionOK = (r === 'granted'); bindMotion(); }).catch(function () { motionOK = false; });
+          } else { motionOK = !!DOE; }
+        },
+        start: function () {
+          if (active) return;
+          active = true; base = null; gotOrient = 0; gotMotion = 0; tx = ty = cx = cy = 0; above = false;
+          if (fine.matches) document.addEventListener('pointermove', onMouse);
+          stage.addEventListener('pointerdown', onTouch); stage.addEventListener('pointermove', onTouch);
+          stage.addEventListener('pointerup', onTouchEnd); stage.addEventListener('pointercancel', onTouchEnd);
+          bindMotion();
+          raf = requestAnimationFrame(loop);
+        },
+        stop: function () {
+          active = false; cancelAnimationFrame(raf);
+          document.removeEventListener('pointermove', onMouse); window.removeEventListener('deviceorientation', onOrient); window.removeEventListener('devicemotion', onMotion);
+          stage.removeEventListener('pointerdown', onTouch); stage.removeEventListener('pointermove', onTouch);
+          stage.removeEventListener('pointerup', onTouchEnd); stage.removeEventListener('pointercancel', onTouchEnd);
+          tx = ty = cx = cy = 0; paint(); card.classList.remove('is-shining', 'shine-rev');
+        }
+      };
+    })();
+
+    function isOpen() { return layer.classList.contains('is-open'); }
+    function open(trigger) {
+      if (isOpen()) return;
+      lastFocus = trigger || document.activeElement;
+      layer.classList.add('is-open'); layer.setAttribute('aria-hidden', 'false'); html.classList.add('sheet-open');
+      cardFx.start(); bloom.start();
+      setTimeout(function () { try { copyBtn.focus({ preventScroll: true }); } catch (e) {} }, 80);
+    }
+    function close() {
+      if (!isOpen()) return;
+      layer.classList.remove('is-open'); layer.setAttribute('aria-hidden', 'true'); html.classList.remove('sheet-open');
+      cardFx.stop(); bloom.stop();
+      sheet.style.transform = '';
+      if (lastFocus && lastFocus.focus) { try { lastFocus.focus({ preventScroll: true }); } catch (e) {} }
+    }
+    window.openContact = function (e, trigger) {
+      if (e) e.preventDefault();
+      if (window.primeCopyAudio) primeCopyAudio();
+      cardFx.ask();
+      open(trigger);
+    };
+
+    layer.addEventListener('click', function (e) { if (e.target.closest('[data-close]')) close(); });
+    document.addEventListener('keydown', function (e) {
+      if (!isOpen()) return;
+      if (e.key === 'Escape') { close(); return; }
+      if (e.key !== 'Tab') return;
+      var f = layer.querySelectorAll('button, a[href]');
+      if (!f.length) return;
+      var first = f[0], last = f[f.length - 1];
+      if (e.shiftKey && document.activeElement === first) { e.preventDefault(); last.focus(); }
+      else if (!e.shiftKey && document.activeElement === last) { e.preventDefault(); first.focus(); }
+    });
+
+    // copy, with an honest result
+    function flash(text, cls) {
+      status.textContent = text;                      // announced to screen readers; the icon shows the result visually
+      copyBtn.classList.remove('is-ok', 'is-fail'); if (cls) copyBtn.classList.add(cls);
+      clearTimeout(resetT);
+      resetT = setTimeout(function () { status.textContent = ''; copyBtn.classList.remove('is-ok', 'is-fail'); }, 2200);
+    }
+    function selectEmail() {
+      try { var r = document.createRange(); r.selectNodeContents(emailEl); var sel = window.getSelection(); sel.removeAllRanges(); sel.addRange(r); } catch (e) {}
+    }
+    copyBtn.addEventListener('click', function () {
+      if (window.primeCopyAudio) primeCopyAudio();
+      copyText(EMAIL, function () {
+        if (window.playCopySound) playCopySound();
+        if (window.copyHaptic) copyHaptic();
+        flash('Email copied', 'is-ok');
+      }, function () {
+        try { if (navigator.vibrate) navigator.vibrate(40); } catch (e) {}
+        flash('Couldn\u2019t copy', 'is-fail');
+        selectEmail();                                  // leave the address selected so it can be copied by hand
+      });
+    });
+
+    // drag the handle / title down to dismiss
+    var drag = { on: false, y0: 0, t0: 0, dy: 0, id: null };
+    [layer.querySelector('.sheet-grab'), layer.querySelector('.sheet-head')].forEach(function (g) {
+      g.addEventListener('pointerdown', function (e) {
+        if (e.target.closest('.sheet-close')) return;
+        drag = { on: true, y0: e.clientY, t0: performance.now(), dy: 0, id: e.pointerId };
+        try { g.setPointerCapture(e.pointerId); } catch (err) {}
+        sheet.style.transition = 'none';
+      });
+      g.addEventListener('pointermove', function (e) {
+        if (!drag.on || e.pointerId !== drag.id) return;
+        drag.dy = Math.max(0, e.clientY - drag.y0);
+        sheet.style.transform = 'translateY(' + drag.dy + 'px)';
+      });
+      function end(e) {
+        if (!drag.on || e.pointerId !== drag.id) return;
+        drag.on = false;
+        var vel = drag.dy / Math.max(1, performance.now() - drag.t0);
+        sheet.style.transition = '';
+        if (drag.dy > 90 || vel > 0.6) close(); else sheet.style.transform = '';
+      }
+      g.addEventListener('pointerup', end);
+      g.addEventListener('pointercancel', end);
+    });
+  })();
+</script>
+<script>
+  // Use the Material Symbols "mail" icon once the icon font is ready; until then (or if it fails) the previous SVG icon stays
+  (function () {
+    if (!document.fonts || !document.fonts.load) return;
+    document.fonts.load("14px 'Material Symbols Outlined'", 'mail').then(function (faces) {
+      if (faces && faces.length) document.documentElement.classList.add('msym-ready');
+    }).catch(function () {});
+  })();
+</script>
+
+
+
+
+
+  <button id="seeWork" type="button" aria-label="See the work instead">See the work instead? <span class="sw-arrow" aria-hidden="true"><svg width="12" height="12" viewBox="0 0 12 12" fill="none"><path d="M6 2v8M2.8 6.8L6 10l3.2-3.2" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/></svg></span></button>
+
+  <script>
+    // Shared wax-crayon canvas. Set window.CRAYON_SOCKET_URL before this script
+    // if the WebSocket relay is hosted on another origin.
+    (function () {
+      var canvas = document.getElementById('crayonCanvas');
+      var space = document.getElementById('drawingSpace');
+      if (!canvas || !space) return;
+      var ctx = canvas.getContext('2d');
+      var color = '#4C83C3', drawing = false, last = null, strokes = [], currentStroke = null;
+      var dpr = Math.min(window.devicePixelRatio || 1, 2);
+      var socket = null, clientId = Math.random().toString(36).slice(2), peers = [];
+      var presence = document.getElementById('crayonPresence');
+
+      function connect() {
+        var url = window.CRAYON_SOCKET_URL || ((location.protocol === 'https:' ? 'wss://' : 'ws://') + location.host + '/api/draw');
+        if (!location.host || location.protocol === 'file:') { presence.textContent = 'Multiplayer unavailable'; return; }
+        socket = new WebSocket(url);
+        socket.addEventListener('open', function () { socket.send(JSON.stringify({ type: 'join', id: clientId })); });
+        socket.addEventListener('message', function (event) {
+          var msg; try { msg = JSON.parse(event.data); } catch (_) { return; }
+          if (msg.type === 'state') { strokes = msg.strokes || []; redraw(); peers = msg.peers || []; updatePresence(); }
+          else if (msg.type === 'peers') { peers = msg.peers || []; updatePresence(); }
+          else if (msg.type === 'begin') { strokes.push(msg.stroke); drawStroke(msg.stroke); }
+          else if (msg.type === 'points') { var s = strokes.find(function (item) { return item.id === msg.id; }); if (s) { var from = s.points[s.points.length - 1]; msg.points.forEach(function (p) { crayonSegment(px(from), px(p), s.color, s.width); s.points.push(p); from = p; }); } }
+          else if (msg.type === 'undo') { strokes = strokes.filter(function (item) { return item.id !== msg.id; }); redraw(); }
+          else if (msg.type === 'clear') { strokes = []; redraw(); }
+        });
+        socket.addEventListener('close', function () { presence.textContent = 'Offline · reconnecting'; setTimeout(connect, 2000); });
+        socket.addEventListener('error', function () { presence.textContent = 'Connecting…'; });
+      }
+      function send(message) { if (socket && socket.readyState === WebSocket.OPEN) { socket.send(JSON.stringify(message)); return true; } return false; }
+      function updatePresence() { presence.textContent = peers.length ? peers.length + ' other' + (peers.length === 1 ? '' : 's') + ' here' : 'Drawing solo'; }
+
+      function resize() {
+        var old = document.createElement('canvas');
+        old.width = canvas.width; old.height = canvas.height;
+        if (old.width && old.height) old.getContext('2d').drawImage(canvas, 0, 0);
+        var rect = space.getBoundingClientRect();
+        dpr = Math.min(window.devicePixelRatio || 1, 2);
+        canvas.width = Math.max(1, Math.round(rect.width * dpr));
+        canvas.height = Math.max(1, Math.round(rect.height * dpr));
+        ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+        if (old.width && old.height) ctx.drawImage(old, 0, 0, old.width, old.height, 0, 0, rect.width, rect.height);
+      }
+      function point(e) {
+        var r = canvas.getBoundingClientRect();
+        return { x: (e.clientX - r.left) / r.width, y: (e.clientY - r.top) / r.height };
+      }
+      function px(p) { var r = canvas.getBoundingClientRect(); return { x: p.x * r.width, y: p.y * r.height }; }
+      function crayonSegment(a, b, strokeColor, width) {
+        var dx=b.x-a.x, dy=b.y-a.y, distance=Math.hypot(dx,dy);
+        var steps=Math.max(1,Math.ceil(distance/Math.max(1.4,width*.22)));
+        for(var i=0;i<=steps;i++){
+          var t=i/steps, x=a.x+dx*t, y=a.y+dy*t;
+          for(var k=0;k<9;k++){
+            var angle=Math.random()*Math.PI*2, radius=Math.random()*width*.48;
+            var dot=Math.max(.45,Math.random()*width*.16);
+            ctx.globalAlpha=.12+Math.random()*.22; ctx.fillStyle=strokeColor;
+            ctx.beginPath();
+            ctx.ellipse(x+Math.cos(angle)*radius,y+Math.sin(angle)*radius,dot*(1.2+Math.random()),dot*(.65+Math.random()*.6),angle,0,Math.PI*2);
+            ctx.fill();
+          }
+          for(var f=0;f<3;f++){
+            if(Math.random()>.48) continue;
+            ctx.globalAlpha=.12+Math.random()*.16; ctx.fillStyle='#F7F6F5';
+            ctx.beginPath(); ctx.arc(x+(Math.random()-.5)*width,y+(Math.random()-.5)*width,Math.random()*1.4,0,Math.PI*2); ctx.fill();
+          }
+        }
+        ctx.globalAlpha=1;
+      }
+      function redraw() {
+        ctx.clearRect(0,0,canvas.width/dpr,canvas.height/dpr);
+        strokes.forEach(drawStroke);
+      }
+      function drawStroke(s) {
+        if (!s || !s.points || !s.points.length) return;
+        if(s.points.length===1){var p=px(s.points[0]);crayonSegment(p,{x:p.x+.1,y:p.y+.1},s.color,s.width);}
+        else for(var i=1;i<s.points.length;i++) crayonSegment(px(s.points[i-1]),px(s.points[i]),s.color,s.width);
+      }
+      function down(e) {
+        if(e.button!==undefined && e.button!==0) return;
+        drawing=true; canvas.setPointerCapture(e.pointerId); last=point(e);
+        var note=document.querySelector('.crayon-note'); if(note) note.classList.add('is-gone'); var hint=document.querySelector('.crayon-center-hint'); if(hint) hint.classList.add('is-gone');
+        var rowEl=document.querySelector('.crayon-row'); if(rowEl) rowEl.classList.remove('is-open');
+        currentStroke={id:clientId+'-'+Date.now()+'-'+Math.random().toString(36).slice(2),color:color,width:e.pointerType==='pen'&&e.pressure?13+e.pressure*8:19,points:[last]};
+        strokes.push(currentStroke);
+        crayonSegment(px(last),{x:px(last).x+.1,y:px(last).y+.1},color,currentStroke.width); send({type:'begin',stroke:currentStroke}); e.preventDefault();
+      }
+      function move(e) {
+        if(!drawing||!currentStroke) return;
+        var p=point(e); crayonSegment(px(last),px(p),currentStroke.color,currentStroke.width);
+        currentStroke.points.push(p); last=p; send({type:'points',id:currentStroke.id,points:[p]}); e.preventDefault();
+      }
+      function up(){drawing=false;last=null;currentStroke=null;}
+      canvas.addEventListener('pointerdown',down);
+      canvas.addEventListener('pointermove',move);
+      canvas.addEventListener('pointerup',up);
+      canvas.addEventListener('pointercancel',up);
+      window.addEventListener('resize',resize); resize();
+
+      var mobileMQ=window.matchMedia('(max-width: 959px)');
+      document.querySelectorAll('.crayon-color').forEach(function(button){
+        button.addEventListener('click',function(){
+          var row=document.querySelector('.crayon-row');
+          if(mobileMQ.matches && row && !row.classList.contains('is-open') && button.getAttribute('aria-pressed')==='true'){ row.classList.add('is-open'); return; }
+          if(row) row.classList.remove('is-open');
+          color=button.getAttribute('data-color');
+          document.querySelectorAll('.crayon-color').forEach(function(b){b.setAttribute('aria-pressed',b===button?'true':'false');});
+        });
+      });
+      // Hide the colour tray once the canvas has scrolled out of view
+      var tools = document.getElementById('crayonTools');
+      function syncTools() {
+        if (!tools) return;
+        var r = space.getBoundingClientRect();
+        tools.classList.toggle('is-hidden', r.bottom <= 0);
+        document.documentElement.classList.toggle('past-canvas', window.scrollY > window.innerHeight * 0.3);
+      }
+      // Mobile: tell the CSS where the canvas starts (just under the bio) so it can fill the rest of the first screen
+      var colRightEl = document.getElementById('colRight');
+      function measureCanvasTop() {
+        if (!colRightEl) return;
+        document.documentElement.style.setProperty('--canvas-top', colRightEl.offsetTop + 'px');
+        resize();
+      }
+      window.addEventListener('resize', measureCanvasTop);
+      window.addEventListener('load', measureCanvasTop);
+      if (document.fonts && document.fonts.ready) document.fonts.ready.then(measureCanvasTop);
+      measureCanvasTop();
+      var seeWork = document.getElementById('seeWork');
+      if (seeWork) seeWork.addEventListener('click', function () {
+        if (window.holdCtaOpen) window.holdCtaOpen();
+        var first = document.querySelector('.work-grid .work-card');
+        if (first) first.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      });
+      window.addEventListener('scroll', syncTools, { passive: true });
+      window.addEventListener('resize', syncTools);
+      syncTools();
+
+      document.getElementById('crayonUndo').addEventListener('click',function(){if(!send({type:'undo'})){strokes.pop();redraw();}});
+      document.getElementById('crayonClear').addEventListener('click',function(){if(!send({type:'clear'})){strokes=[];redraw();}});
+      connect();
+    })();
+  </script>
+
+</body>
+</html>
+
