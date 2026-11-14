@@ -1,8 +1,24 @@
 {
   "redirects": [
-    { "source": "/sand.html", "destination": "/sand", "permanent": true }
+    {
+      "source": "/sand.html",
+      "destination": "/sand",
+      "permanent": true
+    },
+    {
+      "source": "/play.html",
+      "destination": "/play",
+      "permanent": true
+    }
   ],
   "rewrites": [
-    { "source": "/sand", "destination": "/sand.html" }
+    {
+      "source": "/sand",
+      "destination": "/sand.html"
+    },
+    {
+      "source": "/play",
+      "destination": "/play.html"
+    }
   ]
 }
