@@ -8,6 +8,7 @@ export function GET() {
       let message;
       try { message = JSON.parse(data.toString()); } catch { return; }
       if (message.type === 'join') void joinCanvas(ws, message.id);
+      else if (message.type === 'leave') { void unregisterCanvasSocket(ws); ws.close(); }
       else void handleCanvasMessage(ws, message);
     });
     const cleanup = () => void unregisterCanvasSocket(ws);
