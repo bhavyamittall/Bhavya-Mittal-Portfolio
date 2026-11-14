@@ -2905,6 +2905,9 @@ void main() {
         socket.addEventListener('close', function () { presence.textContent = 'Offline · reconnecting'; setTimeout(connect, 2000); });
         socket.addEventListener('error', function () { presence.textContent = 'Connecting…'; });
       }
+      // A lease heartbeat lets the relay detect closed or frozen browser tabs
+      // even when the WebSocket close event never reaches the server.
+      setInterval(function () { send({ type: 'heartbeat' }); }, 15000);
       function send(message) { if (socket && socket.readyState === WebSocket.OPEN) { socket.send(JSON.stringify(message)); return true; } return false; }
       function updatePresence() { presence.textContent = peers.length ? peers.length + ' other' + (peers.length === 1 ? '' : 's') + ' here' : 'Drawing solo'; }
 
