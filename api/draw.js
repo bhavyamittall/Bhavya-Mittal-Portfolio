@@ -4,12 +4,16 @@ import { joinCanvas, registerCanvasSocket, unregisterCanvasSocket, handleCanvasM
 export function GET() {
   return experimental_upgradeWebSocket((ws) => {
     registerCanvasSocket(ws);
+    let queue = Promise.resolve();
     ws.on('message', (data) => {
-      let message;
-      try { message = JSON.parse(data.toString()); } catch { return; }
-      if (message.type === 'join') void joinCanvas(ws, message.id);
-      else if (message.type === 'leave') { void unregisterCanvasSocket(ws); ws.close(); }
-      else void handleCanvasMessage(ws, message);
+      queue = queue.then(async () => {
+        if (data.length > 32_000) { ws.close(1009, 'Message too large'); return; }
+        let message;
+        try { message = JSON.parse(data.toString()); } catch { return; }
+        if (message.type === 'join') await joinCanvas(ws, message.id);
+        else if (message.type === 'leave') { await unregisterCanvasSocket(ws); ws.close(); }
+        else await handleCanvasMessage(ws, message);
+      }).catch((error) => console.error('[crayon] message handling failed', error));
     });
     const cleanup = () => void unregisterCanvasSocket(ws);
     ws.on('close', cleanup);
