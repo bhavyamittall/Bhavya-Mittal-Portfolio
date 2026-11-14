@@ -1340,8 +1340,8 @@
         <button class="crayon-color" style="--swatch:#8B6BB1" data-color="#8B6BB1" aria-label="Purple crayon" aria-pressed="false"></button>
         <button class="crayon-color" style="--swatch:#343434" data-color="#343434" aria-label="Black crayon" aria-pressed="false"></button>
         <span class="crayon-tool-divider" aria-hidden="true"></span>
-        <button class="crayon-action" id="crayonUndo" aria-label="Undo last stroke" title="Undo"><svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true" focusable="false"><path d="M5.6 3.2L2.6 6.2l3 3M2.9 6.2h6.3a3.7 3.7 0 0 1 0 7.4H5.8" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
-        <button class="crayon-action" id="crayonClear" aria-label="Clear drawing" title="Clear all"><svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true" focusable="false"><path d="M2.5 4h11M6 4V2.8c0-.4.3-.8.8-.8h2.4c.5 0 .8.4.8.8V4M4 4l.6 8.4c0 .9.7 1.6 1.6 1.6h3.6c.9 0 1.6-.7 1.6-1.6L12 4M6.8 6.8v4M9.2 6.8v4" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
+        <button class="crayon-action" id="crayonUndo" aria-label="Undo my last stroke" title="Undo my last stroke"><svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true" focusable="false"><path d="M5.6 3.2L2.6 6.2l3 3M2.9 6.2h6.3a3.7 3.7 0 0 1 0 7.4H5.8" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
+        <button class="crayon-action" id="crayonClear" aria-label="Clear my drawings" title="Clear my drawings"><svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true" focusable="false"><path d="M2.5 4h11M6 4V2.8c0-.4.3-.8.8-.8h2.4c.5 0 .8.4.8.8V4M4 4l.6 8.4c0 .9.7 1.6 1.6 1.6h3.6c.9 0 1.6-.7 1.6-1.6L12 4M6.8 6.8v4M9.2 6.8v4" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
         <span id="crayonPresence" role="status" aria-live="polite">Connecting…</span>
       </div>
     </div>
@@ -2896,6 +2896,7 @@ void main() {
           else if (msg.type === 'begin') { strokes.push(msg.stroke); drawStroke(msg.stroke); }
           else if (msg.type === 'points') { var s = strokes.find(function (item) { return item.id === msg.id; }); if (s) { var from = s.points[s.points.length - 1]; msg.points.forEach(function (p) { crayonSegment(px(from), px(p), s.color, s.width); s.points.push(p); from = p; }); } }
           else if (msg.type === 'undo') { strokes = strokes.filter(function (item) { return item.id !== msg.id; }); redraw(); }
+          else if (msg.type === 'remove') { var removed = new Set(msg.ids || []); strokes = strokes.filter(function (item) { return !removed.has(item.id); }); redraw(); }
           else if (msg.type === 'clear') { strokes = []; redraw(); }
         });
         socket.addEventListener('close', function () { presence.textContent = 'Offline · reconnecting'; setTimeout(connect, 2000); });
