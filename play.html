@@ -943,11 +943,6 @@
       .other-grid { display: flex; flex-direction: column; gap: 72px; }
       .other-body { padding-top: 14px; }
 
-      /* Match the reference: quick links and brush tools share the lower row;
-         the private/shared status sits one row above them. */
-      .crayon-row { bottom: 56px; }
-      .crayon-mode-row { bottom: 108px; min-height: 24px; }
-
       /* Landing view = name, bio, quick links only */
       #reachBlock, .as-seen-desktop { display: none !important; }
       .cv-line-desktop { margin-top: auto; }
@@ -1041,6 +1036,11 @@
       align-items: center;
       gap: 12px;
       pointer-events: auto;
+    }
+    @media (min-width: 960px) {
+      /* Match the desktop reference: controls sit level with the quick links;
+         place the Solo/status row one row above them. */
+      .crayon-mode-row { bottom: 108px; }
     }
     .crayon-mode-toggle { display: inline-flex; align-items: center; gap: 7px; cursor: pointer; color: var(--fg); font-size: 11px; line-height: 1; user-select: none; }
     .crayon-mode-toggle input { position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip: rect(0,0,0,0); white-space: nowrap; border: 0; }
