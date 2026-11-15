@@ -943,6 +943,11 @@
       .other-grid { display: flex; flex-direction: column; gap: 72px; }
       .other-body { padding-top: 14px; }
 
+      /* Match the reference: quick links and brush tools share the lower row;
+         the private/shared status sits one row above them. */
+      .crayon-row { bottom: 56px; }
+      .crayon-mode-row { bottom: 108px; min-height: 24px; }
+
       /* Landing view = name, bio, quick links only */
       #reachBlock, .as-seen-desktop { display: none !important; }
       .cv-line-desktop { margin-top: auto; }
@@ -1027,7 +1032,25 @@
       gap: 8px;
       pointer-events: auto;
     }
-    #crayonPresence { color: var(--muted); font-size: 11px; white-space: nowrap; margin-left: 4px; }
+    .crayon-mode-row {
+      position: absolute;
+      right: 72px;
+      bottom: 16px;
+      min-height: 24px;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      pointer-events: auto;
+    }
+    .crayon-mode-toggle { display: inline-flex; align-items: center; gap: 7px; cursor: pointer; color: var(--fg); font-size: 11px; line-height: 1; user-select: none; }
+    .crayon-mode-toggle input { position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip: rect(0,0,0,0); white-space: nowrap; border: 0; }
+    .crayon-switch { width: 30px; height: 18px; padding: 2px; display: inline-flex; align-items: center; border-radius: 999px; background: rgba(58,58,58,.16); box-shadow: inset 0 0 0 1px rgba(58,58,58,.08); transition: background .18s ease, box-shadow .18s ease; }
+    .crayon-switch::after { content: ""; width: 14px; height: 14px; border-radius: 50%; background: #fff; box-shadow: 0 1px 3px rgba(0,0,0,.18); transform: translateX(0); transition: transform .18s cubic-bezier(.22,1,.36,1); }
+    .crayon-mode-toggle input:checked + .crayon-switch { background: #4C83C3; box-shadow: inset 0 0 0 1px rgba(33,89,201,.2); }
+    .crayon-mode-toggle input:checked + .crayon-switch::after { transform: translateX(12px); }
+    .crayon-mode-toggle input:focus-visible + .crayon-switch { outline: 2px solid rgba(44,142,255,.6); outline-offset: 3px; }
+    #crayonModeName { min-width: 34px; }
+    #crayonPresence { color: var(--muted); font-size: 11px; white-space: nowrap; }
     #crayonTools.is-hidden {
       opacity: 0;
       translate: 0 16px;
@@ -1122,8 +1145,16 @@
         left: 50%;
         right: auto;
         translate: -50% 0;
-        bottom: calc(env(safe-area-inset-bottom, 0px) + 88px);   /* ~18px above the pill */
+        bottom: calc(env(safe-area-inset-bottom, 0px) + 132px);
       }
+      .crayon-mode-row {
+        left: 50%;
+        right: auto;
+        translate: -50% 0;
+        bottom: calc(env(safe-area-inset-bottom, 0px) + 84px);
+        gap: 8px;
+      }
+      #crayonPresence { font-size: 10px; }
       .crayon-tool-divider { display: none; }
       /* collapsed: the other swatches shrink to nothing (the -4px side margins cancel the row's 8px gap); opening animates them back in */
       .crayon-color {
@@ -1345,7 +1376,14 @@
         <button class="crayon-action download-action" id="crayonPostcard" aria-label="Download postcard" title="Download postcard">
           <svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M8 1.8v8.1m0 0 3-3m-3 3-3-3M2.5 10.3v2.1c0 .7.6 1.3 1.3 1.3h8.4c.7 0 1.3-.6 1.3-1.3v-2.1" stroke="currentColor" stroke-width="1.25" stroke-linecap="round" stroke-linejoin="round"/></svg>
         </button>
-        <span id="crayonPresence" role="status" aria-live="polite">Connecting…</span>
+      </div>
+      <div class="crayon-mode-row">
+        <label class="crayon-mode-toggle" title="Solo keeps your drawing private. Switching to shared mode shows it to your paired partner.">
+          <input id="crayonSharedMode" type="checkbox" aria-label="Switch from solo to shared mode">
+          <span class="crayon-switch" aria-hidden="true"></span>
+          <span id="crayonModeName">Solo</span>
+        </label>
+        <span id="crayonPresence" role="status" aria-live="polite">Only you can see your drawing</span>
       </div>
     </div>
       </div>
@@ -2886,8 +2924,10 @@ void main() {
       var MAX_STROKES_PER_SESSION = 300, MAX_POINTS_PER_STROKE = 2000, MAX_POINTS_PER_SESSION = 5000;
       var sessionStrokeCount = 0, sessionPointCount = 0, drawingLimitReached = false, pendingPoints = [], pointFlushTimer = null;
       var dpr = Math.min(window.devicePixelRatio || 1, 2);
-      var socket = null, clientId = Math.random().toString(36).slice(2), peers = [], partnerId = null, soloMode = false, leavingPage = false, reconnectTimer = null;
+      var socket = null, clientId = Math.random().toString(36).slice(2), peers = [], partnerId = null, soloMode = true, sharedModeRequested = false, joiningShared = false, fullRoom = false, importPrivateStrokes = false, leavingPage = false, reconnectTimer = null;
       var presence = document.getElementById('crayonPresence');
+      var sharedToggle = document.getElementById('crayonSharedMode');
+      var modeName = document.getElementById('crayonModeName');
 
       function crayonHaptic(pattern) {
         if (!navigator.vibrate) return;
@@ -2895,19 +2935,30 @@ void main() {
       }
 
       function connect() {
+        if (!sharedModeRequested || leavingPage) return;
+        if (socket && (socket.readyState === WebSocket.OPEN || socket.readyState === WebSocket.CONNECTING)) return;
         var url = window.CRAYON_SOCKET_URL || ((location.protocol === 'https:' ? 'wss://' : 'ws://') + location.host + '/api/draw');
-        if (!location.host || location.protocol === 'file:') { presence.textContent = 'Multiplayer unavailable'; return; }
+        if (!location.host || location.protocol === 'file:') { joiningShared = false; sharedModeRequested = false; sharedToggle.checked = false; updatePresence(); return; }
         socket = new WebSocket(url);
-        socket.addEventListener('open', function () { socket.send(JSON.stringify({ type: 'join', id: clientId })); });
+        socket.addEventListener('open', function () { if (sharedModeRequested) socket.send(JSON.stringify({ type: 'join', id: clientId, shared: true })); else socket.close(); });
         socket.addEventListener('message', function (event) {
           var msg; try { msg = JSON.parse(event.data); } catch (_) { return; }
           if (msg.type === 'state') {
             var localOwn = strokes.filter(function(s){return s.owner===clientId;});
-            strokes = (msg.strokes || []).filter(function(s){return s.owner!==clientId;}).concat(localOwn);
-            partnerId = msg.partnerId || null; soloMode = !!msg.solo; syncSessionLimits(); redraw(); peers = msg.peers || []; updatePresence();
+            var serverStrokes = msg.strokes || [], serverOwn = serverStrokes.filter(function(s){return s.owner===clientId;});
+            strokes = serverStrokes.filter(function(s){return s.owner!==clientId;}).concat(serverOwn.length ? serverOwn : localOwn);
+            partnerId = msg.partnerId || null; soloMode = !!msg.solo; joiningShared = false; fullRoom = msg.reason === 'full';
+            if (soloMode) { sharedModeRequested = false; sharedToggle.checked = false; }
+            else { sharedModeRequested = true; sharedToggle.checked = true; }
+            syncSessionLimits(); redraw(); peers = msg.peers || []; updatePresence();
+            if(!soloMode && importPrivateStrokes) { importPrivateStrokes=false; if(!serverOwn.length) publishPrivateStrokes(); }
             if(soloMode && socket && socket.readyState===WebSocket.OPEN) socket.close();
           }
-          else if (msg.type === 'visibility') { partnerId = msg.partnerId || null; soloMode = !!msg.solo; peers = partnerId ? [partnerId] : []; redraw(); updatePresence(); if(soloMode && socket && socket.readyState===WebSocket.OPEN) socket.close(); }
+          else if (msg.type === 'visibility') {
+            partnerId = msg.partnerId || null; soloMode = !!msg.solo; peers = partnerId ? [partnerId] : [];
+            if(soloMode){sharedModeRequested=false;joiningShared=false;fullRoom=true;sharedToggle.checked=false;}
+            redraw(); updatePresence(); if(soloMode && socket && socket.readyState===WebSocket.OPEN) socket.close();
+          }
           else if (msg.type === 'peers') { peers = msg.peers || []; updatePresence(); }
           else if (msg.type === 'begin') { strokes.push(msg.stroke); drawStroke(msg.stroke); }
           else if (msg.type === 'points') { var s = strokes.find(function (item) { return item.id === msg.id; }); if (s) { var from = s.points[s.points.length - 1]; msg.points.forEach(function (p) { crayonSegment(px(from), px(p), s.color, s.width); s.points.push(p); from = p; }); } }
@@ -2921,15 +2972,27 @@ void main() {
           }
         });
         socket.addEventListener('close', function () {
-          if (leavingPage || soloMode) return;
+          if (leavingPage || !sharedModeRequested) return;
           presence.textContent = 'Offline · reconnecting';
-          reconnectTimer = setTimeout(function () { reconnectTimer = null; if (!leavingPage) connect(); }, 2000);
+          reconnectTimer = setTimeout(function () { reconnectTimer = null; if (!leavingPage && sharedModeRequested) connect(); }, 2000);
         });
         socket.addEventListener('error', function () { presence.textContent = 'Connecting…'; });
       }
+      function publishPrivateStrokes() {
+        strokes.filter(function(s){return s.owner===clientId;}).forEach(function(stroke){
+          var pts=stroke.points||[]; if(!pts.length)return;
+          send({type:'begin',stroke:{id:stroke.id,owner:clientId,color:stroke.color,width:stroke.width,points:pts.slice(0,1)}});
+          for(var i=1;i<pts.length;i+=80) send({type:'points',id:stroke.id,points:pts.slice(i,i+80)});
+        });
+      }
+      sharedToggle.addEventListener('change', function(){
+        crayonHaptic();
+        if(sharedToggle.checked){ sharedModeRequested=true; joiningShared=true; fullRoom=false; soloMode=true; importPrivateStrokes=true; updatePresence(); connect(); }
+        else { sharedModeRequested=false; joiningShared=false; importPrivateStrokes=false; soloMode=true; partnerId=null; peers=[]; clearTimeout(reconnectTimer); reconnectTimer=null; if(socket){if(socket.readyState===WebSocket.OPEN)send({type:'leave'}); socket.close();} redraw(); updatePresence(); }
+      });
       // A lease heartbeat lets the relay detect closed or frozen browser tabs
       // even when the WebSocket close event never reaches the server.
-      setInterval(function () { if(!soloMode)send({ type: 'heartbeat' }); }, 15000);
+      setInterval(function () { if(sharedModeRequested&&!soloMode)send({ type: 'heartbeat' }); }, 15000);
       window.addEventListener('pagehide', function () {
         leavingPage = true;
         clearTimeout(reconnectTimer); reconnectTimer = null;
@@ -2940,7 +3003,7 @@ void main() {
       window.addEventListener('pageshow', function () {
         if (!leavingPage) return;
         leavingPage = false;
-        if (!socket || (socket.readyState !== WebSocket.OPEN && socket.readyState !== WebSocket.CONNECTING)) connect();
+        if (sharedModeRequested && (!socket || (socket.readyState !== WebSocket.OPEN && socket.readyState !== WebSocket.CONNECTING))) connect();
       });
       function send(message) { if (socket && socket.readyState === WebSocket.OPEN) { socket.send(JSON.stringify(message)); return true; } return false; }
       function flushPoints() {
@@ -2949,7 +3012,10 @@ void main() {
         var points=pendingPoints;pendingPoints=[];
         if(!soloMode&&currentStroke)send({type:'points',id:currentStroke.id,points:points});
       }
-      function updatePresence() { presence.textContent = drawingLimitReached ? 'Drawing limit reached' : soloMode ? 'Solo mode · canvas is full' : peers.length ? '1 other here' : 'Drawing solo'; }
+      function updatePresence() {
+        modeName.textContent = sharedModeRequested ? 'Shared' : 'Solo';
+        presence.textContent = drawingLimitReached ? 'Drawing limit reached' : joiningShared ? 'Connecting to shared canvas…' : !sharedModeRequested ? (fullRoom ? 'Canvas full · drawing privately' : 'Only you can see your drawing') : peers.length ? 'Sharing with 1 person' : 'Shared · waiting for a partner';
+      }
       function syncSessionLimits() {
         var own=strokes.filter(function(s){return s.owner===clientId;});
         sessionStrokeCount=own.length;
@@ -3121,7 +3187,7 @@ void main() {
           setTimeout(function(){URL.revokeObjectURL(url);},1000);
         },'image/png');
       });
-      connect();
+      sharedToggle.checked = false; updatePresence();
     })();
   </script>
 
