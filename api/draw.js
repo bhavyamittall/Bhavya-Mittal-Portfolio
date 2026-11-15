@@ -10,7 +10,7 @@ export function GET() {
         if (data.length > 32_000) { ws.close(1009, 'Message too large'); return; }
         let message;
         try { message = JSON.parse(data.toString()); } catch { return; }
-        if (message.type === 'join') await joinCanvas(ws, message.id);
+        if (message.type === 'join') await joinCanvas(ws, message.id, message.shared === true);
         else if (message.type === 'leave') { await unregisterCanvasSocket(ws); ws.close(); }
         else await handleCanvasMessage(ws, message);
       }).catch((error) => console.error('[crayon] message handling failed', error));
