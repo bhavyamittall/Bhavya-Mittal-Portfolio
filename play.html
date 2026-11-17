@@ -3091,10 +3091,10 @@ void main() {
           if (!s.points || !s.points.length) return;
           if (s.points.length === 1) {
             var p = s.points[0], a = { x: left + p.x * drawW, y: top + p.y * drawH };
-            crayonSegment(a, { x: a.x + .1, y: a.y + .1 }, s.color, s.width * scale * 2.8, g, paper);
+            crayonSegment(a, { x: a.x + .1, y: a.y + .1 }, s.color, s.width * scale, g, paper);
           } else for (var i = 1; i < s.points.length; i++) {
             var p0 = s.points[i - 1], p1 = s.points[i];
-            crayonSegment({ x: left + p0.x * drawW, y: top + p0.y * drawH }, { x: left + p1.x * drawW, y: top + p1.y * drawH }, s.color, s.width * scale * 2.8, g, paper);
+            crayonSegment({ x: left + p0.x * drawW, y: top + p0.y * drawH }, { x: left + p1.x * drawW, y: top + p1.y * drawH }, s.color, s.width * scale, g, paper);
           }
         });
         g.restore();
